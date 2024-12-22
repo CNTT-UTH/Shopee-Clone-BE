@@ -5,16 +5,29 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run build:live",
-    "build": "tsc -p .",
+    "build": "rimraf ./dist && tsc && tsc-alias",
     "build:live": "nodemon --watch 'src/**/*.ts' --exec \"ts-node\" src/index.ts",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "prettier": "prettier --check .",
+    "prettier:fix": "prettier --write .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@eslint/js": "^9.17.0",
     "@types/node": "^22.10.2",
+    "eslint": "^9.17.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "globals": "^15.14.0",
     "nodemon": "^3.1.9",
+    "prettier": "^3.4.2",
+    "rimraf": "^6.0.1",
     "ts-node": "^10.9.2",
-    "typescript": "^5.7.2"
+    "tsc-alias": "^1.8.10",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.18.1"
   }
 }

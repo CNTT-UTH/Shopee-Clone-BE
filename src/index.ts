@@ -1,3 +1,3 @@
-const myname : string = "Huỳnh Vũ Nhật Linh";
+const myname: string = 'Huỳnh Vũ Nhật Linh'
 
-console.log(myname);
+console.log(myname)
