@@ -8,14 +8,8 @@ const AppDataSource = new DataSource({
     username: envConfig.DB_USER,
     password: envConfig.DB_PASSWORD,
     database: envConfig.DB_NAME,
-});
+    entities: ["src/model/schemas/*.schemas.ts"],
 
-AppDataSource.initialize()
-    .then(() => {
-        console.log("Data Source has been initialized!");
-    })
-    .catch((err) => {
-        console.error("Error during Data Source initialization", err);
-    });
+});
 
 export default AppDataSource;
