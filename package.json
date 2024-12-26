@@ -30,6 +30,7 @@
         "rimraf": "^6.0.1",
         "ts-node": "^10.9.2",
         "tsc-alias": "^1.8.10",
+        "typeorm": "^0.3.20",
         "typescript": "^5.7.2",
         "typescript-eslint": "^8.18.1"
     },
