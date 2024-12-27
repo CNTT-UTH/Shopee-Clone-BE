@@ -22,6 +22,7 @@ app.use(expressLayouts);
 app.set("view engine", "ejs");
 
 app.use(cookieParser());
+app.use(express.json());
 
 initWebRoutes(app);
 

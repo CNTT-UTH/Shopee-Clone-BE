@@ -1,21 +1,35 @@
 import { checkSchema } from "express-validator";
 import HTTP_STATUS from "~/constants/httpStatus";
-import { ApiError } from "~/utils/apiError";
+import { USERS_MESSAGES } from "~/constants/messages";
+import { ApiError } from "~/utils/errors";
 import { validate } from "~/utils/validate";
 
 export const loginValidator = checkSchema({});
 
 export const registerValidator = validate(
     checkSchema({
+        email: {
+            isEmail: true,
+            normalizeEmail: true,
+            errorMessage: USERS_MESSAGES.EMAIL_IS_INVALID,
+        },
         username: {
+            isNumeric: false,
             isLength: {
                 options: {
                     min: 8,
                     max: 24,
                 },
             },
+            isStrongPassword: {
+                options: {
+                    minUppercase: 1,
+                    minNumbers: 1,
+                    minLowercase: 1,
+                },
+            },
             escape: true,
-            errorMessage: "Username must be between 8 and 24 characters long", 
+            errorMessage: USERS_MESSAGES.USERNAME_INVALID,
         },
         password: {
             isStrongPassword: {
@@ -27,16 +41,13 @@ export const registerValidator = validate(
                     minLowercase: 1,
                 },
             },
-            errorMessage:
-                "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one symbol",
+            errorMessage: USERS_MESSAGES.PASSWORD_MUST_BE_STRONG,
         },
         confirmPassword: {
             custom: {
                 options: (value: string, { req }) => {
-                    // console.log(req.query);
-                    // console.log(value);
                     if (value !== req.body?.password) {
-                        throw new ApiError("Passwords do not match", HTTP_STATUS.UNAUTHORIZED);
+                        throw USERS_MESSAGES.CONFIRM_PASSWORD_MUST_BE_THE_SAME_AS_PASSWORD;
                     }
                     return true;
                 },
