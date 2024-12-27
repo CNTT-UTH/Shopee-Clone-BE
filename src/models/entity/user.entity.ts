@@ -20,13 +20,13 @@ export class User extends BaseEntity {
     @PrimaryGeneratedColumn("uuid")
     _id: string;
 
-    @Column()
+    @Column({ nullable: true })
     name: string;
 
     @Column()
     email: string;
 
-    @Column()
+    @Column({ nullable: true })
     dob: Date;
 
     @Column()
@@ -65,7 +65,4 @@ export class User extends BaseEntity {
     //     this.verify = user.verify || UserVerifyStatus.Unverified;
     //     this.avatar = user.avatar || "";
     // }
-
-
 }
-

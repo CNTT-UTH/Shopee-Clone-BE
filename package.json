@@ -3,6 +3,9 @@
     "version": "1.0.0",
     "description": "",
     "main": "dist/index.js",
+    "_moduleAliases": {
+        "~": "src"
+    },
     "scripts": {
         "dev": "npx nodemon",
         "start": "npm run build:live",
@@ -12,7 +15,11 @@
         "lint:fix": "eslint . --fix",
         "prettier": "prettier --check .",
         "prettier:fix": "prettier --write .",
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "typeorm": "typeorm-ts-node-commonjs",
+        "migration:create": "npx typeorm-ts-node-commonjs migration:create",
+        "migration:generate": "npx typeorm-ts-node-commonjs migration:generate -d ./src/config/db.ts ",
+        "migration:run": "npx typeorm-ts-node-commonjs migration:run -d ./src/config/db.ts"
     },
     "author": "",
     "license": "ISC",
@@ -29,6 +36,7 @@
         "globals": "^15.14.0",
         "nodemon": "^3.1.9",
         "prettier": "^3.4.2",
+        "reflect-metadata": "^0.2.2",
         "rimraf": "^6.0.1",
         "ts-node": "^10.9.2",
         "tsc-alias": "^1.8.10",
@@ -44,6 +52,7 @@
         "express-ejs-layouts": "^2.5.1",
         "express-validator": "^7.2.0",
         "lodash": "^4.17.21",
+        "module-alias": "^2.2.3",
         "mysql": "^2.18.1",
         "tsconfig-paths": "^4.2.0"
     }
