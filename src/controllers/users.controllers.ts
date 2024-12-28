@@ -6,7 +6,7 @@ import { USERS_MESSAGES } from "~/constants/messages";
 
 class UserController {
     greetings = async (req: Request, res: Response) => {
-        // console.log(req);
+        // (req);
         res.send({
             status: "suscess",
             message: "user",

@@ -6,7 +6,7 @@ export const errorHandler = (err: ApiError | Error, req: Request, res: Response,
     const errors = err instanceof ApiError ? err?.errors : null;
     const message = err.message || "Internal Server Error";
 
-    console.log("access");
+    ("access");
 
     res.status(statusCode).json({
         success: false,
