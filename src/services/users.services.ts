@@ -1,14 +1,18 @@
 import AppDataSource from "~/config/db";
 import { RegisterReqBody } from "~/models/requests/users.requests";
 import { User } from "~/models/entity/user.entity";
+import bcrypt from "bcrypt";
 
 class UserService {
     async register(payload: RegisterReqBody) {
-        await AppDataSource.getRepository(User).create(payload).save();
+        payload.password = await bcrypt.hash(payload.password, 10);
+
+        const userRepository = AppDataSource.getRepository(User);
+        const user = userRepository.create(payload);
+        userRepository.save(user);
 
         return {
             status: "success",
-            message: "register",
         };
     }
 
@@ -24,6 +28,15 @@ class UserService {
             status: "success",
             message: "greetings",
         };
+    }
+
+    async checkEmail(email: string): Promise<boolean> {
+        const userRepository = AppDataSource.getRepository(User);
+
+        const user = await userRepository.findOneBy({ email });
+
+        if (user) return true;
+        else return false;
     }
 }
 

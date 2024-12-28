@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { ParamsDictionary } from "express-serve-static-core";
 import { RegisterReqBody } from "~/models/requests/users.requests";
 import UserService from "~/services/users.services";
+import { USERS_MESSAGES } from "~/constants/messages";
 
 class UserController {
     greetings = async (req: Request, res: Response) => {
@@ -20,10 +21,12 @@ class UserController {
 
     register = async (req: Request<ParamsDictionary, any, RegisterReqBody>, res: Response) => {
         const reqBody: RegisterReqBody = req.body;
-        console.log(reqBody);
-        await UserService.register(reqBody);
+
+        const result = await UserService.register(reqBody);
+
         res.send({
-            ...reqBody,
+            message: USERS_MESSAGES.REGISTER_SUCCESS,
+            result,
         });
     };
 }

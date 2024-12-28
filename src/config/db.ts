@@ -15,6 +15,6 @@ const AppDataSource = new DataSource({
         // "../models/entity/*.entity.{ts, js}"
         User,
     ],
-    // synchronize: true,
+    synchronize: envConfig.NODE_ENV === "development",
 });
 export default AppDataSource;

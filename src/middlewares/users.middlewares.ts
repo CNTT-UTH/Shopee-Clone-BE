@@ -1,6 +1,7 @@
 import { checkSchema } from "express-validator";
 import HTTP_STATUS from "~/constants/httpStatus";
 import { USERS_MESSAGES } from "~/constants/messages";
+import usersServices from "~/services/users.services";
 import { ApiError } from "~/utils/errors";
 import { validate } from "~/utils/validate";
 
@@ -12,6 +13,15 @@ export const registerValidator = validate(
             isEmail: true,
             normalizeEmail: true,
             errorMessage: USERS_MESSAGES.EMAIL_IS_INVALID,
+            custom: {
+                options: async (value: string) => {
+                    const check = await usersServices.checkEmail(value);
+                    if (check) {
+                        throw USERS_MESSAGES.EMAIL_ALREADY_EXISTS;
+                    }
+                    return true;
+                },
+            },
         },
         username: {
             isNumeric: false,
