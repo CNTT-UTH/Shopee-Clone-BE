@@ -10,6 +10,9 @@ export const loginValidator = checkSchema({});
 export const registerValidator = validate(
     checkSchema({
         email: {
+            notEmpty: {
+                errorMessage: USERS_MESSAGES.EMAIL_IS_REQUIRED,
+            },
             isEmail: true,
             normalizeEmail: true,
             errorMessage: USERS_MESSAGES.EMAIL_IS_INVALID,
@@ -40,6 +43,9 @@ export const registerValidator = validate(
             escape: true,
         },
         password: {
+            notEmpty: {
+                errorMessage: USERS_MESSAGES.PASSWORD_IS_REQUIRED,
+            },
             isStrongPassword: {
                 options: {
                     minLength: 8,
@@ -48,8 +54,8 @@ export const registerValidator = validate(
                     minSymbols: 1,
                     minLowercase: 1,
                 },
+                errorMessage: USERS_MESSAGES.PASSWORD_MUST_BE_STRONG,
             },
-            errorMessage: USERS_MESSAGES.PASSWORD_MUST_BE_STRONG,
         },
         confirmPassword: {
             custom: {
