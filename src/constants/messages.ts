@@ -46,8 +46,9 @@ export const USERS_MESSAGES = {
     WEBSITE_MUST_BE_STRING: "Website must be a string",
     WEBSITE_LENGTH: "Website length must be from 1 to 200",
     USERNAME_MUST_BE_STRING: "Username must be a string",
-    USERNAME_INVALID:
-        "Username must be between 8 and 24 characters long, contain at least one uppercase letter, one lowercase letter, and one number, and must not contain any special characters",
+    USERNAME_IS_REQUIRED: "Username is required",
+    USERNAME_LENGTH_INVALID: "Username must be between 8 and 24 characters long",
+    USERNAME_FORMAT_INVALID: "Username must be contains only letters and numbers",
     IMAGE_URL_MUST_BE_STRING: "Avatar must be a string",
     IMAGE_URL_LENGTH: "Avatar length must be from 1 to 200",
     UPDATE_ME_SUCCESS: "Update my profile success",

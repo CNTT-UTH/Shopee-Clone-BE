@@ -24,22 +24,20 @@ export const registerValidator = validate(
             },
         },
         username: {
-            isNumeric: false,
+            notEmpty: {
+                errorMessage: USERS_MESSAGES.USERNAME_IS_REQUIRED,
+            },
+            isAlphanumeric: {
+                errorMessage: USERS_MESSAGES.USERNAME_FORMAT_INVALID,
+            },
             isLength: {
                 options: {
                     min: 8,
                     max: 24,
                 },
-            },
-            isStrongPassword: {
-                options: {
-                    minUppercase: 1,
-                    minNumbers: 1,
-                    minLowercase: 1,
-                },
+                errorMessage: USERS_MESSAGES.USERNAME_LENGTH_INVALID,
             },
             escape: true,
-            errorMessage: USERS_MESSAGES.USERNAME_INVALID,
         },
         password: {
             isStrongPassword: {
