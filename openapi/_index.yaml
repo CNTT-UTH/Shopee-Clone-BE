@@ -22,6 +22,8 @@ tags:
           description: Find out more
           url: http://swagger.io
 paths:
+    /users/login:
+        $ref: "./resources/users/users_login.yaml"
     /users/register:
         $ref: "./resources/users/users_register.yaml"
 components:

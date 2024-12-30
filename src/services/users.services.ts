@@ -66,6 +66,7 @@ class UserService {
         ]);
 
         return {
+            userId: (user as User)?._id,
             accessToken,
             refreshToken,
         };

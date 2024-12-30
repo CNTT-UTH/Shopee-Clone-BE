@@ -2,6 +2,8 @@ User:
     $ref: "./User.yaml"
 RegisterBody:
     $ref: "./RegisterBody.yaml"
+LoginBody:
+    $ref: "./LoginBody.yaml"
 ApiResponse:
     $ref: "./ApiResponse.yaml"
 FailedValidation:

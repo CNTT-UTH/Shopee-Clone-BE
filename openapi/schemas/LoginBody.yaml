@@ -1,0 +1,11 @@
+type: object
+properties:
+    username:
+        type: string
+        example: "linh1234"
+    password:
+        type: string
+        example: "Linhhoccode$123"
+
+required:
+    - password

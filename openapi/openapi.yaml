@@ -21,6 +21,57 @@ tags:
       description: Find out more
       url: 'http://swagger.io'
 paths:
+  /users/login:
+    post:
+      tags:
+        - users
+      summary: Đăng nhập
+      description: ''
+      operationId: users_register
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginBody'
+      responses:
+        '200':
+          description: Đăng nhập thành công
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Login success
+                  result:
+                    $ref: '#/components/schemas/SuccessAuthenticate'
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Validation failed
+                  errors:
+                    type: object
+                    example:
+                      email:
+                        message: Email or password is incorrect
+                        value: linhhh@gmail.com
+      security:
+        - petstore_auth:
+            - 'write:pets'
+            - 'read:pets'
   /users/register:
     post:
       tags:
@@ -95,6 +146,17 @@ components:
         - email
         - password
         - confirmPassword
+    LoginBody:
+      type: object
+      properties:
+        username:
+          type: string
+          example: linh1234
+        password:
+          type: string
+          example: Linhhoccode$123
+      required:
+        - password
     ApiResponse:
       type: object
       properties:
