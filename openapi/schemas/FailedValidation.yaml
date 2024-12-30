@@ -1,0 +1,18 @@
+type: object
+properties:
+    success:
+        type: boolean
+        example: false
+    message:
+        type: string
+        example: "Validation failed"
+    errors:
+        type: object
+        example:
+            {
+                "email":
+                    {
+                        "message": "Email already exists",
+                        "value": "linhhuynh@gmail.com",
+                    },
+            }

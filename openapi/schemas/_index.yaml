@@ -1,1 +1,10 @@
-
+User:
+    $ref: "./User.yaml"
+RegisterBody:
+    $ref: "./RegisterBody.yaml"
+ApiResponse:
+    $ref: "./ApiResponse.yaml"
+FailedValidation:
+    $ref: "./FailedValidation.yaml"
+SuccessAuthenticate:
+    $ref: "./SuccessAuthenticate.yaml"

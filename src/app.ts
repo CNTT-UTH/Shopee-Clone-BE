@@ -6,9 +6,24 @@ import { envConfig } from "./constants/env";
 import { initWebRoutes } from "./routes/web.routes";
 import AppDataSource from "./config/db";
 import { errorHandler } from "./middlewares/errorHandler.middlewares";
+import swaggerUi from "swagger-ui-express";
+import swaggerJsdoc from "swagger-jsdoc";
+import YAML from "yaml";
+import fs from "fs";
+import path from "path";
+import morgan from "morgan";
+import helmet from "helmet";
+import compression from "compression";
+
+const file = fs.readFileSync(path.resolve(__dirname, "../openapi/openapi.yaml"), "utf8");
+const swaggerDocs = YAML.parse(file);
 
 const app = express();
 
+// init middleware
+app.use(morgan(envConfig.NODE_ENV === "development" ? "dev" : "combined"));
+app.use(helmet());
+app.use(compression());
 app.use(
     cors({
         origin: envConfig.FRONTEND_URL || "http://localhost:3000",
@@ -23,6 +38,8 @@ app.set("view engine", "ejs");
 
 app.use(cookieParser());
 app.use(express.json());
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 initWebRoutes(app);
 

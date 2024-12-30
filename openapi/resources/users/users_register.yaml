@@ -1,0 +1,37 @@
+post:
+    tags:
+        - users
+    summary: Đăng ký tài khoản
+    description: ""
+    operationId: users_register
+    requestBody:
+        content:
+            application/json:
+                schema:
+                    $ref: "../../schemas/RegisterBody.yaml"
+    responses:
+        "200":
+            description: Đăng ký thành công
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            success:
+                                type: boolean
+                                example: true
+                            message:
+                                type: string
+                                example: Register success
+                            result:
+                                $ref: "../../schemas/SuccessAuthenticate.yaml"
+        "422":
+            description: Unprocessable Entity
+            content:
+                application/json:
+                    schema:
+                        $ref: "../../schemas/FailedValidation.yaml"
+    security:
+        - petstore_auth:
+              - write:pets
+              - read:pets

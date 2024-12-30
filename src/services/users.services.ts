@@ -11,7 +11,6 @@ class UserService {
         return signToken({
             payload: {
                 user_id,
-                exp: Math.floor(Date.now() / 1000) + 60 * 60,
                 type: TokenType.AccessToken,
             },
             privateKey: envConfig.JWT_SECRET_ACCESS_TOKEN,
@@ -22,7 +21,6 @@ class UserService {
         return signToken({
             payload: {
                 user_id,
-                exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 7,
                 type: TokenType.RefreshToken,
             },
             privateKey: envConfig.JWT_SECRET_REFRESH_TOKEN,

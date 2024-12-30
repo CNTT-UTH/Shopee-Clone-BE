@@ -1,0 +1,31 @@
+openapi: 3.0.3
+info:
+    title: Swagger Shopee - OpenAPI 3.0
+    description: |-
+
+    termsOfService: http://swagger.io/terms/
+    contact:
+        email: apiteam@swagger.io
+    license:
+        name: Apache 2.0
+        url: http://www.apache.org/licenses/LICENSE-2.0.html
+    version: 1.0.11
+externalDocs:
+    description: Find out more about Swagger
+    url: http://swagger.io
+servers:
+    - url: http://localhost:3000/api
+tags:
+    - name: users
+      description: Everything about Users
+      externalDocs:
+          description: Find out more
+          url: http://swagger.io
+paths:
+    /users/register:
+        $ref: "./resources/users/users_register.yaml"
+components:
+    # parameters:
+    #     $ref: "./parameters/_index.yaml"
+    schemas:
+        $ref: "./schemas/_index.yaml"

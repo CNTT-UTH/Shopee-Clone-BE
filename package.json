@@ -19,23 +19,31 @@
         "typeorm": "typeorm-ts-node-commonjs",
         "migration:create": "npx typeorm-ts-node-commonjs migration:create",
         "migration:generate": "npx typeorm-ts-node-commonjs migration:generate -d ./src/config/db.ts ",
-        "migration:run": "npx typeorm-ts-node-commonjs migration:run -d ./src/config/db.ts"
+        "migration:run": "npx typeorm-ts-node-commonjs migration:run -d ./src/config/db.ts",
+        "apidocs": "swagger-cli bundle ./openapi/_index.yaml --outfile ./openapi/openapi.yaml --type yaml"
     },
     "author": "",
     "license": "ISC",
     "devDependencies": {
         "@eslint/js": "^9.17.0",
+        "@types/compression": "^1.7.5",
         "@types/cors": "^2.8.17",
         "@types/express": "^5.0.0",
+        "@types/helmet": "^0.0.48",
         "@types/lodash": "^4.17.13",
         "@types/node": "^22.10.2",
+        "@types/swagger-jsdoc": "^6.0.4",
+        "@types/swagger-ui-express": "^4.1.7",
         "bcrypt": "^5.1.1",
+        "compression": "^1.7.5",
         "dotenv": "^16.4.7",
         "eslint": "^9.17.0",
         "eslint-config-prettier": "^9.1.0",
         "eslint-plugin-prettier": "^5.2.1",
         "globals": "^15.14.0",
+        "helmet": "^8.0.0",
         "jsonwebtoken": "^9.0.2",
+        "morgan": "^1.10.0",
         "nodemon": "^3.1.9",
         "prettier": "^3.4.2",
         "reflect-metadata": "^0.2.2",
@@ -49,6 +57,7 @@
     "dependencies": {
         "@types/jsonwebtoken": "^9.0.7",
         "@types/minimist": "^1.2.5",
+        "@types/morgan": "^1.9.9",
         "cookie-parser": "^1.4.7",
         "cors": "^2.8.5",
         "express": "^4.21.2",
@@ -57,6 +66,9 @@
         "lodash": "^4.17.21",
         "module-alias": "^2.2.3",
         "mysql": "^2.18.1",
-        "tsconfig-paths": "^4.2.0"
+        "swagger-jsdoc": "^6.2.8",
+        "swagger-ui-express": "^5.0.1",
+        "tsconfig-paths": "^4.2.0",
+        "yaml": "^2.6.1"
     }
 }

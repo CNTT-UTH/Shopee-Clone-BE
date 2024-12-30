@@ -25,6 +25,7 @@ class UserController {
         const result = await UserService.register(reqBody);
 
         res.send({
+            suscess: true,
             message: USERS_MESSAGES.REGISTER_SUCCESS,
             result,
         });
