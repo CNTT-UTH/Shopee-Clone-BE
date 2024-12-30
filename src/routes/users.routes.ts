@@ -12,7 +12,7 @@ router
 
 router
     .route("/login")
-    .post(loginValidator, UserController.login);
+    .post(loginValidator, asyncHandler(UserController.login));
 
 router
     .route("/register")

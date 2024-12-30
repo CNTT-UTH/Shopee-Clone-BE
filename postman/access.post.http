@@ -1,0 +1,21 @@
+@url_dev=http://localhost:3000/api/v1
+
+### login
+POST {{url_dev}}/users/login
+Content-Type: application/json
+
+{
+    "email": "Linhhuynh1@gmail.com",
+    "password": "Linhhuynh@12"
+}
+
+### register
+POST {{url_dev}}/users/register
+Content-Type: application/json
+
+{
+    "email": "Linhhuynh1@gmail.com",
+    "username": "Linhhuynh123",
+    "password": "Linhhuynh@12",
+    "confirmPassword": "Linhhuynh@12"
+}

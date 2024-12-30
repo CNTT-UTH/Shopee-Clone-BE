@@ -8,6 +8,7 @@ export const USERS_MESSAGES = {
     EMAIL_IS_INVALID: "Email is invalid",
     EMAIL_OR_PASSWORD_IS_INCORRECT: "Email or password is incorrect",
     PASSWORD_IS_REQUIRED: "Password is required",
+    PASSWORD_IS_INCORRECT: "Password is incorrect",
     PASSWORD_MUST_BE_A_STRING: "Password must be a string",
     PASSWORD_LENGTH_MUST_BE_FROM_6_TO_50: "Password length must be from 6 to 50",
     PASSWORD_MUST_BE_STRONG:
@@ -49,6 +50,8 @@ export const USERS_MESSAGES = {
     USERNAME_IS_REQUIRED: "Username is required",
     USERNAME_LENGTH_INVALID: "Username must be between 8 and 24 characters long",
     USERNAME_FORMAT_INVALID: "Username must be contains only letters and numbers",
+    USERNAME_OR_EMAIL_IS_REQUIRED: "Username or email is required",
+    USERNAME_DOES_NOT_EXIST: "Username does not exist",
     IMAGE_URL_MUST_BE_STRING: "Avatar must be a string",
     IMAGE_URL_LENGTH: "Avatar length must be from 1 to 200",
     UPDATE_ME_SUCCESS: "Update my profile success",

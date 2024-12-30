@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { ParamsDictionary } from "express-serve-static-core";
-import { RegisterReqBody } from "~/models/requests/users.requests";
+import { LoginReqBody, RegisterReqBody } from "~/models/requests/users.requests";
 import UserService from "~/services/users.services";
 import { USERS_MESSAGES } from "~/constants/messages";
 
@@ -13,9 +13,15 @@ class UserController {
         });
     };
 
-    login = async (req: Request, res: Response) => {
+    login = async (req: Request<ParamsDictionary, any, RegisterReqBody>, res: Response) => {
+        const reqBody: LoginReqBody = req.body;
+
+        const result = await UserService.login(reqBody);
+
         res.send({
-            status: "success",
+            suscess: true,
+            message: USERS_MESSAGES.LOGIN_SUCCESS,
+            result,
         });
     };
 
