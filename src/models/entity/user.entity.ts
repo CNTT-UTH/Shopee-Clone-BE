@@ -45,6 +45,12 @@ export class User extends BaseEntity {
     email_verify_token?: string;
 
     @Column({ nullable: true })
+    refresh_token?: string;
+
+    @Column({ nullable: true })
+    refresh_token_mobile?: string;
+
+    @Column({ nullable: true })
     forgot_password_token?: string;
 
     @Column({ type: "enum", enum: UserVerifyStatus, default: UserVerifyStatus.Unverified })

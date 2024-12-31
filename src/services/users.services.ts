@@ -7,8 +7,11 @@ import { envConfig } from "~/constants/env";
 import { TokenType } from "~/constants/enums";
 import { ApiError } from "~/utils/errors";
 import { USERS_MESSAGES } from "~/constants/messages";
+import { UserRepository } from "~/repository/user.repository";
 
 class UserService {
+    private readonly userRepository: UserRepository;
+
     private signAccessToken(user_id: string) {
         return signToken({
             payload: {
@@ -19,6 +22,7 @@ class UserService {
             options: { algorithm: "HS256", expiresIn: envConfig.JWT_ACCESS_TOKEN_EXPIRES_IN },
         });
     }
+
     private signRefeshToken(user_id: string) {
         return signToken({
             payload: {
@@ -30,17 +34,22 @@ class UserService {
         });
     }
 
-    async register(payload: RegisterReqBody) {
+    async register(payload: RegisterReqBody, platform: "mobile" | "web") {
         payload.password = await bcrypt.hash(payload.password, 10);
 
-        const userRepository = AppDataSource.getRepository(User);
-        const user = userRepository.create(payload);
-        userRepository.save(user);
+        const user = await this.userRepository.createAndSave(payload);
 
         const [accessToken, refreshToken] = await Promise.all([
             this.signAccessToken(user._id),
             this.signRefeshToken(user._id),
         ]);
+
+        // lưu refresh token vào db
+        if (platform === "mobile") {
+            await this.userRepository.updateRefreshTokenMobile((user as User)?._id, refreshToken);
+        } else {
+            await this.userRepository.updateRefreshToken((user as User)?._id, refreshToken);
+        }
 
         return {
             accessToken,
@@ -48,11 +57,8 @@ class UserService {
         };
     }
 
-    async login(payload: LoginReqBody) {
-        const userRepository = AppDataSource.getRepository(User);
-        const user = await userRepository.findOne({
-            where: [{ email: payload.email }, { username: payload.username }],
-        });
+    async login(payload: LoginReqBody, platform: "mobile" | "web") {
+        const user = await this.userRepository.findByEmailOrUsername(payload?.email, payload?.username);
 
         const result = await this.checkPassword(payload.password, (user as User)?.password);
 
@@ -60,11 +66,18 @@ class UserService {
             throw new ApiError(USERS_MESSAGES.PASSWORD_IS_INCORRECT, 400);
         }
 
+        // gen token mới
         const [accessToken, refreshToken] = await Promise.all([
             this.signAccessToken((user as User)?._id),
             this.signRefeshToken((user as User)?._id),
         ]);
 
+        // lưu refresh token vào db
+        if (platform === "mobile") {
+            await this.userRepository.updateRefreshTokenMobile((user as User)?._id, refreshToken);
+        } else {
+            await this.userRepository.updateRefreshToken((user as User)?._id, refreshToken);
+        }
         return {
             userId: (user as User)?._id,
             accessToken,
@@ -80,18 +93,14 @@ class UserService {
     }
 
     async checkEmail(email: string): Promise<boolean> {
-        const userRepository = AppDataSource.getRepository(User);
-
-        const user = await userRepository.findOneBy({ email });
+        const user = await this.userRepository.existsByEmail(email);
 
         if (user) return true;
         else return false;
     }
 
     async checkUsername(username: string): Promise<boolean> {
-        const userRepository = AppDataSource.getRepository(User);
-
-        const user = await userRepository.findOneBy({ username });
+        const user = await this.userRepository.existsByUsername(username);
 
         if (user) return true;
         else return false;
