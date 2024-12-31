@@ -5,7 +5,7 @@ import expressLayouts from "express-ejs-layouts";
 import { envConfig } from "./constants/env";
 import { initWebRoutes } from "./routes/web.routes";
 import AppDataSource from "./config/db";
-import { errorHandler } from "./middlewares/errorHandler.middlewares";
+import { errorHandler } from "./middlewares/errorHandler.middleware";
 import swaggerUi from "swagger-ui-express";
 import swaggerJsdoc from "swagger-jsdoc";
 import YAML from "yaml";

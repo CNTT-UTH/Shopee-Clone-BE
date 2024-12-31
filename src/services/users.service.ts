@@ -4,32 +4,46 @@ import { User } from "~/models/entity/user.entity";
 import bcrypt from "bcrypt";
 import { signToken } from "~/utils/jwt";
 import { envConfig } from "~/constants/env";
-import { TokenType } from "~/constants/enums";
+import { Role, TokenType } from "~/constants/enums";
 import { ApiError } from "~/utils/errors";
 import { USERS_MESSAGES } from "~/constants/messages";
 import { UserRepository } from "~/repository/user.repository";
 
+const jwtAccessTokenObject = {
+    [Role.User]: envConfig.JWT_SECRET_ACCESS_TOKEN,
+    [Role.Admin]: envConfig.JWT_SECRET_ACCESS_TOKEN_ADMIN,
+    [Role.Seller]: envConfig.JWT_SECRET_ACCESS_TOKEN_ADMIN,
+};
+
+const jwtRefeshTokenObject = {
+    [Role.User]: envConfig.JWT_SECRET_REFRESH_TOKEN,
+    [Role.Admin]: envConfig.JWT_SECRET_REFRESH_TOKEN_ADMIN,
+    [Role.Seller]: envConfig.JWT_SECRET_REFRESH_TOKEN_SELLER,
+};
+
 class UserService {
     private readonly userRepository: UserRepository;
 
-    private signAccessToken(user_id: string) {
+    private signAccessToken(_id: string, role: Role) {
         return signToken({
             payload: {
-                user_id,
+                _id,
+                role,
                 type: TokenType.AccessToken,
             },
-            privateKey: envConfig.JWT_SECRET_ACCESS_TOKEN,
+            privateKey: jwtAccessTokenObject[role],
             options: { algorithm: "HS256", expiresIn: envConfig.JWT_ACCESS_TOKEN_EXPIRES_IN },
         });
     }
 
-    private signRefeshToken(user_id: string) {
+    private signRefeshToken(_id: string, role: Role) {
         return signToken({
             payload: {
-                user_id,
+                _id,
+                role,
                 type: TokenType.RefreshToken,
             },
-            privateKey: envConfig.JWT_SECRET_REFRESH_TOKEN,
+            privateKey: jwtRefeshTokenObject[role],
             options: { algorithm: "HS256", expiresIn: envConfig.JWT_REFRESH_TOKEN_EXPIRES_IN },
         });
     }
@@ -40,8 +54,8 @@ class UserService {
         const user = await this.userRepository.createAndSave(payload);
 
         const [accessToken, refreshToken] = await Promise.all([
-            this.signAccessToken(user._id),
-            this.signRefeshToken(user._id),
+            this.signAccessToken(user._id, user.role),
+            this.signRefeshToken(user._id, user.role),
         ]);
 
         // lưu refresh token vào db
@@ -58,7 +72,7 @@ class UserService {
     }
 
     async login(payload: LoginReqBody, platform: "mobile" | "web") {
-        const user = await this.userRepository.findByEmailOrUsername(payload?.email, payload?.username);
+        const user = (await this.userRepository.findByEmailOrUsername(payload?.email, payload?.username)) as User;
 
         const result = await this.checkPassword(payload.password, (user as User)?.password);
 
@@ -68,8 +82,8 @@ class UserService {
 
         // gen token mới
         const [accessToken, refreshToken] = await Promise.all([
-            this.signAccessToken((user as User)?._id),
-            this.signRefeshToken((user as User)?._id),
+            this.signAccessToken((user as User)?._id, user.role),
+            this.signRefeshToken((user as User)?._id, user.role),
         ]);
 
         // lưu refresh token vào db
@@ -79,16 +93,8 @@ class UserService {
             await this.userRepository.updateRefreshToken((user as User)?._id, refreshToken);
         }
         return {
-            userId: (user as User)?._id,
             accessToken,
             refreshToken,
-        };
-    }
-
-    async greetings() {
-        return {
-            status: "success",
-            message: "greetings",
         };
     }
 

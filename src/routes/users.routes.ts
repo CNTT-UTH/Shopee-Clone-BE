@@ -1,8 +1,8 @@
 /* eslint-disable prettier/prettier */
 import express from "express";
-import UserController from "~/controllers/users.controllers";
+import UserController from "~/controllers/users.controller";
 import { asyncHandler } from "~/utils/asyncHandler";
-import { loginValidator, registerValidator } from "~/middlewares/users.middlewares";
+import { loginValidator, registerValidator } from "~/middlewares/users.middleware";
 
 const router = express.Router();
 

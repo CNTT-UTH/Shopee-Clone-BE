@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { ParamsDictionary } from "express-serve-static-core";
 import { LoginReqBody, RegisterReqBody } from "~/models/requests/users.requests";
-import UserService from "~/services/users.services";
+import UserService from "~/services/users.service";
 import { USERS_MESSAGES } from "~/constants/messages";
 
 class UserController {

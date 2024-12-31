@@ -69,3 +69,8 @@ export const USERS_MESSAGES = {
     REFRESH_TOKEN_SUCCESS: "Refresh token success",
     GET_VIDEO_STATUS_SUCCESS: "Get video status success",
 } as const;
+
+export const AUTH_MESSAGES = {
+    TOKEN_NOT_FOUND: "Token not found",
+    TOKEN_INVALID: "Token invalid",
+} as const;

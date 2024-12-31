@@ -1,19 +1,19 @@
 import { UserVerifyStatus } from "~/constants/enums";
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, BaseEntity } from "typeorm";
 
-export interface UserType {
-    _id?: string;
-    name: string;
-    email: string;
-    dob: Date;
-    password: string;
-    created_at?: Date;
-    updated_at?: Date;
-    email_verify_token?: string;
-    forgot_password_token?: string;
-    verify?: UserVerifyStatus;
-    avatar?: string;
-}
+// export interface UserType {
+//     _id?: string;
+//     name: string;
+//     email: string;
+//     dob: Date;
+//     password: string;
+//     created_at?: Date;
+//     updated_at?: Date;
+//     email_verify_token?: string;
+//     forgot_password_token?: string;
+//     verify?: UserVerifyStatus;
+//     avatar?: string;
+// }
 
 @Entity("users")
 export class User extends BaseEntity {
@@ -40,6 +40,9 @@ export class User extends BaseEntity {
 
     @UpdateDateColumn()
     updated_at: Date;
+
+    @Column({ nullable: false })
+    role: number;
 
     @Column({ nullable: true })
     email_verify_token?: string;

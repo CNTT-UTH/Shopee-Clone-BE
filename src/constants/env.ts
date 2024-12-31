@@ -28,6 +28,12 @@ export const envConfig = {
 
     COOKIE_SECRET: process.env.COOKIE_SECRET as string,
 
+    JWT_SECRET_ACCESS_TOKEN_ADMIN: process.env.JWT_SECRET_ACCESS_TOKEN_ADMIN as string,
+    JWT_SECRET_REFRESH_TOKEN_ADMIN: process.env.JWT_SECRET_REFRESH_TOKEN_ADMIN as string,
+    
+    JWT_SECRET_ACCESS_TOKEN_SELLER: process.env.JWT_SECRET_ACCESS_TOKEN_SELLER as string,
+    JWT_SECRET_REFRESH_TOKEN_SELLER: process.env.JWT_SECRET_REFRESH_TOKEN_SELLER as string,
+
     //  # Application-Specific Variables
 
     FRONTEND_URL: process.env.FRONTEND_URL as string,

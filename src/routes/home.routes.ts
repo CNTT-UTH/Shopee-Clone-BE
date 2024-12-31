@@ -1,5 +1,5 @@
 import express from "express";
-import HomeController from "~/controllers/home.controllers";
+import HomeController from "~/controllers/home.controller";
 const router = express.Router();
 
 // eslint-disable-next-line prettier/prettier
