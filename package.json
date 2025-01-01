@@ -26,9 +26,12 @@
     "license": "ISC",
     "devDependencies": {
         "@eslint/js": "^9.17.0",
+        "@types/bcrypt": "^5.0.2",
         "@types/compression": "^1.7.5",
+        "@types/cookie-parser": "^1.4.8",
         "@types/cors": "^2.8.17",
         "@types/express": "^5.0.0",
+        "@types/express-ejs-layouts": "^2.5.4",
         "@types/helmet": "^0.0.48",
         "@types/lodash": "^4.17.13",
         "@types/node": "^22.10.2",

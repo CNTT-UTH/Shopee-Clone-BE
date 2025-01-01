@@ -1,16 +1,16 @@
-@url_dev=http://localhost:3000/api/v1
+@url_dev=http://localhost:3000/api/v1/auth
 
 ### login
-POST {{url_dev}}/users/login
+POST {{url_dev}}/login
 Content-Type: application/json
 
 {
-    "email": "Linhhh@gmail.com",
+    "email": "Linhhuynh1@gmail.com",
     "password": "Linhhuynh@12"
 }
 
 ### register
-POST {{url_dev}}/users/register
+POST {{url_dev}}/register
 Content-Type: application/json
 
 {
@@ -18,4 +18,16 @@ Content-Type: application/json
     "username": "Linhhuynh123",
     "password": "Linhhuynh@12",
     "confirmPassword": "Linhhuynh@12"
+}
+
+### auth
+POST {{url_dev}}/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiIxYTQ2MzAyNS05NTczLTRmNDktYjViYS03ZmE1NTFjNzBlYTgiLCJyb2xlIjowLCJ0eXBlIjoxLCJpYXQiOjE3MzU3MjQ4NjgsImV4cCI6MTczNjMyOTY2OH0.ePjeTWuTgVtcqvICOM3h5TGBI6BYwSp1WUkomtD8x8o
+
+### refresh
+POST {{url_dev}}/refreshToken
+Content-Type: application/json
+
+{
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiIxYTQ2MzAyNS05NTczLTRmNDktYjViYS03ZmE1NTFjNzBlYTgiLCJyb2xlIjowLCJ0eXBlIjoxLCJpYXQiOjE3MzU3Mzk1NDcsImV4cCI6MTczNjM0NDM0N30.h1IPJ8-KF4RIToUAL67aVKxVR-wQvaPdGAOa0MUiHdg"
 }

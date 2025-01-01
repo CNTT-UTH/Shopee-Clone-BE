@@ -1,7 +1,7 @@
 import { checkSchema } from "express-validator";
 import HTTP_STATUS from "~/constants/httpStatus";
 import { USERS_MESSAGES } from "~/constants/messages";
-import usersServices from "~/services/users.service";
+import usersServices from "~/services/auth.service";
 import { ApiError } from "~/utils/errors";
 import { validate } from "~/utils/validate";
 
