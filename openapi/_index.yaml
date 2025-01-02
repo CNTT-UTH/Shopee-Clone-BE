@@ -14,20 +14,26 @@ externalDocs:
     description: Find out more about Swagger
     url: http://swagger.io
 servers:
-    - url: http://localhost:3000/api
+    - url: http://localhost:3000/api/v1
 tags:
-    - name: users
-      description: Everything about Users
-      externalDocs:
-          description: Find out more
-          url: http://swagger.io
+    - name: auth
+      description: Xác minh và xác thực
 paths:
-    /users/login:
-        $ref: "./resources/users/users_login.yaml"
-    /users/register:
-        $ref: "./resources/users/users_register.yaml"
+    /auth/login:
+        $ref: "./resources/auth/login.yaml"
+    /auth/logout:
+        $ref: "./resources/auth/logout.yaml"
+    /auth/register:
+        $ref: "./resources/auth/register.yaml"
+    /auth/refreshToken:
+        $ref: "./resources/auth/refreshToken.yaml"
 components:
     # parameters:
     #     $ref: "./parameters/_index.yaml"
     schemas:
         $ref: "./schemas/_index.yaml"
+    securitySchemes:
+        BearerAuth:
+            type: http
+            scheme: bearer
+            bearerFormat: JWT

@@ -1,0 +1,34 @@
+post:
+    tags:
+        - auth
+    summary: Đăng ký tài khoản
+    description: ""
+    operationId: register
+    parameters:
+        # - $ref: "../../parameters/useragent.yaml"
+        - $ref: "../../parameters/platform.yaml"
+    requestBody:
+        content:
+            application/json:
+                schema:
+                    $ref: "../../schemas/RegisterBody.yaml"
+    responses:
+        "200":
+            description: Đăng ký thành công
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            success:
+                                type: boolean
+                                example: true
+                            message:
+                                type: string
+                                example: Register success
+                            result:
+                                $ref: "../../schemas/SuccessAuthenticate.yaml"
+        "400":
+            description: Nền tảng không hợp lệ
+        "422":
+            description: Sai các trường thông tin

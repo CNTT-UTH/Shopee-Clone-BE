@@ -13,21 +13,26 @@ externalDocs:
   description: Find out more about Swagger
   url: 'http://swagger.io'
 servers:
-  - url: 'http://localhost:3000/api'
+  - url: 'http://localhost:3000/api/v1'
 tags:
-  - name: users
-    description: Everything about Users
-    externalDocs:
-      description: Find out more
-      url: 'http://swagger.io'
+  - name: auth
+    description: Xác minh và xác thực
 paths:
-  /users/login:
+  /auth/login:
     post:
       tags:
-        - users
+        - auth
       summary: Đăng nhập
-      description: ''
-      operationId: users_register
+      description: Đăng nhập
+      operationId: login
+      parameters:
+        - in: query
+          name: platform
+          schema:
+            type: string
+          required: true
+          description: 'phân biệt thiết bị (web, mobile)'
+          example: mobile
       requestBody:
         content:
           application/json:
@@ -49,36 +54,51 @@ paths:
                     example: Login success
                   result:
                     $ref: '#/components/schemas/SuccessAuthenticate'
+        '400':
+          description: Nền tảng không hợp lệ
         '422':
-          description: Unprocessable Entity
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: false
-                  message:
-                    type: string
-                    example: Validation failed
-                  errors:
-                    type: object
-                    example:
-                      email:
-                        message: Email or password is incorrect
-                        value: linhhh@gmail.com
-      security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
-  /users/register:
+          description: Sai các trường thông tin
+  /auth/logout:
     post:
       tags:
-        - users
+        - auth
+      summary: Đăng xuất
+      description: Đăng xuất
+      operationId: logout
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/paths/~1auth~1login/post/parameters/0'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                refreshToken:
+                  type: string
+              required:
+                - refresToken
+      responses:
+        '200':
+          description: Đăng xuất thành công
+        '400':
+          description: Nền tảng không hợp lệ
+        '401':
+          description: Token không hợp lệ
+        '404':
+          description: Người dùng không tồn tại
+        '422':
+          description: Sai các trường thông tin
+  /auth/register:
+    post:
+      tags:
+        - auth
       summary: Đăng ký tài khoản
       description: ''
-      operationId: users_register
+      operationId: register
+      parameters:
+        - $ref: '#/paths/~1auth~1login/post/parameters/0'
       requestBody:
         content:
           application/json:
@@ -100,16 +120,48 @@ paths:
                     example: Register success
                   result:
                     $ref: '#/components/schemas/SuccessAuthenticate'
+        '400':
+          description: Nền tảng không hợp lệ
         '422':
-          description: Unprocessable Entity
+          description: Sai các trường thông tin
+  /auth/refreshToken:
+    post:
+      tags:
+        - auth
+      summary: Refresh Token
+      description: Refresh Token
+      operationId: refresh_token
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/paths/~1auth~1login/post/parameters/0'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/paths/~1auth~1logout/post/requestBody/content/application~1json/schema'
+      responses:
+        '200':
+          description: Refresh thành công
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/FailedValidation'
-      security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Login success
+                  result:
+                    $ref: '#/components/schemas/SuccessAuthenticate'
+        '400':
+          description: Nền tảng không hợp lệ
+        '401':
+          description: Token không hợp lệ
+        '422':
+          description: Sai các trường thông tin
 components:
   schemas:
     User:
@@ -152,6 +204,9 @@ components:
         username:
           type: string
           example: linh1234
+        email:
+          type: string
+          example: linh1234@gmail.com
         password:
           type: string
           example: Linhhoccode$123
@@ -192,3 +247,8 @@ components:
         refresh_token:
           type: string
           example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjRiZTBhZDJlNDNkMjQ2NDM5NGZlZWRiIiwidG9rZW5fdHlwZSI6MSwidmVyaWZ5IjoxLCJpYXQiOjE2OTEzODMyMjYsImV4cCI6MTcwMDAyMzIyNn0.bFnaBfxWl-Q48HCwAeMpNzZwTO9LEjcBd7Zyipjqr64
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

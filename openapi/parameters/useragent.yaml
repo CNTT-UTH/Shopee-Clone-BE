@@ -1,0 +1,7 @@
+in: header
+name: user-agent
+schema:
+    type: string
+required: true
+description: Thông tin trình duyệt, dùng để xác định thiết bị
+example: Mozilla/5.0 (Linux; Android 13; Pixel 7 Pro) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.5735.131 Mobile Safari/537.36

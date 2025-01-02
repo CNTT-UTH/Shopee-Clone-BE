@@ -50,8 +50,8 @@ export const accessTokenValidator = validate(
                     if (!decoded) {
                         throw new ApiError(AUTH_MESSAGES.TOKEN_INVALID, HTTP_STATUS.UNAUTHORIZED);
                     }
+                    req.decoded = decoded;
 
-                    req.body = { ...req.body, ...decoded };
                     return true;
                 },
             },
@@ -70,7 +70,7 @@ export const refreshTokenValidator = validate(
                 options: async (value: string, { req }) => {
                     const token = value;
                     if (!token) {
-                        throw AUTH_MESSAGES.TOKEN_INVALID;
+                        throw new ApiError(AUTH_MESSAGES.TOKEN_INVALID, HTTP_STATUS.UNAUTHORIZED);
                     }
                     const decoded = await verifyToken({ token, secretOrPublicKey: envConfig.JWT_SECRET_REFRESH_TOKEN });
 
@@ -86,6 +86,7 @@ export const refreshTokenValidator = validate(
                     }
 
                     req.decoded = decoded;
+
                     return true;
                 },
             },
@@ -116,6 +117,7 @@ export const platformValidator = validate(
             },
             custom: {
                 options: (value: string, { req }) => {
+                    console.log(value);
                     console.log(useragent.is(value));
                     if (useragent.is(value).android && req?.query?.platform !== "mobile") {
                         throw new ApiError(AUTH_MESSAGES.INVALID_PLATFORM, HTTP_STATUS.BAD_REQUEST);

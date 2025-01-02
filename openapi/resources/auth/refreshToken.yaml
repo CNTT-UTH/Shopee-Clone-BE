@@ -1,0 +1,38 @@
+post:
+    tags:
+        - auth
+    summary: Refresh Token
+    description: Refresh Token
+    operationId: refresh_token
+    security:
+        - BearerAuth: []
+    parameters:
+        # - $ref: "../../parameters/useragent.yaml"
+        - $ref: "../../parameters/platform.yaml"
+    requestBody:
+        content:
+            application/json:
+                schema:
+                    $ref: "../../schemas/LogoutBody.yaml"
+    responses:
+        "200":
+            description: Refresh thành công
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            success:
+                                type: boolean
+                                example: true
+                            message:
+                                type: string
+                                example: Login success
+                            result:
+                                $ref: "../../schemas/SuccessAuthenticate.yaml"
+        "400":
+            description: Nền tảng không hợp lệ
+        "401":
+            description: Token không hợp lệ
+        "422":
+            description: Sai các trường thông tin

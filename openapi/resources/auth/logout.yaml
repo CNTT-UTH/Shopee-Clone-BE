@@ -1,0 +1,27 @@
+post:
+    tags:
+        - auth
+    summary: Đăng xuất
+    description: "Đăng xuất"
+    operationId: logout
+    security:
+        - BearerAuth: []
+    parameters:
+        # - $ref: "../../parameters/useragent.yaml"
+        - $ref: "../../parameters/platform.yaml"
+    requestBody:
+        content:
+            application/json:
+                schema:
+                    $ref: "../../schemas/LogoutBody.yaml"
+    responses:
+        "200":
+            description: Đăng xuất thành công
+        "400":
+            description: Nền tảng không hợp lệ
+        "401":
+            description: Token không hợp lệ
+        "404":
+            description: Người dùng không tồn tại
+        "422":
+            description: Sai các trường thông tin

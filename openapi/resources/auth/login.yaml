@@ -1,17 +1,20 @@
 post:
     tags:
-        - users
-    summary: Đăng ký tài khoản
-    description: ""
-    operationId: users_register
+        - auth
+    summary: Đăng nhập
+    description: "Đăng nhập"
+    operationId: login
+    parameters:
+        # - $ref: "../../parameters/useragent.yaml"
+        - $ref: "../../parameters/platform.yaml"
     requestBody:
         content:
             application/json:
                 schema:
-                    $ref: "../../schemas/RegisterBody.yaml"
+                    $ref: "../../schemas/LoginBody.yaml"
     responses:
         "200":
-            description: Đăng ký thành công
+            description: Đăng nhập thành công
             content:
                 application/json:
                     schema:
@@ -22,16 +25,11 @@ post:
                                 example: true
                             message:
                                 type: string
-                                example: Register success
+                                example: Login success
                             result:
                                 $ref: "../../schemas/SuccessAuthenticate.yaml"
+
+        "400":
+            description: Nền tảng không hợp lệ
         "422":
-            description: Unprocessable Entity
-            content:
-                application/json:
-                    schema:
-                        $ref: "../../schemas/FailedValidation.yaml"
-    security:
-        - petstore_auth:
-              - write:pets
-              - read:pets
+            description: Sai các trường thông tin

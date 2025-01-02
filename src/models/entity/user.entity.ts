@@ -3,13 +3,14 @@ import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateCol
 
 // export interface UserType {
 //     _id?: string;
-//     name: string;
-//     email: string;
-//     dob: Date;
-//     password: string;
+//     name?: string;
+//     email?: string;
+//     dob?: Date;
+//     password?: string;
 //     created_at?: Date;
 //     updated_at?: Date;
 //     email_verify_token?: string;
+//     verify_status?: string;
 //     forgot_password_token?: string;
 //     verify?: UserVerifyStatus;
 //     avatar?: string;
@@ -32,7 +33,7 @@ export class User extends BaseEntity {
     @Column()
     username: string;
 
-    @Column()
+    @Column({ type: "text", width: 65535 })
     password: string;
 
     @CreateDateColumn()
@@ -44,22 +45,22 @@ export class User extends BaseEntity {
     @Column({ nullable: false })
     role: number;
 
-    @Column({ nullable: true })
+    @Column({ nullable: true, type: "text", width: 65535 })
     email_verify_token?: string;
 
-    @Column({ nullable: true })
+    @Column({ nullable: true, type: "text", width: 65535 })
     refresh_token?: string;
 
-    @Column({ nullable: true })
+    @Column({ nullable: true, type: "text", width: 65535 })
     refresh_token_mobile?: string;
 
-    @Column({ nullable: true })
+    @Column({ nullable: true, type: "text", width: 65535 })
     forgot_password_token?: string;
 
     @Column({ type: "enum", enum: UserVerifyStatus, default: UserVerifyStatus.Unverified })
     verify: UserVerifyStatus;
 
-    @Column({ nullable: true })
+    @Column({ nullable: true, type: "text", width: 65535 })
     avatar?: string;
 
     // create(user: UserType) {

@@ -1,9 +1,12 @@
 @url_dev=http://localhost:3000/api/v1/auth
-@mobile_agent=Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Mobile Safari/537.36
+@mobile_agent=Mozilla/5.0 (Linux; Android 13; Pixel 7 Pro) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.5735.131 Mobile Safari/537.36
+@web_agent=Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0
+@access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiIxYTQ2MzAyNS05NTczLTRmNDktYjViYS03ZmE1NTFjNzBlYTgiLCJyb2xlIjowLCJ2ZXJpZnkiOjAsInVzZXJBZ2VudCI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDYuMTsgV2luNjQ7IHg2NDsgcnY6NDcuMCkgR2Vja28vMjAxMDAxMDEgRmlyZWZveC80Ny4wIiwidG9rZW5fdHlwZSI6MCwiaWF0IjoxNzM1ODA2NDA5LCJleHAiOjE3MzU4MTAwMDl9.dC9m4KlnZrw2JRZffMkfpdWgCvSoD5muu312E90ZHXQ
+@refresh_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiIxYTQ2MzAyNS05NTczLTRmNDktYjViYS03ZmE1NTFjNzBlYTgiLCJyb2xlIjowLCJ2ZXJpZnkiOjAsInVzZXJBZ2VudCI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDYuMTsgV2luNjQ7IHg2NDsgcnY6NDcuMCkgR2Vja28vMjAxMDAxMDEgRmlyZWZveC80Ny4wIiwidG9rZW5fdHlwZSI6MSwiaWF0IjoxNzM1ODA2NDA5LCJleHAiOjE3MzY0MTEyMDl9.y3n124cGMsXtpBSdcWE4qIb3SeG0pz0SidmvtR0_FGw
 
 ### login
-POST {{url_dev}}/login?platform=mobile
-User-Agent: {{mobile_agent}}
+POST {{url_dev}}/login
+User-Agent: {{web_agent}}
 Content-Type: application/json
 
 {
@@ -30,18 +33,20 @@ User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Fir
 
 ### refresh
 POST {{url_dev}}/refreshToken
+User-Agent: {{web_agent}}
 Content-Type: application/json
 
 {
-    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiIxYTQ2MzAyNS05NTczLTRmNDktYjViYS03ZmE1NTFjNzBlYTgiLCJyb2xlIjowLCJ0eXBlIjoxLCJpYXQiOjE3MzU3Mzk1NDcsImV4cCI6MTczNjM0NDM0N30.h1IPJ8-KF4RIToUAL67aVKxVR-wQvaPdGAOa0MUiHdg"
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiIxYTQ2MzAyNS05NTczLTRmNDktYjViYS03ZmE1NTFjNzBlYTgiLCJyb2xlIjowLCJ2ZXJpZnkiOjAsInVzZXJBZ2VudCI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDYuMTsgV2luNjQ7IHg2NDsgcnY6NDcuMCkgR2Vja28vMjAxMDAxMDEgRmlyZWZveC80Ny4wIiwidG9rZW5fdHlwZSI6MSwiaWF0IjoxNzM1ODA2NDA5LCJleHAiOjE3MzY0MTEyMDl9.y3n124cGMsXtpBSdcWE4qIb3SeG0pz0SidmvtR0_FGw"
 }
 
 ### logout
-POST {{url_dev}}/logout?platform=mobile
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiIxYTQ2MzAyNS05NTczLTRmNDktYjViYS03ZmE1NTFjNzBlYTgiLCJyb2xlIjowLCJ2ZXJpZnkiOjAsInVzZXJBZ2VudCI6Ik1vemlsbGEvNS4wIChMaW51eDsgQW5kcm9pZCAxMDsgSykgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzExNC4wLjAuMCBNb2JpbGUgU2FmYXJpLzUzNy4zNiIsInRva2VuX3R5cGUiOjAsImlhdCI6MTczNTgwMjQ1MCwiZXhwIjoxNzM1ODA2MDUwfQ.x9jevOARFkQDv0NW4eEkRSXk0_zUEkMsjkaqzsUtE8I
-User-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Mobile Safari/537.36
+POST {{url_dev}}/logout
+Authorization: Bearer {{access_token}}
+User-Agent: {{web_agent}}
 Content-Type: application/json
 
 {
-    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiIxYTQ2MzAyNS05NTczLTRmNDktYjViYS03ZmE1NTFjNzBlYTgiLCJyb2xlIjowLCJ2ZXJpZnkiOjAsInVzZXJBZ2VudCI6Ik1vemlsbGEvNS4wIChMaW51eDsgQW5kcm9pZCAxMDsgSykgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzExNC4wLjAuMCBNb2JpbGUgU2FmYXJpLzUzNy4zNiIsInRva2VuX3R5cGUiOjEsImlhdCI6MTczNTgwMjUyMCwiZXhwIjoxNzM2NDA3MzIwfQ.c9AtfL2ik0IFkwL-CYU5YvMFmXzOhKhvDW-E_nEidBA"
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiIxYTQ2MzAyNS05NTczLTRmNDktYjViYS03ZmE1NTFjNzBlYTgiLCJyb2xlIjowLCJ2ZXJpZnkiOjAsInVzZXJBZ2VudCI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDYuMTsgV2luNjQ7IHg2NDsgcnY6NDcuMCkgR2Vja28vMjAxMDAxMDEgRmlyZWZveC80Ny4wIiwidG9rZW5fdHlwZSI6MSwiaWF0IjoxNzM1ODA2NDA5LCJleHAiOjE3MzY0MTEyMDl9.y3n124cGMsXtpBSdcWE4qIb3SeG0pz0SidmvtR0_FGw"
 }
+

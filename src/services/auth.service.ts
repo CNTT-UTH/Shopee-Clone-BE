@@ -104,6 +104,7 @@ class AuthService {
         if (platformParams.platform === "mobile") {
             await this.userRepository.updateRefreshTokenMobile((user as User)?._id, refreshToken);
         } else {
+            console.log(refreshToken);
             await this.userRepository.updateRefreshToken((user as User)?._id, refreshToken);
         }
         return {
@@ -157,14 +158,6 @@ class AuthService {
 
         if (!user) {
             throw new ApiError(USERS_MESSAGES.USER_NOT_FOUND, 404);
-        }
-
-        if (
-            (platformParams.platform === "web" && user.refresh_token !== token) ||
-            (platformParams.platform === "mobile" && user.refresh_token_mobile !== token)
-        ) {
-            console.log("refresh token", user.refresh_token, "\n", token);
-            throw new ApiError(USERS_MESSAGES.USED_REFRESH_TOKEN_OR_NOT_EXIST, 400);
         }
 
         const payloadToken: TokenPayload = {

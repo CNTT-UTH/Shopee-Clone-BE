@@ -1,0 +1,7 @@
+in: query
+name: platform
+schema:
+    type: string
+required: true
+description: phân biệt thiết bị (web, mobile)
+example: mobile
