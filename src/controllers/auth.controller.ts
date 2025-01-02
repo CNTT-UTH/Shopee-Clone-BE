@@ -16,8 +16,12 @@ class AuthController {
 
     login = async (req: Request<ParamsDictionary, any, RegisterReqBody>, res: Response) => {
         const reqBody: LoginReqBody = req.body;
+        const userAgent = req.headers["user-agent"] as string;
 
-        const result = await AuthService.login(reqBody, req.query?.platform == "mobile" ? "mobile" : "web");
+        const result = await AuthService.login(reqBody, {
+            platform: req.query?.platform == "mobile" ? "mobile" : "web",
+            userAgent,
+        });
 
         res.send({
             suscess: true,
@@ -28,8 +32,12 @@ class AuthController {
 
     register = async (req: Request<ParamsDictionary, any, RegisterReqBody>, res: Response) => {
         const reqBody: RegisterReqBody = req.body;
+        const userAgent = req.headers["user-agent"] as string;
 
-        const result = await AuthService.register(reqBody, req.query?.platform == "mobile" ? "mobile" : "web");
+        const result = await AuthService.register(reqBody, {
+            platform: req.query?.platform == "mobile" ? "mobile" : "web",
+            userAgent,
+        });
 
         res.send({
             suscess: true,
@@ -38,12 +46,35 @@ class AuthController {
         });
     };
 
+    logout = async (req: Request<ParamsDictionary, any, RefreshReqBody>, res: Response) => {
+        const reqBody: RefreshReqBody = req.body;
+        const userAgent = req.headers["user-agent"] as string;
+
+        const result = await AuthService.logout(
+            { _id: (req?.decoded as TokenPayload)._id },
+            {
+                platform: req.query?.platform == "mobile" ? "mobile" : "web",
+                userAgent,
+            },
+        );
+
+        res.send({
+            suscess: true,
+            message: USERS_MESSAGES.LOGOUT_SUCCESS,
+            result,
+        });
+    };
+
     refreshToken = async (req: Request<ParamsDictionary, any, RefreshReqBody>, res: Response) => {
         const reqBody: RefreshReqBody = req.body;
+        const userAgent = req.headers["user-agent"] as string;
 
         const result = await AuthService.refreshToken(
             { token: reqBody.refreshToken, decoded: req?.decoded as TokenPayload },
-            req.query?.platform == "mobile" ? "mobile" : "web",
+            {
+                platform: req.query?.platform == "mobile" ? "mobile" : "web",
+                userAgent,
+            },
         );
 
         res.send({

@@ -16,9 +16,10 @@ export interface LoginReqBody {
 
 export interface TokenPayload extends JwtPayload {
     _id: string;
-    token_type: TokenType;
-    role: Role;
-    verify: UserVerifyStatus;
-    exp: number;
-    iat: number;
+    token_type?: TokenType;
+    role?: Role;
+    verify?: UserVerifyStatus;
+    exp?: number;
+    iat?: number;
+    userAgent?: string;
 }

@@ -7,6 +7,7 @@ import { Role, TokenType } from "~/constants/enums";
 import { ApiError } from "~/utils/errors";
 import { USERS_MESSAGES } from "~/constants/messages";
 import { UserRepository } from "~/repository/user.repository";
+import { HandleMultiPlatformParams } from "~/models/requests/auth.requests";
 
 class AuthService {
     private readonly userRepository: UserRepository;
@@ -15,36 +16,32 @@ class AuthService {
         this.userRepository = new UserRepository();
     }
 
-    private signAccessToken(_id: string, role: Role) {
+    private signAccessToken(payload: TokenPayload) {
         return signToken({
             payload: {
-                _id,
-                role,
-                type: TokenType.AccessToken,
+                ...payload,
+                token_type: TokenType.AccessToken,
             },
             privateKey: envConfig.JWT_SECRET_ACCESS_TOKEN,
             options: { algorithm: "HS256", expiresIn: envConfig.JWT_ACCESS_TOKEN_EXPIRES_IN },
         });
     }
 
-    private signRefeshToken(_id: string, role: Role) {
+    private signRefeshToken(payload: TokenPayload) {
         return signToken({
             payload: {
-                _id,
-                role,
-                type: TokenType.RefreshToken,
+                ...payload,
+                token_type: TokenType.RefreshToken,
             },
             privateKey: envConfig.JWT_SECRET_REFRESH_TOKEN,
             options: { algorithm: "HS256", expiresIn: envConfig.JWT_REFRESH_TOKEN_EXPIRES_IN },
         });
     }
 
-    private rotateRefeshToken(_id: string, role: Role, exp: number) {
+    private rotateRefeshToken(payload: TokenPayload, exp: number) {
         return signToken({
             payload: {
-                _id,
-                role,
-                type: TokenType.RefreshToken,
+                ...payload,
                 exp: exp,
             },
             privateKey: envConfig.JWT_SECRET_REFRESH_TOKEN,
@@ -52,18 +49,25 @@ class AuthService {
         });
     }
 
-    async register(payload: RegisterReqBody, platform: "mobile" | "web") {
+    async register(payload: RegisterReqBody, platformParams: HandleMultiPlatformParams) {
         payload.password = await bcrypt.hash(payload.password, 10);
 
         const user = await this.userRepository.createAndSave(payload);
 
+        const tokenPayload: TokenPayload = {
+            _id: user._id,
+            role: user.role,
+            verify: user.verify,
+            userAgent: platformParams.userAgent,
+        };
+
         const [accessToken, refreshToken] = await Promise.all([
-            this.signAccessToken(user._id, user.role),
-            this.signRefeshToken(user._id, user.role),
+            this.signAccessToken(tokenPayload),
+            this.signRefeshToken(tokenPayload),
         ]);
 
         // lưu refresh token vào db
-        if (platform === "mobile") {
+        if (platformParams.platform === "mobile") {
             await this.userRepository.updateRefreshTokenMobile((user as User)?._id, refreshToken);
         } else {
             await this.userRepository.updateRefreshToken((user as User)?._id, refreshToken);
@@ -75,7 +79,7 @@ class AuthService {
         };
     }
 
-    async login(payload: LoginReqBody, platform: "mobile" | "web") {
+    async login(payload: LoginReqBody, platformParams: HandleMultiPlatformParams) {
         const user = (await this.userRepository.findByEmailOrUsername(payload?.email, payload?.username)) as User;
         const result = await this.checkPassword(payload.password, (user as User)?.password);
 
@@ -83,14 +87,21 @@ class AuthService {
             throw new ApiError(USERS_MESSAGES.PASSWORD_IS_INCORRECT, 400);
         }
 
+        const tokenPayload: TokenPayload = {
+            _id: user._id,
+            role: user.role,
+            verify: user.verify,
+            userAgent: platformParams.userAgent,
+        };
+
         // gen token mới
         const [accessToken, refreshToken] = await Promise.all([
-            this.signAccessToken((user as User)?._id, user.role),
-            this.signRefeshToken((user as User)?._id, user.role),
+            this.signAccessToken(tokenPayload),
+            this.signRefeshToken(tokenPayload),
         ]);
 
         // lưu refresh token vào db
-        if (platform === "mobile") {
+        if (platformParams.platform === "mobile") {
             await this.userRepository.updateRefreshTokenMobile((user as User)?._id, refreshToken);
         } else {
             await this.userRepository.updateRefreshToken((user as User)?._id, refreshToken);
@@ -98,6 +109,18 @@ class AuthService {
         return {
             accessToken,
             refreshToken,
+        };
+    }
+
+    async logout(payload: { _id: string }, platformParams: HandleMultiPlatformParams) {
+        if (platformParams.platform === "mobile") {
+            await this.userRepository.updateRefreshTokenMobile(payload._id, "");
+        } else {
+            await this.userRepository.updateRefreshToken(payload._id, "");
+        }
+
+        return {
+            message: USERS_MESSAGES.LOGOUT_SUCCESS,
         };
     }
 
@@ -125,7 +148,7 @@ class AuthService {
             token: string;
             decoded: TokenPayload;
         },
-        platform: "mobile" | "web" = "mobile",
+        platformParams: HandleMultiPlatformParams,
     ) {
         const token = payload.token;
         const decoded = payload.decoded;
@@ -137,19 +160,30 @@ class AuthService {
         }
 
         if (
-            (platform === "web" && user.refresh_token !== token) ||
-            (platform === "mobile" && user.refresh_token_mobile !== token)
+            (platformParams.platform === "web" && user.refresh_token !== token) ||
+            (platformParams.platform === "mobile" && user.refresh_token_mobile !== token)
         ) {
             console.log("refresh token", user.refresh_token, "\n", token);
             throw new ApiError(USERS_MESSAGES.USED_REFRESH_TOKEN_OR_NOT_EXIST, 400);
         }
 
+        const payloadToken: TokenPayload = {
+            _id: user._id,
+            role: user.role,
+            verify: user.verify,
+            userAgent: platformParams.userAgent,
+        };
+
         const [accessToken, refreshToken] = await Promise.all([
-            this.signAccessToken(user._id, user.role),
-            this.rotateRefeshToken(user._id, user.role, decoded.exp),
+            this.signAccessToken(payloadToken),
+            this.rotateRefeshToken(payloadToken, decoded.exp as number),
         ]);
 
-        await this.userRepository.updateRefreshToken(user._id, refreshToken);
+        if (platformParams.platform === "mobile") {
+            await this.userRepository.updateRefreshTokenMobile(user._id, refreshToken);
+        } else {
+            await this.userRepository.updateRefreshToken(user._id, refreshToken);
+        }
 
         return {
             accessToken,

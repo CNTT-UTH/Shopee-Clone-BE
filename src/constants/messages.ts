@@ -76,4 +76,5 @@ export const AUTH_MESSAGES = {
     UNAUTHORIZED: "Unauthorized",
     TOKEN_EXPIRED: "Token expired",
     TOKEN_REQUIRED: "Token required",
+    INVALID_PLATFORM: "Invalid platform",
 } as const;

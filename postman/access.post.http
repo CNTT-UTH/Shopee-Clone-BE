@@ -1,7 +1,9 @@
 @url_dev=http://localhost:3000/api/v1/auth
+@mobile_agent=Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Mobile Safari/537.36
 
 ### login
-POST {{url_dev}}/login
+POST {{url_dev}}/login?platform=mobile
+User-Agent: {{mobile_agent}}
 Content-Type: application/json
 
 {
@@ -21,8 +23,10 @@ Content-Type: application/json
 }
 
 ### auth
-POST {{url_dev}}/me
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiIxYTQ2MzAyNS05NTczLTRmNDktYjViYS03ZmE1NTFjNzBlYTgiLCJyb2xlIjowLCJ0eXBlIjoxLCJpYXQiOjE3MzU3MjQ4NjgsImV4cCI6MTczNjMyOTY2OH0.ePjeTWuTgVtcqvICOM3h5TGBI6BYwSp1WUkomtD8x8o
+POST {{url_dev}}/me?platform=mobile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiIxYTQ2MzAyNS05NTczLTRmNDktYjViYS03ZmE1NTFjNzBlYTgiLCJyb2xlIjowLCJ0eXBlIjowLCJpYXQiOjE3MzU3OTA5NjQsImV4cCI6MTczNTc5NDU2NH0.z7q0n05j8D6IQ9GCB-VQt9i5uV1GSWq4U89NKYMeDGg
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0
+
 
 ### refresh
 POST {{url_dev}}/refreshToken
@@ -30,4 +34,14 @@ Content-Type: application/json
 
 {
     "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiIxYTQ2MzAyNS05NTczLTRmNDktYjViYS03ZmE1NTFjNzBlYTgiLCJyb2xlIjowLCJ0eXBlIjoxLCJpYXQiOjE3MzU3Mzk1NDcsImV4cCI6MTczNjM0NDM0N30.h1IPJ8-KF4RIToUAL67aVKxVR-wQvaPdGAOa0MUiHdg"
+}
+
+### logout
+POST {{url_dev}}/logout?platform=mobile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiIxYTQ2MzAyNS05NTczLTRmNDktYjViYS03ZmE1NTFjNzBlYTgiLCJyb2xlIjowLCJ2ZXJpZnkiOjAsInVzZXJBZ2VudCI6Ik1vemlsbGEvNS4wIChMaW51eDsgQW5kcm9pZCAxMDsgSykgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzExNC4wLjAuMCBNb2JpbGUgU2FmYXJpLzUzNy4zNiIsInRva2VuX3R5cGUiOjAsImlhdCI6MTczNTgwMjQ1MCwiZXhwIjoxNzM1ODA2MDUwfQ.x9jevOARFkQDv0NW4eEkRSXk0_zUEkMsjkaqzsUtE8I
+User-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Mobile Safari/537.36
+Content-Type: application/json
+
+{
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiIxYTQ2MzAyNS05NTczLTRmNDktYjViYS03ZmE1NTFjNzBlYTgiLCJyb2xlIjowLCJ2ZXJpZnkiOjAsInVzZXJBZ2VudCI6Ik1vemlsbGEvNS4wIChMaW51eDsgQW5kcm9pZCAxMDsgSykgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzExNC4wLjAuMCBNb2JpbGUgU2FmYXJpLzUzNy4zNiIsInRva2VuX3R5cGUiOjEsImlhdCI6MTczNTgwMjUyMCwiZXhwIjoxNzM2NDA3MzIwfQ.c9AtfL2ik0IFkwL-CYU5YvMFmXzOhKhvDW-E_nEidBA"
 }
