@@ -3,7 +3,7 @@ import express from "express";
 import AuthController from "~/controllers/auth.controller";
 import { asyncHandler } from "~/utils/asyncHandler";
 import { loginValidator, registerValidator } from "~/middlewares/users.middleware";
-import { accessTokenValidator, authorizeRole, platformValidator, refreshTokenValidator } from "~/middlewares/auth.middleware";
+import { accessTokenValidator, authorizeRole, platformValidator, refreshTokenValidator, verifyEmailValidator } from "~/middlewares/auth.middleware";
 import { Role } from "~/constants/enums";
 
 const router = express.Router();
@@ -28,29 +28,48 @@ router.route("/me").post(platformValidator, accessTokenValidator, authorizeRole(
 router.route("/login").post(platformValidator, loginValidator, asyncHandler(AuthController.login));
 
 /**
- * Description. Register
- * Path: /register
+ * Description. Register Email
+ * Path: /register/email
  * Method: POST
  * Headers: { User-Agent: string }
- * Body: { email: string, username: string, password: string, confirmPassword: string }
+ * Body: { email: string, username: string, password: string, confirm_password: string }
 */
 router.route("/register").post(platformValidator, registerValidator, asyncHandler(AuthController.register));
+
+/**
+ * Description. Verify Email
+ * Path: /verify-mail
+ * Method: POST
+ * Headers: { User-Agent: string }
+ * Body: { verify_mail_token: string, opt: string }
+*/
+router.route("/verify-email").post(platformValidator, verifyEmailValidator, asyncHandler(AuthController.verifyMail));
+
+/**
+ * Description. Resend Verify Email
+ * Path: /resend-verify-mail
+ * Method: POST
+ * Headers: { User-Agent: string }
+ * Body: { verify_mail_token: string }
+*/
+router.route("/resend-verify-email").post(platformValidator, verifyEmailValidator, asyncHandler(AuthController.resendVerifyMail));
+
 
 /**
  * Description. Refresh token
  * Path: /refreshToken
  * Method: POST
  * Headers: { Authorization: string, User-Agent: string }
- * Body: { refreshToken: string }
+ * Body: { refresh_token: string }
 */
-router.route("/refreshToken").post(platformValidator, refreshTokenValidator, asyncHandler(AuthController.refreshToken));
+router.route("/refresh-token").post(platformValidator, refreshTokenValidator, asyncHandler(AuthController.refreshToken));
 
 /**
  * Description. Logout
  * Path: /logout
  * Method: POST
  * Headers: { Authorization: string, User-Agent: string }
- * Body: { refreshToken: string }
+ * Body: { refresh_token: string }
  */
 router.route("/logout").post(platformValidator, accessTokenValidator, refreshTokenValidator, asyncHandler(AuthController.logout));
 

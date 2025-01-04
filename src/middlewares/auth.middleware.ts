@@ -42,7 +42,7 @@ export const accessTokenValidator = validate(
 
                     const userAgent = req?.headers?.["user-agent"] as string;
 
-                    if (userAgent !== decoded.userAgent) {
+                    if (userAgent !== decoded.user_agent) {
                         throw new ApiError(AUTH_MESSAGES.TOKEN_INVALID, HTTP_STATUS.UNAUTHORIZED);
                     }
                     console.log(decoded);
@@ -77,7 +77,7 @@ export const refreshTokenValidator = validate(
                     console.log(decoded);
                     const userAgent = req?.headers?.["user-agent"] as string;
 
-                    if (userAgent !== decoded.userAgent) {
+                    if (userAgent !== decoded.user_agent) {
                         throw new ApiError(AUTH_MESSAGES.TOKEN_INVALID, HTTP_STATUS.UNAUTHORIZED);
                     }
 
@@ -126,6 +126,44 @@ export const platformValidator = validate(
                     if (!useragent.is(value).android && req?.query?.platform === "mobile") {
                         throw new ApiError(AUTH_MESSAGES.INVALID_PLATFORM, HTTP_STATUS.BAD_REQUEST);
                     }
+                    return true;
+                },
+            },
+        },
+    }),
+);
+
+export const verifyEmailValidator = validate(
+    checkSchema({
+        verify_email_token: {
+            in: ["body"],
+            notEmpty: {
+                errorMessage: AUTH_MESSAGES.TOKEN_REQUIRED,
+            },
+            custom: {
+                options: async (value: string, { req }) => {
+                    const token = value;
+                    if (!token) {
+                        throw new ApiError(AUTH_MESSAGES.TOKEN_INVALID, HTTP_STATUS.UNAUTHORIZED);
+                    }
+                    const decoded = await verifyToken({
+                        token,
+                        secretOrPublicKey: envConfig.JWT_SECRET_EMAIL_VERIFY_TOKEN,
+                    });
+
+                    console.log(decoded);
+                    const userAgent = req?.headers?.["user-agent"] as string;
+
+                    if (userAgent !== decoded.user_agent) {
+                        throw new ApiError(AUTH_MESSAGES.TOKEN_INVALID, HTTP_STATUS.UNAUTHORIZED);
+                    }
+
+                    if (!decoded) {
+                        throw new ApiError(AUTH_MESSAGES.TOKEN_INVALID, HTTP_STATUS.UNAUTHORIZED);
+                    }
+
+                    req.decoded = decoded;
+
                     return true;
                 },
             },

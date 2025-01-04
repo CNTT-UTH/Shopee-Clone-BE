@@ -1,5 +1,6 @@
 import { Repository } from "typeorm";
 import AppDataSource from "~/config/db";
+import { UserVerifyStatus } from "~/constants/enums";
 import { User } from "~/models/entity/user.entity";
 
 export class UserRepository {
@@ -41,5 +42,9 @@ export class UserRepository {
 
     async findById(_id: string): Promise<User | null> {
         return this.repo.findOneBy({ _id });
+    }
+
+    async updateVerify(_id: string): Promise<void> {
+        await this.repo.update({ _id }, { verify: UserVerifyStatus.Verified });
     }
 }

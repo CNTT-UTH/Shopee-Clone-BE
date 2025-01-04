@@ -10,17 +10,18 @@ User-Agent: {{web_agent}}
 Content-Type: application/json
 
 {
-    "email": "Linhhuynh1@gmail.com",
+    "email": "Linhhuynh3@gmail.com",
     "password": "Linhhuynh@12"
 }
 
 ### register
 POST {{url_dev}}/register
+User-Agent: {{web_agent}}
 Content-Type: application/json
 
 {
-    "email": "Linhhuynh1@gmail.com",
-    "username": "Linhhuynh123",
+    "email": "Linhhuynh13@gmail.com",
+    "username": "Linhhuynh32",
     "password": "Linhhuynh@12",
     "confirmPassword": "Linhhuynh@12"
 }
@@ -50,3 +51,21 @@ Content-Type: application/json
     "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiIxYTQ2MzAyNS05NTczLTRmNDktYjViYS03ZmE1NTFjNzBlYTgiLCJyb2xlIjowLCJ2ZXJpZnkiOjAsInVzZXJBZ2VudCI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDYuMTsgV2luNjQ7IHg2NDsgcnY6NDcuMCkgR2Vja28vMjAxMDAxMDEgRmlyZWZveC80Ny4wIiwidG9rZW5fdHlwZSI6MSwiaWF0IjoxNzM1ODA2NDA5LCJleHAiOjE3MzY0MTEyMDl9.y3n124cGMsXtpBSdcWE4qIb3SeG0pz0SidmvtR0_FGw"
 }
 
+### verify-mail
+POST {{url_dev}}/verify-email
+User-Agent: {{web_agent}}
+Content-Type: application/json
+
+{
+    "verify_email_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1OWUzYjgxNi0wM2RmLTQ2YmEtOWU5Ni1iZmFkMjY3ODc0MzkiLCJyb2xlIjowLCJ2ZXJpZnkiOjAsInVzZXJBZ2VudCI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDYuMTsgV2luNjQ7IHg2NDsgcnY6NDcuMCkgR2Vja28vMjAxMDAxMDEgRmlyZWZveC80Ny4wIiwidG9rZW5fdHlwZSI6MywiaWF0IjoxNzM1OTc2NjE1LCJleHAiOjE3MzU5NzY2NzV9.VYzmUYmkiHYODqO-gUISYqDFEJpYbkPf0oNtfjNVrdQ",
+    "code": "524639"
+}
+
+### resend-verify-mail
+POST {{url_dev}}/resend-verify-email
+User-Agent: {{web_agent}}
+Content-Type: application/json
+
+{
+    "verify_email_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiIxODliMGQxZS03YzAzLTRlODAtYjNjNC0zYmVmNWQ4NmQ3OTciLCJ2ZXJpZnkiOjAsInVzZXJBZ2VudCI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDYuMTsgV2luNjQ7IHg2NDsgcnY6NDcuMCkgR2Vja28vMjAxMDAxMDEgRmlyZWZveC80Ny4wIiwidG9rZW5fdHlwZSI6MywiaWF0IjoxNzM1OTc2ODQ3LCJleHAiOjE3MzU5NzY5MDd9.GpUfv7b9ZMaMISNeb4_UffrFFWw4rZesKr_P571MhsA"
+}

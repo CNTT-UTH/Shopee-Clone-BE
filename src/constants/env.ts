@@ -34,6 +34,14 @@ export const envConfig = {
     JWT_SECRET_ACCESS_TOKEN_SELLER: process.env.JWT_SECRET_ACCESS_TOKEN_SELLER as string,
     JWT_SECRET_REFRESH_TOKEN_SELLER: process.env.JWT_SECRET_REFRESH_TOKEN_SELLER as string,
 
+    // # Email Configuration
+    SMTP_HOST: process.env.SMTP_HOST as string,
+    SMTP_PORT: process.env.SMTP_PORT as string,
+    SMTP_USER: process.env.SMTP_USER as string,
+    SMTP_PASSWORD: process.env.SMTP_PASSWORD as string,
+    EMAIL_FROM: process.env.EMAIL_FROM as string,
+    MAIL_AUTH_PASS: process.env.MAIL_AUTH_PASS as string,
+
     //  # Application-Specific Variables
 
     FRONTEND_URL: process.env.FRONTEND_URL as string,

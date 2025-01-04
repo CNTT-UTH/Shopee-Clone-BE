@@ -4,5 +4,10 @@ export interface RefreshReqBody {
 
 export interface HandleMultiPlatformParams {
     platform: "mobile" | "web";
-    userAgent: string;
+    user_agent: string;
+}
+
+export interface EmailVerifyReqBody {
+    verify_email_token: string;
+    code: string;
 }

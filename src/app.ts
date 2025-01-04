@@ -7,7 +7,6 @@ import { initWebRoutes } from "./routes/web.routes";
 import AppDataSource from "./config/db";
 import { errorHandler } from "./middlewares/errorHandler.middleware";
 import swaggerUi from "swagger-ui-express";
-import swaggerJsdoc from "swagger-jsdoc";
 import YAML from "yaml";
 import fs from "fs";
 import path from "path";
@@ -38,6 +37,7 @@ app.set("view engine", "ejs");
 
 app.use(cookieParser());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 

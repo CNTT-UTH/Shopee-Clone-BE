@@ -112,6 +112,16 @@ export const registerValidator = validate(
         },
         username: {
             ...usernameParam,
+            custom: {
+                options: async (value: string, { req }) => {
+                    const check = await usersServices.checkUsername(value);
+
+                    if (check) {
+                        throw USERS_MESSAGES.USERNAME_EXISTED;
+                    }
+                    return true;
+                },
+            },
         },
         password: {
             ...passwordParam,
