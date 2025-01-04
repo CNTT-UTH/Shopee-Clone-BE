@@ -1,7 +1,7 @@
 import { checkSchema } from "express-validator";
 import HTTP_STATUS from "~/constants/httpStatus";
 import { USERS_MESSAGES } from "~/constants/messages";
-import usersServices from "~/services/auth.service";
+import authServices from "~/services/auth.service";
 import { ApiError } from "~/utils/errors";
 import { validate } from "~/utils/validate";
 
@@ -53,7 +53,7 @@ export const loginValidator = validate(
                         throw USERS_MESSAGES.USERNAME_OR_EMAIL_IS_REQUIRED;
                     }
 
-                    const check = await usersServices.checkEmail(value);
+                    const check = await authServices.checkEmail(value);
 
                     if (!check) {
                         throw USERS_MESSAGES.EMAIL_OR_PASSWORD_IS_INCORRECT;
@@ -74,7 +74,7 @@ export const loginValidator = validate(
                         throw USERS_MESSAGES.USERNAME_OR_EMAIL_IS_REQUIRED;
                     }
 
-                    const check = await usersServices.checkUsername(value);
+                    const check = await authServices.checkUsername(value);
 
                     if (!check) {
                         throw USERS_MESSAGES.USERNAME_DOES_NOT_EXIST;
@@ -102,7 +102,7 @@ export const registerValidator = validate(
             errorMessage: USERS_MESSAGES.EMAIL_IS_INVALID,
             custom: {
                 options: async (value: string) => {
-                    const check = await usersServices.checkEmail(value);
+                    const check = await authServices.checkEmail(value);
                     if (check) {
                         throw USERS_MESSAGES.EMAIL_ALREADY_EXISTS;
                     }
@@ -114,7 +114,7 @@ export const registerValidator = validate(
             ...usernameParam,
             custom: {
                 options: async (value: string, { req }) => {
-                    const check = await usersServices.checkUsername(value);
+                    const check = await authServices.checkUsername(value);
 
                     if (check) {
                         throw USERS_MESSAGES.USERNAME_EXISTED;

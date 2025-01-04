@@ -16,12 +16,20 @@ const transporter = nodemailer.createTransport({
     },
 });
 
-export const sendVerifyEmail = async (toAddress: string, code: string) => {
+export const sendVerifyEmail = async ({
+    toAddress,
+    toName,
+    code,
+}: {
+    toAddress: string;
+    toName: string;
+    code: string;
+}) => {
     const message = {
         from: `SHOPPEE <${envConfig.EMAIL_FROM}>`,
         to: toAddress,
         subject: "Verify Email ✔",
-        html: verifyEmailTemplate.replace("{{CODE}}", `${code}`),
+        html: verifyEmailTemplate.replace("{{{CODE}}}", `${code}`).replace("{{{NAME}}}", `${toName}`),
         // text: `Click this link to verify your email: ${envConfig.FRONTEND_URL}/verify-email/${token}`,
     };
 

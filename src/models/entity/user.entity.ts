@@ -33,7 +33,7 @@ export class User extends BaseEntity {
     @Column()
     username: string;
 
-    @Column({ type: "text", width: 65535 })
+    @Column({ nullable: false, type: "text", width: 65535 })
     password: string;
 
     @CreateDateColumn()

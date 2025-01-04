@@ -3,7 +3,13 @@ import { ParamsDictionary } from "express-serve-static-core";
 import { LoginReqBody, RegisterReqBody, TokenPayload } from "~/models/requests/users.requests";
 import AuthService from "~/services/auth.service";
 import { USERS_MESSAGES } from "~/constants/messages";
-import { EmailVerifyReqBody, RefreshReqBody } from "~/models/requests/auth.requests";
+import {
+    EmailVerifyReqBody,
+    ForgotPasswordReqBody,
+    RefreshReqBody,
+    ResetPasswordReqBody,
+    VerifyPasswordReqBody,
+} from "~/models/requests/auth.requests";
 
 class AuthController {
     greetings = async (req: Request, res: Response) => {
@@ -111,7 +117,79 @@ class AuthController {
 
         res.send({
             suscess: true,
-            message: USERS_MESSAGES.EMAIL_VERIFY_SUCCESS,
+            message: USERS_MESSAGES.EMAIL_SEND_SUCCESS,
+            result,
+        });
+    };
+
+    forgotPassword = async (req: Request<ParamsDictionary, any, ForgotPasswordReqBody>, res: Response) => {
+        const reqBody: ForgotPasswordReqBody = req.body;
+        const userAgent = req.headers["user-agent"] as string;
+
+        const result = await AuthService.forgotPassword(reqBody, {
+            platform: req.query?.platform == "mobile" ? "mobile" : "web",
+            user_agent: userAgent,
+        });
+
+        res.send({
+            suscess: true,
+            message: USERS_MESSAGES.EMAIL_SEND_SUCCESS,
+            result,
+        });
+    };
+
+    resendForgotPassword = async (req: Request<ParamsDictionary, any, VerifyPasswordReqBody>, res: Response) => {
+        const reqBody: VerifyPasswordReqBody = req.body;
+        const userAgent = req.headers["user-agent"] as string;
+
+        const result = await AuthService.resendForgotPassword(
+            reqBody,
+            {
+                platform: req.query?.platform == "mobile" ? "mobile" : "web",
+                user_agent: userAgent,
+            },
+            req?.decoded as TokenPayload,
+        );
+
+        res.send({
+            suscess: true,
+            message: USERS_MESSAGES.EMAIL_SEND_SUCCESS,
+            result,
+        });
+    };
+
+    verifyForgotPassword = async (req: Request<ParamsDictionary, any, VerifyPasswordReqBody>, res: Response) => {
+        const reqBody: VerifyPasswordReqBody = req.body;
+        const userAgent = req.headers["user-agent"] as string;
+
+        const result = await AuthService.verifyForgotPassword(
+            reqBody,
+            {
+                platform: req.query?.platform == "mobile" ? "mobile" : "web",
+                user_agent: userAgent,
+            },
+            req?.decoded as TokenPayload,
+        );
+
+        res.send({
+            suscess: true,
+            message: USERS_MESSAGES.VERIFY_FORGOT_PASSWORD_SUCCESS,
+            result,
+        });
+    };
+
+    resetPassword = async (req: Request<ParamsDictionary, any, ResetPasswordReqBody>, res: Response) => {
+        const reqBody: ResetPasswordReqBody = req.body;
+        const userAgent = req.headers["user-agent"] as string;
+
+        const result = await AuthService.resetPassword(reqBody, {
+            platform: req.query?.platform == "mobile" ? "mobile" : "web",
+            user_agent: userAgent,
+        }, req?.decoded as TokenPayload);
+
+        res.send({
+            suscess: true,
+            message: USERS_MESSAGES.RESET_PASSWORD_SUCCESS,
             result,
         });
     };

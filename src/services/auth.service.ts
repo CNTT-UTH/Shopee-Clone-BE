@@ -7,7 +7,13 @@ import { Role, TokenType, UserVerifyStatus } from "~/constants/enums";
 import { ApiError } from "~/utils/errors";
 import { USERS_MESSAGES } from "~/constants/messages";
 import { UserRepository } from "~/repository/user.repository";
-import { EmailVerifyReqBody, HandleMultiPlatformParams } from "~/models/requests/auth.requests";
+import {
+    EmailVerifyReqBody,
+    ForgotPasswordReqBody,
+    HandleMultiPlatformParams,
+    ResetPasswordReqBody,
+    VerifyPasswordReqBody,
+} from "~/models/requests/auth.requests";
 import { genCodeVerify } from "~/utils/genCode";
 import HTTP_STATUS from "~/constants/httpStatus";
 import { sendVerifyEmail } from "~/utils/email";
@@ -51,6 +57,17 @@ class AuthService {
             },
             privateKey: envConfig.JWT_SECRET_EMAIL_VERIFY_TOKEN,
             options: { algorithm: "HS256", expiresIn: envConfig.JWT_EMAIL_VERIFY_TOKEN_EXPIRES_IN },
+        });
+    }
+
+    private signForgotPasswordToken(payload: TokenPayload) {
+        return signToken({
+            payload: {
+                ...payload,
+                token_type: TokenType.ForgotPasswordToken,
+            },
+            privateKey: envConfig.JWT_SECRET_FORGOT_PASSWORD_TOKEN,
+            options: { algorithm: "HS256", expiresIn: envConfig.JWT_FORGOT_PASSWORD_TOKEN_EXPIRES_IN },
         });
     }
 
@@ -99,7 +116,7 @@ class AuthService {
         const verifyMailToken = await this.signVerifyEmailToken(tokenPayload);
         const code = this.genCodeVerify(user._id);
 
-        sendVerifyEmail(user.email, code);
+        sendVerifyEmail({ toAddress: user.email, toName: user?.username, code });
 
         return {
             verify_mail_token: verifyMailToken,
@@ -124,7 +141,7 @@ class AuthService {
             const verifyMailToken = await this.signVerifyEmailToken(tokenPayload);
             const code = this.genCodeVerify(user._id);
 
-            sendVerifyEmail(user.email, code);
+            sendVerifyEmail({ toAddress: user.email, toName: user?.username, code });
 
             throw new ApiError(USERS_MESSAGES.USER_NOT_VERIFIED, HTTP_STATUS.BAD_REQUEST, undefined, {
                 verify_mail_token: verifyMailToken,
@@ -270,7 +287,7 @@ class AuthService {
 
         const code = this.genCodeVerify(user._id);
 
-        sendVerifyEmail(user.email, code);
+        sendVerifyEmail({ toAddress: user.email, toName: user?.username, code });
 
         return {
             verify_mail_token: verifyMailToken,
@@ -281,6 +298,112 @@ class AuthService {
         const user = await this.userRepository.findById(_id);
 
         return user?.verify as UserVerifyStatus;
+    }
+
+    async forgotPassword(payload: ForgotPasswordReqBody, platformParams: HandleMultiPlatformParams) {
+        const user = await this.userRepository.findByEmailOrUsername(payload.email, payload.username);
+
+        if (!user) {
+            throw new ApiError(USERS_MESSAGES.USER_NOT_FOUND, HTTP_STATUS.NOT_FOUND);
+        }
+
+        const code = genCodeVerify();
+        codeVerifyMail[user._id] = code;
+
+        const forgotPasswordToken = await this.signForgotPasswordToken({
+            _id: user._id,
+            role: user.role,
+            verify: user.verify,
+            user_agent: platformParams.user_agent,
+        });
+
+        sendVerifyEmail({ toAddress: user.email, toName: user?.username, code });
+
+        return {
+            forgot_password_token: forgotPasswordToken,
+        };
+    }
+
+    async resetPassword(
+        payload: ResetPasswordReqBody,
+        platformParams: HandleMultiPlatformParams,
+        decoded: TokenPayload,
+    ) {
+        const user = await this.userRepository.findById(decoded._id);
+
+        if (!user) {
+            throw new ApiError(USERS_MESSAGES.USER_NOT_FOUND, HTTP_STATUS.NOT_FOUND);
+        }
+
+        const password = await bcrypt.hash(payload.password, 10);
+
+        await this.userRepository.updatePassword(decoded._id, password);
+
+        return {
+            message: USERS_MESSAGES.CHANGE_PASSWORD_SUCCESS,
+        };
+    }
+
+    async verifyForgotPassword(
+        payload: VerifyPasswordReqBody,
+        platformParams: HandleMultiPlatformParams,
+        decoded: TokenPayload,
+    ) {
+        const code = codeVerifyMail[decoded._id];
+        const user = await this.userRepository.findById(decoded._id);
+
+        if (!user) {
+            throw new ApiError(USERS_MESSAGES.USER_NOT_FOUND, HTTP_STATUS.NOT_FOUND);
+        }
+
+        if (code === payload.code) {
+            await this.userRepository.updateVerify(decoded._id);
+
+            const code = genCodeVerify();
+            codeVerifyMail[user._id] = code;
+
+            const forgotPasswordToken = await this.signForgotPasswordToken({
+                _id: user._id,
+                role: user.role,
+                verify: user.verify,
+                user_agent: platformParams.user_agent,
+            });
+
+            return {
+                message: USERS_MESSAGES.EMAIL_VERIFY_SUCCESS,
+                forgot_password_token: forgotPasswordToken,
+            };
+        } else {
+            throw new ApiError(USERS_MESSAGES.VERIFY_CODE_IS_WRONG, HTTP_STATUS.BAD_REQUEST);
+        }
+    }
+
+    async resendForgotPassword(
+        payload: VerifyPasswordReqBody,
+        platformParams: HandleMultiPlatformParams,
+        decoded: TokenPayload,
+    ) {
+        const user = await this.userRepository.findById(decoded._id);
+
+        if (!user) {
+            throw new ApiError(USERS_MESSAGES.USER_NOT_FOUND, HTTP_STATUS.NOT_FOUND);
+        }
+
+        const code = genCodeVerify();
+        codeVerifyMail[user._id] = code;
+
+        const forgotPasswordToken = await this.signForgotPasswordToken({
+            _id: user._id,
+            role: user.role,
+            verify: user.verify,
+            user_agent: platformParams.user_agent,
+        });
+
+        sendVerifyEmail({ toAddress: user.email, toName: user?.username, code });
+
+        return {
+            forgot_password_token: forgotPasswordToken,
+        };
     }
 }
 

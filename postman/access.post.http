@@ -10,7 +10,7 @@ User-Agent: {{web_agent}}
 Content-Type: application/json
 
 {
-    "email": "Linhhuynh3@gmail.com",
+    "email": "Linhhuynh1@gmail.com",
     "password": "Linhhuynh@12"
 }
 
@@ -20,8 +20,8 @@ User-Agent: {{web_agent}}
 Content-Type: application/json
 
 {
-    "email": "Linhhuynh13@gmail.com",
-    "username": "Linhhuynh32",
+    "email": "Linhhuynh1@gmail.com",
+    "username": "Linhhuynh1",
     "password": "Linhhuynh@12",
     "confirmPassword": "Linhhuynh@12"
 }
@@ -57,8 +57,8 @@ User-Agent: {{web_agent}}
 Content-Type: application/json
 
 {
-    "verify_email_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1OWUzYjgxNi0wM2RmLTQ2YmEtOWU5Ni1iZmFkMjY3ODc0MzkiLCJyb2xlIjowLCJ2ZXJpZnkiOjAsInVzZXJBZ2VudCI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDYuMTsgV2luNjQ7IHg2NDsgcnY6NDcuMCkgR2Vja28vMjAxMDAxMDEgRmlyZWZveC80Ny4wIiwidG9rZW5fdHlwZSI6MywiaWF0IjoxNzM1OTc2NjE1LCJleHAiOjE3MzU5NzY2NzV9.VYzmUYmkiHYODqO-gUISYqDFEJpYbkPf0oNtfjNVrdQ",
-    "code": "524639"
+    "verify_email_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI4M2QwZjM0MS05Mjc3LTQyNjAtYjFkYS0yZGZiZWRiMDg2YmEiLCJyb2xlIjowLCJ2ZXJpZnkiOjAsInVzZXJfYWdlbnQiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCA2LjE7IFdpbjY0OyB4NjQ7IHJ2OjQ3LjApIEdlY2tvLzIwMTAwMTAxIEZpcmVmb3gvNDcuMCIsInRva2VuX3R5cGUiOjMsImlhdCI6MTczNTk4ODkzNSwiZXhwIjoxNzM1OTg4OTk1fQ.RQHGFknajOT5sI7my2XBhv0sm-gUbbmWsiwZF37RUZk",
+    "code": "601598"
 }
 
 ### resend-verify-mail
@@ -67,5 +67,5 @@ User-Agent: {{web_agent}}
 Content-Type: application/json
 
 {
-    "verify_email_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiIxODliMGQxZS03YzAzLTRlODAtYjNjNC0zYmVmNWQ4NmQ3OTciLCJ2ZXJpZnkiOjAsInVzZXJBZ2VudCI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDYuMTsgV2luNjQ7IHg2NDsgcnY6NDcuMCkgR2Vja28vMjAxMDAxMDEgRmlyZWZveC80Ny4wIiwidG9rZW5fdHlwZSI6MywiaWF0IjoxNzM1OTc2ODQ3LCJleHAiOjE3MzU5NzY5MDd9.GpUfv7b9ZMaMISNeb4_UffrFFWw4rZesKr_P571MhsA"
+    "verify_email_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJkMDNmYThjOC1jZmQ3LTQ4Y2MtODFiZi1mNDE4YTNmMDI2ZTAiLCJ2ZXJpZnkiOjAsInVzZXJfYWdlbnQiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCA2LjE7IFdpbjY0OyB4NjQ7IHJ2OjQ3LjApIEdlY2tvLzIwMTAwMTAxIEZpcmVmb3gvNDcuMCIsInRva2VuX3R5cGUiOjMsImlhdCI6MTczNTk4OTUxOCwiZXhwIjoxNzM1OTg5NTc4fQ.U8ljylzS86wM6RA4a-Msp-tscvl5U62ZONegz9JbyKk"
 }

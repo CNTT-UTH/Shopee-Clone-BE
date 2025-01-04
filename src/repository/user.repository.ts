@@ -47,4 +47,8 @@ export class UserRepository {
     async updateVerify(_id: string): Promise<void> {
         await this.repo.update({ _id }, { verify: UserVerifyStatus.Verified });
     }
+
+    async updatePassword(_id: string, password: string): Promise<void> {
+        await this.repo.update({ _id }, { password });
+    }
 }

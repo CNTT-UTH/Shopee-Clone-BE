@@ -23,3 +23,4 @@ export interface TokenPayload extends JwtPayload {
     iat?: number;
     user_agent?: string;
 }
+
