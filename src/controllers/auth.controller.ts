@@ -133,7 +133,7 @@ class AuthController {
 
         res.send({
             suscess: true,
-            message: USERS_MESSAGES.EMAIL_SEND_SUCCESS,
+            message: USERS_MESSAGES.VERIFY_CODE_SUCCESS,
             result,
         });
     };

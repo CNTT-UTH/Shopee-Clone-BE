@@ -11,6 +11,7 @@ export const USERS_MESSAGES = {
     PASSWORD_IS_INCORRECT: "Password is incorrect",
     PASSWORD_MUST_BE_A_STRING: "Password must be a string",
     PASSWORD_LENGTH_MUST_BE_FROM_6_TO_50: "Password length must be from 6 to 50",
+    VERIFY_CODE_SUCCESS: "Verify code success",
     PASSWORD_MUST_BE_STRONG:
         "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one symbol",
 

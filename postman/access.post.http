@@ -69,3 +69,41 @@ Content-Type: application/json
 {
     "verify_email_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJkMDNmYThjOC1jZmQ3LTQ4Y2MtODFiZi1mNDE4YTNmMDI2ZTAiLCJ2ZXJpZnkiOjAsInVzZXJfYWdlbnQiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCA2LjE7IFdpbjY0OyB4NjQ7IHJ2OjQ3LjApIEdlY2tvLzIwMTAwMTAxIEZpcmVmb3gvNDcuMCIsInRva2VuX3R5cGUiOjMsImlhdCI6MTczNTk4OTUxOCwiZXhwIjoxNzM1OTg5NTc4fQ.U8ljylzS86wM6RA4a-Msp-tscvl5U62ZONegz9JbyKk"
 }
+
+### forgot-password
+POST {{url_dev}}/forgot-password
+User-Agent: {{web_agent}}
+Content-Type: application/json
+
+{
+    "username": "Linhhuynh"
+}
+
+### verify-password
+POST {{url_dev}}/verify-password
+User-Agent: {{web_agent}}
+Content-Type: application/json
+
+{
+    "forgot_password_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI4M2QwZjM0MS05Mjc3LTQyNjAtYjFkYS0yZGZiZWRiMDg2YmEiLCJyb2xlIjowLCJ2ZXJpZnkiOjEsInVzZXJfYWdlbnQiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCA2LjE7IFdpbjY0OyB4NjQ7IHJ2OjQ3LjApIEdlY2tvLzIwMTAwMTAxIEZpcmVmb3gvNDcuMCIsInRva2VuX3R5cGUiOjIsImlhdCI6MTczNjA3NzI5MywiZXhwIjoxNzM2MDc5MDkzfQ.Zyu4s4S9hIFo28T3q2uGBZEO0RPle75dUO7w0bfuWyc",
+    "code": "245852"
+}
+
+### resend-verify-password
+POST {{url_dev}}/resend-verify-password
+User-Agent: {{web_agent}}
+Content-Type: application/json
+
+{
+    "forgot_password_token": ""
+}
+
+### reset-password
+POST {{url_dev}}/reset-password
+User-Agent: {{web_agent}}
+Content-Type: application/json
+
+{
+    "forgot_password_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI4M2QwZjM0MS05Mjc3LTQyNjAtYjFkYS0yZGZiZWRiMDg2YmEiLCJyb2xlIjowLCJ2ZXJpZnkiOjEsInVzZXJfYWdlbnQiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCA2LjE7IFdpbjY0OyB4NjQ7IHJ2OjQ3LjApIEdlY2tvLzIwMTAwMTAxIEZpcmVmb3gvNDcuMCIsInRva2VuX3R5cGUiOjIsImlhdCI6MTczNjA3ODU1NiwiZXhwIjoxNzM2MDgwMzU2fQ.fcZcqQwK5Tsh3o8JCqaMSvuOhda3diFHL4pDLaLqWlY",
+    "password": "Hahaha1234@"
+}

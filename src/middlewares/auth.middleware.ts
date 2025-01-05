@@ -314,3 +314,42 @@ export const resetPasswordValidator = validate(
         },
     }),
 );
+
+
+export const verifyPasswordValidator = validate(
+    checkSchema({
+        forgot_password_token: {
+            in: ["body"],
+            notEmpty: {
+                errorMessage: AUTH_MESSAGES.TOKEN_REQUIRED,
+            },
+            custom: {
+                options: async (value: string, { req }) => {
+                    const token = value;
+                    if (!token) {
+                        throw new ApiError(AUTH_MESSAGES.TOKEN_INVALID, HTTP_STATUS.UNAUTHORIZED);
+                    }
+                    const decoded = await verifyToken({
+                        token,
+                        secretOrPublicKey: envConfig.JWT_SECRET_FORGOT_PASSWORD_TOKEN,
+                    });
+
+                    console.log(decoded);
+                    const userAgent = req?.headers?.["user-agent"] as string;
+
+                    if (userAgent !== decoded.user_agent) {
+                        throw new ApiError(AUTH_MESSAGES.TOKEN_INVALID, HTTP_STATUS.UNAUTHORIZED);
+                    }
+
+                    if (!decoded) {
+                        throw new ApiError(AUTH_MESSAGES.TOKEN_INVALID, HTTP_STATUS.UNAUTHORIZED);
+                    }
+
+                    req.decoded = decoded;
+
+                    return true;
+                },
+            },
+        }
+    }),
+);

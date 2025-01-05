@@ -88,6 +88,13 @@ class AuthService {
         return code;
     }
 
+    private checkCode(_id: string, code: string) {
+        const correctCode = codeVerifyMail[_id];
+        delete codeVerifyMail[_id];
+        if (code === correctCode) return true;
+        return false;
+    }
+
     async register(payload: RegisterReqBody, platformParams: HandleMultiPlatformParams) {
         payload.password = await bcrypt.hash(payload.password, 10);
         console.log(payload);
@@ -239,14 +246,13 @@ class AuthService {
     }
 
     async verifyMail(payload: EmailVerifyReqBody, decoded: TokenPayload, platformParams: HandleMultiPlatformParams) {
-        const code = codeVerifyMail[decoded._id];
         const user = await this.userRepository.findById(decoded._id);
 
         if (!user) {
             throw new ApiError(USERS_MESSAGES.USER_NOT_FOUND, HTTP_STATUS.NOT_FOUND);
         }
 
-        if (code === payload.code) {
+        if (this.checkCode(user._id, payload?.code as string)) {
             await this.userRepository.updateVerify(decoded._id);
 
             const tokenPayload: TokenPayload = {
@@ -349,14 +355,13 @@ class AuthService {
         platformParams: HandleMultiPlatformParams,
         decoded: TokenPayload,
     ) {
-        const code = codeVerifyMail[decoded._id];
         const user = await this.userRepository.findById(decoded._id);
 
         if (!user) {
             throw new ApiError(USERS_MESSAGES.USER_NOT_FOUND, HTTP_STATUS.NOT_FOUND);
         }
 
-        if (code === payload.code) {
+        if (this.checkCode(user._id, payload?.code as string)) {
             await this.userRepository.updateVerify(decoded._id);
 
             const code = genCodeVerify();
