@@ -34,6 +34,6 @@ npm i
 npm run dev
 ```
 **Notes: Nhớ tạo file .env theo .env.example**
-## Truy cập [localhost:3000/apidocs](http://localhost:3000/api-docs)
+## Truy cập [localhost:3000/api-docs](http://localhost:3000/api-docs)
 ![alt text](openapi/image-4.png)
 
