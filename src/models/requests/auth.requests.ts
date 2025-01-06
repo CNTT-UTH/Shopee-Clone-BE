@@ -1,5 +1,5 @@
 export interface RefreshReqBody {
-    refreshToken: string;
+    refresh_token: string;
 }
 
 export interface HandleMultiPlatformParams {

@@ -23,10 +23,10 @@ class UserService {
                 username: user.username,
                 email: user.email,
                 nickname: user.name,
-                dob: user.dob,
+                dob: user.dob ? user.dob.toISOString() : null,
                 gender: user.gender as UserGender,
                 avatar: user.avatar,
-                phone: user.phone
+                phone: user.phone,
             },
         };
     }

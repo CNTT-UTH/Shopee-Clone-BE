@@ -4,4 +4,4 @@ schema:
     type: string
 required: true
 description: phân biệt thiết bị (web, mobile)
-example: mobile
+example: web

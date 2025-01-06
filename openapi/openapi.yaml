@@ -17,6 +17,8 @@ servers:
 tags:
   - name: auth
     description: Xác minh và xác thực
+  - name: users
+    description: Người dùng
 paths:
   /auth/login:
     post:
@@ -32,7 +34,7 @@ paths:
             type: string
           required: true
           description: 'phân biệt thiết bị (web, mobile)'
-          example: mobile
+          example: web
       requestBody:
         content:
           application/json:
@@ -73,12 +75,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                refreshToken:
-                  type: string
-              required:
-                - refresToken
+              $ref: '#/components/schemas/LogoutBody'
       responses:
         '200':
           description: Đăng xuất thành công
@@ -124,7 +121,7 @@ paths:
           description: Nền tảng không hợp lệ
         '422':
           description: Sai các trường thông tin
-  /auth/refreshToken:
+  /auth/refresh-token:
     post:
       tags:
         - auth
@@ -139,7 +136,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/paths/~1auth~1logout/post/requestBody/content/application~1json/schema'
+              $ref: '#/components/schemas/LogoutBody'
       responses:
         '200':
           description: Refresh thành công
@@ -162,21 +159,267 @@ paths:
           description: Token không hợp lệ
         '422':
           description: Sai các trường thông tin
+  /auth/verify-email:
+    post:
+      tags:
+        - auth
+      summary: Xác thực mail
+      description: Gửi verify_email_token và code lên server
+      operationId: verify_email
+      parameters:
+        - $ref: '#/paths/~1auth~1login/post/parameters/0'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                verify_email_token:
+                  type: string
+                code:
+                  type: string
+                  example: '123456'
+              required:
+                - verify_email_token
+                - code
+      responses:
+        '200':
+          description: Xác thực email thành công
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                  result:
+                    $ref: '#/components/schemas/SuccessAuthenticate'
+        '400':
+          description: Sai code
+        '422':
+          description: Sai các trường thông tin
+  /auth/resend-verify-email:
+    post:
+      tags:
+        - auth
+      summary: Yêu cầu gửi lại mã otp
+      description: 'Gửi verify_email_token cũ lên server, trả token mới'
+      operationId: resend_verify_email
+      parameters:
+        - $ref: '#/paths/~1auth~1login/post/parameters/0'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                verify_email_token:
+                  type: string
+              required:
+                - verify_email_token
+      responses:
+        '200':
+          description: Gửi email thành công
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  verify_email_token:
+                    type: string
+        '400':
+          description: null
+        '422':
+          description: Sai các trường thông tin
+  /auth/forgot-password:
+    post:
+      tags:
+        - auth
+      summary: Quên mật khẩu
+      description: 'Gửi username hoặc email lên server, trả lại forgot_password_token'
+      operationId: forgot_password
+      parameters:
+        - $ref: '#/paths/~1auth~1login/post/parameters/0'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: linh1234
+      responses:
+        '200':
+          description: null
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  forgot_password_token:
+                    type: string
+        '400':
+          description: null
+        '422':
+          description: Sai các trường thông tin
+  /auth/verify-password:
+    post:
+      tags:
+        - auth
+      summary: Xác thực OTP quên mật khẩu
+      description: 'Gửi forgot_password_token và otp code lên server, trả lại forgot_password_token mới'
+      operationId: verify_password
+      parameters:
+        - $ref: '#/paths/~1auth~1login/post/parameters/0'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                forgot_password_token:
+                  type: string
+                code:
+                  type: string
+                  example: '123456'
+              required:
+                - forgot_password_token
+                - code
+      responses:
+        '200':
+          description: null
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  forgot_password_token:
+                    type: string
+        '400':
+          description: null
+        '422':
+          description: Sai các trường thông tin
+  /auth/resend-verify-password:
+    post:
+      tags:
+        - auth
+      summary: Gửi lại OTP quên mật khẩu
+      description: 'Gửi forgot_password_token cũ lên server, trả lại forgot_password_token mới'
+      operationId: resend_verify_password
+      parameters:
+        - $ref: '#/paths/~1auth~1login/post/parameters/0'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                forgot_password_token:
+                  type: string
+              required:
+                - forgot_password_token
+      responses:
+        '200':
+          description: null
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  forgot_password_token:
+                    type: string
+        '400':
+          description: null
+        '422':
+          description: Sai các trường thông tin
+  /auth/reset-password:
+    post:
+      tags:
+        - auth
+      summary: Đổi mật khẩu mới
+      description: Gửi forgot_password_token và mật khẩu mới lên server
+      operationId: reset_password
+      parameters:
+        - $ref: '#/paths/~1auth~1login/post/parameters/0'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                forgot_password_token:
+                  type: string
+                password:
+                  type: string
+                  example: Linhhoccode$123
+              required:
+                - forgot_password_token
+                - password
+      responses:
+        '200':
+          description: null
+        '400':
+          description: null
+        '422':
+          description: Sai các trường thông tin
+  /users/profile:
+    get:
+      tags:
+        - users
+      summary: Lấy thông tin người dùng
+      description: Gửi access_token
+      operationId: user_profile
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/paths/~1auth~1login/post/parameters/0'
+      responses:
+        '200':
+          description: null
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: true
+              message:
+                type: string
+              result:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: null
+        '422':
+          description: Sai các trường thông tin
 components:
   schemas:
     User:
       type: object
-      required:
-        - id
-        - name
       properties:
-        id:
-          type: integer
-          format: int64
-        name:
+        _id:
           type: string
-        tag:
+        username:
           type: string
+          example: linh1234
+        email:
+          type: string
+          example: linh1234@gmail.com
+        nickname:
+          type: string
+        dob:
+          type: ISO string
+        gender:
+          type: number
+          description: '1 là nam, 2 là nữ, 3 là khác'
+        avatar:
+          type: url
+        phone:
+          type: string
+      required:
+        - password
     RegisterBody:
       type: object
       properties:
@@ -212,6 +455,13 @@ components:
           example: Linhhoccode$123
       required:
         - password
+    LogoutBody:
+      type: object
+      properties:
+        refresh_token:
+          type: string
+      required:
+        - refresToken
     ApiResponse:
       type: object
       properties:

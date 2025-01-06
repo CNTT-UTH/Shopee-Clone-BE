@@ -18,15 +18,36 @@ servers:
 tags:
     - name: auth
       description: Xác minh và xác thực
+    - name: users
+      description: Người dùng
 paths:
+#   AUTH ROUTES
     /auth/login:
         $ref: "./resources/auth/login.yaml"
     /auth/logout:
         $ref: "./resources/auth/logout.yaml"
     /auth/register:
         $ref: "./resources/auth/register.yaml"
-    /auth/refreshToken:
+    /auth/refresh-token:
         $ref: "./resources/auth/refreshToken.yaml"
+    /auth/verify-email:
+        $ref: "./resources/auth/verifyEmail.yaml"
+    /auth/resend-verify-email:
+        $ref: "./resources/auth/resendVerifyEmail.yaml"
+    /auth/forgot-password:
+        $ref: "./resources/auth/forgotPassword.yaml"
+    /auth/verify-password:
+        $ref: "./resources/auth/verifyPassword.yaml"
+    /auth/resend-verify-password:
+        $ref: "./resources/auth/resendVerifyPassword.yaml"
+    /auth/reset-password:
+        $ref: "./resources/auth/resetPassword.yaml"
+
+#   USERS ROUTES
+    /users/profile:
+        $ref: "./resources/users/profile.yaml"
+
+
 components:
     # parameters:
     #     $ref: "./parameters/_index.yaml"

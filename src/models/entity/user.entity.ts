@@ -37,7 +37,7 @@ export class User extends BaseEntity {
     dob: Date;
 
     @Column({ nullable: true })
-    phone: number;
+    phone: string;
 
     @Column({ nullable: false, type: "enum", enum: UserGender, default: UserGender.Unknown })
     gender: UserGender;

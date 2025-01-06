@@ -1,12 +1,25 @@
 type: object
-required:
-    - id
-    - name
 properties:
-    id:
-        type: integer
-        format: int64
-    name:
+    _id:
         type: string
-    tag:
+    username:
         type: string
+        example: "linh1234"
+    email:
+        type: string
+        example: "linh1234@gmail.com"
+    nickname:
+        type: string
+    dob:
+        type: ISO string
+    gender:
+        type: number
+        description: "1 là nam, 2 là nữ, 3 là khác"
+    avatar:
+        type: url
+    phone:
+        type: string
+    
+
+required:
+    - password

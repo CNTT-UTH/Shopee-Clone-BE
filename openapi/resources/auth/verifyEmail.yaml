@@ -1,0 +1,42 @@
+post:
+    tags:
+        - auth
+    summary: Xác thực mail
+    description: "Gửi verify_email_token và code lên server"
+    operationId: verify_email
+    parameters:
+        # - $ref: "../../parameters/useragent.yaml"
+        - $ref: "../../parameters/platform.yaml"
+    requestBody:
+        content:
+            application/json:
+                schema:
+                    type: object
+                    properties:
+                        verify_email_token:
+                            type: string
+                        code:
+                            type: string
+                            example: "123456"
+                    required:
+                        - verify_email_token
+                        - code
+    responses:
+        "200":
+            description: Xác thực email thành công
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            success:
+                                type: boolean
+                                example: true
+                            message:
+                                type: string
+                            result:
+                                $ref: "../../schemas/SuccessAuthenticate.yaml"
+        "400":
+            description: Sai code
+        "422":
+            description: Sai các trường thông tin

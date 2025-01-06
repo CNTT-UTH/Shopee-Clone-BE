@@ -93,7 +93,7 @@ export const accessTokenValidator = validate(
 
 export const refreshTokenValidator = validate(
     checkSchema({
-        refreshToken: {
+        refresh_token: {
             in: ["body"],
             notEmpty: {
                 errorMessage: AUTH_MESSAGES.TOKEN_REQUIRED,
@@ -199,6 +199,9 @@ export const verifyEmailValidator = validate(
                     return true;
                 },
             },
+        },
+        code: {
+            notEmpty: true,
         },
     }),
 );
@@ -330,7 +333,6 @@ export const resetPasswordValidator = validate(
     }),
 );
 
-
 export const verifyPasswordValidator = validate(
     checkSchema({
         forgot_password_token: {
@@ -365,6 +367,9 @@ export const verifyPasswordValidator = validate(
                     return true;
                 },
             },
-        }
+        },
+        code: {
+            notEmpty: true,
+        },
     }),
 );

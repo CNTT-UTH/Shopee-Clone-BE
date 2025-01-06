@@ -76,7 +76,7 @@ class AuthController {
         const userAgent = req.headers["user-agent"] as string;
 
         const result = await AuthService.refreshToken(
-            { token: reqBody.refreshToken, decoded: req?.decoded as TokenPayload },
+            { token: reqBody.refresh_token, decoded: req?.decoded as TokenPayload },
             {
                 platform: req.query?.platform == "mobile" ? "mobile" : "web",
                 user_agent: userAgent,
@@ -182,10 +182,14 @@ class AuthController {
         const reqBody: ResetPasswordReqBody = req.body;
         const userAgent = req.headers["user-agent"] as string;
 
-        const result = await AuthService.resetPassword(reqBody, {
-            platform: req.query?.platform == "mobile" ? "mobile" : "web",
-            user_agent: userAgent,
-        }, req?.decoded as TokenPayload);
+        const result = await AuthService.resetPassword(
+            reqBody,
+            {
+                platform: req.query?.platform == "mobile" ? "mobile" : "web",
+                user_agent: userAgent,
+            },
+            req?.decoded as TokenPayload,
+        );
 
         res.send({
             suscess: true,

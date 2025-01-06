@@ -1,0 +1,28 @@
+get:
+    tags:
+        - users
+    summary: Lấy thông tin người dùng
+    description: "Gửi access_token"
+    operationId: user_profile
+    security:
+        - BearerAuth: []
+    parameters:
+        # - $ref: "../../parameters/useragent.yaml"
+        - $ref: "../../parameters/platform.yaml"
+    responses:
+        "200":
+            description:
+            schema:
+                type: object
+                properties:
+                    success:
+                        type: boolean
+                        example: true
+                    message:
+                        type: string
+                    result:
+                        $ref: "../../schemas/User.yaml"
+        "400":
+            description:
+        "422":
+            description: Sai các trường thông tin

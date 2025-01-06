@@ -9,16 +9,6 @@ import { Role } from "~/constants/enums";
 const router = express.Router();
 
 /**
- * Description. Verify if the user is authorized
- * Path: /me
- * Method: POST
- * Headers: { Authorization: string, User-Agent: string }
-*/
-router.route("/me").post(platformValidator, accessTokenValidator, authorizeRole([Role.User]), (req, res) => {
-    res.status(200).json({ message: "Hello, you are authorized" });
-});
-
-/**
  * Description. Login
  * Path: /login
  * Method: POST
@@ -41,7 +31,7 @@ router.route("/register").post(platformValidator, registerValidator, asyncHandle
  * Path: /verify-mail
  * Method: POST
  * Headers: { User-Agent: string }
- * Body: { verify_mail_token: string, opt: string }
+ * Body: { verify_email_token: string, opt: string }
 */
 router.route("/verify-email").post(platformValidator, verifyEmailValidator, asyncHandler(AuthController.verifyMail));
 
@@ -50,7 +40,7 @@ router.route("/verify-email").post(platformValidator, verifyEmailValidator, asyn
  * Path: /resend-verify-mail
  * Method: POST
  * Headers: { User-Agent: string }
- * Body: { verify_mail_token: string }
+ * Body: { verify_email_token: string }
 */
 router.route("/resend-verify-email").post(platformValidator, verifyEmailValidator, asyncHandler(AuthController.resendVerifyMail));
 

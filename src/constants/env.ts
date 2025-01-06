@@ -28,12 +28,6 @@ export const envConfig = {
 
     COOKIE_SECRET: process.env.COOKIE_SECRET as string,
 
-    JWT_SECRET_ACCESS_TOKEN_ADMIN: process.env.JWT_SECRET_ACCESS_TOKEN_ADMIN as string,
-    JWT_SECRET_REFRESH_TOKEN_ADMIN: process.env.JWT_SECRET_REFRESH_TOKEN_ADMIN as string,
-
-    JWT_SECRET_ACCESS_TOKEN_SELLER: process.env.JWT_SECRET_ACCESS_TOKEN_SELLER as string,
-    JWT_SECRET_REFRESH_TOKEN_SELLER: process.env.JWT_SECRET_REFRESH_TOKEN_SELLER as string,
-
     // # Email Configuration
     SMTP_HOST: process.env.SMTP_HOST as string,
     SMTP_PORT: process.env.SMTP_PORT as string,

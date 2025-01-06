@@ -47,16 +47,16 @@ export const loginValidator = validate(
             escape: true,
             custom: {
                 options: async (value: string, { req }) => {
-                    if (req.body?.username) return true;
-
-                    if (!value && !req.body?.username) {
-                        throw USERS_MESSAGES.USERNAME_OR_EMAIL_IS_REQUIRED;
-                    }
+                    if (req.body?.username && !value) return true;
 
                     const check = await authServices.checkEmail(value);
 
                     if (!check) {
                         throw USERS_MESSAGES.EMAIL_OR_PASSWORD_IS_INCORRECT;
+                    }
+
+                    if (!value && !req.body?.username) {
+                        throw USERS_MESSAGES.USERNAME_OR_EMAIL_IS_REQUIRED;
                     }
 
                     return true;
@@ -126,7 +126,7 @@ export const registerValidator = validate(
         password: {
             ...passwordParam,
         },
-        confirmPassword: {
+        confirm_password: {
             custom: {
                 options: (value: string, { req }) => {
                     if (value !== req.body?.password) {

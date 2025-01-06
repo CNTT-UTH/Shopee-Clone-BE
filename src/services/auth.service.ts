@@ -89,9 +89,13 @@ class AuthService {
     }
 
     private checkCode(_id: string, code: string) {
+        console.log(codeVerifyMail);
         const correctCode = codeVerifyMail[_id];
-        delete codeVerifyMail[_id];
-        if (code === correctCode) return true;
+        if (!correctCode) return false;
+        if (code === correctCode) {
+            delete codeVerifyMail[_id];
+            return true;
+        }
         return false;
     }
 

@@ -1,6 +1,6 @@
 type: object
 properties:
-    refreshToken:
+    refresh_token:
         type: string
 
 required:
