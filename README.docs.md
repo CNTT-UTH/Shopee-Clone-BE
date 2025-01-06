@@ -16,13 +16,13 @@ npm i
 
 2. Start Apache & MySQL
 
-    ![alt text](image.png)
+    ![alt text](openapi/image.png)
 
 3. Mở Admin Page & tạo database tên shopee
     
-    ![alt text](image-1.png)
+    ![alt text](openapi/image-1.png)
 
-    ![alt text](image-3.png)
+    ![alt text](openapi/image-3.png)
 
 4. Vào VSCode, khởi tạo database
     ```
@@ -35,5 +35,5 @@ npm run dev
 ```
 **Notes: Nhớ tạo file .env theo .env.example**
 ## Truy cập localhost:3000/apidocs
-![alt text](image-4.png)
+![alt text](openapi/image-4.png)
 
