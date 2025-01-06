@@ -4,6 +4,12 @@ export enum UserVerifyStatus {
     Banned, // bị khóa
 }
 
+export enum UserGender {
+    Male,
+    Female,
+    Unknown,
+}
+
 export enum TokenType {
     AccessToken,
     RefreshToken,
@@ -13,6 +19,5 @@ export enum TokenType {
 
 export enum Role {
     User,
-    Seller,
     Admin,
 }

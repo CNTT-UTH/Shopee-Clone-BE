@@ -28,11 +28,26 @@ const passwordParam = {
 
 export const authorizeRole = (roles: Role[]) => {
     return (req: Request, res: Response, next: NextFunction) => {
-        const role = req?.body.role;
+        const role = req?.decoded?.role as Role;
         console.log(role);
         console.log(roles);
         try {
             if (!roles.includes(role)) {
+                throw new ApiError(AUTH_MESSAGES.UNAUTHORIZED, HTTP_STATUS.UNAUTHORIZED);
+            }
+            next();
+        } catch (error) {
+            next(error);
+        }
+    };
+};
+
+export const isShop = () => {
+    return (req: Request, res: Response, next: NextFunction) => {
+        const isShop = req?.decoded?.isShop as boolean;
+
+        try {
+            if (!isShop) {
                 throw new ApiError(AUTH_MESSAGES.UNAUTHORIZED, HTTP_STATUS.UNAUTHORIZED);
             }
             next();

@@ -22,5 +22,5 @@ export interface TokenPayload extends JwtPayload {
     exp?: number;
     iat?: number;
     user_agent?: string;
+    isShop?: boolean;
 }
-

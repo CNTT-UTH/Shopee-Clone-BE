@@ -14,7 +14,7 @@ const router = express.Router();
  * Method: POST
  * Headers: { Authorization: string, User-Agent: string }
 */
-router.route("/me").post(platformValidator, accessTokenValidator, authorizeRole([Role.User, Role.Seller]), (req, res) => {
+router.route("/me").post(platformValidator, accessTokenValidator, authorizeRole([Role.User]), (req, res) => {
     res.status(200).json({ message: "Hello, you are authorized" });
 });
 
