@@ -1,6 +1,8 @@
 import { UserGender } from "~/constants/enums";
 import HTTP_STATUS from "~/constants/httpStatus";
 import { USERS_MESSAGES } from "~/constants/messages";
+import { AddressDTO } from "~/models/dto/AddressDTO";
+import { UserDTO } from "~/models/dto/UserDTO";
 import { UserRepository } from "~/repository/user.repository";
 import { ApiError } from "~/utils/errors";
 
@@ -17,17 +19,24 @@ class UserService {
             throw new ApiError(USERS_MESSAGES.USERNAME_DOES_NOT_EXIST, HTTP_STATUS.BAD_REQUEST);
         }
 
+        const userAddress = new AddressDTO({});
+
+        const userDTO: UserDTO = new UserDTO({
+            user_id: user._id,
+            username: user.username,
+            email: user.email,
+            name: user.name,
+            dob: user.dob?.getTime().toString(),
+            gender: user.gender,
+            phone: user.phone,
+            is_shop: user.isShop,
+            status: user.verify,
+            defaut_address: userAddress,
+        });
+
+        console.log(userDTO);
         return {
-            user_profile: {
-                _id: user._id,
-                username: user.username,
-                email: user.email,
-                nickname: user.name,
-                dob: user.dob ? user.dob.toISOString() : null,
-                gender: user.gender as UserGender,
-                avatar: user.avatar,
-                phone: user.phone,
-            },
+            user_profile: userDTO,
         };
     }
 }

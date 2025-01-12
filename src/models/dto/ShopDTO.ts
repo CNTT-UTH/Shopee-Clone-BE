@@ -15,4 +15,21 @@ export class ShopDTO {
     cover_picture_url?: string;
     last_time_active?: number; // timestamp
     created_at?: number; // timestamp
+
+    constructor(data: Partial<ShopDTO> = {}) {
+        this.shopid = data.shopid;
+        this.account = data.account;
+        this.description = data.description;
+        this.name = data.name;
+        this.status = data.status ?? 0;
+        this.rating_star = data.rating_star ?? 0;
+        this.total_rating = data.total_rating ?? 0;
+        this.item_count = data.item_count ?? 0;
+        this.response_rate = data.response_rate ?? 0;
+        this.response_time = data.response_time ?? 0;
+        this.follower_count = data.follower_count ?? 0;
+        this.cover_picture_url = data.cover_picture_url;
+        this.last_time_active = data.last_time_active;
+        this.created_at = data.created_at;
+    }
 }

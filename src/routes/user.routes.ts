@@ -17,4 +17,15 @@ router
     .route("/profile")
     .get(platformValidator, accessTokenValidator, authorizeRole([Role.User]), asyncHandler(usersController.getProfile));
 
+/**
+ * Description. Update user profile
+ * Path: /updateProfile
+ * Method: GET
+ * Headers: { Authorization: string, User-Agent: string }
+ */
+router
+    .route("/updateProfile")
+    .get(platformValidator, accessTokenValidator, authorizeRole([Role.User]), asyncHandler(usersController.getProfile));
+
+
 export default router;
