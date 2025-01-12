@@ -12,7 +12,7 @@ export class ProductDTO {
 
     review?: ProductReviewDTO;
     options?: OptionsDTO[];
-    varients?: VarientDTO[];
+    variants?: variantDTO[];
 
     product_price?: PriceDTO[];
 
@@ -43,7 +43,7 @@ export class OptionsDTO {
     sold_out?: boolean[];
 }
 
-export class VarientDTO {
+export class variantDTO {
     product_id?: string;
     sku?: string;
     name?: string;
