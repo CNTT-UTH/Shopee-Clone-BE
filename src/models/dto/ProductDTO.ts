@@ -1,13 +1,13 @@
 import { CategoryDTO } from "./CategoryDTO";
 
 export class ProductDTO {
-    product_id?: string;
+    product_id?: number;
     title?: string;
     description?: string;
 
     product_attributes?: AttributeDTO[];
 
-    cat_id?: string;
+    cat_id?: number;
     cates?: CategoryDTO[];
 
     review?: ProductReviewDTO;
@@ -23,6 +23,7 @@ export class ProductDTO {
         this.product_id = data.product_id;
         this.title = data.title;
         this.description = data.description;
+
 
         this.product_attributes = data.product_attributes || [];
         this.cat_id = data.cat_id;
@@ -41,7 +42,7 @@ export class ProductDTO {
 }
 
 export class AttributeDTO {
-    id?: string;
+    id?: number;
     name?: string;
     value?: string;
     brand_id?: string;
@@ -87,7 +88,7 @@ export class OptionsDTO {
 }
 
 export class variantDTO {
-    product_id?: string;
+    product_id?: number;
     sku?: string;
     name?: string;
     price?: number;

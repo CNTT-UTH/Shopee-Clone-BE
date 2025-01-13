@@ -1,9 +1,9 @@
 export class CategoryDTO {
-    cate_id?: string;
+    cate_id?: number;
     name?: string;
     level?: number;
     childrens?: CategoryDTO[];
-    parent_id?: string;
+    parent_id?: number;
     image_url?: string;
 
     constructor(data: Partial<CategoryDTO>) {
