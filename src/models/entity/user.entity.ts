@@ -1,5 +1,17 @@
 import { Role, UserGender, UserVerifyStatus } from "~/constants/enums";
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, BaseEntity } from "typeorm";
+import {
+    Entity,
+    PrimaryGeneratedColumn,
+    Column,
+    CreateDateColumn,
+    UpdateDateColumn,
+    BaseEntity,
+    OneToMany,
+    OneToOne,
+    JoinColumn,
+} from "typeorm";
+import { Address } from "./address.entity";
+import { Cart } from "./cart.entity";
 
 // export interface UserType {
 //     _id?: string;
@@ -65,4 +77,11 @@ export class User extends BaseEntity {
 
     @UpdateDateColumn()
     updated_at: Date;
+
+    @OneToMany(() => Address, (address) => address.user)
+    addresses: Address[];
+
+    @OneToOne(() => Cart, (cart) => cart.user)
+    @JoinColumn({ name: "cart_id" })
+    cart: Cart;
 }
