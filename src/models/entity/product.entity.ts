@@ -17,6 +17,8 @@ import { Brand } from "./brand.entity";
 import { Image } from "./image.entity";
 import { Option } from "./variant.entiity";
 import { AttributeValue } from "./attribute.entity";
+import { CartItem } from "./cart.entity";
+import { Shop } from "./shop.entity";
 
 @Entity("products")
 export class Product extends BaseEntity {
@@ -25,6 +27,9 @@ export class Product extends BaseEntity {
 
     @Column()
     title: string;
+
+    @Column()
+    sku: string;
 
     @Column({ nullable: true, type: "text", width: 65535 })
     description: string;
@@ -75,4 +80,12 @@ export class Product extends BaseEntity {
 
     @OneToMany(() => AttributeValue, (attribute_value) => attribute_value.product)
     attributes: AttributeValue[];
+
+    @OneToMany(() => CartItem, (cartitem) => cartitem.product)
+    cart_items: CartItem[];
+
+    @ManyToOne(() => Shop, (shop) => shop.products)
+    @JoinColumn({ name: "shop_id" })
+    shop: Shop;
+
 }

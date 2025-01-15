@@ -72,6 +72,9 @@ export class User extends BaseEntity {
     @Column({ nullable: true, type: "text", width: 65535 })
     avatar?: string;
 
+    @Column({ nullable: true })
+    default_address_id: string;
+
     @CreateDateColumn()
     created_at: Date;
 

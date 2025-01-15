@@ -14,6 +14,7 @@ import {
     UpdateDateColumn,
 } from "typeorm";
 import { Product } from "./product.entity";
+import { CartItem } from "./cart.entity";
 
 @Entity("options")
 export class Option extends BaseEntity {
@@ -110,4 +111,7 @@ export class ProductVariant extends BaseEntity {
         inverseJoinColumns: [{ name: "value_id", referencedColumnName: "value_id" }],
     })
     options: OptionValue[];
+
+    @OneToMany(() => CartItem, (cartitem) => cartitem.product)
+    cart_items: CartItem[];
 }
