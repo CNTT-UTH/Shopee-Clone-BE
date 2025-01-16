@@ -12,6 +12,7 @@ import {
 } from "typeorm";
 import { Address } from "./address.entity";
 import { Cart } from "./cart.entity";
+import { Order } from "./order.entity";
 
 // export interface UserType {
 //     _id?: string;
@@ -87,4 +88,8 @@ export class User extends BaseEntity {
     @OneToOne(() => Cart, (cart) => cart.user)
     @JoinColumn({ name: "cart_id" })
     cart: Cart;
+
+    @OneToMany(() => Order, (order) => order.user)
+    orders: Order[];
+
 }

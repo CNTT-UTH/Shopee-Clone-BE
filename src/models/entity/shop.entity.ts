@@ -14,6 +14,7 @@ import { Address } from "./address.entity";
 import { Cart, CartItem } from "./cart.entity";
 import { User } from "./user.entity";
 import { Product } from "./product.entity";
+import { Order } from "./order.entity";
 
 // export interface UserType {
 //     _id?: string;
@@ -32,7 +33,7 @@ import { Product } from "./product.entity";
 
 @Entity("shops")
 export class Shop extends BaseEntity {
-    @PrimaryGeneratedColumn("increment")
+    @PrimaryGeneratedColumn()
     id: string;
 
     @OneToOne(() => User, (user) => user._id)
@@ -70,4 +71,7 @@ export class Shop extends BaseEntity {
 
     @OneToMany(() => CartItem, (cartitem) => cartitem.shop)
     cart_items: CartItem[];
+
+    @OneToMany(() => Order, (order) => order.shop)
+    orders: Order[];
 }

@@ -15,6 +15,7 @@ import {
 } from "typeorm";
 import { Product } from "./product.entity";
 import { CartItem } from "./cart.entity";
+import { OrderItem } from "./order.entity";
 
 @Entity("options")
 export class Option extends BaseEntity {
@@ -114,4 +115,7 @@ export class ProductVariant extends BaseEntity {
 
     @OneToMany(() => CartItem, (cartitem) => cartitem.product)
     cart_items: CartItem[];
+
+    @OneToMany(() => OrderItem, (orderitem) => orderitem.product)
+    order_items: OrderItem[];
 }

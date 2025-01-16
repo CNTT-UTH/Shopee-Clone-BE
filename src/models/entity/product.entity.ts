@@ -19,6 +19,7 @@ import { Option } from "./variant.entiity";
 import { AttributeValue } from "./attribute.entity";
 import { CartItem } from "./cart.entity";
 import { Shop } from "./shop.entity";
+import { OrderItem } from "./order.entity";
 
 @Entity("products")
 export class Product extends BaseEntity {
@@ -83,6 +84,9 @@ export class Product extends BaseEntity {
 
     @OneToMany(() => CartItem, (cartitem) => cartitem.product)
     cart_items: CartItem[];
+
+    @OneToMany(() => OrderItem, (orderitem) => orderitem.product)
+    order_items: OrderItem[];
 
     @ManyToOne(() => Shop, (shop) => shop.products)
     @JoinColumn({ name: "shop_id" })
