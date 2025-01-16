@@ -61,6 +61,12 @@ export class ShippingDetail extends BaseEntity {
     @Column({ type: "text", width: 65535 })
     note_for_shipper: string;
 
+    @Column()
+    estimated_delivery_date_from: Date;
+
+    @Column()
+    estimated_delivery_date_to: Date;
+
     @CreateDateColumn()
     created_at: Date;
 

@@ -1,4 +1,4 @@
-import { Role, ShopVerifyStatus, UserGender, UserVerifyStatus } from "~/constants/enums";
+import { OrderStatus, Role, ShopVerifyStatus, UserGender, UserVerifyStatus } from "~/constants/enums";
 import {
     Entity,
     PrimaryGeneratedColumn,
@@ -76,8 +76,17 @@ export class OrderItem extends BaseEntity {
     @JoinColumn({ name: "product_variant_id" })
     productvariant: ProductVariant;
 
+    @Column()
+    price: number;
+
+    @Column()
+    price_before_discount: number;
+
     @Column({ default: 1 })
     quantity: number;
+
+    @Column({ type: "enum", enum: OrderStatus, default: OrderStatus.Ordered })
+    status: OrderStatus;
 
     @CreateDateColumn()
     created_at: Date;
