@@ -72,6 +72,7 @@ export const USERS_MESSAGES = {
     UPLOAD_SUCCESS: "Upload success",
     REFRESH_TOKEN_SUCCESS: "Refresh token success",
     GET_VIDEO_STATUS_SUCCESS: "Get video status success",
+    PHONE_NUMBER_INVALID: "Phone number is invalid",
 } as const;
 
 export const AUTH_MESSAGES = {

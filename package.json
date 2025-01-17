@@ -66,6 +66,7 @@
         "@types/minimist": "^1.2.5",
         "@types/morgan": "^1.9.9",
         "@types/useragent": "^2.3.4",
+        "class-transformer": "^0.5.1",
         "cookie-parser": "^1.4.7",
         "cors": "^2.8.5",
         "express": "^4.21.2",

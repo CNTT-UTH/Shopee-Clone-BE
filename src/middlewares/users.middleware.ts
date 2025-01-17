@@ -138,3 +138,34 @@ export const registerValidator = validate(
         },
     }),
 );
+
+export const updateProfileValidator = validate(
+    checkSchema({
+        name: {
+            optional: true,
+            isLength: {
+                options: {
+                    min: 1,
+                    max: 100,
+                },
+                errorMessage: USERS_MESSAGES.NAME_LENGTH_MUST_BE_FROM_1_TO_100,
+            },
+        },
+        gender: {
+            optional: true,
+            custom: {
+                options: async (value: number) => {
+                    if (value < 0 && value > 2) throw "Gender format is error.";
+                    return true;
+                },
+            },
+        },
+        phone: {
+            optional: true,
+            isMobilePhone: {
+                options: ["vi-VN"],
+                errorMessage: USERS_MESSAGES.PHONE_NUMBER_INVALID,
+            },
+        },
+    }),
+);

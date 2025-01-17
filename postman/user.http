@@ -1,7 +1,7 @@
 @url_dev=http://localhost:3000/api/v1/users
 @mobile_agent=Mozilla/5.0 (Linux; Android 13; Pixel 7 Pro) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.5735.131 Mobile Safari/537.36
 @web_agent=Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0
-@access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1MWM2ZmYyNi00M2E5LTQ1NDAtODM2My1iN2RmMDBkMDNkNTciLCJyb2xlIjowLCJ2ZXJpZnkiOjAsInVzZXJfYWdlbnQiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCA2LjE7IFdpbjY0OyB4NjQ7IHJ2OjQ3LjApIEdlY2tvLzIwMTAwMTAxIEZpcmVmb3gvNDcuMCIsInRva2VuX3R5cGUiOjAsImlhdCI6MTczNjE0NjA3NSwiZXhwIjoxNzM2MTQ5Njc1fQ.T-zLi88IvXTWTRu8VDMAr2Zwshetm0ABeCc4XYpQFEI
+@access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI0MDk1ODhiNS0wNjA2LTQyNjEtOTQ3NS0xZWNiZGZlMTFkN2YiLCJyb2xlIjowLCJ2ZXJpZnkiOjEsInVzZXJfYWdlbnQiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCA2LjE7IFdpbjY0OyB4NjQ7IHJ2OjQ3LjApIEdlY2tvLzIwMTAwMTAxIEZpcmVmb3gvNDcuMCIsInRva2VuX3R5cGUiOjAsImlhdCI6MTczNzEyODcyNiwiZXhwIjoxNzM3MTMyMzI2fQ.wLm3JTil5MB6VGLo_yWs8FiYbiUbD1h580pL9TbCAHE
 @refresh_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1MWM2ZmYyNi00M2E5LTQ1NDAtODM2My1iN2RmMDBkMDNkNTciLCJyb2xlIjowLCJ2ZXJpZnkiOjAsInVzZXJfYWdlbnQiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCA2LjE7IFdpbjY0OyB4NjQ7IHJ2OjQ3LjApIEdlY2tvLzIwMTAwMTAxIEZpcmVmb3gvNDcuMCIsInRva2VuX3R5cGUiOjEsImlhdCI6MTczNjE0NjA3NSwiZXhwIjoxNzM2NzUwODc1fQ.oog9ypE73fnZu9keIdvs6hD2SJSVPDSdgfa5eRRaNK4
 
 ### get profile
@@ -11,4 +11,14 @@ Authorization: Bearer {{access_token}}
 Content-Type: application/json
 
 {
+}
+
+### update profile
+PATCH {{url_dev}}/updateProfile
+User-Agent: {{web_agent}}
+Authorization: Bearer {{access_token}}
+Content-Type: application/json
+
+{
+    "gender": 2
 }

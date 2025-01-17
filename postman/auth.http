@@ -23,7 +23,7 @@ Content-Type: application/json
     "email": "Linhhuynh1@gmail.com",
     "username": "Linhhuynh1",
     "password": "Linhhuynh@12",
-    "confirmPassword": "Linhhuynh@12"
+    "confirm_password": "Linhhuynh@12"
 }
 
 ### auth
@@ -57,8 +57,8 @@ User-Agent: {{web_agent}}
 Content-Type: application/json
 
 {
-    "verify_email_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1MWM2ZmYyNi00M2E5LTQ1NDAtODM2My1iN2RmMDBkMDNkNTciLCJyb2xlIjowLCJ2ZXJpZnkiOjAsInVzZXJfYWdlbnQiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCA2LjE7IFdpbjY0OyB4NjQ7IHJ2OjQ3LjApIEdlY2tvLzIwMTAwMTAxIEZpcmVmb3gvNDcuMCIsInRva2VuX3R5cGUiOjMsImlhdCI6MTczNjE0NjA1MSwiZXhwIjoxNzM2MTQ2MTExfQ.qhQCguQG2U-Lx-CPLWp4YGSF7YaqXoj1FRr1Fcr1CMQ",
-    "code": "12199"
+    "verify_email_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI0MDk1ODhiNS0wNjA2LTQyNjEtOTQ3NS0xZWNiZGZlMTFkN2YiLCJyb2xlIjowLCJ2ZXJpZnkiOjAsInVzZXJfYWdlbnQiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCA2LjE7IFdpbjY0OyB4NjQ7IHJ2OjQ3LjApIEdlY2tvLzIwMTAwMTAxIEZpcmVmb3gvNDcuMCIsInRva2VuX3R5cGUiOjMsImlhdCI6MTczNzEyODYyMSwiZXhwIjoxNzM3MTI4NjgxfQ.6zpX4NXeV1ghB25Hdu8cHefBiIJcGl-YBLaBWMHc7ns",
+    "code": "246307"
 }
 
 ### resend-verify-mail

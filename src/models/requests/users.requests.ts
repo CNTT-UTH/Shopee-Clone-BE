@@ -8,10 +8,18 @@ export interface RegisterReqBody {
     password: string;
     confirm_password: string;
 }
+
 export interface LoginReqBody {
     username?: string;
     email?: string;
     password: string;
+}
+
+export interface UpdateProfileReqBody {
+    name?: string;
+    dob?: number;
+    gender?: number;
+    phone?: string;
 }
 
 export interface TokenPayload extends JwtPayload {

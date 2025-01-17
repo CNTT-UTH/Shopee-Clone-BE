@@ -1,7 +1,9 @@
 import { Repository } from "typeorm";
 import AppDataSource from "~/config/db";
 import { UserVerifyStatus } from "~/constants/enums";
+import { UserDTO } from "~/models/dto/UserDTO";
 import { User } from "~/models/entity/user.entity";
+import { UpdateProfileReqBody } from "~/models/requests/users.requests";
 
 export class UserRepository {
     private repo: Repository<User>;
@@ -19,6 +21,11 @@ export class UserRepository {
         return this.repo.findOne({
             where: [{ email }, { username }],
         });
+    }
+
+    async existsByID(id: string): Promise<boolean> {
+        const user = await this.repo.findOneBy({ _id: id });
+        return !!user;
     }
 
     async existsByEmail(email: string): Promise<boolean> {
@@ -50,5 +57,17 @@ export class UserRepository {
 
     async updatePassword(_id: string, password: string): Promise<void> {
         await this.repo.update({ _id }, { password });
+    }
+
+    async updateProfile(data: Partial<UserDTO>): Promise<void> {
+        await this.repo.update(
+            { _id: data.user_id },
+            {
+                name: data?.name,
+                dob: new Date(data?.dob ?? 0),
+                gender: data?.gender,
+                phone: data?.phone,
+            },
+        );
     }
 }

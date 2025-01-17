@@ -56,7 +56,7 @@ export class User extends BaseEntity {
     gender: UserGender;
 
     @Column({ nullable: false, default: false })
-    isShop: boolean;
+    is_shop: boolean;
 
     @Column({ nullable: false, type: "enum", enum: Role, default: Role.User })
     role: Role;
