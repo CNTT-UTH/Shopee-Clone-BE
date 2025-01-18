@@ -1,7 +1,7 @@
 @url_dev=http://localhost:3000/api/v1/auth
 @mobile_agent=Mozilla/5.0 (Linux; Android 13; Pixel 7 Pro) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.5735.131 Mobile Safari/537.36
 @web_agent=Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0
-@access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1MWM2ZmYyNi00M2E5LTQ1NDAtODM2My1iN2RmMDBkMDNkNTciLCJyb2xlIjowLCJ2ZXJpZnkiOjAsInVzZXJfYWdlbnQiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCA2LjE7IFdpbjY0OyB4NjQ7IHJ2OjQ3LjApIEdlY2tvLzIwMTAwMTAxIEZpcmVmb3gvNDcuMCIsInRva2VuX3R5cGUiOjAsImlhdCI6MTczNjE0NjA3NSwiZXhwIjoxNzM2MTQ5Njc1fQ.T-zLi88IvXTWTRu8VDMAr2Zwshetm0ABeCc4XYpQFEI
+@access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJjOWVhNzhiYi04NWM0LTRjMDktYTc1Ni1kMDcwMjVhNmY4YzgiLCJyb2xlIjoxLCJ2ZXJpZnkiOjEsInVzZXJfYWdlbnQiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCA2LjE7IFdpbjY0OyB4NjQ7IHJ2OjQ3LjApIEdlY2tvLzIwMTAwMTAxIEZpcmVmb3gvNDcuMCIsInRva2VuX3R5cGUiOjAsImlhdCI6MTczNzIxMzMzMSwiZXhwIjoxNzM3MjE2OTMxfQ.G7Y4m8Rmu2Jg1fpk5ws_cBG3LyQX0ZtVgmcieEbEjbI
 @refresh_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1MWM2ZmYyNi00M2E5LTQ1NDAtODM2My1iN2RmMDBkMDNkNTciLCJyb2xlIjowLCJ2ZXJpZnkiOjAsInVzZXJfYWdlbnQiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCA2LjE7IFdpbjY0OyB4NjQ7IHJ2OjQ3LjApIEdlY2tvLzIwMTAwMTAxIEZpcmVmb3gvNDcuMCIsInRva2VuX3R5cGUiOjEsImlhdCI6MTczNjE0NjA3NSwiZXhwIjoxNzM2NzUwODc1fQ.oog9ypE73fnZu9keIdvs6hD2SJSVPDSdgfa5eRRaNK4
 
 ### login
@@ -10,8 +10,8 @@ User-Agent: {{web_agent}}
 Content-Type: application/json
 
 {
-    "email": "Linhhuynh1@gmail.com",
-    "password": "Linhhuynh@12"
+    "email": "admin@gmail.com",
+    "password": "Admin@123"
 }
 
 ### register
@@ -20,10 +20,10 @@ User-Agent: {{web_agent}}
 Content-Type: application/json
 
 {
-    "email": "Linhhuynh1@gmail.com",
-    "username": "Linhhuynh1",
-    "password": "Linhhuynh@12",
-    "confirm_password": "Linhhuynh@12"
+    "email": "admin@gmail.com",
+    "username": "admin123",
+    "password": "Admin@123",
+    "confirm_password": "Admin@123"
 }
 
 ### auth
@@ -57,8 +57,8 @@ User-Agent: {{web_agent}}
 Content-Type: application/json
 
 {
-    "verify_email_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI0MDk1ODhiNS0wNjA2LTQyNjEtOTQ3NS0xZWNiZGZlMTFkN2YiLCJyb2xlIjowLCJ2ZXJpZnkiOjAsInVzZXJfYWdlbnQiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCA2LjE7IFdpbjY0OyB4NjQ7IHJ2OjQ3LjApIEdlY2tvLzIwMTAwMTAxIEZpcmVmb3gvNDcuMCIsInRva2VuX3R5cGUiOjMsImlhdCI6MTczNzEyODYyMSwiZXhwIjoxNzM3MTI4NjgxfQ.6zpX4NXeV1ghB25Hdu8cHefBiIJcGl-YBLaBWMHc7ns",
-    "code": "246307"
+    "verify_email_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJjOWVhNzhiYi04NWM0LTRjMDktYTc1Ni1kMDcwMjVhNmY4YzgiLCJyb2xlIjowLCJ2ZXJpZnkiOjAsInVzZXJfYWdlbnQiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCA2LjE7IFdpbjY0OyB4NjQ7IHJ2OjQ3LjApIEdlY2tvLzIwMTAwMTAxIEZpcmVmb3gvNDcuMCIsInRva2VuX3R5cGUiOjMsImlhdCI6MTczNzIxMTU3OCwiZXhwIjoxNzM3MjExNjM4fQ.re5vQfhD2LetkFscdZkZU-I9Dxi58NtSaGg70CGmSpc",
+    "code": "107261"
 }
 
 ### resend-verify-mail

@@ -42,6 +42,21 @@ class UserService {
         };
     }
 
+    async getAll() {
+        const users = await this.userRepository.findAll();
+
+        const userDTOs: UserDTO[] = [];
+
+        for (const user of users) {
+            userDTOs.push(plainToInstance(UserDTO, user));
+        }
+
+        console.log(userDTOs);
+        return {
+            user_profiles: userDTOs,
+        };
+    }
+
     async updateProfile(payload: Partial<UpdateProfileReqBody>, userID: string) {
         const user: User | null = await this.userRepository.findById(userID as string);
 

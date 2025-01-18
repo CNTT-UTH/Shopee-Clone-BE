@@ -23,6 +23,14 @@ export class UserRepository {
         });
     }
 
+    async findById(_id: string): Promise<User | null> {
+        return this.repo.findOneBy({ _id });
+    }
+
+    async findAll(): Promise<User[]> {
+        return this.repo.find();
+    }
+
     async existsByID(id: string): Promise<boolean> {
         const user = await this.repo.findOneBy({ _id: id });
         return !!user;
@@ -45,10 +53,6 @@ export class UserRepository {
 
     async updateRefreshTokenMobile(userID: string, refreshToken: string): Promise<void> {
         await this.repo.update({ _id: userID }, { refresh_token_mobile: refreshToken });
-    }
-
-    async findById(_id: string): Promise<User | null> {
-        return this.repo.findOneBy({ _id });
     }
 
     async updateVerify(_id: string): Promise<void> {

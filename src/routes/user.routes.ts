@@ -8,7 +8,6 @@ import { asyncHandler } from "~/utils/asyncHandler";
 
 const router = express.Router();
 
-
 router
     .route("/profile")
     /**
@@ -19,27 +18,60 @@ router
      */
     .get(platformValidator, accessTokenValidator, authorizeRole([Role.User]), asyncHandler(usersController.getProfile));
 
-
-    
 router
-    .route("/updateProfile")
+    .route("/profile/all")
+    /**
+     * Description. Get all users
+     * Path: /profile/all
+     * Method: GET
+     * Body: {}
+     */
+    .get(
+        platformValidator,
+        accessTokenValidator,
+        authorizeRole([Role.Admin]),
+        asyncHandler(usersController.getAll),
+    );
+
+router
+    .route("/profile/:user_id")
+    /**
+     * Description. Get user by id
+     * Path: /profile/:user_id
+     * Method: GET
+     */
+    .get(asyncHandler(usersController.getProfileById));
+
+router
+    .route("/update_profile")
     /**
      * Description. Update user profile
-     * Path: /updateProfile
+     * Path: /update_profile
      * Method: PATCH
      * Headers: { Authorization: string, User-Agent: string }
-    */
-   .patch(platformValidator, updateProfileValidator, accessTokenValidator, authorizeRole([Role.User]), asyncHandler(usersController.updateProfile))
-   
-router
-    .route("/:user_id")
-    /**
-    * Description. Get users 
-    * Path: /:user_id
-    * Method: GET
-    * Headers: { Authorization: string, User-Agent: string }
-    * Query: { user_id: string }
-    */
-    .get(platformValidator, accessTokenValidator, authorizeRole([Role.Admin]), asyncHandler(usersController.getProfile));
-   
-   export default router;
+     * Body: { name?: string, dob?: number, gender?: number, phone?: string }
+     */
+    .patch(
+        platformValidator,
+        updateProfileValidator,
+        accessTokenValidator,
+        authorizeRole([Role.User]),
+        asyncHandler(usersController.updateProfile),
+    );
+
+// router
+//     .route("/remove_my_account")
+//     /**
+//      * Description. Delete user account
+//      * Path: /remove_my_account
+//      * Method: PATCH
+//      * Headers: { Authorization: string, User-Agent: string }
+//      */
+//     .delete(
+//         platformValidator,
+//         accessTokenValidator,
+//         authorizeRole([Role.User]),
+//         asyncHandler(usersController.updateProfile),
+//     );
+
+export default router;
