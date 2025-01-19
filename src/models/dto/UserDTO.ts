@@ -36,7 +36,7 @@ export class UserDTO {
     default_address?: AddressDTO;
 
     @Expose()
-    image_url?: AddressDTO;
+    avatar?: string;
 
     // constructor(data: Partial<UserDTO>) {
     //     this.user_id = data.user_id;

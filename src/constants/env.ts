@@ -37,6 +37,11 @@ export const envConfig = {
     MAIL_AUTH_PASS: process.env.MAIL_AUTH_PASS as string,
 
     //  # Application-Specific Variables
-
     FRONTEND_URL: process.env.FRONTEND_URL as string,
+
+    // Cloud Storage (Cloudinary)
+    CLOUDINARY_URL: process.env.CLOUDINARY_URL as string,
+    CLOUD_NAME: process.env.CLOUD_NAME as string,
+    CLOUD_API_KEY: process.env.CLOUD_API_KEY as string,
+    CLOUD_API_SECRET: process.env.CLOUD_API_SECRET as string,
 } as const;
