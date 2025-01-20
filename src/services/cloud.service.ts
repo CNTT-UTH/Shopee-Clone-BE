@@ -16,7 +16,5 @@ class Cloudinary {
         });
     }
 
-    uploadImage(fileURL: string, name: string){
-        
-    }
+    uploadImage(fileURL: string, name: string) {}
 }
