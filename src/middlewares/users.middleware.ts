@@ -41,6 +41,7 @@ const passwordParam = {
 export const loginValidator = validate(
     checkSchema({
         email: {
+            in: ["body"],
             optional: true,
             isEmail: true,
             normalizeEmail: true,
@@ -64,6 +65,7 @@ export const loginValidator = validate(
             },
         },
         username: {
+            in: ["body"],
             escape: true,
             optional: true,
             custom: {
@@ -84,6 +86,7 @@ export const loginValidator = validate(
             },
         },
         password: {
+            in: ["body"],
             notEmpty: {
                 errorMessage: USERS_MESSAGES.PASSWORD_IS_REQUIRED,
             },

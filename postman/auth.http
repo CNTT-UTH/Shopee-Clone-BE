@@ -10,8 +10,8 @@ User-Agent: {{web_agent}}
 Content-Type: application/json
 
 {
-    "email": "admin@gmail.com",
-    "password": "Admin@123"
+    "email": "linhuynh@gmail.com",
+    "password": "Linhhuynh@123"
 }
 
 ### register
@@ -20,10 +20,10 @@ User-Agent: {{web_agent}}
 Content-Type: application/json
 
 {
-    "email": "admin@gmail.com",
-    "username": "admin123",
-    "password": "Admin@123",
-    "confirm_password": "Admin@123"
+    "email": "linhuynh@gmail.com",
+    "username": "linhu123",
+    "password": "Linhhuynh@123",
+    "confirm_password": "Linhhuynh@123"
 }
 
 ### auth
@@ -57,8 +57,8 @@ User-Agent: {{web_agent}}
 Content-Type: application/json
 
 {
-    "verify_email_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJjOWVhNzhiYi04NWM0LTRjMDktYTc1Ni1kMDcwMjVhNmY4YzgiLCJyb2xlIjowLCJ2ZXJpZnkiOjAsInVzZXJfYWdlbnQiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCA2LjE7IFdpbjY0OyB4NjQ7IHJ2OjQ3LjApIEdlY2tvLzIwMTAwMTAxIEZpcmVmb3gvNDcuMCIsInRva2VuX3R5cGUiOjMsImlhdCI6MTczNzIxMTU3OCwiZXhwIjoxNzM3MjExNjM4fQ.re5vQfhD2LetkFscdZkZU-I9Dxi58NtSaGg70CGmSpc",
-    "code": "107261"
+    "verify_email_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJjYjkzZmQ0YS04MzRlLTQxMDgtYWQwNi1lNzA1N2NlZDBkMTIiLCJyb2xlIjowLCJ2ZXJpZnkiOjAsInVzZXJfYWdlbnQiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCA2LjE7IFdpbjY0OyB4NjQ7IHJ2OjQ3LjApIEdlY2tvLzIwMTAwMTAxIEZpcmVmb3gvNDcuMCIsInRva2VuX3R5cGUiOjMsImlhdCI6MTczNzQ0NTMyNywiZXhwIjoxNzM3NDQ1Mzg3fQ.q2EbJBcLiQH0v0gdoPkUpPNShBF77C9MSdA8vvBaQPk",
+    "code": "468872"
 }
 
 ### resend-verify-mail

@@ -16,5 +16,12 @@ class Cloudinary {
         });
     }
 
-    uploadImage(fileURL: string, name: string) {}
+    /**
+     * Upload Response: https://cloudinary.com/documentation/node_image_and_video_upload#upload_response
+     */
+    uploadImage(filepath: string) {
+        return this.cloud.uploader.upload(filepath).then((result) => result);
+    }
 }
+
+export default new Cloudinary();

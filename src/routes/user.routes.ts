@@ -59,6 +59,22 @@ router
         asyncHandler(usersController.updateProfile),
     );
 
+router
+    .route("/upload_avatar")
+    /**
+     * Description. Upload avatar
+     * Path: /upload_avatar
+     * Method: POST
+     * Content-type: multipart/form-data
+     * Headers: { Authorization: string, User-Agent: string }
+     */
+    .post(
+        platformValidator,
+        accessTokenValidator,
+        authorizeRole([Role.User]),
+        asyncHandler(usersController.updateAvatar),
+    );
+
 // router
 //     .route("/remove_my_account")
 //     /**
