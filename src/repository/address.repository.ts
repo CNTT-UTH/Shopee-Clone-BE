@@ -1,5 +1,5 @@
 import { Repository } from "typeorm";
-import AppDataSource from "~/config/db";
+import AppDataSource from "~/dbs/db";
 import { Address } from "~/models/entity/address.entity";
 
 export class AddressRepository {

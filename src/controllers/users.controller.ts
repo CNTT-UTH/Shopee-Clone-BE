@@ -54,7 +54,7 @@ class UserController {
     }
 
     async updateAvatar(req: Request, res: Response) {
-        const result = await mediasService.uploadImage(req);
+        const result = await mediasService.uploadUserAvatar(req);
 
         res.send({
             success: true,

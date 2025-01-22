@@ -4,7 +4,7 @@ import cookieParser from "cookie-parser";
 import expressLayouts from "express-ejs-layouts";
 import { envConfig } from "./constants/env";
 import { initWebRoutes } from "./routes/web.routes";
-import AppDataSource from "./config/db";
+import AppDataSource from "./dbs/db";
 import { errorHandler } from "./middlewares/errorHandler.middleware";
 import swaggerUi from "swagger-ui-express";
 import YAML from "yaml";

@@ -1,5 +1,5 @@
 import { Repository } from "typeorm";
-import AppDataSource from "~/config/db";
+import AppDataSource from "~/dbs/db";
 import { UserVerifyStatus } from "~/constants/enums";
 import { UserDTO } from "~/models/dto/UserDTO";
 import { User } from "~/models/entity/user.entity";
@@ -71,6 +71,15 @@ export class UserRepository {
                 dob: new Date(data?.dob ?? 0),
                 gender: data?.gender,
                 phone: data?.phone,
+            },
+        );
+    }
+
+    async updateUserAvatar(_id: string, url: string) {
+        await this.repo.update(
+            { _id },
+            {
+                avatar: url,
             },
         );
     }

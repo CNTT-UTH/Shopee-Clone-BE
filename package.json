@@ -18,8 +18,9 @@
         "test": "echo \"Error: no test specified\" && exit 1",
         "typeorm": "typeorm-ts-node-commonjs",
         "migration:create": "npx typeorm-ts-node-commonjs migration:create",
-        "migration:generate": "npx typeorm-ts-node-commonjs migration:generate -d ./src/config/db.ts ",
-        "migration:run": "npx typeorm-ts-node-commonjs migration:run -d ./src/config/db.ts",
+        "migration:generate": "npx typeorm-ts-node-commonjs migration:generate -d ./src/dbs/db.ts ",
+        "migration:run": "npx typeorm-ts-node-commonjs migration:run -d ./src/dbs/db.ts",
+        "migration:revert": "npx typeorm-ts-node-commonjs migration:revert -d ./src/dbs/db.ts",
         "apidocs": "swagger-cli bundle ./openapi/_index.yaml --outfile ./openapi/openapi.yaml --type yaml"
     },
     "author": "",
