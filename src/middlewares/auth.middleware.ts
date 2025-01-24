@@ -199,10 +199,7 @@ export const verifyEmailValidator = validate(
                     return true;
                 },
             },
-        },
-        code: {
-            notEmpty: true,
-        },
+        }
     }),
 );
 
