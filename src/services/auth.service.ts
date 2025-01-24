@@ -17,6 +17,8 @@ import {
 import { genCodeVerify } from "~/utils/genCode";
 import HTTP_STATUS from "~/constants/httpStatus";
 import { sendVerifyEmail } from "~/utils/email";
+import { UserDTO } from "~/models/dto/UserDTO";
+import { plainToInstance } from "class-transformer";
 
 const codeVerifyMail: Record<string, string> = {} as const;
 
@@ -172,9 +174,13 @@ class AuthService {
             console.log(refreshToken);
             await this.userRepository.updateRefreshToken((user as User)?._id, refreshToken);
         }
+
+        const userDTO: UserDTO = plainToInstance(UserDTO, user);
+
         return {
             access_token: accessToken,
             refresh_token: refreshToken,
+            user_profile: userDTO
         };
     }
 
@@ -271,10 +277,13 @@ class AuthService {
                 this.signRefeshToken(tokenPayload),
             ]);
 
+            const userDTO: UserDTO = plainToInstance(UserDTO, user);
+            
+            
             return {
-                message: USERS_MESSAGES.EMAIL_VERIFY_SUCCESS,
                 access_token: accessToken,
                 refresh_token: refreshToken,
+                user_profile: userDTO
             };
         } else {
             throw new ApiError(USERS_MESSAGES.VERIFY_CODE_IS_WRONG, HTTP_STATUS.BAD_REQUEST);
