@@ -173,8 +173,8 @@ class AuthService {
             await this.userRepository.updateRefreshToken((user as User)?._id, refreshToken);
         }
         return {
-            accessToken,
-            refreshToken,
+            access_token: accessToken,
+            refresh_token: refreshToken,
         };
     }
 
