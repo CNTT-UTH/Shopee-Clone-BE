@@ -10,7 +10,7 @@ properties:
     password:
         type: string
         example: "Linhhoccode$123"
-    confirmPassword:
+    confirm_password:
         type: string
         example: "Linhhoccode$123"
 required:

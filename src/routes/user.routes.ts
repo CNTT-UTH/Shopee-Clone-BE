@@ -43,10 +43,10 @@ router
     .get(asyncHandler(usersController.getProfileById));
 
 router
-    .route("/update_profile")
+    .route("/update-profile")
     /**
      * Description. Update user profile
-     * Path: /update_profile
+     * Path: /update-profile
      * Method: PATCH
      * Headers: { Authorization: string, User-Agent: string }
      * Body: { name?: string, dob?: number, gender?: number, phone?: string }
@@ -60,10 +60,10 @@ router
     );
 
 router
-    .route("/upload_avatar")
+    .route("/upload-avatar")
     /**
      * Description. Upload avatar
-     * Path: /upload_avatar
+     * Path: /upload-avatar
      * Method: POST
      * Content-type: multipart/form-data
      * Headers: { Authorization: string, User-Agent: string }

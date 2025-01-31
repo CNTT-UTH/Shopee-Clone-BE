@@ -1,0 +1,5 @@
+in: formData
+name: image
+type: file
+description: The file to upload.
+require: true

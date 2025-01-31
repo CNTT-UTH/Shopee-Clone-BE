@@ -1,5 +1,5 @@
 import { Request } from "express";
-import { MediaDTO } from "~/models/dto/MediaDTO";
+import { MediaDTO } from "~/models/dtos/MediaDTO";
 import { deleteFile, handleUploadImage } from "~/utils/file";
 import cloudsService from "~/services/cloud.service";
 import { UserRepository } from "~/repository/user.repository";

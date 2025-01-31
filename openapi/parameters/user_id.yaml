@@ -1,0 +1,6 @@
+in: params
+name: user_id
+schema:
+    type: string
+required: true
+example: 00108428-2700-453d-a9ba-e5cd2bb0d99e

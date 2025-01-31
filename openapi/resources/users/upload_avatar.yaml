@@ -1,0 +1,46 @@
+post:
+    tags:
+        - users
+    summary: Cập nhật avatar người dùng
+    description: 
+    operationId: user_profile_update_avatar
+    security:
+        - BearerAuth: []
+    parameters:
+        # - $ref: "../../parameters/useragent.yaml"
+        - $ref: "../../parameters/platform.yaml"
+    requestBody:
+        content:
+            multipart/form-data:
+                schema:
+                    type: object
+                    properties:
+                        image:
+                            type: string
+                            format: binary
+                            require: true
+    responses:
+        "200":
+            description:
+            schema:
+                type: object
+                properties:
+                    success:
+                        type: boolean
+                        example: true
+                    message:
+                        type: string
+                    result:
+                        type: object
+                        properties:
+                            url:
+                                type: string
+                                example: "https://res.cloudinary.com/dnoq9necr/image/upload/v1737452337/gwkov3rafwq0uompfv75.jpg"
+                            type:
+                                type: string
+                                example: "image"
+
+        "400":
+            description:
+        "422":
+            description: Sai các trường thông tin

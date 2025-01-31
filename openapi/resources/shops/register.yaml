@@ -1,0 +1,35 @@
+post:
+    tags:
+        - shop
+    summary: Đăng ký shop
+    description: ""
+    operationId: shop_register
+    security:
+        - BearerAuth: []
+    parameters:
+        # - $ref: "../../parameters/useragent.yaml"
+        - $ref: "../../parameters/platform.yaml"
+    requestBody:
+        content:
+            application/json:
+                schema:
+                    $ref: "../../schemas/ShopRegisterBody.yaml"
+    responses:
+        "200":
+            description: Đăng ký thành công
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            success:
+                                type: boolean
+                                example: true
+                            message:
+                                type: string
+                                example: Register success
+                            result:
+        "400":
+            description: Nền tảng không hợp lệ
+        "422":
+            description: Sai các trường thông tin

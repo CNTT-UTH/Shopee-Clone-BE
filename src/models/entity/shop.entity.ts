@@ -42,8 +42,11 @@ export class Shop extends BaseEntity {
     @Column({ nullable: true, type: "text", width: 65535 })
     description: string;
 
-    @Column({ nullable: true })
+    @Column({ nullable: false })
     name: string;
+    
+    @Column({ nullable: false })
+    phone: string;
 
     @Column({ type: "enum", enum: ShopVerifyStatus, default: ShopVerifyStatus.Unverified })
     status: ShopVerifyStatus;

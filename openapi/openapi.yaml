@@ -19,6 +19,8 @@ tags:
     description: Xác minh và xác thực
   - name: users
     description: Người dùng
+  - name: shop
+    description: Cửa hàng
 paths:
   /auth/login:
     post:
@@ -394,6 +396,227 @@ paths:
           description: null
         '422':
           description: Sai các trường thông tin
+  /users/profile/all:
+    get:
+      tags:
+        - users
+      summary: Lấy tất cả thông tin người dùng
+      description: 'Role: Admin'
+      operationId: user_profile_all
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/paths/~1auth~1login/post/parameters/0'
+      responses:
+        '200':
+          description: null
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                success:
+                  type: boolean
+                  example: true
+                message:
+                  type: string
+                result:
+                  $ref: '#/components/schemas/User'
+        '400':
+          description: null
+        '422':
+          description: Sai các trường thông tin
+  '/users/profile/:user_id':
+    get:
+      tags:
+        - users
+      summary: Lấy thông tin người dùng bằng user_id
+      description: null
+      operationId: user_profile_user_id
+      parameters:
+        - in: params
+          name: user_id
+          schema:
+            type: string
+          required: true
+          example: 00108428-2700-453d-a9ba-e5cd2bb0d99e
+        - $ref: '#/paths/~1auth~1login/post/parameters/0'
+      responses:
+        '200':
+          description: null
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: true
+              message:
+                type: string
+              result:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: null
+        '422':
+          description: Sai các trường thông tin
+  /users/update-profile:
+    patch:
+      tags:
+        - users
+      summary: Cập nhật thông tin người dùng
+      description: null
+      operationId: user_profile_update
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/paths/~1auth~1login/post/parameters/0'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Huỳnh Vũ Nhật Linh
+                dob:
+                  type: number
+                  example: 1738304903000
+                gender:
+                  type: number
+                  example: 2
+                phone:
+                  type: string
+                  example: '+84966126449'
+              required:
+                - name
+                - dob
+                - gender
+                - phone
+      responses:
+        '200':
+          description: null
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: true
+              message:
+                type: string
+              result:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: null
+        '422':
+          description: Sai các trường thông tin
+  /users/upload-avatar:
+    post:
+      tags:
+        - users
+      summary: Cập nhật avatar người dùng
+      description: null
+      operationId: user_profile_update_avatar
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/paths/~1auth~1login/post/parameters/0'
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                image:
+                  type: string
+                  format: binary
+                  require: true
+      responses:
+        '200':
+          description: null
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: true
+              message:
+                type: string
+              result:
+                type: object
+                properties:
+                  url:
+                    type: string
+                    example: 'https://res.cloudinary.com/dnoq9necr/image/upload/v1737452337/gwkov3rafwq0uompfv75.jpg'
+                  type:
+                    type: string
+                    example: image
+        '400':
+          description: null
+        '422':
+          description: Sai các trường thông tin
+  /shops/register:
+    post:
+      tags:
+        - shop
+      summary: Đăng ký shop
+      description: ''
+      operationId: shop_register
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/paths/~1auth~1login/post/parameters/0'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Thời Trang Nhật Linh
+                phone:
+                  type: string
+                  example: '+84966126449'
+                pickup_address:
+                  type: object
+                  properties:
+                    city:
+                      type: string
+                      example: Tp. Hồ Chí Minh
+                    district:
+                      type: string
+                      example: Quận Bình Thạnh
+                    ward:
+                      type: string
+                      example: Phường 25
+                    address_line:
+                      type: string
+                      example: 02 Võ Oanh
+                    phone_number:
+                      type: string
+              required:
+                - name
+                - phone
+                - pickup_address
+      responses:
+        '200':
+          description: Đăng ký thành công
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Register success
+                  result: null
+        '400':
+          description: Nền tảng không hợp lệ
+        '422':
+          description: Sai các trường thông tin
 components:
   schemas:
     User:
@@ -433,7 +656,7 @@ components:
         password:
           type: string
           example: Linhhoccode$123
-        confirmPassword:
+        confirm_password:
           type: string
           example: Linhhoccode$123
       required:

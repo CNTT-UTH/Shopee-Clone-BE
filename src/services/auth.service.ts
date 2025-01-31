@@ -17,7 +17,7 @@ import {
 import { genCodeVerify } from "~/utils/genCode";
 import HTTP_STATUS from "~/constants/httpStatus";
 import { sendVerifyEmail } from "~/utils/email";
-import { UserDTO } from "~/models/dto/UserDTO";
+import { UserDTO } from "~/models/dtos/UserDTO";
 import { plainToInstance } from "class-transformer";
 
 const codeVerifyMail: Record<string, string> = {} as const;

@@ -1,0 +1,19 @@
+type: object
+properties:
+    name:
+        type: string
+        example: "Huỳnh Vũ Nhật Linh"
+    dob:
+        type: number
+        example: 1738304903000
+    gender:
+        type: number
+        example: 2
+    phone:
+        type: string
+        example: "+84966126449"
+required:
+    - name
+    - dob
+    - gender
+    - phone

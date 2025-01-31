@@ -1,0 +1,26 @@
+get:
+    tags:
+        - users
+    summary: Lấy thông tin người dùng bằng user_id
+    description: 
+    operationId: user_profile_user_id
+    parameters:
+        - $ref: "../../parameters/user_id.yaml"
+        - $ref: "../../parameters/platform.yaml"
+    responses:
+        "200":
+            description:
+            schema:
+                type: object
+                properties:
+                    success:
+                        type: boolean
+                        example: true
+                    message:
+                        type: string
+                    result:
+                        $ref: "../../schemas/User.yaml"
+        "400":
+            description:
+        "422":
+            description: Sai các trường thông tin
