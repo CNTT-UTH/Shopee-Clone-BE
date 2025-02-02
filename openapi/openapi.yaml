@@ -30,13 +30,7 @@ paths:
       description: Đăng nhập
       operationId: login
       parameters:
-        - in: query
-          name: platform
-          schema:
-            type: string
-          required: true
-          description: 'phân biệt thiết bị (web, mobile)'
-          example: web
+        - $ref: '#/paths/~1shops/get/parameters/0'
       requestBody:
         content:
           application/json:
@@ -72,7 +66,7 @@ paths:
       security:
         - BearerAuth: []
       parameters:
-        - $ref: '#/paths/~1auth~1login/post/parameters/0'
+        - $ref: '#/paths/~1shops/get/parameters/0'
       requestBody:
         content:
           application/json:
@@ -97,7 +91,7 @@ paths:
       description: ''
       operationId: register
       parameters:
-        - $ref: '#/paths/~1auth~1login/post/parameters/0'
+        - $ref: '#/paths/~1shops/get/parameters/0'
       requestBody:
         content:
           application/json:
@@ -133,7 +127,7 @@ paths:
       security:
         - BearerAuth: []
       parameters:
-        - $ref: '#/paths/~1auth~1login/post/parameters/0'
+        - $ref: '#/paths/~1shops/get/parameters/0'
       requestBody:
         content:
           application/json:
@@ -169,7 +163,7 @@ paths:
       description: Gửi verify_email_token và code lên server
       operationId: verify_email
       parameters:
-        - $ref: '#/paths/~1auth~1login/post/parameters/0'
+        - $ref: '#/paths/~1shops/get/parameters/0'
       requestBody:
         content:
           application/json:
@@ -211,7 +205,7 @@ paths:
       description: 'Gửi verify_email_token cũ lên server, trả token mới'
       operationId: resend_verify_email
       parameters:
-        - $ref: '#/paths/~1auth~1login/post/parameters/0'
+        - $ref: '#/paths/~1shops/get/parameters/0'
       requestBody:
         content:
           application/json:
@@ -244,7 +238,7 @@ paths:
       description: 'Gửi username hoặc email lên server, trả lại forgot_password_token'
       operationId: forgot_password
       parameters:
-        - $ref: '#/paths/~1auth~1login/post/parameters/0'
+        - $ref: '#/paths/~1shops/get/parameters/0'
       requestBody:
         content:
           application/json:
@@ -276,7 +270,7 @@ paths:
       description: 'Gửi forgot_password_token và otp code lên server, trả lại forgot_password_token mới'
       operationId: verify_password
       parameters:
-        - $ref: '#/paths/~1auth~1login/post/parameters/0'
+        - $ref: '#/paths/~1shops/get/parameters/0'
       requestBody:
         content:
           application/json:
@@ -313,7 +307,7 @@ paths:
       description: 'Gửi forgot_password_token cũ lên server, trả lại forgot_password_token mới'
       operationId: resend_verify_password
       parameters:
-        - $ref: '#/paths/~1auth~1login/post/parameters/0'
+        - $ref: '#/paths/~1shops/get/parameters/0'
       requestBody:
         content:
           application/json:
@@ -346,7 +340,7 @@ paths:
       description: Gửi forgot_password_token và mật khẩu mới lên server
       operationId: reset_password
       parameters:
-        - $ref: '#/paths/~1auth~1login/post/parameters/0'
+        - $ref: '#/paths/~1shops/get/parameters/0'
       requestBody:
         content:
           application/json:
@@ -378,7 +372,7 @@ paths:
       security:
         - BearerAuth: []
       parameters:
-        - $ref: '#/paths/~1auth~1login/post/parameters/0'
+        - $ref: '#/paths/~1shops/get/parameters/0'
       responses:
         '200':
           description: null
@@ -406,7 +400,7 @@ paths:
       security:
         - BearerAuth: []
       parameters:
-        - $ref: '#/paths/~1auth~1login/post/parameters/0'
+        - $ref: '#/paths/~1shops/get/parameters/0'
       responses:
         '200':
           description: null
@@ -440,7 +434,7 @@ paths:
             type: string
           required: true
           example: 00108428-2700-453d-a9ba-e5cd2bb0d99e
-        - $ref: '#/paths/~1auth~1login/post/parameters/0'
+        - $ref: '#/paths/~1shops/get/parameters/0'
       responses:
         '200':
           description: null
@@ -468,7 +462,7 @@ paths:
       security:
         - BearerAuth: []
       parameters:
-        - $ref: '#/paths/~1auth~1login/post/parameters/0'
+        - $ref: '#/paths/~1shops/get/parameters/0'
       requestBody:
         content:
           application/json:
@@ -519,7 +513,7 @@ paths:
       security:
         - BearerAuth: []
       parameters:
-        - $ref: '#/paths/~1auth~1login/post/parameters/0'
+        - $ref: '#/paths/~1shops/get/parameters/0'
       requestBody:
         content:
           multipart/form-data:
@@ -554,6 +548,30 @@ paths:
           description: null
         '422':
           description: Sai các trường thông tin
+  /shops:
+    get:
+      tags:
+        - shop
+      summary: Lấy thông tin shop
+      description: ''
+      operationId: shop_get_info
+      security:
+        - BearerAuth: []
+      parameters:
+        - in: query
+          name: platform
+          schema:
+            type: string
+          required: true
+          description: 'phân biệt thiết bị (web, mobile)'
+          example: web
+      responses:
+        '200':
+          description: Thành công
+        '400':
+          description: Nền tảng không hợp lệ
+        '422':
+          description: Sai các trường thông tin
   /shops/register:
     post:
       tags:
@@ -564,7 +582,7 @@ paths:
       security:
         - BearerAuth: []
       parameters:
-        - $ref: '#/paths/~1auth~1login/post/parameters/0'
+        - $ref: '#/paths/~1shops/get/parameters/0'
       requestBody:
         content:
           application/json:

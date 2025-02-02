@@ -15,6 +15,7 @@ export class AddressDTO {
     address_line?: string;
 
     @Expose()
+    @IsPhoneNumber('VN')
     @IsEmpty()
     phone_number?: string;
 

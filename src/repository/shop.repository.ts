@@ -2,6 +2,7 @@ import { BaseEntity, Repository } from "typeorm";
 import AppDataSource from "~/dbs/db";
 import { RegisterInfoShopDTO } from "~/models/dtos/ShopDTO";
 import { Shop } from "~/models/entity/shop.entity";
+import { User } from "~/models/entity/user.entity";
 
 export class ShopRepository {
      private repo: Repository<Shop>;
@@ -10,14 +11,21 @@ export class ShopRepository {
           this.repo = AppDataSource.getRepository(Shop);
      }
 
-     async createShop(data: Partial<RegisterInfoShopDTO>): Promise<Shop> {
+     async createShop(data: Partial<RegisterInfoShopDTO>, user: User): Promise<Shop> {
           const shop = this.repo.create({
                name: data.name,
-               phone: data.phone
+               phone: data.phone,
+               user: user
           });
 
           await this.repo.save(shop);
 
+          return shop;
+     }
+
+     async getShopByUserId(id: string) {
+          const shop = await this.repo.findOneBy({user: {_id : id}})
+          
           return shop;
      }
 

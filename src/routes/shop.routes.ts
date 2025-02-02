@@ -1,6 +1,6 @@
 import { Router } from "express";
 import shopController from "~/controllers/shop.controller";
-import { accessTokenValidator } from "~/middlewares/auth.middleware";
+import { accessTokenValidator, isShop } from "~/middlewares/auth.middleware";
 import { validationMiddleware } from "~/middlewares/validation.middleware";
 import { RegisterInfoShopDTO } from "~/models/dtos/ShopDTO";
 import { asyncHandler } from "~/utils/asyncHandler";
@@ -22,5 +22,15 @@ router
      * }
      */
      .post(accessTokenValidator, validationMiddleware(RegisterInfoShopDTO), asyncHandler(shopController.register))
+
+router
+     .route("")
+     /**
+     * Description. Get shop info
+     * Path: 
+     * Method: GET
+     * Headers: { Authorization: string, User-Agent: string }
+     */
+     .get(accessTokenValidator, isShop(), asyncHandler(shopController.getInfo))
 
 export default router;

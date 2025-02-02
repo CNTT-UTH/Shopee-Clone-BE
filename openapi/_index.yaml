@@ -58,6 +58,8 @@ paths:
         $ref: "./resources/users/upload_avatar.yaml"
 
 #   SHOPS ROUTES
+    /shops:
+        $ref: "./resources/shops/getShopInfo.yaml"
     /shops/register:
         $ref: "./resources/shops/register.yaml"
 

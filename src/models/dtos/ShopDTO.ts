@@ -1,14 +1,27 @@
+import { Exclude, Expose, Transform, Type } from "class-transformer";
 import { AddressDTO } from "./AddressDTO";
 import { UserDTO } from "./UserDTO";
 import { IsEmpty, IsNotEmpty, IsPhoneNumber } from "class-validator";
+import { verify } from "crypto";
 
+@Exclude()
 export class ShopDTO {
+    @Expose({ name: "id" })
     shopid?: string;
+
+    @Expose()
+    @Type(() => UserDTO)
     account?: UserDTO;
 
+    @Expose()
     description?: string;
+
+    @Expose()
     name?: string;
+
+    @Expose({ name: "verify" })
     status?: number; // 0: Chưa xác nhận mail, 1: Đã xác thực, 2: Khóa shop
+
     item_count?: number;
     cover_picture_url?: string;
 
@@ -18,6 +31,9 @@ export class ShopDTO {
     response_time?: number; // tốc độ phản hồi trung bình (tính bằng giây)
     follower_count?: number;
     last_time_active?: number; // timestamp
+
+    @Expose()
+    @Transform(({ value }) => value?.getTime())
     created_at?: number; // timestamp
 
     constructor(data: Partial<ShopDTO> = {}) {
@@ -42,14 +58,14 @@ export class ShopDTO {
 export class RegisterInfoShopDTO {
     @IsEmpty()
     user_id?: string
-    
+
     @IsNotEmpty()
     name?: string;
-    
+
     @IsNotEmpty()
-    @IsPhoneNumber()
+    @IsPhoneNumber('VN')
     phone?: string;
-        
+
     @IsNotEmpty()
-    pickup_address?: AddressDTO; 
+    pickup_address?: AddressDTO;
 }

@@ -37,6 +37,7 @@ export class Shop extends BaseEntity {
     id: string;
 
     @OneToOne(() => User, (user) => user._id)
+    @JoinColumn({name: "user_id"})
     user: User;
 
     @Column({ nullable: true, type: "text", width: 65535 })

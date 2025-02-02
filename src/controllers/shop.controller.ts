@@ -9,12 +9,23 @@ import shopService from "~/services/shop.service";
 class ShopController {
      async register(req: Request<ParamsDictionary, any, RegisterInfoShopDTO>, res: Response, next: NextFunction) {
           const payload: RegisterInfoShopDTO = req.body;
-          payload.user_id = req.decoded?._id;
+          console.log(req.decoded)
+          payload.user_id = req?.decoded?._id;
           const result = await shopService.register(payload);
 
           res.send({
                success: true,
                message: "Register Shop is successfully!",
+               result
+          })
+     }
+     
+     async getInfo(req: Request, res: Response, next: NextFunction) {
+          const result = await shopService.getInfo(req?.decoded?._id as string);
+
+          res.send({
+               success: true,
+               message: null,
                result
           })
      }

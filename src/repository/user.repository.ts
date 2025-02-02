@@ -81,6 +81,18 @@ export class UserRepository {
             {
                 avatar: url,
             },
+
+
+            
         );
     }
+
+    async updateToShop(_id: string) {
+        await this.repo.update(
+            { _id },
+            {
+                is_shop: true,
+            },
+        );
+    } 
 }
