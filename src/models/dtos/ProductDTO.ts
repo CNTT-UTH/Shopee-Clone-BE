@@ -1,22 +1,37 @@
+import { Exclude, Expose } from "class-transformer";
 import { CategoryDTO } from "./CategoryDTO";
 
+@Exclude()
 export class ProductDTO {
+    @Expose()
     product_id?: number;
+    
+    @Expose()
     title?: string;
+    @Expose()
     description?: string;
-
+    
+    @Expose()
     product_attributes?: AttributeDTO[];
 
+    @Expose()
     cat_id?: number;
+    @Expose()
     cates?: CategoryDTO[];
 
+    @Expose()
     review?: ProductReviewDTO;
+    @Expose()
     options?: OptionsDTO[];
+    @Expose()
     variants?: variantDTO[];
 
+    @Expose()
     product_price?: PriceDTO[];
-
+    @Expose()
     shipping_from?: string;
+    
+    @Expose()
     shipping_channel?: ShippingDTO[];
 
     constructor(data: Partial<ProductDTO> = {}) {

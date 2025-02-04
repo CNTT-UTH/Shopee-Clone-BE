@@ -1,5 +1,0 @@
-TRUNCATE TABLE IF EXISTS administrative_regions;
-TRUNCATE TABLE IF EXISTS administrative_units;
-TRUNCATE TABLE IF EXISTS provinces;
-TRUNCATE TABLE IF EXISTS districts;
-TRUNCATE TABLE IF EXISTS wards;

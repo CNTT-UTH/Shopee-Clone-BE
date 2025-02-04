@@ -1,0 +1,1532 @@
+{
+     "bff_meta": null,
+     "error": null,
+     "error_msg": null,
+     "data": {
+          "filter_configuration": {
+               "filters": [
+                    {
+                         "name": "PAY_COD",
+                         "type": 1,
+                         "label_id": null,
+                         "is_dynamic": false,
+                         "translations": [
+                              {
+                                   "language_code": "vi",
+                                   "text": "PAY_COD",
+                                   "short_text": null,
+                                   "is_default": true
+                              },
+                              {
+                                   "language_code": "en",
+                                   "text": "COD",
+                                   "short_text": null,
+                                   "is_default": false
+                              }
+                         ],
+                         "icon_url": null,
+                         "curation_id": null,
+                         "global_attr_id": null,
+                         "item_tag_id": null
+                    },
+                    {
+                         "name": "PAY_CREDIT_CARD",
+                         "type": 2,
+                         "label_id": null,
+                         "is_dynamic": false,
+                         "translations": [
+                              {
+                                   "language_code": "vi",
+                                   "text": "PAY_CREDIT_CARD",
+                                   "short_text": null,
+                                   "is_default": true
+                              },
+                              {
+                                   "language_code": "en",
+                                   "text": "Credit Card",
+                                   "short_text": null,
+                                   "is_default": false
+                              }
+                         ],
+                         "icon_url": null,
+                         "curation_id": null,
+                         "global_attr_id": null,
+                         "item_tag_id": null
+                    },
+                    {
+                         "name": "INSTALLMENT",
+                         "type": 3,
+                         "label_id": null,
+                         "is_dynamic": false,
+                         "translations": [
+                              {
+                                   "language_code": "vi",
+                                   "text": "0% TR\u1ea2 G\u00d3P",
+                                   "short_text": null,
+                                   "is_default": true
+                              },
+                              {
+                                   "language_code": "en",
+                                   "text": "0% INSTALLMENT",
+                                   "short_text": null,
+                                   "is_default": false
+                              }
+                         ],
+                         "icon_url": null,
+                         "curation_id": null,
+                         "global_attr_id": null,
+                         "item_tag_id": null
+                    },
+                    {
+                         "name": "OFFICIAL_MALL",
+                         "type": 5,
+                         "label_id": null,
+                         "is_dynamic": false,
+                         "translations": [
+                              {
+                                   "language_code": "vi",
+                                   "text": "Shopee Mall",
+                                   "short_text": "Shopee Mall",
+                                   "is_default": true
+                              },
+                              {
+                                   "language_code": "en",
+                                   "text": "Shopee Mall",
+                                   "short_text": "Shopee Mall",
+                                   "is_default": false
+                              }
+                         ],
+                         "icon_url": null,
+                         "curation_id": null,
+                         "global_attr_id": null,
+                         "item_tag_id": null
+                    },
+                    {
+                         "name": "PREFERRED_PLUS",
+                         "type": 6,
+                         "label_id": null,
+                         "is_dynamic": false,
+                         "translations": [
+                              {
+                                   "language_code": "vi",
+                                   "text": "Shop Y\u00eau Th\u00edch +",
+                                   "short_text": null,
+                                   "is_default": true
+                              },
+                              {
+                                   "language_code": "en",
+                                   "text": "Preferred Shop +",
+                                   "short_text": null,
+                                   "is_default": false
+                              }
+                         ],
+                         "icon_url": null,
+                         "curation_id": null,
+                         "global_attr_id": null,
+                         "item_tag_id": null
+                    },
+                    {
+                         "name": "PREFERRED",
+                         "type": 7,
+                         "label_id": null,
+                         "is_dynamic": false,
+                         "translations": [
+                              {
+                                   "language_code": "vi",
+                                   "text": "Shop Y\u00eau th\u00edch",
+                                   "short_text": "Shop Y\u00eau th\u00edch",
+                                   "is_default": true
+                              },
+                              {
+                                   "language_code": "en",
+                                   "text": "Preferred Shop",
+                                   "short_text": "Preferred Shop",
+                                   "is_default": false
+                              }
+                         ],
+                         "icon_url": null,
+                         "curation_id": null,
+                         "global_attr_id": null,
+                         "item_tag_id": null
+                    },
+                    {
+                         "name": "NEW_ITEM",
+                         "type": 8,
+                         "label_id": null,
+                         "is_dynamic": false,
+                         "translations": [
+                              {
+                                   "language_code": "vi",
+                                   "text": "M\u1edbi",
+                                   "short_text": null,
+                                   "is_default": true
+                              },
+                              {
+                                   "language_code": "en",
+                                   "text": "New with tag",
+                                   "short_text": null,
+                                   "is_default": false
+                              }
+                         ],
+                         "icon_url": null,
+                         "curation_id": null,
+                         "global_attr_id": null,
+                         "item_tag_id": null
+                    },
+                    {
+                         "name": "USED_ITEM",
+                         "type": 9,
+                         "label_id": null,
+                         "is_dynamic": false,
+                         "translations": [
+                              {
+                                   "language_code": "vi",
+                                   "text": "\u0110\u00e3 s\u1eed d\u1ee5ng",
+                                   "short_text": null,
+                                   "is_default": true
+                              },
+                              {
+                                   "language_code": "en",
+                                   "text": "Used",
+                                   "short_text": null,
+                                   "is_default": false
+                              }
+                         ],
+                         "icon_url": null,
+                         "curation_id": null,
+                         "global_attr_id": null,
+                         "item_tag_id": null
+                    },
+                    {
+                         "name": "WITH_DISCOUNT",
+                         "type": 10,
+                         "label_id": null,
+                         "is_dynamic": false,
+                         "translations": [
+                              {
+                                   "language_code": "vi",
+                                   "text": "\u0110ang gi\u1ea3m gi\u00e1",
+                                   "short_text": null,
+                                   "is_default": true
+                              },
+                              {
+                                   "language_code": "en",
+                                   "text": "On sale",
+                                   "short_text": null,
+                                   "is_default": false
+                              }
+                         ],
+                         "icon_url": null,
+                         "curation_id": null,
+                         "global_attr_id": null,
+                         "item_tag_id": null
+                    },
+                    {
+                         "name": "FREE_SHIPPING",
+                         "type": 11,
+                         "label_id": null,
+                         "is_dynamic": false,
+                         "translations": [
+                              {
+                                   "language_code": "vi",
+                                   "text": "Mi\u1ec5n ph\u00ed v\u1eadn chuy\u1ec3n",
+                                   "short_text": "Mi\u1ec5n ph\u00ed v\u1eadn chuy\u1ec3n",
+                                   "is_default": true
+                              },
+                              {
+                                   "language_code": "en",
+                                   "text": "Free Shipping",
+                                   "short_text": "Freeship",
+                                   "is_default": false
+                              }
+                         ],
+                         "icon_url": null,
+                         "curation_id": null,
+                         "global_attr_id": null,
+                         "item_tag_id": null
+                    },
+                    {
+                         "name": "PRE_ORDER",
+                         "type": 12,
+                         "label_id": null,
+                         "is_dynamic": false,
+                         "translations": [
+                              {
+                                   "language_code": "vi",
+                                   "text": "H\u00e0ng c\u00f3 s\u1eb5n",
+                                   "short_text": null,
+                                   "is_default": true
+                              },
+                              {
+                                   "language_code": "en",
+                                   "text": "Ready Stock",
+                                   "short_text": null,
+                                   "is_default": false
+                              }
+                         ],
+                         "icon_url": null,
+                         "curation_id": null,
+                         "global_attr_id": null,
+                         "item_tag_id": null
+                    },
+                    {
+                         "name": "FILTER_VIDEO",
+                         "type": 13,
+                         "label_id": null,
+                         "is_dynamic": false,
+                         "translations": [
+                              {
+                                   "language_code": "vi",
+                                   "text": "FILTER_VIDEO",
+                                   "short_text": null,
+                                   "is_default": true
+                              }
+                         ],
+                         "icon_url": null,
+                         "curation_id": null,
+                         "global_attr_id": null,
+                         "item_tag_id": null
+                    },
+                    {
+                         "name": "WHOLESALE",
+                         "type": 14,
+                         "label_id": null,
+                         "is_dynamic": false,
+                         "translations": [
+                              {
+                                   "language_code": "vi",
+                                   "text": "Mua gi\u00e1 b\u00e1n bu\u00f4n/ b\u00e1n s\u1ec9",
+                                   "short_text": null,
+                                   "is_default": true
+                              },
+                              {
+                                   "language_code": "en",
+                                   "text": "Wholesale",
+                                   "short_text": null,
+                                   "is_default": false
+                              }
+                         ],
+                         "icon_url": null,
+                         "curation_id": null,
+                         "global_attr_id": null,
+                         "item_tag_id": null
+                    },
+                    {
+                         "name": "HAS_LOWEST_PRICE_GUARANTEE",
+                         "type": 15,
+                         "label_id": null,
+                         "is_dynamic": false,
+                         "translations": [
+                              {
+                                   "language_code": "vi",
+                                   "text": "G\u00ec C\u0169ng R\u1ebb",
+                                   "short_text": null,
+                                   "is_default": true
+                              },
+                              {
+                                   "language_code": "en",
+                                   "text": "Anything Cheap",
+                                   "short_text": null,
+                                   "is_default": false
+                              }
+                         ],
+                         "icon_url": null,
+                         "curation_id": null,
+                         "global_attr_id": null,
+                         "item_tag_id": null
+                    },
+                    {
+                         "name": "HUNDRED_PERCENT_ORIGINAL",
+                         "type": 16,
+                         "label_id": null,
+                         "is_dynamic": false,
+                         "translations": [
+                              {
+                                   "language_code": "vi",
+                                   "text": "HUNDRED_PERCENT_ORIGINAL",
+                                   "short_text": null,
+                                   "is_default": true
+                              }
+                         ],
+                         "icon_url": null,
+                         "curation_id": null,
+                         "global_attr_id": null,
+                         "item_tag_id": null
+                    },
+                    {
+                         "name": "FACET",
+                         "type": 17,
+                         "label_id": null,
+                         "is_dynamic": true,
+                         "translations": [
+                              {
+                                   "language_code": "vi",
+                                   "text": "Theo Danh M\u1ee5c",
+                                   "short_text": null,
+                                   "is_default": true
+                              },
+                              {
+                                   "language_code": "en",
+                                   "text": "By category",
+                                   "short_text": null,
+                                   "is_default": false
+                              }
+                         ],
+                         "icon_url": null,
+                         "curation_id": null,
+                         "global_attr_id": null,
+                         "item_tag_id": null
+                    },
+                    {
+                         "name": "LOCATIONS",
+                         "type": 18,
+                         "label_id": null,
+                         "is_dynamic": true,
+                         "translations": [
+                              {
+                                   "language_code": "vi",
+                                   "text": "N\u01a1i B\u00e1n",
+                                   "short_text": null,
+                                   "is_default": true
+                              },
+                              {
+                                   "language_code": "en",
+                                   "text": "Shipped from",
+                                   "short_text": null,
+                                   "is_default": false
+                              }
+                         ],
+                         "icon_url": null,
+                         "curation_id": null,
+                         "global_attr_id": null,
+                         "item_tag_id": null
+                    },
+                    {
+                         "name": "SHIPPING_OPTIONS",
+                         "type": 19,
+                         "label_id": null,
+                         "is_dynamic": true,
+                         "translations": [
+                              {
+                                   "language_code": "vi",
+                                   "text": "\u0110\u01a1n V\u1ecb V\u1eadn Chuy\u1ec3n",
+                                   "short_text": null,
+                                   "is_default": true
+                              },
+                              {
+                                   "language_code": "en",
+                                   "text": "Shipping options",
+                                   "short_text": null,
+                                   "is_default": false
+                              }
+                         ],
+                         "icon_url": null,
+                         "curation_id": null,
+                         "global_attr_id": null,
+                         "item_tag_id": null
+                    },
+                    {
+                         "name": "BRANDS",
+                         "type": 20,
+                         "label_id": null,
+                         "is_dynamic": true,
+                         "translations": [
+                              {
+                                   "language_code": "vi",
+                                   "text": "Th\u01b0\u01a1ng Hi\u1ec7u",
+                                   "short_text": null,
+                                   "is_default": true
+                              },
+                              {
+                                   "language_code": "en",
+                                   "text": "Brands",
+                                   "short_text": null,
+                                   "is_default": false
+                              }
+                         ],
+                         "icon_url": null,
+                         "curation_id": null,
+                         "global_attr_id": null,
+                         "item_tag_id": null
+                    },
+                    {
+                         "name": "PRICE_RANGE",
+                         "type": 21,
+                         "label_id": null,
+                         "is_dynamic": true,
+                         "translations": [
+                              {
+                                   "language_code": "vi",
+                                   "text": "Kho\u1ea3ng Gi\u00e1",
+                                   "short_text": null,
+                                   "is_default": true
+                              },
+                              {
+                                   "language_code": "en",
+                                   "text": "Price Range",
+                                   "short_text": null,
+                                   "is_default": false
+                              }
+                         ],
+                         "icon_url": null,
+                         "curation_id": null,
+                         "global_attr_id": null,
+                         "item_tag_id": null
+                    },
+                    {
+                         "name": "RATING",
+                         "type": 22,
+                         "label_id": null,
+                         "is_dynamic": true,
+                         "translations": [
+                              {
+                                   "language_code": "vi",
+                                   "text": "\u0110\u00e1nh Gi\u00e1",
+                                   "short_text": "\u0110\u00e1nh gi\u00e1",
+                                   "is_default": true
+                              },
+                              {
+                                   "language_code": "en",
+                                   "text": "Rating",
+                                   "short_text": "Rating",
+                                   "is_default": false
+                              }
+                         ],
+                         "icon_url": null,
+                         "curation_id": null,
+                         "global_attr_id": null,
+                         "item_tag_id": null
+                    },
+                    {
+                         "name": "service_by_shopee_item_tag_filter",
+                         "type": 26,
+                         "label_id": null,
+                         "is_dynamic": false,
+                         "translations": [
+                              {
+                                   "language_code": "vi",
+                                   "text": "X\u1eed l\u00fd \u0111\u01a1n h\u00e0ng b\u1edfi Shopee",
+                                   "short_text": null,
+                                   "is_default": true
+                              },
+                              {
+                                   "language_code": "en",
+                                   "text": "Fulfilled by Shopee",
+                                   "short_text": null,
+                                   "is_default": false
+                              }
+                         ],
+                         "icon_url": null,
+                         "curation_id": null,
+                         "global_attr_id": null,
+                         "item_tag_id": 814381247172614
+                    },
+                    {
+                         "name": "shopxuhuong_mar_2024_product_label_filter",
+                         "type": 23,
+                         "label_id": 1400525060,
+                         "is_dynamic": false,
+                         "translations": [
+                              {
+                                   "language_code": "vi",
+                                   "text": "Shop Xu H\u01b0\u1edbng",
+                                   "short_text": null,
+                                   "is_default": true
+                              },
+                              {
+                                   "language_code": "en",
+                                   "text": "Trending Shop",
+                                   "short_text": null,
+                                   "is_default": false
+                              }
+                         ],
+                         "icon_url": null,
+                         "curation_id": null,
+                         "global_attr_id": null,
+                         "item_tag_id": null
+                    },
+                    {
+                         "name": "free_shipping_item_tag_filter",
+                         "type": 26,
+                         "label_id": null,
+                         "is_dynamic": false,
+                         "translations": [
+                              {
+                                   "language_code": "vi",
+                                   "text": "Mi\u1ec5n ph\u00ed v\u1eadn chuy\u1ec3n",
+                                   "short_text": "Mi\u1ec5n ph\u00ed v\u1eadn chuy\u1ec3n",
+                                   "is_default": true
+                              },
+                              {
+                                   "language_code": "en",
+                                   "text": "Free Shipping",
+                                   "short_text": "Freeship",
+                                   "is_default": false
+                              }
+                         ],
+                         "icon_url": null,
+                         "curation_id": null,
+                         "global_attr_id": null,
+                         "item_tag_id": 700085110
+                    }
+               ],
+               "filter_groups": [
+                    {
+                         "name": "FACET",
+                         "filters": [
+                              {
+                                   "name": "FACET",
+                                   "hidden": null,
+                                   "schedule_settings": null
+                              }
+                         ],
+                         "logic": 0,
+                         "hidden": false,
+                         "translations": [
+                              {
+                                   "language_code": "vi",
+                                   "text": "Theo Danh M\u1ee5c",
+                                   "short_text": null,
+                                   "is_default": true
+                              },
+                              {
+                                   "language_code": "en",
+                                   "text": "By category",
+                                   "short_text": null,
+                                   "is_default": false
+                              }
+                         ],
+                         "collapse_settings": null
+                    },
+                    {
+                         "name": "LOCATIONS",
+                         "filters": [
+                              {
+                                   "name": "LOCATIONS",
+                                   "hidden": null,
+                                   "schedule_settings": null
+                              }
+                         ],
+                         "logic": 0,
+                         "hidden": false,
+                         "translations": [
+                              {
+                                   "language_code": "vi",
+                                   "text": "N\u01a1i B\u00e1n",
+                                   "short_text": null,
+                                   "is_default": true
+                              },
+                              {
+                                   "language_code": "en",
+                                   "text": "Shipped from",
+                                   "short_text": null,
+                                   "is_default": false
+                              }
+                         ],
+                         "collapse_settings": null
+                    },
+                    {
+                         "name": "SHIPPING_OPTIONS",
+                         "filters": [
+                              {
+                                   "name": "SHIPPING_OPTIONS",
+                                   "hidden": null,
+                                   "schedule_settings": null
+                              }
+                         ],
+                         "logic": 0,
+                         "hidden": false,
+                         "translations": [
+                              {
+                                   "language_code": "vi",
+                                   "text": "\u0110\u01a1n V\u1ecb V\u1eadn Chuy\u1ec3n",
+                                   "short_text": null,
+                                   "is_default": true
+                              },
+                              {
+                                   "language_code": "en",
+                                   "text": "Shipping options",
+                                   "short_text": null,
+                                   "is_default": false
+                              }
+                         ],
+                         "collapse_settings": null
+                    },
+                    {
+                         "name": "BRANDS",
+                         "filters": [
+                              {
+                                   "name": "BRANDS",
+                                   "hidden": null,
+                                   "schedule_settings": null
+                              }
+                         ],
+                         "logic": 0,
+                         "hidden": false,
+                         "translations": [
+                              {
+                                   "language_code": "vi",
+                                   "text": "Th\u01b0\u01a1ng Hi\u1ec7u",
+                                   "short_text": null,
+                                   "is_default": true
+                              },
+                              {
+                                   "language_code": "en",
+                                   "text": "Brands",
+                                   "short_text": null,
+                                   "is_default": false
+                              }
+                         ],
+                         "collapse_settings": null
+                    },
+                    {
+                         "name": "PRICE_RANGE",
+                         "filters": [
+                              {
+                                   "name": "PRICE_RANGE",
+                                   "hidden": null,
+                                   "schedule_settings": null
+                              }
+                         ],
+                         "logic": 0,
+                         "hidden": false,
+                         "translations": [
+                              {
+                                   "language_code": "vi",
+                                   "text": "Kho\u1ea3ng Gi\u00e1",
+                                   "short_text": null,
+                                   "is_default": true
+                              },
+                              {
+                                   "language_code": "en",
+                                   "text": "Price Range",
+                                   "short_text": null,
+                                   "is_default": false
+                              }
+                         ],
+                         "collapse_settings": null
+                    },
+                    {
+                         "name": "SHOP_TYPE",
+                         "filters": [
+                              {
+                                   "name": "OFFICIAL_MALL",
+                                   "hidden": false,
+                                   "schedule_settings": null
+                              },
+                              {
+                                   "name": "PREFERRED",
+                                   "hidden": false,
+                                   "schedule_settings": null
+                              },
+                              {
+                                   "name": "service_by_shopee_item_tag_filter",
+                                   "hidden": false,
+                                   "schedule_settings": null
+                              },
+                              {
+                                   "name": "PREFERRED_PLUS",
+                                   "hidden": false,
+                                   "schedule_settings": null
+                              },
+                              {
+                                   "name": "shopxuhuong_mar_2024_product_label_filter",
+                                   "hidden": false,
+                                   "schedule_settings": null
+                              }
+                         ],
+                         "logic": 1,
+                         "hidden": false,
+                         "translations": [
+                              {
+                                   "language_code": "vi",
+                                   "text": "Lo\u1ea1i Shop",
+                                   "short_text": null,
+                                   "is_default": true
+                              },
+                              {
+                                   "language_code": "en",
+                                   "text": "Shop Type",
+                                   "short_text": null,
+                                   "is_default": false
+                              }
+                         ],
+                         "collapse_settings": null
+                    },
+                    {
+                         "name": "CONDITION",
+                         "filters": [
+                              {
+                                   "name": "USED_ITEM",
+                                   "hidden": false,
+                                   "schedule_settings": null
+                              },
+                              {
+                                   "name": "NEW_ITEM",
+                                   "hidden": false,
+                                   "schedule_settings": null
+                              }
+                         ],
+                         "logic": 1,
+                         "hidden": false,
+                         "translations": [
+                              {
+                                   "language_code": "vi",
+                                   "text": "T\u00ecnh Tr\u1ea1ng",
+                                   "short_text": null,
+                                   "is_default": true
+                              },
+                              {
+                                   "language_code": "en",
+                                   "text": "Condition",
+                                   "short_text": null,
+                                   "is_default": false
+                              }
+                         ],
+                         "collapse_settings": null
+                    },
+                    {
+                         "name": "PAYMENT_OPTIONS",
+                         "filters": [
+                              {
+                                   "name": "INSTALLMENT",
+                                   "hidden": false,
+                                   "schedule_settings": null
+                              }
+                         ],
+                         "logic": 1,
+                         "hidden": false,
+                         "translations": [
+                              {
+                                   "language_code": "vi",
+                                   "text": "C\u00e1c l\u1ef1a ch\u1ecdn thanh to\u00e1n",
+                                   "short_text": null,
+                                   "is_default": true
+                              },
+                              {
+                                   "language_code": "en",
+                                   "text": "Payment Options",
+                                   "short_text": null,
+                                   "is_default": false
+                              }
+                         ],
+                         "collapse_settings": null
+                    },
+                    {
+                         "name": "RATING",
+                         "filters": [
+                              {
+                                   "name": "RATING",
+                                   "hidden": null,
+                                   "schedule_settings": null
+                              }
+                         ],
+                         "logic": 0,
+                         "hidden": false,
+                         "translations": [
+                              {
+                                   "language_code": "vi",
+                                   "text": "\u0110\u00e1nh Gi\u00e1",
+                                   "short_text": null,
+                                   "is_default": true
+                              },
+                              {
+                                   "language_code": "en",
+                                   "text": "Rating",
+                                   "short_text": null,
+                                   "is_default": false
+                              }
+                         ],
+                         "collapse_settings": null
+                    },
+                    {
+                         "name": "SERVICE_AND_PROMOTION",
+                         "filters": [
+                              {
+                                   "name": "WITH_DISCOUNT",
+                                   "hidden": false,
+                                   "schedule_settings": null
+                              },
+                              {
+                                   "name": "free_shipping_item_tag_filter",
+                                   "hidden": false,
+                                   "schedule_settings": null
+                              },
+                              {
+                                   "name": "HAS_LOWEST_PRICE_GUARANTEE",
+                                   "hidden": false,
+                                   "schedule_settings": null
+                              },
+                              {
+                                   "name": "PRE_ORDER",
+                                   "hidden": false,
+                                   "schedule_settings": null
+                              },
+                              {
+                                   "name": "WHOLESALE",
+                                   "hidden": false,
+                                   "schedule_settings": null
+                              }
+                         ],
+                         "logic": 0,
+                         "hidden": false,
+                         "translations": [
+                              {
+                                   "language_code": "vi",
+                                   "text": "D\u1ecbch V\u1ee5 & Khuy\u1ebfn M\u00e3i",
+                                   "short_text": null,
+                                   "is_default": true
+                              },
+                              {
+                                   "language_code": "en",
+                                   "text": "Service and Promotion",
+                                   "short_text": null,
+                                   "is_default": false
+                              }
+                         ],
+                         "collapse_settings": null
+                    }
+               ],
+               "filter_shortcut_groups": [
+                    {
+                         "is_default": true,
+                         "filters": [
+                              {
+                                   "name": "OFFICIAL_MALL",
+                                   "hidden": false,
+                                   "ui_info": {
+                                        "selected_color": ""
+                                   }
+                              },
+                              {
+                                   "name": "PREFERRED",
+                                   "hidden": false,
+                                   "ui_info": {
+                                        "selected_color": ""
+                                   }
+                              },
+                              {
+                                   "name": "free_shipping_item_tag_filter",
+                                   "hidden": false,
+                                   "ui_info": {
+                                        "selected_color": ""
+                                   }
+                              },
+                              {
+                                   "name": "RATING",
+                                   "hidden": false,
+                                   "ui_info": {
+                                        "selected_color": ""
+                                   }
+                              },
+                              {
+                                   "name": "FACET",
+                                   "hidden": null,
+                                   "ui_info": {
+                                        "selected_color": ""
+                                   }
+                              }
+                         ],
+                         "schedule_settings": null
+                    }
+               ],
+               "dynamic_filter_group_data": {
+                    "facets": [
+                         {
+                              "category": {
+                                   "parentids": [
+                                        100054
+                                   ],
+                                   "display_name": "\u00c1o thun",
+                                   "is_default_subcat": null,
+                                   "parent_category_detail": {
+                                        "category": {
+                                             "parentids": null,
+                                             "display_name": "\u00c1o",
+                                             "is_default_subcat": null,
+                                             "parent_category_detail": null,
+                                             "name": "Tops"
+                                        },
+                                        "catid": 100054,
+                                        "count": 690755,
+                                        "show_parent_category": null
+                                   },
+                                   "name": "T-Shirts"
+                              },
+                              "catid": 100244,
+                              "count": 487387,
+                              "show_parent_category": null
+                         },
+                         {
+                              "category": {
+                                   "parentids": [
+                                        100011
+                                   ],
+                                   "display_name": "\u00c1o kho\u00e1c",
+                                   "is_default_subcat": null,
+                                   "parent_category_detail": {
+                                        "category": {
+                                             "parentids": null,
+                                             "display_name": "Th\u1eddi Trang Nam",
+                                             "is_default_subcat": null,
+                                             "parent_category_detail": null,
+                                             "name": "Men Clothes"
+                                        },
+                                        "catid": 100011,
+                                        "count": 1420454,
+                                        "show_parent_category": null
+                                   },
+                                   "name": "Jackets, Coats & Vests"
+                              },
+                              "catid": 100050,
+                              "count": 126581,
+                              "show_parent_category": null
+                         },
+                         {
+                              "category": {
+                                   "parentids": [
+                                        100011
+                                   ],
+                                   "display_name": "Hoodie & \u00c1o n\u1ec9",
+                                   "is_default_subcat": null,
+                                   "parent_category_detail": {
+                                        "category": {
+                                             "parentids": null,
+                                             "display_name": "Th\u1eddi Trang Nam",
+                                             "is_default_subcat": null,
+                                             "parent_category_detail": null,
+                                             "name": "Men Clothes"
+                                        },
+                                        "catid": 100011,
+                                        "count": 1420454,
+                                        "show_parent_category": null
+                                   },
+                                   "name": "Hoodies & Sweatshirts"
+                              },
+                              "catid": 100048,
+                              "count": 125000,
+                              "show_parent_category": null
+                         },
+                         {
+                              "category": {
+                                   "parentids": [
+                                        100054
+                                   ],
+                                   "display_name": "\u00c1o s\u01a1 mi",
+                                   "is_default_subcat": null,
+                                   "parent_category_detail": {
+                                        "category": {
+                                             "parentids": null,
+                                             "display_name": "\u00c1o",
+                                             "is_default_subcat": null,
+                                             "parent_category_detail": null,
+                                             "name": "Tops"
+                                        },
+                                        "catid": 100054,
+                                        "count": 690755,
+                                        "show_parent_category": null
+                                   },
+                                   "name": "Shirts"
+                              },
+                              "catid": 100242,
+                              "count": 108530,
+                              "show_parent_category": null
+                         },
+                         {
+                              "category": {
+                                   "parentids": null,
+                                   "display_name": "Ph\u1ee5 Ki\u1ec7n Th\u1eddi Trang",
+                                   "is_default_subcat": null,
+                                   "parent_category_detail": null,
+                                   "name": "Fashion Accessories"
+                              },
+                              "catid": 100009,
+                              "count": 105202,
+                              "show_parent_category": null
+                         },
+                         {
+                              "category": {
+                                   "parentids": [
+                                        100011
+                                   ],
+                                   "display_name": "Qu\u1ea7n d\u00e0i",
+                                   "is_default_subcat": null,
+                                   "parent_category_detail": {
+                                        "category": {
+                                             "parentids": null,
+                                             "display_name": "Th\u1eddi Trang Nam",
+                                             "is_default_subcat": null,
+                                             "parent_category_detail": null,
+                                             "name": "Men Clothes"
+                                        },
+                                        "catid": 100011,
+                                        "count": 1420454,
+                                        "show_parent_category": null
+                                   },
+                                   "name": "Pants"
+                              },
+                              "catid": 100052,
+                              "count": 76022,
+                              "show_parent_category": null
+                         },
+                         {
+                              "category": {
+                                   "parentids": [
+                                        100054
+                                   ],
+                                   "display_name": "\u00c1o polo",
+                                   "is_default_subcat": null,
+                                   "parent_category_detail": {
+                                        "category": {
+                                             "parentids": null,
+                                             "display_name": "\u00c1o",
+                                             "is_default_subcat": null,
+                                             "parent_category_detail": null,
+                                             "name": "Tops"
+                                        },
+                                        "catid": 100054,
+                                        "count": 690755,
+                                        "show_parent_category": null
+                                   },
+                                   "name": "Polo Shirts"
+                              },
+                              "catid": 100243,
+                              "count": 75852,
+                              "show_parent_category": null
+                         },
+                         {
+                              "category": {
+                                   "parentids": [
+                                        100011
+                                   ],
+                                   "display_name": "Qu\u1ea7n jean",
+                                   "is_default_subcat": null,
+                                   "parent_category_detail": {
+                                        "category": {
+                                             "parentids": null,
+                                             "display_name": "Th\u1eddi Trang Nam",
+                                             "is_default_subcat": null,
+                                             "parent_category_detail": null,
+                                             "name": "Men Clothes"
+                                        },
+                                        "catid": 100011,
+                                        "count": 1420454,
+                                        "show_parent_category": null
+                                   },
+                                   "name": "Jeans"
+                              },
+                              "catid": 100047,
+                              "count": 73700,
+                              "show_parent_category": null
+                         },
+                         {
+                              "category": {
+                                   "parentids": [
+                                        100011
+                                   ],
+                                   "display_name": "Qu\u1ea7n \u0111\u00f9i",
+                                   "is_default_subcat": null,
+                                   "parent_category_detail": {
+                                        "category": {
+                                             "parentids": null,
+                                             "display_name": "Th\u1eddi Trang Nam",
+                                             "is_default_subcat": null,
+                                             "parent_category_detail": null,
+                                             "name": "Men Clothes"
+                                        },
+                                        "catid": 100011,
+                                        "count": 1420454,
+                                        "show_parent_category": null
+                                   },
+                                   "name": "Shorts"
+                              },
+                              "catid": 100053,
+                              "count": 64507,
+                              "show_parent_category": null
+                         },
+                         {
+                              "category": {
+                                   "parentids": [
+                                        100011
+                                   ],
+                                   "display_name": "\u0110\u1ed3 l\u00f3t",
+                                   "is_default_subcat": null,
+                                   "parent_category_detail": {
+                                        "category": {
+                                             "parentids": null,
+                                             "display_name": "Th\u1eddi Trang Nam",
+                                             "is_default_subcat": null,
+                                             "parent_category_detail": null,
+                                             "name": "Men Clothes"
+                                        },
+                                        "catid": 100011,
+                                        "count": 1420454,
+                                        "show_parent_category": null
+                                   },
+                                   "name": "Innerwear & Underwear"
+                              },
+                              "catid": 100055,
+                              "count": 60572,
+                              "show_parent_category": null
+                         },
+                         {
+                              "category": {
+                                   "parentids": [
+                                        100011
+                                   ],
+                                   "display_name": "B\u1ed9",
+                                   "is_default_subcat": null,
+                                   "parent_category_detail": {
+                                        "category": {
+                                             "parentids": null,
+                                             "display_name": "Th\u1eddi Trang Nam",
+                                             "is_default_subcat": null,
+                                             "parent_category_detail": null,
+                                             "name": "Men Clothes"
+                                        },
+                                        "catid": 100011,
+                                        "count": 1420454,
+                                        "show_parent_category": null
+                                   },
+                                   "name": "Sets"
+                              },
+                              "catid": 100057,
+                              "count": 45901,
+                              "show_parent_category": null
+                         },
+                         {
+                              "category": {
+                                   "parentids": [
+                                        100011
+                                   ],
+                                   "display_name": "\u00c1o len",
+                                   "is_default_subcat": null,
+                                   "parent_category_detail": {
+                                        "category": {
+                                             "parentids": null,
+                                             "display_name": "Th\u1eddi Trang Nam",
+                                             "is_default_subcat": null,
+                                             "parent_category_detail": null,
+                                             "name": "Men Clothes"
+                                        },
+                                        "catid": 100011,
+                                        "count": 1420454,
+                                        "show_parent_category": null
+                                   },
+                                   "name": "Sweaters & Cardigans"
+                              },
+                              "catid": 100049,
+                              "count": 45228,
+                              "show_parent_category": null
+                         }
+                    ],
+                    "locations": [
+                         {
+                              "name": "TP. H\u1ed3 Ch\u00ed Minh",
+                              "level": "0",
+                              "sub_location": null,
+                              "display_name": "TP. H\u1ed3 Ch\u00ed Minh",
+                              "translations": [],
+                              "tag_ids": [
+                                   1400005265
+                              ]
+                         },
+                         {
+                              "name": "H\u00e0 N\u1ed9i",
+                              "level": "0",
+                              "sub_location": null,
+                              "display_name": "H\u00e0 N\u1ed9i",
+                              "translations": [],
+                              "tag_ids": [
+                                   700000280
+                              ]
+                         },
+                         {
+                              "name": "Qu\u1eadn 1",
+                              "level": "1",
+                              "sub_location": null,
+                              "display_name": "Qu\u1eadn 1",
+                              "translations": [],
+                              "tag_ids": [
+                                   1400005271
+                              ]
+                         },
+                         {
+                              "name": "Qu\u1eadn 3",
+                              "level": "1",
+                              "sub_location": null,
+                              "display_name": "Qu\u1eadn 3",
+                              "translations": [],
+                              "tag_ids": [
+                                   1058877
+                              ]
+                         },
+                         {
+                              "name": "Qu\u1eadn 6",
+                              "level": "1",
+                              "sub_location": null,
+                              "display_name": "Qu\u1eadn 6",
+                              "translations": [],
+                              "tag_ids": [
+                                   700000278
+                              ]
+                         },
+                         {
+                              "name": "Qu\u1eadn 7",
+                              "level": "1",
+                              "sub_location": null,
+                              "display_name": "Qu\u1eadn 7",
+                              "translations": [],
+                              "tag_ids": [
+                                   1400005275
+                              ]
+                         },
+                         {
+                              "name": "Qu\u1eadn 8",
+                              "level": "1",
+                              "sub_location": null,
+                              "display_name": "Qu\u1eadn 8",
+                              "translations": [],
+                              "tag_ids": [
+                                   1400000231
+                              ]
+                         },
+                         {
+                              "name": "Qu\u1eadn 10",
+                              "level": "1",
+                              "sub_location": null,
+                              "display_name": "Qu\u1eadn 10",
+                              "translations": [],
+                              "tag_ids": [
+                                   1058885
+                              ]
+                         },
+                         {
+                              "name": "Qu\u1eadn 11",
+                              "level": "1",
+                              "sub_location": null,
+                              "display_name": "Qu\u1eadn 11",
+                              "translations": [],
+                              "tag_ids": [
+                                   1400005300
+                              ]
+                         },
+                         {
+                              "name": "Qu\u1eadn 12",
+                              "level": "1",
+                              "sub_location": null,
+                              "display_name": "Qu\u1eadn 12",
+                              "translations": [],
+                              "tag_ids": [
+                                   700000287
+                              ]
+                         },
+                         {
+                              "name": "Qu\u1eadn G\u00f2 V\u1ea5p",
+                              "level": "1",
+                              "sub_location": null,
+                              "display_name": "Qu\u1eadn G\u00f2 V\u1ea5p",
+                              "translations": [],
+                              "tag_ids": [
+                                   700000282
+                              ]
+                         },
+                         {
+                              "name": "Qu\u1eadn T\u00e2n Ph\u00fa",
+                              "level": "1",
+                              "sub_location": null,
+                              "display_name": "Qu\u1eadn T\u00e2n Ph\u00fa",
+                              "translations": [],
+                              "tag_ids": [
+                                   1400005280
+                              ]
+                         },
+                         {
+                              "name": "Qu\u1eadn B\u00ecnh T\u00e2n",
+                              "level": "1",
+                              "sub_location": null,
+                              "display_name": "Qu\u1eadn B\u00ecnh T\u00e2n",
+                              "translations": [],
+                              "tag_ids": [
+                                   1058871
+                              ]
+                         },
+                         {
+                              "name": "Qu\u1eadn T\u00e2n B\u00ecnh",
+                              "level": "1",
+                              "sub_location": null,
+                              "display_name": "Qu\u1eadn T\u00e2n B\u00ecnh",
+                              "translations": [],
+                              "tag_ids": [
+                                   1400005267
+                              ]
+                         },
+                         {
+                              "name": "Th\u00e0nh Ph\u1ed1 Th\u1ee7 \u0110\u1ee9c",
+                              "level": "1",
+                              "sub_location": null,
+                              "display_name": "Th\u00e0nh Ph\u1ed1 Th\u1ee7 \u0110\u1ee9c",
+                              "translations": [],
+                              "tag_ids": [
+                                   700000279
+                              ]
+                         },
+                         {
+                              "name": "Qu\u1eadn B\u00ecnh Th\u1ea1nh",
+                              "level": "1",
+                              "sub_location": null,
+                              "display_name": "Qu\u1eadn B\u00ecnh Th\u1ea1nh",
+                              "translations": [],
+                              "tag_ids": [
+                                   1400005287
+                              ]
+                         },
+                         {
+                              "name": "Qu\u1eadn Ph\u00fa Nhu\u1eadn",
+                              "level": "1",
+                              "sub_location": null,
+                              "display_name": "Qu\u1eadn Ph\u00fa Nhu\u1eadn",
+                              "translations": [],
+                              "tag_ids": [
+                                   1058882
+                              ]
+                         },
+                         {
+                              "name": "Huy\u1ec7n B\u00ecnh Ch\u00e1nh",
+                              "level": "1",
+                              "sub_location": null,
+                              "display_name": "Huy\u1ec7n B\u00ecnh Ch\u00e1nh",
+                              "translations": [],
+                              "tag_ids": [
+                                   1400000241
+                              ]
+                         }
+                    ],
+                    "brands": [
+                         {
+                              "brandid": 3201198,
+                              "name": "AVOCADO"
+                         },
+                         {
+                              "brandid": 1063361,
+                              "name": "ADAM STORE"
+                         },
+                         {
+                              "brandid": 1277322,
+                              "name": "COOLMATE"
+                         },
+                         {
+                              "brandid": 2006352,
+                              "name": "JBAGY"
+                         },
+                         {
+                              "brandid": 2038997,
+                              "name": "PH"
+                         },
+                         {
+                              "brandid": 2681970,
+                              "name": "Elnido"
+                         },
+                         {
+                              "brandid": 1063818,
+                              "name": "AVIANO"
+                         },
+                         {
+                              "brandid": 2352745,
+                              "name": "NOCTURNAL"
+                         },
+                         {
+                              "brandid": 2871730,
+                              "name": "VESCA"
+                         },
+                         {
+                              "brandid": 4387559,
+                              "name": "GEN ALPHA"
+                         },
+                         {
+                              "brandid": 1250589,
+                              "name": "Teelab"
+                         },
+                         {
+                              "brandid": 2241936,
+                              "name": "ROWAY"
+                         },
+                         {
+                              "brandid": 3481522,
+                              "name": "L66"
+                         },
+                         {
+                              "brandid": 3595466,
+                              "name": "CLOUDZY"
+                         },
+                         {
+                              "brandid": 3842015,
+                              "name": "ODIN CLUB"
+                         },
+                         {
+                              "brandid": 1072265,
+                              "name": "LADOS"
+                         },
+                         {
+                              "brandid": 1255588,
+                              "name": "GUZADO"
+                         },
+                         {
+                              "brandid": 3165950,
+                              "name": "POLOMANOR"
+                         },
+                         {
+                              "brandid": 3409451,
+                              "name": "TF4"
+                         },
+                         {
+                              "brandid": 3604278,
+                              "name": "Padas"
+                         }
+                    ],
+                    "shippings": [
+                         {
+                              "positionid": 1,
+                              "name": "H\u1ecfa T\u1ed1c",
+                              "channelids": "5000",
+                              "display_name": "H\u1ecfa T\u1ed1c",
+                              "item_tag_ids": [
+                                   829011927934466
+                              ]
+                         },
+                         {
+                              "positionid": 2,
+                              "name": "Nhanh",
+                              "channelids": "5001",
+                              "display_name": "Nhanh",
+                              "item_tag_ids": [
+                                   829011927936514
+                              ]
+                         },
+                         {
+                              "positionid": 3,
+                              "name": "Ti\u1ebft Ki\u1ec7m",
+                              "channelids": "5002",
+                              "display_name": "Ti\u1ebft Ki\u1ec7m",
+                              "item_tag_ids": [
+                                   829013771222072
+                              ]
+                         }
+                    ],
+                    "price_ranges": [],
+                    "filter_algorithm": "",
+                    "attributes": [],
+                    "cc_installment_info": {
+                         "is_cc_installment_payment_eligible": true,
+                         "is_non_cc_installment_payment_eligible": true
+                    },
+                    "dynamic_filter_tag_info": null
+               }
+          },
+          "sub_errs": [
+               36801207
+          ],
+          "bff_ab_test_sign": null,
+          "search_tracking": "{\"ab_sign\":[288240,69023,114178,453033,30453,161416,450294,450269,79143,450302,79682,80707,81090,97769,452590,452392,452487,452518,452540,452552,452578,62513,62532,97803,97822,97816,450308,40274,91713,97795,40289,80814,97782,374206,378766,378771,374113,80717,428047,450323,450287,90994,40262,97857,79150,290120]}"
+     }
+}

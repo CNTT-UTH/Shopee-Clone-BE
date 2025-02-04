@@ -10,7 +10,7 @@ export class InputDataProvincesDatabase1737519051246 implements MigrationInterfa
                     __dirname,
                     "..",
                     "dbs",
-                    "script",
+                    "scripts",
                     "vietnamese-provinces-database",
                     "IMPORT_DATA_VN_UNITS.SQL",
                 ),

@@ -2,7 +2,8 @@ import { MigrationInterface, QueryRunner } from "typeorm";
 import fs from "fs";
 import path from "path";
 
-export class InitProvincesDatabase1737519000408 implements MigrationInterface {
+export class InitShippingChannel1738639391920 implements MigrationInterface {
+
     public async up(queryRunner: QueryRunner): Promise<void> {
         const sql_scripts = fs
             .readFileSync(
@@ -11,29 +12,38 @@ export class InitProvincesDatabase1737519000408 implements MigrationInterface {
                     "..",
                     "dbs",
                     "scripts",
-                    "vietnamese-provinces-database",
-                    "CREATE_TABLES_VN_UNITS.SQL",
+                    "shippings",
+                    "INIT_CHANNEL.SQL",
                 ),
                 "utf8",
             )
-            .replace("\r\n", "")
             .replace(/--.*$/gm, "")
+            .replace("\r\n", "")
             .split(";");
 
-        // console.log(sql_scripts);
+        console.log(sql_scripts);
 
         sql_scripts.map(async (sql_query) => {
             if (!sql_query) return;
+            if (!sql_query.includes("INSERT")) return;
             await queryRunner.query(sql_query);
         });
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
         const sql_scripts = fs.readFileSync(
-            path.join(__dirname, "..", "dbs", "script", "vietnamese-provinces-database", "DROP_TABLES.SQL"),
+            path.join(
+                __dirname,
+                "..",
+                "dbs",
+                "script",
+                "shippings",
+                "TRUNCATE_CHANNEL_TABLE.SQL",
+            ),
             "utf8",
         );
 
         await queryRunner.query(sql_scripts);
     }
+
 }
