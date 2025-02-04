@@ -1,4 +1,4 @@
-in: params
+in: path
 name: user_id
 schema:
     type: string

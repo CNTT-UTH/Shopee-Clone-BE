@@ -420,7 +420,7 @@ paths:
           description: null
         '422':
           description: Sai các trường thông tin
-  '/users/profile/:user_id':
+  '/users/profile/{user_id}':
     get:
       tags:
         - users
@@ -428,7 +428,7 @@ paths:
       description: null
       operationId: user_profile_user_id
       parameters:
-        - in: params
+        - in: path
           name: user_id
           schema:
             type: string
@@ -565,6 +565,27 @@ paths:
           required: true
           description: 'phân biệt thiết bị (web, mobile)'
           example: web
+      responses:
+        '200':
+          description: Thành công
+        '400':
+          description: Nền tảng không hợp lệ
+        '422':
+          description: Sai các trường thông tin
+  '/shops/{shop_id}':
+    get:
+      tags:
+        - shop
+      summary: Lấy thông tin shop bằng id
+      description: ''
+      operationId: shop_get_info_by_id
+      parameters:
+        - in: path
+          name: shop_id
+          schema:
+            type: string
+          required: true
+          example: 1
       responses:
         '200':
           description: Thành công

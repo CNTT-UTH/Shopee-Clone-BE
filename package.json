@@ -80,6 +80,7 @@
         "lodash": "^4.17.21",
         "module-alias": "^2.2.3",
         "mysql": "^2.18.1",
+        "sharp": "^0.33.5",
         "swagger-cli": "^4.0.4",
         "swagger-jsdoc": "^6.2.8",
         "swagger-ui-express": "^5.0.1",

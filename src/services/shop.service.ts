@@ -49,16 +49,21 @@ class ShopService {
      }
 
      async getInfo(user_id: string) {
-          const [shop, user] = await Promise.all([
-               await this.shopRepository.getShopByUserId(user_id),
-               await this.userRepository.findById(user_id),
-          ]
-          )
-
-          const userDTO = plainToInstance(UserDTO, user);
+          const shop = await this.shopRepository.getShopByUserId(user_id);
           const shopDTO = plainToInstance(ShopDTO, shop);
+          console.log(shopDTO);
 
-          shopDTO.account = userDTO;
+          return shopDTO;
+     }
+
+     async getInfoById(shop_id: string) {
+          const shop = await this.shopRepository.getShopByShopId(shop_id);
+
+          if (!shop) {
+               throw new ApiError("Shop is not exist!", HTTP_STATUS.BAD_REQUEST);
+          }
+          console.log(shop);
+          const shopDTO = plainToInstance(ShopDTO, shop);
 
           return shopDTO;
      }

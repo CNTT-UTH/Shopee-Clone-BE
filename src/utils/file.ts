@@ -37,9 +37,20 @@ export const handleUploadImage = async (req: Request, filename?: string) => {
 };
 
 export const deleteFile = async (filepath: string) => {
-    try {
-        await unlink(filepath);
-    } catch {
-        console.log("CAN NOT DELETE FILE!");
-    }
+    setTimeout(() => {
+        fs.unlink(filepath, (err) => {
+            if (err) {
+                console.log(err);
+            }
+            else {
+                console.log(`Delete file successful: ${filepath}`);
+            }
+        });
+    }, 5000);
 };
+
+export const getNameFromFullname = (fullname: string) => {
+    const namearr = fullname.split(".");
+    namearr.pop();
+    return namearr.join("");
+}

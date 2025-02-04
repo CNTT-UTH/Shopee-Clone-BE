@@ -24,8 +24,14 @@ export class ShopRepository {
      }
 
      async getShopByUserId(id: string) {
-          const shop = await this.repo.findOneBy({user: {_id : id}})
-          
+          const shop = await this.repo.findOne({ where: { user: { _id: id } }, relations: ["user"] })
+
+          return shop;
+     }
+
+     async getShopByShopId(id: string) {
+          const shop = await this.repo.findOne({ where: { id }, relations: ["user"] })
+
           return shop;
      }
 

@@ -1,0 +1,16 @@
+get:
+    tags:
+        - shop
+    summary: Lấy thông tin shop bằng id
+    description: ""
+    operationId: shop_get_info_by_id
+    parameters:
+        # - $ref: "../../parameters/useragent.yaml"
+        - $ref: "../../parameters/shop_id.yaml"
+    responses:
+        "200":
+            description: Thành công
+        "400":
+            description: Nền tảng không hợp lệ
+        "422":
+            description: Sai các trường thông tin

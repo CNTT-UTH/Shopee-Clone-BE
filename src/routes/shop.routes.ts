@@ -33,4 +33,14 @@ router
      */
      .get(accessTokenValidator, isShop(), asyncHandler(shopController.getInfo))
 
+router
+     .route("/:shop_id")
+     /**
+     * Description. Get shop info
+     * Path: 
+     * Method: GET
+     * Headers: { Authorization: string, User-Agent: string }
+     */
+     .get(asyncHandler(shopController.getInfoById))
+
 export default router;

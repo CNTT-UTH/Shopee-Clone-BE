@@ -1,4 +1,4 @@
-import { Exclude, Expose, Transform, Type } from "class-transformer";
+import { Exclude, Expose, plainToInstance, Transform, Type } from "class-transformer";
 import { AddressDTO } from "./AddressDTO";
 import { UserDTO } from "./UserDTO";
 import { IsEmpty, IsNotEmpty, IsPhoneNumber } from "class-validator";
@@ -9,8 +9,8 @@ export class ShopDTO {
     @Expose({ name: "id" })
     shopid?: string;
 
-    @Expose()
-    @Type(() => UserDTO)
+    @Expose({name: "user"})
+    @Transform(({value}) => plainToInstance(UserDTO, value))
     account?: UserDTO;
 
     @Expose()

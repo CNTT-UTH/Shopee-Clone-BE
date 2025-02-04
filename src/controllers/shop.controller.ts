@@ -25,6 +25,16 @@ class ShopController {
 
           res.send({
                success: true,
+               message: "Get Info suscessful",
+               result
+          })
+     }
+
+     async getInfoById(req: Request, res: Response, next: NextFunction) {
+          const result = await shopService.getInfoById(req?.params?.shop_id);
+
+          res.send({
+               success: true,
                message: null,
                result
           })

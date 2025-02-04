@@ -1,0 +1,6 @@
+in: path
+name: shop_id
+schema:
+    type: string
+required: true
+example: 1

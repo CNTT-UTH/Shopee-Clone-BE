@@ -50,7 +50,7 @@ paths:
         $ref: "./resources/users/profile.yaml"
     /users/profile/all:
         $ref: "./resources/users/profile_all.yaml"
-    /users/profile/:user_id:
+    /users/profile/{user_id}:
         $ref: "./resources/users/profile_user_id.yaml"
     /users/update-profile:
         $ref: "./resources/users/update_profile.yaml"
@@ -60,6 +60,8 @@ paths:
 #   SHOPS ROUTES
     /shops:
         $ref: "./resources/shops/getShopInfo.yaml"
+    /shops/{shop_id}:
+        $ref: "./resources/shops/getShopInfoById.yaml"
     /shops/register:
         $ref: "./resources/shops/register.yaml"
 
