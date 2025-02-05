@@ -21,6 +21,8 @@ tags:
     description: Người dùng
   - name: shop
     description: Cửa hàng
+  - name: category
+    description: Danh mục
 paths:
   /auth/login:
     post:
@@ -656,6 +658,130 @@ paths:
           description: Nền tảng không hợp lệ
         '422':
           description: Sai các trường thông tin
+  /categories/get-category-tree:
+    get:
+      tags:
+        - category
+      summary: Lấy cây danh mục
+      description: ''
+      operationId: get_category_tree
+      responses:
+        '200':
+          description: Thành công
+  '/addresses/get-address/{id}':
+    get:
+      tags:
+        - addresses
+      summary: Lấy địa chỉ theo id
+      description: ''
+      operationId: get_address
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          example: 1
+      responses:
+        '200':
+          description: Thành công
+  /addresses/get-user-addresses:
+    get:
+      tags:
+        - addresses
+      summary: Lấy sổ địa chỉ của user
+      description: ''
+      operationId: get_user_addresses
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/paths/~1shops/get/parameters/0'
+      responses:
+        '200':
+          description: Thành công
+  /addresses/create-user-address:
+    post:
+      tags:
+        - addresses
+      summary: Thêm địa chỉ của user
+      description: null
+      operationId: create_user_address
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/paths/~1shops/get/parameters/0'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                city:
+                  type: string
+                  example: Tp. Hồ Chí Minh
+                district:
+                  type: string
+                  example: Quận Bình Thạnh
+                ward:
+                  type: string
+                  example: Phường 25
+                address_line:
+                  type: string
+                  example: 02 Võ Oanh
+                phone_number:
+                  type: string
+                  example: '+84966126449'
+      responses:
+        '200':
+          description: Thành công
+        '400':
+          description: null
+        '422':
+          description: Sai các trường thông tin
+  /addresses/get-all-cities:
+    get:
+      tags:
+        - addresses
+      summary: Lấy dữ liệu thành phố
+      description: ''
+      operationId: get_city
+      responses:
+        '200':
+          description: Thành công
+  '/addresses/get-all-districts/{city_code}':
+    get:
+      tags:
+        - addresses
+      summary: Lấy dữ liệu quận/huyện theo city_code
+      description: ''
+      operationId: get_districts
+      parameters:
+        - in: path
+          name: city_code
+          schema:
+            type: string
+          required: true
+          example: 1
+      responses:
+        '200':
+          description: Thành công
+  '/addresses/get-all-wards/{district_code}':
+    get:
+      tags:
+        - addresses
+      summary: Lấy dữ liệu phường/xã theo district_code
+      description: ''
+      operationId: get_wards
+      parameters:
+        - in: path
+          name: district_code
+          schema:
+            type: string
+          required: true
+          example: 1
+      responses:
+        '200':
+          description: Thành công
 components:
   schemas:
     User:

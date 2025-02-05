@@ -35,7 +35,7 @@ export class ShopRepository {
           return shop;
      }
 
-     async updateShopAddress(shop_id: string, address_id: string): Promise<boolean> {
+     async updateShopAddress(shop_id: string, address_id: number): Promise<boolean> {
           try {
                await this.repo.update({ id: shop_id }, { default_address_id: address_id });
                return true;

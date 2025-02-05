@@ -13,11 +13,12 @@ import {
 } from "typeorm";
 import { Product } from "./product.entity";
 import { User } from "./user.entity";
+import { Shop } from "./shop.entity";
 
 @Entity("addresses")
 export class Address extends BaseEntity {
     @PrimaryGeneratedColumn("increment")
-    id: string;
+    id: number;
 
     @Column()
     city: string;
@@ -43,4 +44,8 @@ export class Address extends BaseEntity {
     @ManyToOne(() => User, (user) => user.addresses, { cascade: true })
     @JoinColumn({ name: "user" })
     user: User;
+
+    @ManyToOne(() => Shop, (shop) => shop.addresses, { cascade: true })
+    @JoinColumn({ name: "shop" })
+    shop: Shop;
 }

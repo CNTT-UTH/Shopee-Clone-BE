@@ -22,6 +22,8 @@ tags:
       description: Người dùng
     - name: shop
       description: Cửa hàng
+    - name: category
+      description: Danh mục
 paths:
 #   AUTH ROUTES
     /auth/login:
@@ -64,6 +66,25 @@ paths:
         $ref: "./resources/shops/getShopInfoById.yaml"
     /shops/register:
         $ref: "./resources/shops/register.yaml"
+
+#   CATEGORIES ROUTES
+    /categories/get-category-tree:
+        $ref: "./resources/cate/getCategoryTree.yaml"
+
+#   ADDRESSES ROUTES
+    /addresses/get-address/{id}:
+        $ref: "./resources/addresses/getAddress.yaml"
+    /addresses/get-user-addresses:
+        $ref: "./resources/addresses/getUserAddresses.yaml"
+    /addresses/create-user-address:
+        $ref: "./resources/addresses/createUserAddress.yaml"
+    /addresses/get-all-cities:
+        $ref: "./resources/addresses/getAllCities.yaml"
+    /addresses/get-all-districts/{city_code}:
+        $ref: "./resources/addresses/getAllDistricts.yaml"
+    /addresses/get-all-wards/{district_code}:
+        $ref: "./resources/addresses/getAllWards.yaml"
+
 
 components:
     # parameters:

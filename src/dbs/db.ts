@@ -10,12 +10,9 @@ const AppDataSource = new DataSource({
     username: envConfig.DB_USER,
     password: envConfig.DB_PASSWORD,
     database: envConfig.DB_NAME,
-    migrations: ["src/migrations/*.{ts, js}"],
-    entities: [
-        "src/models/entity/*.{ts, js}",
-        // User,
-    ],
     synchronize: false,
-    // synchronize: envConfig.NODE_ENV === "development",
+    logging: false,
+    migrations: [__dirname + "/../migrations/*.{ts, js}"],
+    entities: [__dirname + "/../models/entity/*.{ts, js}"],
 });
 export default AppDataSource;

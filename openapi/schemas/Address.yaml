@@ -1,0 +1,17 @@
+type: object
+properties:
+    city:
+        type: string
+        example: "Tp. Hồ Chí Minh"
+    district:
+        type: string
+        example: "Quận Bình Thạnh"
+    ward:
+        type: string
+        example: "Phường 25"
+    address_line:
+        type: string
+        example: "02 Võ Oanh"
+    phone_number:
+        type: string
+        example: "+84966126449"

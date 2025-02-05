@@ -32,10 +32,10 @@ export class Product extends BaseEntity {
     @Column()
     sku: string;
 
-    @Column({ nullable: true, type: "text", width: 65535 })
+    @Column({ nullable: true, type: "text"})
     description: string;
 
-    @Column({ nullable: true, type: "text", width: 65535 })
+    @Column({ nullable: true, type: "text"})
     specification: string;
 
     @Column({ nullable: false })

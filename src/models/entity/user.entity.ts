@@ -37,7 +37,7 @@ export class User extends BaseEntity {
     @Column()
     username: string;
 
-    @Column({ nullable: false, type: "text", width: 65535 })
+    @Column({ nullable: false, type: "text"})
     password: string;
 
     @Column({ nullable: true })
@@ -61,20 +61,20 @@ export class User extends BaseEntity {
     @Column({ nullable: false, type: "enum", enum: Role, default: Role.User })
     role: Role;
 
-    @Column({ nullable: true, type: "text", width: 65535 })
+    @Column({ nullable: true, type: "text"})
     refresh_token?: string;
 
-    @Column({ nullable: true, type: "text", width: 65535 })
+    @Column({ nullable: true, type: "text"})
     refresh_token_mobile?: string;
 
     @Column({ type: "enum", enum: UserVerifyStatus, default: UserVerifyStatus.Unverified })
     verify: UserVerifyStatus;
 
-    @Column({ nullable: true, type: "text", width: 65535 })
+    @Column({ nullable: true, type: "text"})
     avatar?: string;
 
     @Column({ nullable: true })
-    default_address_id: string;
+    default_address_id: number;
 
     @CreateDateColumn()
     created_at: Date;

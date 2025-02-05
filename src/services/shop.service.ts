@@ -1,5 +1,6 @@
 import { plainToInstance } from "class-transformer";
 import HTTP_STATUS from "~/constants/httpStatus";
+import { USERS_MESSAGES } from "~/constants/messages";
 import { AddressDTO } from "~/models/dtos/AddressDTO";
 import { RegisterInfoShopDTO, ShopDTO } from "~/models/dtos/ShopDTO";
 import { UserDTO } from "~/models/dtos/UserDTO";
@@ -24,20 +25,23 @@ class ShopService {
      async register(payload: RegisterInfoShopDTO) {
 
           // Lấy user
-          const user = await this.userRepository.findById(payload.user_id as string);
+          const user: User | null = await this.userRepository.findById(payload.user_id as string);
+
+          if (!user) throw new ApiError(USERS_MESSAGES.USER_NOT_FOUND, HTTP_STATUS.BAD_REQUEST);
 
           if (user?.is_shop) {
                throw new ApiError("Shop already registered!", HTTP_STATUS.BAD_REQUEST);
           }
 
-          // Tạo địa chỉ
-          const addressDTO: AddressDTO = plainToInstance(AddressDTO, payload.pickup_address);
-          const address = await this.addressRepository.createAddress(addressDTO);
-
-
+          
+          
           // Tạo shop
           const shopRegisterInfoDTO: RegisterInfoShopDTO = plainToInstance(RegisterInfoShopDTO, payload)
           const shop = await this.shopRepository.createShop(shopRegisterInfoDTO, user as User);
+          
+          // Tạo địa chỉ
+          const addressDTO: AddressDTO = plainToInstance(AddressDTO, payload.pickup_address);
+          const address = await this.addressRepository.createAddressForShop(addressDTO, shop);
 
           // Cập nhật shop address
           await this.shopRepository.updateShopAddress(shop.id, address.id);

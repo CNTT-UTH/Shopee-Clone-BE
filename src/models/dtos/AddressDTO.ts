@@ -1,7 +1,12 @@
-import { Expose } from "class-transformer";
+import { Exclude, Expose } from "class-transformer";
 import { IsEmpty, IsNotEmpty, IsPhoneNumber } from "class-validator";
 
+@Exclude()
 export class AddressDTO {
+    @Expose()
+    @IsEmpty()
+    id: number
+
     @Expose()
     city?: string;
 
@@ -16,7 +21,6 @@ export class AddressDTO {
 
     @Expose()
     @IsPhoneNumber('VN')
-    @IsEmpty()
     phone_number?: string;
 
     // constructor({ city, district, ward, address_line, phone_number }: Partial<AddressDTO>) {

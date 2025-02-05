@@ -1,0 +1,16 @@
+get:
+  tags:
+    - addresses
+  summary: Lấy địa chỉ theo id
+  description: ""
+  operationId: get_address
+  parameters:
+    - in: path
+      name: id
+      schema:
+          type: string
+      required: true
+      example: 1
+  responses:
+    "200":
+      description: Thành công

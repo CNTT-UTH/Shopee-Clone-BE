@@ -40,7 +40,7 @@ export class Shop extends BaseEntity {
     @JoinColumn({name: "user_id"})
     user: User;
 
-    @Column({ nullable: true, type: "text", width: 65535 })
+    @Column({ nullable: true, type: "text"})
     description: string;
 
     @Column({ nullable: false })
@@ -52,14 +52,14 @@ export class Shop extends BaseEntity {
     @Column({ type: "enum", enum: ShopVerifyStatus, default: ShopVerifyStatus.Unverified })
     status: ShopVerifyStatus;
 
-    @Column({ nullable: true, type: "text", width: 65535 })
+    @Column({ nullable: true, type: "text"})
     avatar?: string;
 
     @Column({ nullable: true })
     last_time_active: Date;
 
     @Column({ nullable: true })
-    default_address_id: string;
+    default_address_id: number;
 
     @CreateDateColumn()
     created_at: Date;

@@ -1,0 +1,9 @@
+get:
+    tags:
+        - category
+    summary: Lấy cây danh mục
+    description: ""
+    operationId: get_category_tree
+    responses:
+        "200":
+            description: Thành công

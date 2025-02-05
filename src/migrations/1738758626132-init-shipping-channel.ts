@@ -2,9 +2,9 @@ import { MigrationInterface, QueryRunner } from "typeorm";
 import fs from "fs";
 import path from "path";
 
-export class InitCategories1738684784740 implements MigrationInterface {
+export class InitShippingChannel1738758626132 implements MigrationInterface {
 
-    public async up(queryRunner: QueryRunner): Promise<void> {
+public async up(queryRunner: QueryRunner): Promise<void> {
         const sql_scripts = fs
             .readFileSync(
                 path.join(
@@ -12,14 +12,14 @@ export class InitCategories1738684784740 implements MigrationInterface {
                     "..",
                     "dbs",
                     "scripts",
-                    "category",
-                    "INIT_CATEGORIES.SQL",
+                    "shippings",
+                    "INIT_CHANNEL.SQL",
                 ),
                 "utf8",
             )
-            // .replace("\r\n", "")
-            // .replace("\n", "")
-            .split("\n");
+            .replace(/--.*$/gm, "")
+            .replace("\r\n", "")
+            .split(";");
 
         console.log(sql_scripts);
 
@@ -31,7 +31,17 @@ export class InitCategories1738684784740 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        const sql_scripts = 'DELETE FROM categories'
+        const sql_scripts = fs.readFileSync(
+            path.join(
+                __dirname,
+                "..",
+                "dbs",
+                "script",
+                "shippings",
+                "TRUNCATE_CHANNEL_TABLE.SQL",
+            ),
+            "utf8",
+        );
 
         await queryRunner.query(sql_scripts);
     }

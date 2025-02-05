@@ -87,10 +87,10 @@ export class ProductVariant extends BaseEntity {
     name: string;
 
     @Column({ nullable: false })
-    price: string;
+    price: number;
 
     @Column({ nullable: false })
-    old_price: string;
+    old_price: number;
 
     @Column({ nullable: true })
     image_url: string;

@@ -1,0 +1,16 @@
+get:
+  tags:
+    - addresses
+  summary: Lấy dữ liệu phường/xã theo district_code
+  description: ""
+  operationId: get_wards
+  parameters:
+    - in: path
+      name: district_code
+      schema:
+          type: string
+      required: true
+      example: 001
+  responses:
+    "200":
+      description: Thành công

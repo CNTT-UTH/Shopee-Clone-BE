@@ -36,13 +36,13 @@ export class Order extends BaseEntity {
     total: number;
 
     @Column({ default: 0 })
-    total_before_discoubt: number;
+    price_before_discount: number;
 
     @OneToOne(() => ShippingDetail, (shipping_detail) => shipping_detail.order)
     @JoinColumn({ name: "shipping_detail_id" })
     shipping: ShippingDetail;
 
-    @Column({ nullable: true, type: "text", width: 65535 })
+    @Column({ nullable: true, type: "text"})
     desc: string;
 
     @CreateDateColumn()

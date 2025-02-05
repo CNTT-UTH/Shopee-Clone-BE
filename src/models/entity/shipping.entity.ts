@@ -25,7 +25,7 @@ export class Shipping extends BaseEntity {
     @Column()
     name: string;
 
-    @Column({ nullable: true, type: "text", width: 65535 })
+    @Column({ nullable: true, type: "text"})
     desc: string;
 
     @OneToMany(() => ShippingDetail, (shipping_detail) => shipping_detail.shipping_channel)
@@ -58,7 +58,7 @@ export class ShippingDetail extends BaseEntity {
     @JoinColumn({ name: "address_id" })
     address: Address;
 
-    @Column({ type: "text", width: 65535 })
+    @Column({ type: "text"})
     note_for_shipper: string;
 
     @Column()

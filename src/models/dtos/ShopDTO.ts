@@ -1,7 +1,7 @@
 import { Exclude, Expose, plainToInstance, Transform, Type } from "class-transformer";
 import { AddressDTO } from "./AddressDTO";
 import { UserDTO } from "./UserDTO";
-import { IsEmpty, IsNotEmpty, IsPhoneNumber } from "class-validator";
+import { IsEmpty, IsNotEmpty, IsPhoneNumber, ValidateNested } from "class-validator";
 import { verify } from "crypto";
 
 @Exclude()
@@ -9,8 +9,8 @@ export class ShopDTO {
     @Expose({ name: "id" })
     shopid?: string;
 
-    @Expose({name: "user"})
-    @Transform(({value}) => plainToInstance(UserDTO, value))
+    @Expose({ name: "user" })
+    @Transform(({ value }) => plainToInstance(UserDTO, value))
     account?: UserDTO;
 
     @Expose()
@@ -67,5 +67,6 @@ export class RegisterInfoShopDTO {
     phone?: string;
 
     @IsNotEmpty()
+    @ValidateNested({ each: true })
     pickup_address?: AddressDTO;
 }

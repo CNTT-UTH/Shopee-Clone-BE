@@ -1,0 +1,14 @@
+get:
+  tags:
+    - addresses
+  summary: Lấy sổ địa chỉ của user
+  description: ""
+  operationId: get_user_addresses
+  security:
+    - BearerAuth: []
+  parameters:
+    # - $ref: "../../parameters/useragent.yaml"
+    - $ref: "../../parameters/platform.yaml"
+  responses:
+    "200":
+      description: Thành công
