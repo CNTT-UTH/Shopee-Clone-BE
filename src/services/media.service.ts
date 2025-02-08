@@ -4,7 +4,7 @@ import { checkIfDirectoryExist, deleteFile, getNameFromFullname, handleUploadIma
 import cloudsService from '~/services/cloud.service';
 import { UserRepository } from '~/repository/user.repository';
 import path from 'path';
-import { UPLOAD_IMAGE_DIR } from '~/constants/dir';
+import { UPLOAD_IMAGE_DIR, UPLOAD_IMAGE_TEMP_DIR } from '~/constants/dir';
 import sharp from 'sharp';
 import { ShopRepository } from '~/repository/shop.repository';
 
@@ -12,12 +12,16 @@ class MediaService {
     private readonly userRepository: UserRepository = new UserRepository();
     private readonly shopRepository: ShopRepository = new ShopRepository();
 
+    constructor() {
+        
+    }
+
     async uploadUserAvatar(req: Request) {
+
         const files = await handleUploadImage(req);
         const result: MediaDTO[] = await Promise.all(
             files.map(async (file) => {
                 // Kiểm tra đường dân
-                checkIfDirectoryExist(UPLOAD_IMAGE_DIR);
 
                 // Xử lý ảnh với Sharp
                 const newName = getNameFromFullname(file.newFilename) + '.jpg';

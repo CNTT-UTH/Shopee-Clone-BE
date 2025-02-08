@@ -1,4 +1,4 @@
-import { UPLOAD_IMAGE_TEMP_DIR } from '~/constants/dir';
+import { UPLOAD_IMAGE_DIR, UPLOAD_IMAGE_TEMP_DIR } from '~/constants/dir';
 import { Request } from 'express';
 import { File } from 'formidable';
 import fs from 'fs';
@@ -8,6 +8,7 @@ import HTTP_STATUS from '~/constants/httpStatus';
 
 export const handleUploadImage = async (req: Request, filename?: string) => {
     checkIfDirectoryExist(UPLOAD_IMAGE_TEMP_DIR);
+    checkIfDirectoryExist(UPLOAD_IMAGE_DIR);
 
     const formiable = (await import('formidable')).default;
     const form = formiable({
@@ -59,13 +60,10 @@ export const getNameFromFullname = (fullname: string) => {
     return namearr.join('');
 };
 
-export const checkIfDirectoryExist = (path: string) => {
-    const isExist = fs.existsSync(path);
-
-    if (!isExist) {
-        fs.mkdir(path, (err) => {
-            if(err)
-                throw new ApiError('Tạo đường dẫn thất bại', HTTP_STATUS.INTERNAL_SERVER_ERROR);
+export const checkIfDirectoryExist = (path: string): void => {
+    if (!fs.existsSync(path)) {
+        fs.mkdir(path, { recursive: true }, (err) => {
+            if (err) throw new ApiError("Tạo đường dẫn không thành công", HTTP_STATUS.INTERNAL_SERVER_ERROR);
         });
     }
 };
