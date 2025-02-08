@@ -3,8 +3,12 @@ import { Request } from "express";
 import { File } from "formidable";
 import fs from "fs";
 import { unlink } from "fs/promises";
+import { ApiError } from "./errors";
+import HTTP_STATUS from "~/constants/httpStatus";
 
 export const handleUploadImage = async (req: Request, filename?: string) => {
+    checkIfDirectoryExist(UPLOAD_IMAGE_TEMP_DIR);
+    
     const formiable = (await import("formidable")).default;
     const form = formiable({
         maxFieldsSize: 300 * 1024,
@@ -53,4 +57,12 @@ export const getNameFromFullname = (fullname: string) => {
     const namearr = fullname.split(".");
     namearr.pop();
     return namearr.join("");
+}
+
+export const checkIfDirectoryExist = (path: string) => {
+    const isExist = fs.existsSync(path);
+
+    if (!isExist) {
+        fs.mkdir(path, (err) => {throw new ApiError("Tạo đường dẫn thất bại", HTTP_STATUS.INTERNAL_SERVER_ERROR)});
+    }
 }

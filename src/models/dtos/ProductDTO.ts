@@ -1,5 +1,6 @@
 import { Exclude, Expose } from "class-transformer";
 import { CategoryDTO } from "./CategoryDTO";
+import { ShippingInfoDTO } from "./ShippingDTO";
 
 @Exclude()
 export class ProductDTO {
@@ -32,28 +33,28 @@ export class ProductDTO {
     shipping_from?: string;
     
     @Expose()
-    shipping_channel?: ShippingDTO[];
+    shipping_channel?: ShippingInfoDTO[];
 
-    constructor(data: Partial<ProductDTO> = {}) {
-        this.product_id = data.product_id;
-        this.title = data.title;
-        this.description = data.description;
+    // constructor(data: Partial<ProductDTO> = {}) {
+    //     this.product_id = data.product_id;
+    //     this.title = data.title;
+    //     this.description = data.description;
 
 
-        this.product_attributes = data.product_attributes || [];
-        this.cat_id = data.cat_id;
-        this.cates = data.cates || [];
+    //     this.product_attributes = data.product_attributes || [];
+    //     this.cat_id = data.cat_id;
+    //     this.cates = data.cates || [];
 
-        this.review = data.review ? new ProductReviewDTO(data.review) : undefined;
-        this.options = data.options ? data.options.map((opt) => new OptionsDTO(opt)) : [];
-        this.variants = data.variants ? data.variants.map((variant) => new variantDTO(variant)) : [];
+    //     this.review = data.review ? new ProductReviewDTO(data.review) : undefined;
+    //     this.options = data.options ? data.options.map((opt) => new OptionsDTO(opt)) : [];
+    //     this.variants = data.variants ? data.variants.map((variant) => new variantDTO(variant)) : [];
 
-        this.product_price = data.product_price ? data.product_price.map((price) => new PriceDTO(price)) : [];
-        this.shipping_from = data.shipping_from;
-        this.shipping_channel = data.shipping_channel
-            ? data.shipping_channel.map((channel) => new ShippingDTO(channel))
-            : [];
-    }
+    //     this.product_price = data.product_price ? data.product_price.map((price) => new PriceDTO(price)) : [];
+    //     this.shipping_from = data.shipping_from;
+    //     this.shipping_channel = data.shipping_channel
+    //         ? data.shipping_channel.map((channel) => new ShippingDTO(channel))
+    //         : [];
+    // }
 }
 
 export class AttributeDTO {
@@ -144,29 +145,4 @@ export class PriceDTO {
     }
 }
 
-export class ShippingDTO {
-    channel_id?: number;
-    name?: number; // Ex: Nhanh, Hỏa tốc,...
 
-    fee?: number;
-    freeship?: boolean; // Miễn phí vận chuyển
-    unsupport?: boolean; // Không hổ trợ
-
-    estimated_delivery_date_from?: string; // timestamp
-    estimated_delivery_date_to?: string; // timestamp
-    delivery_text?: string; // Ex: Nhận từ 15 Th01 - 16 Th01
-
-    is_fastest?: boolean;
-
-    constructor(data: Partial<ShippingDTO>) {
-        this.channel_id = data.channel_id;
-        this.name = data.name;
-        this.fee = data.fee;
-        this.freeship = data.freeship;
-        this.unsupport = data.unsupport;
-        this.estimated_delivery_date_from = data.estimated_delivery_date_from;
-        this.estimated_delivery_date_to = data.estimated_delivery_date_to;
-        this.delivery_text = data.delivery_text;
-        this.is_fastest = data.is_fastest;
-    }
-}

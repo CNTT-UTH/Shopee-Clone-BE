@@ -24,6 +24,8 @@ tags:
       description: Cửa hàng
     - name: category
       description: Danh mục
+    - name: addresses
+      description: Địa chỉ
 paths:
 #   AUTH ROUTES
     /auth/login:
