@@ -2,18 +2,18 @@ post:
     tags:
         - auth
     summary: Đăng nhập
-    description: "Đăng nhập"
+    description: 'Đăng nhập'
     operationId: login
     parameters:
         # - $ref: "../../parameters/useragent.yaml"
-        - $ref: "../../parameters/platform.yaml"
+        - $ref: '../../parameters/platform.yaml'
     requestBody:
         content:
             application/json:
                 schema:
-                    $ref: "../../schemas/LoginBody.yaml"
+                    $ref: '../../schemas/LoginBody.yaml'
     responses:
-        "200":
+        '200':
             description: Đăng nhập thành công
             content:
                 application/json:
@@ -27,9 +27,9 @@ post:
                                 type: string
                                 example: Login success
                             result:
-                                $ref: "../../schemas/SuccessAuthenticate.yaml"
+                                $ref: '../../schemas/SuccessAuthenticate.yaml'
 
-        "400":
+        '400':
             description: Nền tảng không hợp lệ
-        "422":
+        '422':
             description: Sai các trường thông tin

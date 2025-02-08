@@ -1,14 +1,14 @@
-import { plainToInstance } from "class-transformer";
-import { UserGender } from "~/constants/enums";
-import HTTP_STATUS from "~/constants/httpStatus";
-import { USERS_MESSAGES } from "~/constants/messages";
-import { AddressDTO } from "~/models/dtos/AddressDTO";
-import { UserDTO } from "~/models/dtos/UserDTO";
-import { User } from "~/models/entity/user.entity";
-import { UpdateProfileReqBody } from "~/models/requests/users.requests";
-import { AddressRepository } from "~/repository/address.repository";
-import { UserRepository } from "~/repository/user.repository";
-import { ApiError } from "~/utils/errors";
+import { plainToInstance } from 'class-transformer';
+import { UserGender } from '~/constants/enums';
+import HTTP_STATUS from '~/constants/httpStatus';
+import { USERS_MESSAGES } from '~/constants/messages';
+import { AddressDTO } from '~/models/dtos/AddressDTO';
+import { UserDTO } from '~/models/dtos/UserDTO';
+import { User } from '~/models/entity/user.entity';
+import { UpdateProfileReqBody } from '~/models/requests/users.requests';
+import { AddressRepository } from '~/repository/address.repository';
+import { UserRepository } from '~/repository/user.repository';
+import { ApiError } from '~/utils/errors';
 
 class UserService {
     private readonly userRepository: UserRepository;

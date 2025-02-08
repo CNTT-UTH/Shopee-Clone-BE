@@ -1,4 +1,4 @@
-import { Role, UserGender, UserVerifyStatus } from "~/constants/enums";
+import { Role, UserGender, UserVerifyStatus } from '~/constants/enums';
 import {
     Entity,
     PrimaryGeneratedColumn,
@@ -10,14 +10,14 @@ import {
     OneToOne,
     ManyToOne,
     JoinColumn,
-} from "typeorm";
-import { Product } from "./product.entity";
-import { User } from "./user.entity";
-import { Shop } from "./shop.entity";
+} from 'typeorm';
+import { Product } from './product.entity';
+import { User } from './user.entity';
+import { Shop } from './shop.entity';
 
-@Entity("addresses")
+@Entity('addresses')
 export class Address extends BaseEntity {
-    @PrimaryGeneratedColumn("increment")
+    @PrimaryGeneratedColumn('increment')
     id: number;
 
     @Column()
@@ -42,10 +42,10 @@ export class Address extends BaseEntity {
     updated_at: Date;
 
     @ManyToOne(() => User, (user) => user.addresses, { cascade: true })
-    @JoinColumn({ name: "user" })
+    @JoinColumn({ name: 'user' })
     user: User;
 
     @ManyToOne(() => Shop, (shop) => shop.addresses, { cascade: true })
-    @JoinColumn({ name: "shop" })
+    @JoinColumn({ name: 'shop' })
     shop: Shop;
 }

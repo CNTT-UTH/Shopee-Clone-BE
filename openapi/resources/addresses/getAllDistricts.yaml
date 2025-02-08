@@ -1,16 +1,16 @@
 get:
-  tags:
-    - addresses
-  summary: Lấy dữ liệu quận/huyện theo city_code
-  description: ""
-  operationId: get_districts
-  parameters:
-    - in: path
-      name: city_code
-      schema:
-          type: string
-      required: true
-      example: 01
-  responses:
-    "200":
-      description: Thành công
+    tags:
+        - addresses
+    summary: Lấy dữ liệu quận/huyện theo city_code
+    description: ''
+    operationId: get_districts
+    parameters:
+        - in: path
+          name: city_code
+          schema:
+              type: string
+          required: true
+          example: 01
+    responses:
+        '200':
+            description: Thành công

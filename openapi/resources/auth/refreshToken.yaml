@@ -8,14 +8,14 @@ post:
         - BearerAuth: []
     parameters:
         # - $ref: "../../parameters/useragent.yaml"
-        - $ref: "../../parameters/platform.yaml"
+        - $ref: '../../parameters/platform.yaml'
     requestBody:
         content:
             application/json:
                 schema:
-                    $ref: "../../schemas/LogoutBody.yaml"
+                    $ref: '../../schemas/LogoutBody.yaml'
     responses:
-        "200":
+        '200':
             description: Refresh thành công
             content:
                 application/json:
@@ -29,10 +29,10 @@ post:
                                 type: string
                                 example: Login success
                             result:
-                                $ref: "../../schemas/SuccessAuthenticate.yaml"
-        "400":
+                                $ref: '../../schemas/SuccessAuthenticate.yaml'
+        '400':
             description: Nền tảng không hợp lệ
-        "401":
+        '401':
             description: Token không hợp lệ
-        "422":
+        '422':
             description: Sai các trường thông tin

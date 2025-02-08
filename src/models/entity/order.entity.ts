@@ -1,4 +1,4 @@
-import { OrderStatus, Role, ShopVerifyStatus, UserGender, UserVerifyStatus } from "~/constants/enums";
+import { OrderStatus, Role, ShopVerifyStatus, UserGender, UserVerifyStatus } from '~/constants/enums';
 import {
     Entity,
     PrimaryGeneratedColumn,
@@ -10,22 +10,22 @@ import {
     OneToOne,
     JoinColumn,
     ManyToOne,
-} from "typeorm";
-import { Address } from "./address.entity";
-import { Cart, CartItem } from "./cart.entity";
-import { User } from "./user.entity";
-import { Product } from "./product.entity";
-import { ShippingDetail } from "./shipping.entity";
-import { ProductVariant } from "./variant.entiity";
-import { Shop } from "./shop.entity";
+} from 'typeorm';
+import { Address } from './address.entity';
+import { Cart, CartItem } from './cart.entity';
+import { User } from './user.entity';
+import { Product } from './product.entity';
+import { ShippingDetail } from './shipping.entity';
+import { ProductVariant } from './variant.entiity';
+import { Shop } from './shop.entity';
 
-@Entity("orders")
+@Entity('orders')
 export class Order extends BaseEntity {
-    @PrimaryGeneratedColumn("uuid")
+    @PrimaryGeneratedColumn('uuid')
     shipping_channel_id: string;
 
     @ManyToOne(() => User, (user) => user.orders)
-    @JoinColumn({ name: "user_id" })
+    @JoinColumn({ name: 'user_id' })
     user: User;
 
     // @OneToOne(() => PaymentDetail, (payment_detail) => payment_detail.order_id)
@@ -39,10 +39,10 @@ export class Order extends BaseEntity {
     price_before_discount: number;
 
     @OneToOne(() => ShippingDetail, (shipping_detail) => shipping_detail.order)
-    @JoinColumn({ name: "shipping_detail_id" })
+    @JoinColumn({ name: 'shipping_detail_id' })
     shipping: ShippingDetail;
 
-    @Column({ nullable: true, type: "text"})
+    @Column({ nullable: true, type: 'text' })
     desc: string;
 
     @CreateDateColumn()
@@ -55,25 +55,25 @@ export class Order extends BaseEntity {
     order_items: OrderItem[];
 
     @ManyToOne(() => Shop, (shop) => shop.orders)
-    @JoinColumn({ name: "shop_id" })
+    @JoinColumn({ name: 'shop_id' })
     shop: Shop;
 }
 
-@Entity("order_items")
+@Entity('order_items')
 export class OrderItem extends BaseEntity {
-    @PrimaryGeneratedColumn("increment")
+    @PrimaryGeneratedColumn('increment')
     id: number;
 
     @ManyToOne(() => Order, (order) => order.order_items)
-    @JoinColumn({ name: "order_id" })
+    @JoinColumn({ name: 'order_id' })
     order: Order;
 
     @ManyToOne(() => Product, (product) => product.order_items)
-    @JoinColumn({ name: "product_id" })
+    @JoinColumn({ name: 'product_id' })
     product: Product;
 
     @ManyToOne(() => ProductVariant, (productvariant) => productvariant.order_items)
-    @JoinColumn({ name: "product_variant_id" })
+    @JoinColumn({ name: 'product_variant_id' })
     productvariant: ProductVariant;
 
     @Column()
@@ -85,7 +85,7 @@ export class OrderItem extends BaseEntity {
     @Column({ default: 1 })
     quantity: number;
 
-    @Column({ type: "enum", enum: OrderStatus, default: OrderStatus.Ordered })
+    @Column({ type: 'enum', enum: OrderStatus, default: OrderStatus.Ordered })
     status: OrderStatus;
 
     @CreateDateColumn()

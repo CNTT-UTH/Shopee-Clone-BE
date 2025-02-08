@@ -1,9 +1,9 @@
-import { AddressDTO } from "./AddressDTO";
-import { Expose, Type, Transform, Exclude } from "class-transformer";
+import { AddressDTO } from './AddressDTO';
+import { Expose, Type, Transform, Exclude } from 'class-transformer';
 
 @Exclude()
 export class UserDTO {
-    @Expose({ name: "_id" })
+    @Expose({ name: '_id' })
     user_id?: string;
 
     @Expose()
@@ -28,7 +28,7 @@ export class UserDTO {
     @Expose()
     is_shop?: boolean;
 
-    @Expose({ name: "verify" })
+    @Expose({ name: 'verify' })
     status?: number; // 0: Chưa xác nhận mail, 1: Đã xác thực, 2: Banned
 
     @Expose()

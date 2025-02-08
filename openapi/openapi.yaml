@@ -21,8 +21,12 @@ tags:
     description: Người dùng
   - name: shop
     description: Cửa hàng
+  - name: products
+    description: Sản phẩm
   - name: category
     description: Danh mục
+  - name: addresses
+    description: Địa chỉ
 paths:
   /auth/login:
     post:
@@ -656,6 +660,52 @@ paths:
                   result: null
         '400':
           description: Nền tảng không hợp lệ
+        '422':
+          description: Sai các trường thông tin
+  /products/upload-product-images:
+    post:
+      tags:
+        - products
+      summary: Cập nhật avatar người dùng
+      description: null
+      operationId: product_upload_images
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/paths/~1shops/get/parameters/0'
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                image:
+                  type: array
+                  items:
+                    format: binary
+                    require: true
+      responses:
+        '200':
+          description: null
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: true
+              message:
+                type: string
+              result:
+                type: object
+                properties:
+                  url:
+                    type: string
+                    example: 'https://res.cloudinary.com/dnoq9necr/image/upload/v1737452337/gwkov3rafwq0uompfv75.jpg'
+                  type:
+                    type: string
+                    example: image
+        '400':
+          description: null
         '422':
           description: Sai các trường thông tin
   /categories/get-category-tree:

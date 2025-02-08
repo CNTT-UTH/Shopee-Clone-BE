@@ -2,7 +2,7 @@ type: object
 properties:
     message:
         type: string
-        example: "Get user info successfully"
+        example: 'Get user info successfully'
     result:
         type: object
-        example: { "id": 1, "name": "linh1234" }
+        example: { 'id': 1, 'name': 'linh1234' }

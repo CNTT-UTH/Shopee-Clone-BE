@@ -2,18 +2,18 @@ post:
     tags:
         - auth
     summary: Đăng ký tài khoản
-    description: ""
+    description: ''
     operationId: register
     parameters:
         # - $ref: "../../parameters/useragent.yaml"
-        - $ref: "../../parameters/platform.yaml"
+        - $ref: '../../parameters/platform.yaml'
     requestBody:
         content:
             application/json:
                 schema:
-                    $ref: "../../schemas/RegisterBody.yaml"
+                    $ref: '../../schemas/RegisterBody.yaml'
     responses:
-        "200":
+        '200':
             description: Đăng ký thành công
             content:
                 application/json:
@@ -27,8 +27,8 @@ post:
                                 type: string
                                 example: Register success
                             result:
-                                $ref: "../../schemas/SuccessAuthenticate.yaml"
-        "400":
+                                $ref: '../../schemas/SuccessAuthenticate.yaml'
+        '400':
             description: Nền tảng không hợp lệ
-        "422":
+        '422':
             description: Sai các trường thông tin

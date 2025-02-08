@@ -1,9 +1,9 @@
 get:
-  tags:
-    - addresses
-  summary: Lấy dữ liệu thành phố
-  description: ""
-  operationId: get_city
-  responses:
-    "200":
-      description: Thành công
+    tags:
+        - addresses
+    summary: Lấy dữ liệu thành phố
+    description: ''
+    operationId: get_city
+    responses:
+        '200':
+            description: Thành công

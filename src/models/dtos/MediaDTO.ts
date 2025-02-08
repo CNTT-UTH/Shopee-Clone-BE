@@ -1,4 +1,4 @@
 export class MediaDTO {
     url: string;
-    type: "media" | "image"
+    type: 'media' | 'image';
 }

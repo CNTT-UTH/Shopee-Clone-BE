@@ -1,24 +1,24 @@
-import { LoginReqBody, RegisterReqBody, TokenPayload } from "~/models/requests/users.requests";
-import { User } from "~/models/entity/user.entity";
-import bcrypt from "bcrypt";
-import { signToken } from "~/utils/jwt";
-import { envConfig } from "~/constants/env";
-import { Role, TokenType, UserVerifyStatus } from "~/constants/enums";
-import { ApiError } from "~/utils/errors";
-import { USERS_MESSAGES } from "~/constants/messages";
-import { UserRepository } from "~/repository/user.repository";
+import { LoginReqBody, RegisterReqBody, TokenPayload } from '~/models/requests/users.requests';
+import { User } from '~/models/entity/user.entity';
+import bcrypt from 'bcrypt';
+import { signToken } from '~/utils/jwt';
+import { envConfig } from '~/constants/env';
+import { Role, TokenType, UserVerifyStatus } from '~/constants/enums';
+import { ApiError } from '~/utils/errors';
+import { USERS_MESSAGES } from '~/constants/messages';
+import { UserRepository } from '~/repository/user.repository';
 import {
     EmailVerifyReqBody,
     ForgotPasswordReqBody,
     HandleMultiPlatformParams,
     ResetPasswordReqBody,
     VerifyPasswordReqBody,
-} from "~/models/requests/auth.requests";
-import { genCodeVerify } from "~/utils/genCode";
-import HTTP_STATUS from "~/constants/httpStatus";
-import { sendVerifyEmail } from "~/utils/email";
-import { UserDTO } from "~/models/dtos/UserDTO";
-import { plainToInstance } from "class-transformer";
+} from '~/models/requests/auth.requests';
+import { genCodeVerify } from '~/utils/genCode';
+import HTTP_STATUS from '~/constants/httpStatus';
+import { sendVerifyEmail } from '~/utils/email';
+import { UserDTO } from '~/models/dtos/UserDTO';
+import { plainToInstance } from 'class-transformer';
 
 const codeVerifyMail: Record<string, string> = {} as const;
 
@@ -36,7 +36,7 @@ class AuthService {
                 token_type: TokenType.AccessToken,
             },
             privateKey: envConfig.JWT_SECRET_ACCESS_TOKEN,
-            options: { algorithm: "HS256", expiresIn: envConfig.JWT_ACCESS_TOKEN_EXPIRES_IN },
+            options: { algorithm: 'HS256', expiresIn: envConfig.JWT_ACCESS_TOKEN_EXPIRES_IN },
         });
     }
 
@@ -47,7 +47,7 @@ class AuthService {
                 token_type: TokenType.RefreshToken,
             },
             privateKey: envConfig.JWT_SECRET_REFRESH_TOKEN,
-            options: { algorithm: "HS256", expiresIn: envConfig.JWT_REFRESH_TOKEN_EXPIRES_IN },
+            options: { algorithm: 'HS256', expiresIn: envConfig.JWT_REFRESH_TOKEN_EXPIRES_IN },
         });
     }
 
@@ -58,7 +58,7 @@ class AuthService {
                 token_type: TokenType.EmailVerifyToken,
             },
             privateKey: envConfig.JWT_SECRET_EMAIL_VERIFY_TOKEN,
-            options: { algorithm: "HS256", expiresIn: envConfig.JWT_EMAIL_VERIFY_TOKEN_EXPIRES_IN },
+            options: { algorithm: 'HS256', expiresIn: envConfig.JWT_EMAIL_VERIFY_TOKEN_EXPIRES_IN },
         });
     }
 
@@ -69,7 +69,7 @@ class AuthService {
                 token_type: TokenType.ForgotPasswordToken,
             },
             privateKey: envConfig.JWT_SECRET_FORGOT_PASSWORD_TOKEN,
-            options: { algorithm: "HS256", expiresIn: envConfig.JWT_FORGOT_PASSWORD_TOKEN_EXPIRES_IN },
+            options: { algorithm: 'HS256', expiresIn: envConfig.JWT_FORGOT_PASSWORD_TOKEN_EXPIRES_IN },
         });
     }
 
@@ -80,7 +80,7 @@ class AuthService {
                 exp: exp,
             },
             privateKey: envConfig.JWT_SECRET_REFRESH_TOKEN,
-            options: { algorithm: "HS256" },
+            options: { algorithm: 'HS256' },
         });
     }
 
@@ -112,7 +112,7 @@ class AuthService {
             role: user.role,
             verify: user.verify,
             user_agent: platformParams.user_agent,
-            isShop: user.is_shop as boolean
+            isShop: user.is_shop as boolean,
         };
 
         // const [accessToken, refreshToken] = await Promise.all([
@@ -149,7 +149,7 @@ class AuthService {
             role: user.role,
             verify: user.verify,
             user_agent: platformParams.user_agent,
-            isShop: user.is_shop as boolean
+            isShop: user.is_shop as boolean,
         };
 
         if (user.verify === UserVerifyStatus.Unverified) {
@@ -170,7 +170,7 @@ class AuthService {
         ]);
 
         // lưu refresh token vào db
-        if (platformParams.platform === "mobile") {
+        if (platformParams.platform === 'mobile') {
             await this.userRepository.updateRefreshTokenMobile((user as User)?._id, refreshToken);
         } else {
             console.log(refreshToken);
@@ -182,15 +182,15 @@ class AuthService {
         return {
             access_token: accessToken,
             refresh_token: refreshToken,
-            user_profile: userDTO
+            user_profile: userDTO,
         };
     }
 
     async logout(payload: { _id: string }, platformParams: HandleMultiPlatformParams) {
-        if (platformParams.platform === "mobile") {
-            await this.userRepository.updateRefreshTokenMobile(payload._id, "");
+        if (platformParams.platform === 'mobile') {
+            await this.userRepository.updateRefreshTokenMobile(payload._id, '');
         } else {
-            await this.userRepository.updateRefreshToken(payload._id, "");
+            await this.userRepository.updateRefreshToken(payload._id, '');
         }
 
         return {
@@ -245,7 +245,7 @@ class AuthService {
             this.rotateRefeshToken(payloadToken, decoded.exp as number),
         ]);
 
-        if (platformParams.platform === "mobile") {
+        if (platformParams.platform === 'mobile') {
             await this.userRepository.updateRefreshTokenMobile(user._id, refreshToken);
         } else {
             await this.userRepository.updateRefreshToken(user._id, refreshToken);
@@ -272,7 +272,7 @@ class AuthService {
                 role: user.role,
                 verify: user.verify,
                 user_agent: platformParams.user_agent,
-                isShop: user.is_shop as boolean
+                isShop: user.is_shop as boolean,
             };
 
             const [accessToken, refreshToken] = await Promise.all([
@@ -281,12 +281,11 @@ class AuthService {
             ]);
 
             const userDTO: UserDTO = plainToInstance(UserDTO, user);
-            
-            
+
             return {
                 access_token: accessToken,
                 refresh_token: refreshToken,
-                user_profile: userDTO
+                user_profile: userDTO,
             };
         } else {
             throw new ApiError(USERS_MESSAGES.VERIFY_CODE_IS_WRONG, HTTP_STATUS.BAD_REQUEST);

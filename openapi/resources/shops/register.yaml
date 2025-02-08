@@ -2,20 +2,20 @@ post:
     tags:
         - shop
     summary: Đăng ký shop
-    description: ""
+    description: ''
     operationId: shop_register
     security:
         - BearerAuth: []
     parameters:
         # - $ref: "../../parameters/useragent.yaml"
-        - $ref: "../../parameters/platform.yaml"
+        - $ref: '../../parameters/platform.yaml'
     requestBody:
         content:
             application/json:
                 schema:
-                    $ref: "../../schemas/ShopRegisterBody.yaml"
+                    $ref: '../../schemas/ShopRegisterBody.yaml'
     responses:
-        "200":
+        '200':
             description: Đăng ký thành công
             content:
                 application/json:
@@ -29,7 +29,7 @@ post:
                                 type: string
                                 example: Register success
                             result:
-        "400":
+        '400':
             description: Nền tảng không hợp lệ
-        "422":
+        '422':
             description: Sai các trường thông tin

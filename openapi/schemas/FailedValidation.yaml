@@ -5,14 +5,7 @@ properties:
         example: false
     message:
         type: string
-        example: "Validation failed"
+        example: 'Validation failed'
     errors:
         type: object
-        example:
-            {
-                "email":
-                    {
-                        "message": "Email already exists",
-                        "value": "linhhuynh@gmail.com",
-                    },
-            }
+        example: { 'email': { 'message': 'Email already exists', 'value': 'linhhuynh@gmail.com' } }

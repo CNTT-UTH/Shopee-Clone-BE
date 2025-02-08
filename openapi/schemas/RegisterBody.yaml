@@ -2,17 +2,17 @@ type: object
 properties:
     username:
         type: string
-        example: "linh1234"
+        example: 'linh1234'
     email:
         type: string
         format: email
-        example: "linhdeptrai@gmail.com"
+        example: 'linhdeptrai@gmail.com'
     password:
         type: string
-        example: "Linhhoccode$123"
+        example: 'Linhhoccode$123'
     confirm_password:
         type: string
-        example: "Linhhoccode$123"
+        example: 'Linhhoccode$123'
 required:
     - username
     - email

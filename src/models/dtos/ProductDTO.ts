@@ -1,17 +1,17 @@
-import { Exclude, Expose } from "class-transformer";
-import { CategoryDTO } from "./CategoryDTO";
-import { ShippingInfoDTO } from "./ShippingDTO";
+import { Exclude, Expose } from 'class-transformer';
+import { CategoryDTO } from './CategoryDTO';
+import { ShippingInfoDTO } from './ShippingDTO';
 
 @Exclude()
 export class ProductDTO {
     @Expose()
     product_id?: number;
-    
+
     @Expose()
     title?: string;
     @Expose()
     description?: string;
-    
+
     @Expose()
     product_attributes?: AttributeDTO[];
 
@@ -31,7 +31,7 @@ export class ProductDTO {
     product_price?: PriceDTO[];
     @Expose()
     shipping_from?: string;
-    
+
     @Expose()
     shipping_channel?: ShippingInfoDTO[];
 
@@ -39,7 +39,6 @@ export class ProductDTO {
     //     this.product_id = data.product_id;
     //     this.title = data.title;
     //     this.description = data.description;
-
 
     //     this.product_attributes = data.product_attributes || [];
     //     this.cat_id = data.cat_id;
@@ -144,5 +143,3 @@ export class PriceDTO {
         this.range_max_before_discount = data.range_max_before_discount;
     }
 }
-
-

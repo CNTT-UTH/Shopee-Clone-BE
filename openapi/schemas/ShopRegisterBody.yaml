@@ -2,28 +2,28 @@ type: object
 properties:
     name:
         type: string
-        example: "Thời Trang Nhật Linh"
+        example: 'Thời Trang Nhật Linh'
     phone:
         type: string
-        example: "+84966126449"
+        example: '+84966126449'
     pickup_address:
         type: object
         properties:
             city:
                 type: string
-                example: "Tp. Hồ Chí Minh"
+                example: 'Tp. Hồ Chí Minh'
             district:
                 type: string
-                example: "Quận Bình Thạnh"
+                example: 'Quận Bình Thạnh'
             ward:
                 type: string
-                example: "Phường 25"
+                example: 'Phường 25'
             address_line:
                 type: string
-                example: "02 Võ Oanh"
+                example: '02 Võ Oanh'
             phone_number:
                 type: string
-                         
+
 required:
     - name
     - phone

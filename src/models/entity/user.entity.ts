@@ -1,4 +1,4 @@
-import { Role, UserGender, UserVerifyStatus } from "~/constants/enums";
+import { Role, UserGender, UserVerifyStatus } from '~/constants/enums';
 import {
     Entity,
     PrimaryGeneratedColumn,
@@ -9,10 +9,10 @@ import {
     OneToMany,
     OneToOne,
     JoinColumn,
-} from "typeorm";
-import { Address } from "./address.entity";
-import { Cart } from "./cart.entity";
-import { Order } from "./order.entity";
+} from 'typeorm';
+import { Address } from './address.entity';
+import { Cart } from './cart.entity';
+import { Order } from './order.entity';
 
 // export interface UserType {
 //     _id?: string;
@@ -29,15 +29,15 @@ import { Order } from "./order.entity";
 //     avatar?: string;
 // }
 
-@Entity("users")
+@Entity('users')
 export class User extends BaseEntity {
-    @PrimaryGeneratedColumn("uuid")
+    @PrimaryGeneratedColumn('uuid')
     _id: string;
 
     @Column()
     username: string;
 
-    @Column({ nullable: false, type: "text"})
+    @Column({ nullable: false, type: 'text' })
     password: string;
 
     @Column({ nullable: true })
@@ -52,25 +52,25 @@ export class User extends BaseEntity {
     @Column({ nullable: true })
     phone: string;
 
-    @Column({ nullable: false, type: "enum", enum: UserGender, default: UserGender.Unknown })
+    @Column({ nullable: false, type: 'enum', enum: UserGender, default: UserGender.Unknown })
     gender: UserGender;
 
     @Column({ nullable: false, default: false })
     is_shop: boolean;
 
-    @Column({ nullable: false, type: "enum", enum: Role, default: Role.User })
+    @Column({ nullable: false, type: 'enum', enum: Role, default: Role.User })
     role: Role;
 
-    @Column({ nullable: true, type: "text"})
+    @Column({ nullable: true, type: 'text' })
     refresh_token?: string;
 
-    @Column({ nullable: true, type: "text"})
+    @Column({ nullable: true, type: 'text' })
     refresh_token_mobile?: string;
 
-    @Column({ type: "enum", enum: UserVerifyStatus, default: UserVerifyStatus.Unverified })
+    @Column({ type: 'enum', enum: UserVerifyStatus, default: UserVerifyStatus.Unverified })
     verify: UserVerifyStatus;
 
-    @Column({ nullable: true, type: "text"})
+    @Column({ nullable: true, type: 'text' })
     avatar?: string;
 
     @Column({ nullable: true })
@@ -86,10 +86,9 @@ export class User extends BaseEntity {
     addresses: Address[];
 
     @OneToOne(() => Cart, (cart) => cart.user)
-    @JoinColumn({ name: "cart_id" })
+    @JoinColumn({ name: 'cart_id' })
     cart: Cart;
 
     @OneToMany(() => Order, (order) => order.user)
     orders: Order[];
-
 }

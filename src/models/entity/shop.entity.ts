@@ -1,4 +1,4 @@
-import { Role, ShopVerifyStatus, UserGender, UserVerifyStatus } from "~/constants/enums";
+import { Role, ShopVerifyStatus, UserGender, UserVerifyStatus } from '~/constants/enums';
 import {
     Entity,
     PrimaryGeneratedColumn,
@@ -9,12 +9,12 @@ import {
     OneToMany,
     OneToOne,
     JoinColumn,
-} from "typeorm";
-import { Address } from "./address.entity";
-import { Cart, CartItem } from "./cart.entity";
-import { User } from "./user.entity";
-import { Product } from "./product.entity";
-import { Order } from "./order.entity";
+} from 'typeorm';
+import { Address } from './address.entity';
+import { Cart, CartItem } from './cart.entity';
+import { User } from './user.entity';
+import { Product } from './product.entity';
+import { Order } from './order.entity';
 
 // export interface UserType {
 //     _id?: string;
@@ -31,28 +31,28 @@ import { Order } from "./order.entity";
 //     avatar?: string;
 // }
 
-@Entity("shops")
+@Entity('shops')
 export class Shop extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: string;
 
     @OneToOne(() => User, (user) => user._id)
-    @JoinColumn({name: "user_id"})
+    @JoinColumn({ name: 'user_id' })
     user: User;
 
-    @Column({ nullable: true, type: "text"})
+    @Column({ nullable: true, type: 'text' })
     description: string;
 
     @Column({ nullable: false })
     name: string;
-    
+
     @Column({ nullable: false })
     phone: string;
 
-    @Column({ type: "enum", enum: ShopVerifyStatus, default: ShopVerifyStatus.Unverified })
+    @Column({ type: 'enum', enum: ShopVerifyStatus, default: ShopVerifyStatus.Unverified })
     status: ShopVerifyStatus;
 
-    @Column({ nullable: true, type: "text"})
+    @Column({ nullable: true, type: 'text' })
     avatar?: string;
 
     @Column({ nullable: true })

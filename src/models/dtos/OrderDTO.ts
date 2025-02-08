@@ -1,6 +1,6 @@
-import { DeliveryStatus, OrderStatus, PaymentStatus } from "~/constants/enums";
-import { AddressDTO } from "./AddressDTO";
-import { ShippingDTO } from "./ProductDTO";
+import { DeliveryStatus, OrderStatus, PaymentStatus } from '~/constants/enums';
+import { AddressDTO } from './AddressDTO';
+import { ShippingDTO } from './ProductDTO';
 
 export class OrderDTO {
     order_id?: string;

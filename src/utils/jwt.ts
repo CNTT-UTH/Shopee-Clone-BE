@@ -1,13 +1,13 @@
-import jwt from "jsonwebtoken";
-import { TokenPayload } from "~/models/requests/users.requests";
-import { ApiError } from "./errors";
-import HTTP_STATUS from "~/constants/httpStatus";
-import { AUTH_MESSAGES } from "~/constants/messages";
+import jwt from 'jsonwebtoken';
+import { TokenPayload } from '~/models/requests/users.requests';
+import { ApiError } from './errors';
+import HTTP_STATUS from '~/constants/httpStatus';
+import { AUTH_MESSAGES } from '~/constants/messages';
 
 export const signToken = ({
     payload,
     privateKey,
-    options = { algorithm: "HS256" },
+    options = { algorithm: 'HS256' },
 }: {
     payload: string | Buffer | object;
     privateKey: string;

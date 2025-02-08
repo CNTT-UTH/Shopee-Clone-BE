@@ -2,15 +2,15 @@ get:
     tags:
         - users
     summary: Lấy tất cả thông tin người dùng
-    description: "Role: Admin"
+    description: 'Role: Admin'
     operationId: user_profile_all
     security:
         - BearerAuth: []
     parameters:
         # - $ref: "../../parameters/useragent.yaml"
-        - $ref: "../../parameters/platform.yaml"
+        - $ref: '../../parameters/platform.yaml'
     responses:
-        "200":
+        '200':
             description:
             schema:
                 type: array
@@ -23,8 +23,8 @@ get:
                         message:
                             type: string
                         result:
-                            $ref: "../../schemas/User.yaml"
-        "400":
+                            $ref: '../../schemas/User.yaml'
+        '400':
             description:
-        "422":
+        '422':
             description: Sai các trường thông tin

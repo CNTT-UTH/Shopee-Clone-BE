@@ -1,4 +1,4 @@
-import { Role, UserGender, UserVerifyStatus } from "~/constants/enums";
+import { Role, UserGender, UserVerifyStatus } from '~/constants/enums';
 import {
     Entity,
     PrimaryGeneratedColumn,
@@ -11,10 +11,10 @@ import {
     PrimaryColumn,
     ManyToOne,
     JoinColumn,
-} from "typeorm";
-import { Product } from "./product.entity";
+} from 'typeorm';
+import { Product } from './product.entity';
 
-@Entity("images")
+@Entity('images')
 export class Image extends BaseEntity {
     @PrimaryColumn()
     image_url: string;
@@ -31,6 +31,6 @@ export class Image extends BaseEntity {
     @ManyToOne(() => Product, (product) => product.images, {
         cascade: true,
     })
-    @JoinColumn({ name: "product_id" })
+    @JoinColumn({ name: 'product_id' })
     product: Product;
 }

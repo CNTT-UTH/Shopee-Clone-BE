@@ -4,22 +4,21 @@ properties:
         type: string
     username:
         type: string
-        example: "linh1234"
+        example: 'linh1234'
     email:
         type: string
-        example: "linh1234@gmail.com"
+        example: 'linh1234@gmail.com'
     nickname:
         type: string
     dob:
         type: ISO string
     gender:
         type: number
-        description: "1 là nam, 2 là nữ, 3 là khác"
+        description: '1 là nam, 2 là nữ, 3 là khác'
     avatar:
         type: url
     phone:
         type: string
-    
 
 required:
     - password

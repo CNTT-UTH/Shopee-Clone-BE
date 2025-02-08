@@ -1,15 +1,15 @@
 /* eslint-disable prettier/prettier */
-import express from "express";
-import { Role } from "~/constants/enums";
-import usersController from "~/controllers/users.controller";
-import { accessTokenValidator, authorizeRole, platformValidator } from "~/middlewares/auth.middleware";
-import { updateProfileValidator } from "~/middlewares/users.middleware";
-import { asyncHandler } from "~/utils/asyncHandler";
+import express from 'express';
+import { Role } from '~/constants/enums';
+import usersController from '~/controllers/users.controller';
+import { accessTokenValidator, authorizeRole, platformValidator } from '~/middlewares/auth.middleware';
+import { updateProfileValidator } from '~/middlewares/users.middleware';
+import { asyncHandler } from '~/utils/asyncHandler';
 
 const router = express.Router();
 
 router
-    .route("/profile")
+    .route('/profile')
     /**
      * Description. Get user profile
      * Path: /profile
@@ -19,22 +19,17 @@ router
     .get(platformValidator, accessTokenValidator, authorizeRole([Role.User]), asyncHandler(usersController.getProfile));
 
 router
-    .route("/profile/all")
+    .route('/profile/all')
     /**
      * Description. Get all users
      * Path: /profile/all
      * Method: GET
      * Body: {}
      */
-    .get(
-        platformValidator,
-        accessTokenValidator,
-        authorizeRole([Role.Admin]),
-        asyncHandler(usersController.getAll),
-    );
+    .get(platformValidator, accessTokenValidator, authorizeRole([Role.Admin]), asyncHandler(usersController.getAll));
 
 router
-    .route("/profile/:user_id")
+    .route('/profile/:user_id')
     /**
      * Description. Get user by id
      * Path: /profile/:user_id
@@ -43,7 +38,7 @@ router
     .get(asyncHandler(usersController.getProfileById));
 
 router
-    .route("/update-profile")
+    .route('/update-profile')
     /**
      * Description. Update user profile
      * Path: /update-profile
@@ -60,7 +55,7 @@ router
     );
 
 router
-    .route("/upload-avatar")
+    .route('/upload-avatar')
     /**
      * Description. Upload avatar
      * Path: /upload-avatar

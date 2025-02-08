@@ -1,9 +1,9 @@
 post:
     tags:
-        - users
+        - products
     summary: Cập nhật avatar người dùng
     description:
-    operationId: user_profile_update_avatar
+    operationId: product_upload_images
     security:
         - BearerAuth: []
     parameters:
@@ -16,9 +16,10 @@ post:
                     type: object
                     properties:
                         image:
-                            type: string
-                            format: binary
-                            require: true
+                            type: array
+                            items:
+                              format: binary
+                              require: true
     responses:
         '200':
             description:

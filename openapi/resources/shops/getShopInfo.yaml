@@ -2,17 +2,17 @@ get:
     tags:
         - shop
     summary: Lấy thông tin shop
-    description: ""
+    description: ''
     operationId: shop_get_info
     security:
         - BearerAuth: []
     parameters:
         # - $ref: "../../parameters/useragent.yaml"
-        - $ref: "../../parameters/platform.yaml"
+        - $ref: '../../parameters/platform.yaml'
     responses:
-        "200":
+        '200':
             description: Thành công
-        "400":
+        '400':
             description: Nền tảng không hợp lệ
-        "422":
+        '422':
             description: Sai các trường thông tin

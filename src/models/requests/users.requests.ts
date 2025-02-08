@@ -1,6 +1,6 @@
-import { JwtPayload } from "jsonwebtoken";
-import { Role, TokenType, UserVerifyStatus } from "~/constants/enums";
-import { ParamsDictionary } from "express-serve-static-core";
+import { JwtPayload } from 'jsonwebtoken';
+import { Role, TokenType, UserVerifyStatus } from '~/constants/enums';
+import { ParamsDictionary } from 'express-serve-static-core';
 
 export interface RegisterReqBody {
     username: string;

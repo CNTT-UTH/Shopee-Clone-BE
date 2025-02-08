@@ -1,46 +1,46 @@
-import { Router } from "express";
-import shopController from "~/controllers/shop.controller";
-import { accessTokenValidator, isShop } from "~/middlewares/auth.middleware";
-import { validationMiddleware } from "~/middlewares/validation.middleware";
-import { RegisterInfoShopDTO } from "~/models/dtos/ShopDTO";
-import { asyncHandler } from "~/utils/asyncHandler";
+import { Router } from 'express';
+import shopController from '~/controllers/shop.controller';
+import { accessTokenValidator, isShop } from '~/middlewares/auth.middleware';
+import { validationMiddleware } from '~/middlewares/validation.middleware';
+import { RegisterInfoShopDTO } from '~/models/dtos/ShopDTO';
+import { asyncHandler } from '~/utils/asyncHandler';
 
 const router = Router();
 
 router
-     .route("/register")
-     /**
+    .route('/register')
+    /**
      * Description. Register shop
      * Path: /register
      * Method: POST
      * Headers: { Authorization: string, User-Agent: string }
-     * Body: 
+     * Body:
      * {
      *    name: string;
      *    phone: string;
-     *    pickup_address: AddressDTO; 
+     *    pickup_address: AddressDTO;
      * }
      */
-     .post(accessTokenValidator, validationMiddleware(RegisterInfoShopDTO), asyncHandler(shopController.register))
+    .post(accessTokenValidator, validationMiddleware(RegisterInfoShopDTO), asyncHandler(shopController.register));
 
 router
-     .route("")
-     /**
+    .route('')
+    /**
      * Description. Get shop info
-     * Path: 
+     * Path:
      * Method: GET
      * Headers: { Authorization: string, User-Agent: string }
      */
-     .get(accessTokenValidator, isShop(), asyncHandler(shopController.getInfo))
+    .get(accessTokenValidator, isShop(), asyncHandler(shopController.getInfo));
 
 router
-     .route("/:shop_id")
-     /**
+    .route('/:shop_id')
+    /**
      * Description. Get shop info
-     * Path: 
+     * Path:
      * Method: GET
      * Headers: { Authorization: string, User-Agent: string }
      */
-     .get(asyncHandler(shopController.getInfoById))
+    .get(asyncHandler(shopController.getInfoById));
 
 export default router;

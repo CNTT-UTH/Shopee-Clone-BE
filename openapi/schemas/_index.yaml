@@ -1,14 +1,14 @@
 User:
-    $ref: "./User.yaml"
+    $ref: './User.yaml'
 RegisterBody:
-    $ref: "./RegisterBody.yaml"
+    $ref: './RegisterBody.yaml'
 LoginBody:
-    $ref: "./LoginBody.yaml"
+    $ref: './LoginBody.yaml'
 LogoutBody:
-    $ref: "./LogoutBody.yaml"
+    $ref: './LogoutBody.yaml'
 ApiResponse:
-    $ref: "./ApiResponse.yaml"
+    $ref: './ApiResponse.yaml'
 FailedValidation:
-    $ref: "./FailedValidation.yaml"
+    $ref: './FailedValidation.yaml'
 SuccessAuthenticate:
-    $ref: "./SuccessAuthenticate.yaml"
+    $ref: './SuccessAuthenticate.yaml'

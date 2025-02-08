@@ -1,4 +1,4 @@
-import { Role, UserGender, UserVerifyStatus } from "~/constants/enums";
+import { Role, UserGender, UserVerifyStatus } from '~/constants/enums';
 import {
     Entity,
     PrimaryGeneratedColumn,
@@ -11,13 +11,13 @@ import {
     PrimaryColumn,
     ManyToOne,
     JoinColumn,
-} from "typeorm";
-import { Product } from "./product.entity";
-import { Option } from "./variant.entiity";
+} from 'typeorm';
+import { Product } from './product.entity';
+import { Option } from './variant.entiity';
 
-@Entity("attributes")
+@Entity('attributes')
 export class Attribute extends BaseEntity {
-    @PrimaryGeneratedColumn("increment")
+    @PrimaryGeneratedColumn('increment')
     id: number;
 
     @Column()
@@ -30,7 +30,7 @@ export class Attribute extends BaseEntity {
     updated_at: Date;
 }
 
-@Entity("attribute_values")
+@Entity('attribute_values')
 export class AttributeValue extends BaseEntity {
     @PrimaryColumn()
     id: number;
@@ -50,12 +50,12 @@ export class AttributeValue extends BaseEntity {
     @OneToOne(() => Attribute, (attribute) => attribute.id, {
         cascade: true,
     })
-    @JoinColumn({ name: "attribute_id" })
+    @JoinColumn({ name: 'attribute_id' })
     attribute: Attribute;
 
     @ManyToOne(() => Product, (product) => product.attributes, {
         cascade: true,
     })
-    @JoinColumn({ name: "product_id" })
+    @JoinColumn({ name: 'product_id' })
     product: Product;
 }

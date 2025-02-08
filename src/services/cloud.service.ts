@@ -1,10 +1,10 @@
-import { v2 as cloudinary } from "cloudinary";
-import { envConfig } from "~/constants/env";
-import HTTP_STATUS from "~/constants/httpStatus";
-import { ApiError } from "~/utils/errors";
+import { v2 as cloudinary } from 'cloudinary';
+import { envConfig } from '~/constants/env';
+import HTTP_STATUS from '~/constants/httpStatus';
+import { ApiError } from '~/utils/errors';
 
 class CloudService {
-    constructor() { }
+    constructor() {}
 }
 
 class Cloudinary {
@@ -22,7 +22,6 @@ class Cloudinary {
      * Upload Response: https://cloudinary.com/documentation/node_image_and_video_upload#upload_response
      */
     async uploadImage(filepath: string) {
-
         const result = await this.cloud.uploader.upload(filepath).then((result) => result);
         return result;
     }

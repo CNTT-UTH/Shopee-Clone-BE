@@ -1,9 +1,9 @@
-import { Request, Response } from "express";
+import { Request, Response } from 'express';
 
 class HomeController {
     greetings = async (req: Request, res: Response) => {
         // (req);
-        res.send({ status: "suscess" });
+        res.send({ status: 'suscess' });
     };
 }
 

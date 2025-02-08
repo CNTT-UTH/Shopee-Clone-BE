@@ -1,4 +1,4 @@
-import { Exclude, Expose } from "class-transformer";
+import { Exclude, Expose } from 'class-transformer';
 
 @Exclude()
 export class CategoryDTO {
@@ -13,7 +13,7 @@ export class CategoryDTO {
 
     childrens?: CategoryDTO[];
 
-    @Expose({name: "parent_cate_id"})
+    @Expose({ name: 'parent_cate_id' })
     parent_id?: number;
 
     @Expose()

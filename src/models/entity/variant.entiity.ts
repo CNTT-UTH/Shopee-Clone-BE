@@ -12,14 +12,14 @@ import {
     PrimaryGeneratedColumn,
     Unique,
     UpdateDateColumn,
-} from "typeorm";
-import { Product } from "./product.entity";
-import { CartItem } from "./cart.entity";
-import { OrderItem } from "./order.entity";
+} from 'typeorm';
+import { Product } from './product.entity';
+import { CartItem } from './cart.entity';
+import { OrderItem } from './order.entity';
 
-@Entity("options")
+@Entity('options')
 export class Option extends BaseEntity {
-    @PrimaryGeneratedColumn("increment")
+    @PrimaryGeneratedColumn('increment')
     id: number;
 
     // @Column()
@@ -37,16 +37,16 @@ export class Option extends BaseEntity {
     @ManyToOne(() => Product, (product) => product._id, {
         cascade: true,
     })
-    @JoinColumn({ name: "product_id" })
+    @JoinColumn({ name: 'product_id' })
     product: Product;
 
     @OneToMany(() => OptionValue, (optionvalue) => optionvalue.option)
     values: OptionValue[];
 }
 
-@Entity("option_values")
+@Entity('option_values')
 export class OptionValue extends BaseEntity {
-    @PrimaryGeneratedColumn("increment")
+    @PrimaryGeneratedColumn('increment')
     value_id: number;
 
     @Column()
@@ -62,16 +62,16 @@ export class OptionValue extends BaseEntity {
     updated_at: Date;
 
     @ManyToOne(() => Option, (option) => option.values, { cascade: true })
-    @JoinColumn({ name: "option_id", referencedColumnName: "id" })
+    @JoinColumn({ name: 'option_id', referencedColumnName: 'id' })
     option: Option;
 
     @ManyToMany(() => ProductVariant, (product_variant) => product_variant.options)
     variants: ProductVariant[];
 }
 
-@Entity("product_variants")
+@Entity('product_variants')
 export class ProductVariant extends BaseEntity {
-    @PrimaryGeneratedColumn("increment")
+    @PrimaryGeneratedColumn('increment')
     variant_id: number;
 
     @Column()
@@ -102,14 +102,14 @@ export class ProductVariant extends BaseEntity {
     updated_at: Date;
 
     @ManyToOne(() => Product, (product) => product._id)
-    @JoinColumn({ name: "product_id" })
+    @JoinColumn({ name: 'product_id' })
     product: Product;
 
     @ManyToMany(() => OptionValue, (option_value) => option_value.variants)
     @JoinTable({
-        name: "variant_option_values",
-        joinColumns: [{ name: "variant_id", referencedColumnName: "variant_id" }],
-        inverseJoinColumns: [{ name: "value_id", referencedColumnName: "value_id" }],
+        name: 'variant_option_values',
+        joinColumns: [{ name: 'variant_id', referencedColumnName: 'variant_id' }],
+        inverseJoinColumns: [{ name: 'value_id', referencedColumnName: 'value_id' }],
     })
     options: OptionValue[];
 

@@ -2,22 +2,22 @@ post:
     tags:
         - addresses
     summary: Thêm địa chỉ của user
-    description: 
+    description:
     operationId: create_user_address
     security:
         - BearerAuth: []
     parameters:
         # - $ref: "../../parameters/useragent.yaml"
-        - $ref: "../../parameters/platform.yaml"
+        - $ref: '../../parameters/platform.yaml'
     requestBody:
         content:
             application/json:
                 schema:
-                    $ref: "../../schemas/Address.yaml"
+                    $ref: '../../schemas/Address.yaml'
     responses:
-        "200":
+        '200':
             description: Thành công
-        "400":
+        '400':
             description:
-        "422":
+        '422':
             description: Sai các trường thông tin

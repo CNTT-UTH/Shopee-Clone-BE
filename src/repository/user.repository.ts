@@ -1,9 +1,9 @@
-import { Repository } from "typeorm";
-import AppDataSource from "~/dbs/db";
-import { UserVerifyStatus } from "~/constants/enums";
-import { UserDTO } from "~/models/dtos/UserDTO";
-import { User } from "~/models/entity/user.entity";
-import { UpdateProfileReqBody } from "~/models/requests/users.requests";
+import { Repository } from 'typeorm';
+import AppDataSource from '~/dbs/db';
+import { UserVerifyStatus } from '~/constants/enums';
+import { UserDTO } from '~/models/dtos/UserDTO';
+import { User } from '~/models/entity/user.entity';
+import { UpdateProfileReqBody } from '~/models/requests/users.requests';
 
 export class UserRepository {
     private repo: Repository<User>;
@@ -81,9 +81,6 @@ export class UserRepository {
             {
                 avatar: url,
             },
-
-
-            
         );
     }
 
@@ -94,5 +91,5 @@ export class UserRepository {
                 is_shop: true,
             },
         );
-    } 
+    }
 }

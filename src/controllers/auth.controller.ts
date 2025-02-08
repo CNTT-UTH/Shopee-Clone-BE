@@ -1,31 +1,31 @@
-import { Request, Response } from "express";
-import { ParamsDictionary } from "express-serve-static-core";
-import { LoginReqBody, RegisterReqBody, TokenPayload } from "~/models/requests/users.requests";
-import AuthService from "~/services/auth.service";
-import { USERS_MESSAGES } from "~/constants/messages";
+import { Request, Response } from 'express';
+import { ParamsDictionary } from 'express-serve-static-core';
+import { LoginReqBody, RegisterReqBody, TokenPayload } from '~/models/requests/users.requests';
+import AuthService from '~/services/auth.service';
+import { USERS_MESSAGES } from '~/constants/messages';
 import {
     EmailVerifyReqBody,
     ForgotPasswordReqBody,
     RefreshReqBody,
     ResetPasswordReqBody,
     VerifyPasswordReqBody,
-} from "~/models/requests/auth.requests";
+} from '~/models/requests/auth.requests';
 
 class AuthController {
     greetings = async (req: Request, res: Response) => {
         // (req);
         res.send({
-            status: "suscess",
-            message: "user",
+            status: 'suscess',
+            message: 'user',
         });
     };
 
     login = async (req: Request<ParamsDictionary, any, RegisterReqBody>, res: Response) => {
         const reqBody: LoginReqBody = req.body;
-        const userAgent = req.headers["user-agent"] as string;
+        const userAgent = req.headers['user-agent'] as string;
 
         const result = await AuthService.login(reqBody, {
-            platform: req.query?.platform == "mobile" ? "mobile" : "web",
+            platform: req.query?.platform == 'mobile' ? 'mobile' : 'web',
             user_agent: userAgent,
         });
 
@@ -38,10 +38,10 @@ class AuthController {
 
     register = async (req: Request<ParamsDictionary, any, RegisterReqBody>, res: Response) => {
         const reqBody: RegisterReqBody = req.body;
-        const userAgent = req.headers["user-agent"] as string;
+        const userAgent = req.headers['user-agent'] as string;
 
         const result = await AuthService.register(reqBody, {
-            platform: req.query?.platform == "mobile" ? "mobile" : "web",
+            platform: req.query?.platform == 'mobile' ? 'mobile' : 'web',
             user_agent: userAgent,
         });
 
@@ -54,12 +54,12 @@ class AuthController {
 
     logout = async (req: Request<ParamsDictionary, any, RefreshReqBody>, res: Response) => {
         const reqBody: RefreshReqBody = req.body;
-        const userAgent = req.headers["user-agent"] as string;
+        const userAgent = req.headers['user-agent'] as string;
 
         const result = await AuthService.logout(
             { _id: (req?.decoded as TokenPayload)._id },
             {
-                platform: req.query?.platform == "mobile" ? "mobile" : "web",
+                platform: req.query?.platform == 'mobile' ? 'mobile' : 'web',
                 user_agent: userAgent,
             },
         );
@@ -73,12 +73,12 @@ class AuthController {
 
     refreshToken = async (req: Request<ParamsDictionary, any, RefreshReqBody>, res: Response) => {
         const reqBody: RefreshReqBody = req.body;
-        const userAgent = req.headers["user-agent"] as string;
+        const userAgent = req.headers['user-agent'] as string;
 
         const result = await AuthService.refreshToken(
             { token: reqBody.refresh_token, decoded: req?.decoded as TokenPayload },
             {
-                platform: req.query?.platform == "mobile" ? "mobile" : "web",
+                platform: req.query?.platform == 'mobile' ? 'mobile' : 'web',
                 user_agent: userAgent,
             },
         );
@@ -92,10 +92,10 @@ class AuthController {
 
     verifyMail = async (req: Request<ParamsDictionary, any, EmailVerifyReqBody>, res: Response) => {
         const reqBody: EmailVerifyReqBody = req.body;
-        const userAgent = req.headers["user-agent"] as string;
+        const userAgent = req.headers['user-agent'] as string;
 
         const result = await AuthService.verifyMail(reqBody, req?.decoded as TokenPayload, {
-            platform: req.query?.platform == "mobile" ? "mobile" : "web",
+            platform: req.query?.platform == 'mobile' ? 'mobile' : 'web',
             user_agent: userAgent,
         });
 
@@ -108,10 +108,10 @@ class AuthController {
 
     resendVerifyMail = async (req: Request<ParamsDictionary, any, EmailVerifyReqBody>, res: Response) => {
         const reqBody: EmailVerifyReqBody = req.body;
-        const userAgent = req.headers["user-agent"] as string;
+        const userAgent = req.headers['user-agent'] as string;
 
         const result = await AuthService.resendVerifyEmail(reqBody?.verify_email_token, req?.decoded as TokenPayload, {
-            platform: req.query?.platform == "mobile" ? "mobile" : "web",
+            platform: req.query?.platform == 'mobile' ? 'mobile' : 'web',
             user_agent: userAgent,
         });
 
@@ -124,10 +124,10 @@ class AuthController {
 
     forgotPassword = async (req: Request<ParamsDictionary, any, ForgotPasswordReqBody>, res: Response) => {
         const reqBody: ForgotPasswordReqBody = req.body;
-        const userAgent = req.headers["user-agent"] as string;
+        const userAgent = req.headers['user-agent'] as string;
 
         const result = await AuthService.forgotPassword(reqBody, {
-            platform: req.query?.platform == "mobile" ? "mobile" : "web",
+            platform: req.query?.platform == 'mobile' ? 'mobile' : 'web',
             user_agent: userAgent,
         });
 
@@ -140,12 +140,12 @@ class AuthController {
 
     resendForgotPassword = async (req: Request<ParamsDictionary, any, VerifyPasswordReqBody>, res: Response) => {
         const reqBody: VerifyPasswordReqBody = req.body;
-        const userAgent = req.headers["user-agent"] as string;
+        const userAgent = req.headers['user-agent'] as string;
 
         const result = await AuthService.resendForgotPassword(
             reqBody,
             {
-                platform: req.query?.platform == "mobile" ? "mobile" : "web",
+                platform: req.query?.platform == 'mobile' ? 'mobile' : 'web',
                 user_agent: userAgent,
             },
             req?.decoded as TokenPayload,
@@ -160,12 +160,12 @@ class AuthController {
 
     verifyForgotPassword = async (req: Request<ParamsDictionary, any, VerifyPasswordReqBody>, res: Response) => {
         const reqBody: VerifyPasswordReqBody = req.body;
-        const userAgent = req.headers["user-agent"] as string;
+        const userAgent = req.headers['user-agent'] as string;
 
         const result = await AuthService.verifyForgotPassword(
             reqBody,
             {
-                platform: req.query?.platform == "mobile" ? "mobile" : "web",
+                platform: req.query?.platform == 'mobile' ? 'mobile' : 'web',
                 user_agent: userAgent,
             },
             req?.decoded as TokenPayload,
@@ -180,12 +180,12 @@ class AuthController {
 
     resetPassword = async (req: Request<ParamsDictionary, any, ResetPasswordReqBody>, res: Response) => {
         const reqBody: ResetPasswordReqBody = req.body;
-        const userAgent = req.headers["user-agent"] as string;
+        const userAgent = req.headers['user-agent'] as string;
 
         const result = await AuthService.resetPassword(
             reqBody,
             {
-                platform: req.query?.platform == "mobile" ? "mobile" : "web",
+                platform: req.query?.platform == 'mobile' ? 'mobile' : 'web',
                 user_agent: userAgent,
             },
             req?.decoded as TokenPayload,

@@ -1,9 +1,9 @@
-import { checkSchema } from "express-validator";
-import HTTP_STATUS from "~/constants/httpStatus";
-import { USERS_MESSAGES } from "~/constants/messages";
-import authServices from "~/services/auth.service";
-import { ApiError } from "~/utils/errors";
-import { validate } from "~/utils/validate";
+import { checkSchema } from 'express-validator';
+import HTTP_STATUS from '~/constants/httpStatus';
+import { USERS_MESSAGES } from '~/constants/messages';
+import authServices from '~/services/auth.service';
+import { ApiError } from '~/utils/errors';
+import { validate } from '~/utils/validate';
 
 const usernameParam = {
     notEmpty: {
@@ -41,7 +41,7 @@ const passwordParam = {
 export const loginValidator = validate(
     checkSchema({
         email: {
-            in: ["body"],
+            in: ['body'],
             optional: true,
             isEmail: true,
             normalizeEmail: true,
@@ -65,7 +65,7 @@ export const loginValidator = validate(
             },
         },
         username: {
-            in: ["body"],
+            in: ['body'],
             escape: true,
             optional: true,
             custom: {
@@ -86,7 +86,7 @@ export const loginValidator = validate(
             },
         },
         password: {
-            in: ["body"],
+            in: ['body'],
             notEmpty: {
                 errorMessage: USERS_MESSAGES.PASSWORD_IS_REQUIRED,
             },
@@ -158,7 +158,7 @@ export const updateProfileValidator = validate(
             optional: true,
             custom: {
                 options: async (value: number) => {
-                    if (value < 0 && value > 2) throw "Gender format is error.";
+                    if (value < 0 && value > 2) throw 'Gender format is error.';
                     return true;
                 },
             },
@@ -166,7 +166,7 @@ export const updateProfileValidator = validate(
         phone: {
             optional: true,
             isMobilePhone: {
-                options: ["vi-VN"],
+                options: ['vi-VN'],
                 errorMessage: USERS_MESSAGES.PHONE_NUMBER_INVALID,
             },
         },

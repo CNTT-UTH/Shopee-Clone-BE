@@ -1,10 +1,19 @@
 /* eslint-disable prettier/prettier */
-import express from "express";
-import AuthController from "~/controllers/auth.controller";
-import { asyncHandler } from "~/utils/asyncHandler";
-import { loginValidator, registerValidator } from "~/middlewares/users.middleware";
-import { accessTokenValidator, authorizeRole, forgotPasswordValidator, platformValidator, refreshTokenValidator, resetPasswordValidator, verifyEmailValidator, verifyPasswordValidator } from "~/middlewares/auth.middleware";
-import { Role } from "~/constants/enums";
+import express from 'express';
+import AuthController from '~/controllers/auth.controller';
+import { asyncHandler } from '~/utils/asyncHandler';
+import { loginValidator, registerValidator } from '~/middlewares/users.middleware';
+import {
+    accessTokenValidator,
+    authorizeRole,
+    forgotPasswordValidator,
+    platformValidator,
+    refreshTokenValidator,
+    resetPasswordValidator,
+    verifyEmailValidator,
+    verifyPasswordValidator,
+} from '~/middlewares/auth.middleware';
+import { Role } from '~/constants/enums';
 
 const router = express.Router();
 
@@ -14,8 +23,8 @@ const router = express.Router();
  * Method: POST
  * Headers: { User-Agent: string }
  * Body: { email?: string, username?: string, password: string }
-*/
-router.route("/login").post(platformValidator, loginValidator, asyncHandler(AuthController.login));
+ */
+router.route('/login').post(platformValidator, loginValidator, asyncHandler(AuthController.login));
 
 /**
  * Description. Register Email
@@ -23,8 +32,8 @@ router.route("/login").post(platformValidator, loginValidator, asyncHandler(Auth
  * Method: POST
  * Headers: { User-Agent: string }
  * Body: { email: string, username: string, password: string, confirm_password: string }
-*/
-router.route("/register").post(platformValidator, registerValidator, asyncHandler(AuthController.register));
+ */
+router.route('/register').post(platformValidator, registerValidator, asyncHandler(AuthController.register));
 
 /**
  * Description. Verify Email
@@ -32,8 +41,8 @@ router.route("/register").post(platformValidator, registerValidator, asyncHandle
  * Method: POST
  * Headers: { User-Agent: string }
  * Body: { verify_email_token: string, opt: string }
-*/
-router.route("/verify-email").post(platformValidator, verifyEmailValidator, asyncHandler(AuthController.verifyMail));
+ */
+router.route('/verify-email').post(platformValidator, verifyEmailValidator, asyncHandler(AuthController.verifyMail));
 
 /**
  * Description. Resend Verify Email
@@ -41,9 +50,10 @@ router.route("/verify-email").post(platformValidator, verifyEmailValidator, asyn
  * Method: POST
  * Headers: { User-Agent: string }
  * Body: { verify_email_token: string }
-*/
-router.route("/resend-verify-email").post(platformValidator, verifyEmailValidator, asyncHandler(AuthController.resendVerifyMail));
-
+ */
+router
+    .route('/resend-verify-email')
+    .post(platformValidator, verifyEmailValidator, asyncHandler(AuthController.resendVerifyMail));
 
 /**
  * Description. Refresh token
@@ -51,8 +61,10 @@ router.route("/resend-verify-email").post(platformValidator, verifyEmailValidato
  * Method: POST
  * Headers: { User-Agent: string }
  * Body: { refresh_token: string }
-*/
-router.route("/refresh-token").post(platformValidator, refreshTokenValidator, asyncHandler(AuthController.refreshToken));
+ */
+router
+    .route('/refresh-token')
+    .post(platformValidator, refreshTokenValidator, asyncHandler(AuthController.refreshToken));
 
 /**
  * Description. Forgot password
@@ -60,8 +72,10 @@ router.route("/refresh-token").post(platformValidator, refreshTokenValidator, as
  * Method: POST
  * Headers: { User-Agent: string }
  * Body: { username?: string, email?: string }
-*/
-router.route("/forgot-password").post(platformValidator, forgotPasswordValidator, asyncHandler(AuthController.forgotPassword));
+ */
+router
+    .route('/forgot-password')
+    .post(platformValidator, forgotPasswordValidator, asyncHandler(AuthController.forgotPassword));
 
 /**
  * Description. Verify password
@@ -69,8 +83,10 @@ router.route("/forgot-password").post(platformValidator, forgotPasswordValidator
  * Method: POST
  * Headers: { User-Agent: string }
  * Body: { forgot_password_token?: string, code?: string }
-*/
-router.route("/verify-password").post(platformValidator, verifyPasswordValidator, asyncHandler(AuthController.verifyForgotPassword));
+ */
+router
+    .route('/verify-password')
+    .post(platformValidator, verifyPasswordValidator, asyncHandler(AuthController.verifyForgotPassword));
 
 /**
  * Description. Resend verify password
@@ -78,8 +94,10 @@ router.route("/verify-password").post(platformValidator, verifyPasswordValidator
  * Method: POST
  * Headers: { User-Agent: string }
  * Body: { forgot_password_token?: string }
-*/
-router.route("/resend-verify-password").post(platformValidator, verifyPasswordValidator, asyncHandler(AuthController.resendForgotPassword));
+ */
+router
+    .route('/resend-verify-password')
+    .post(platformValidator, verifyPasswordValidator, asyncHandler(AuthController.resendForgotPassword));
 
 /**
  * Description. Reset password
@@ -87,10 +105,10 @@ router.route("/resend-verify-password").post(platformValidator, verifyPasswordVa
  * Method: POST
  * Headers: { User-Agent: string }
  * Body: { forgot_password_token?: string, password: string}
-*/
-router.route("/reset-password").post(platformValidator, resetPasswordValidator, asyncHandler(AuthController.resetPassword));
-
-
+ */
+router
+    .route('/reset-password')
+    .post(platformValidator, resetPasswordValidator, asyncHandler(AuthController.resetPassword));
 
 /**
  * Description. Logout
@@ -99,7 +117,8 @@ router.route("/reset-password").post(platformValidator, resetPasswordValidator, 
  * Headers: { Authorization: string, User-Agent: string }
  * Body: { refresh_token: string }
  */
-router.route("/logout").post(platformValidator, accessTokenValidator, refreshTokenValidator, asyncHandler(AuthController.logout));
-
+router
+    .route('/logout')
+    .post(platformValidator, accessTokenValidator, refreshTokenValidator, asyncHandler(AuthController.logout));
 
 export default router;

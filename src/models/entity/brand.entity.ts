@@ -1,4 +1,4 @@
-import { Role, UserGender, UserVerifyStatus } from "~/constants/enums";
+import { Role, UserGender, UserVerifyStatus } from '~/constants/enums';
 import {
     Entity,
     PrimaryGeneratedColumn,
@@ -8,12 +8,12 @@ import {
     BaseEntity,
     OneToMany,
     OneToOne,
-} from "typeorm";
-import { Product } from "./product.entity";
+} from 'typeorm';
+import { Product } from './product.entity';
 
-@Entity("brands")
+@Entity('brands')
 export class Brand extends BaseEntity {
-    @PrimaryGeneratedColumn("increment")
+    @PrimaryGeneratedColumn('increment')
     _id: string;
 
     @Column()

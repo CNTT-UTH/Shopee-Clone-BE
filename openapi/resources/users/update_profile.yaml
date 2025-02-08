@@ -2,20 +2,20 @@ patch:
     tags:
         - users
     summary: Cập nhật thông tin người dùng
-    description: 
+    description:
     operationId: user_profile_update
     security:
         - BearerAuth: []
     parameters:
         # - $ref: "../../parameters/useragent.yaml"
-        - $ref: "../../parameters/platform.yaml"
+        - $ref: '../../parameters/platform.yaml'
     requestBody:
         content:
             application/json:
                 schema:
-                    $ref: "../../schemas/UpdateProfileBody.yaml"
+                    $ref: '../../schemas/UpdateProfileBody.yaml'
     responses:
-        "200":
+        '200':
             description:
             schema:
                 type: object
@@ -26,8 +26,8 @@ patch:
                     message:
                         type: string
                     result:
-                        $ref: "../../schemas/User.yaml"
-        "400":
+                        $ref: '../../schemas/User.yaml'
+        '400':
             description:
-        "422":
+        '422':
             description: Sai các trường thông tin

@@ -2,11 +2,11 @@ post:
     tags:
         - auth
     summary: Yêu cầu gửi lại mã otp
-    description: "Gửi verify_email_token cũ lên server, trả token mới"
+    description: 'Gửi verify_email_token cũ lên server, trả token mới'
     operationId: resend_verify_email
     parameters:
         # - $ref: "../../parameters/useragent.yaml"
-        - $ref: "../../parameters/platform.yaml"
+        - $ref: '../../parameters/platform.yaml'
     requestBody:
         content:
             application/json:
@@ -18,7 +18,7 @@ post:
                     required:
                         - verify_email_token
     responses:
-        "200":
+        '200':
             description: Gửi email thành công
             content:
                 application/json:
@@ -27,7 +27,7 @@ post:
                         properties:
                             verify_email_token:
                                 type: string
-        "400":
+        '400':
             description:
-        "422":
+        '422':
             description: Sai các trường thông tin

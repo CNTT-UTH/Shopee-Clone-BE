@@ -1,24 +1,25 @@
-import { UPLOAD_IMAGE_TEMP_DIR } from "~/constants/dir";
-import { Request } from "express";
-import { File } from "formidable";
-import fs from "fs";
-import { unlink } from "fs/promises";
-import { ApiError } from "./errors";
-import HTTP_STATUS from "~/constants/httpStatus";
+import { UPLOAD_IMAGE_TEMP_DIR } from '~/constants/dir';
+import { Request } from 'express';
+import { File } from 'formidable';
+import fs from 'fs';
+import { unlink } from 'fs/promises';
+import { ApiError } from './errors';
+import HTTP_STATUS from '~/constants/httpStatus';
 
 export const handleUploadImage = async (req: Request, filename?: string) => {
     checkIfDirectoryExist(UPLOAD_IMAGE_TEMP_DIR);
-    
-    const formiable = (await import("formidable")).default;
+
+    const formiable = (await import('formidable')).default;
     const form = formiable({
         maxFieldsSize: 300 * 1024,
         uploadDir: UPLOAD_IMAGE_TEMP_DIR,
         keepExtensions: true,
+        maxFiles: 3,
         filter: function ({ name, originalFilename, mimetype }) {
             console.log({ name, originalFilename, mimetype });
-            const valid = name === "image" && Boolean(mimetype?.includes("image/"));
+            const valid = name === 'image' && Boolean(mimetype?.includes('image/'));
             if (!valid) {
-                form.emit("error" as any, new Error("File type is not valid") as any);
+                form.emit('error' as any, new Error('File type is not valid') as any);
             }
             return valid;
         },
@@ -32,7 +33,7 @@ export const handleUploadImage = async (req: Request, filename?: string) => {
 
             // eslint-disable-next-line no-extra-boolean-cast
             if (!Boolean(files.image)) {
-                return reject(new Error("File is empty"));
+                return reject(new Error('File is empty'));
             }
 
             resolve(files.image as File[]);
@@ -45,8 +46,7 @@ export const deleteFile = async (filepath: string) => {
         fs.unlink(filepath, (err) => {
             if (err) {
                 console.log(err);
-            }
-            else {
+            } else {
                 console.log(`Delete file successful: ${filepath}`);
             }
         });
@@ -54,15 +54,18 @@ export const deleteFile = async (filepath: string) => {
 };
 
 export const getNameFromFullname = (fullname: string) => {
-    const namearr = fullname.split(".");
+    const namearr = fullname.split('.');
     namearr.pop();
-    return namearr.join("");
-}
+    return namearr.join('');
+};
 
 export const checkIfDirectoryExist = (path: string) => {
     const isExist = fs.existsSync(path);
 
     if (!isExist) {
-        fs.mkdir(path, (err) => {throw new ApiError("Tạo đường dẫn thất bại", HTTP_STATUS.INTERNAL_SERVER_ERROR)});
+        fs.mkdir(path, (err) => {
+            if(err)
+                throw new ApiError('Tạo đường dẫn thất bại', HTTP_STATUS.INTERNAL_SERVER_ERROR);
+        });
     }
-}
+};

@@ -3,7 +3,7 @@ export interface RefreshReqBody {
 }
 
 export interface HandleMultiPlatformParams {
-    platform: "mobile" | "web";
+    platform: 'mobile' | 'web';
     user_agent: string;
 }
 

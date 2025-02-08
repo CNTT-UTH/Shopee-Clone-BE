@@ -1,8 +1,8 @@
-import { Request, Response, NextFunction } from "express";
-import { validationResult, ValidationChain, FieldValidationError } from "express-validator";
-import { RunnableValidationChains } from "express-validator/lib/middlewares/schema";
-import { ApiError } from "./errors";
-import HTTP_STATUS from "~/constants/httpStatus";
+import { Request, Response, NextFunction } from 'express';
+import { validationResult, ValidationChain, FieldValidationError } from 'express-validator';
+import { RunnableValidationChains } from 'express-validator/lib/middlewares/schema';
+import { ApiError } from './errors';
+import HTTP_STATUS from '~/constants/httpStatus';
 
 // can be reused by many routes
 export const validate = (validation: RunnableValidationChains<ValidationChain>) => {
@@ -33,6 +33,6 @@ export const validate = (validation: RunnableValidationChains<ValidationChain>) 
             };
         }
 
-        return next(new ApiError("Validation failed", HTTP_STATUS.UNPROCESSABLE_ENTITY, errors));
+        return next(new ApiError('Validation failed', HTTP_STATUS.UNPROCESSABLE_ENTITY, errors));
     };
 };

@@ -2,13 +2,13 @@ type: object
 properties:
     username:
         type: string
-        example: "linh1234"
+        example: 'linh1234'
     email:
         type: string
-        example: "linh1234@gmail.com"
+        example: 'linh1234@gmail.com'
     password:
         type: string
-        example: "Linhhoccode$123"
+        example: 'Linhhoccode$123'
 
 required:
     - password

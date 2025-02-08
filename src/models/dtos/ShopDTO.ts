@@ -1,15 +1,15 @@
-import { Exclude, Expose, plainToInstance, Transform, Type } from "class-transformer";
-import { AddressDTO } from "./AddressDTO";
-import { UserDTO } from "./UserDTO";
-import { IsEmpty, IsNotEmpty, IsPhoneNumber, ValidateNested } from "class-validator";
-import { verify } from "crypto";
+import { Exclude, Expose, plainToInstance, Transform, Type } from 'class-transformer';
+import { AddressDTO } from './AddressDTO';
+import { UserDTO } from './UserDTO';
+import { IsEmpty, IsNotEmpty, IsPhoneNumber, ValidateNested } from 'class-validator';
+import { verify } from 'crypto';
 
 @Exclude()
 export class ShopDTO {
-    @Expose({ name: "id" })
+    @Expose({ name: 'id' })
     shopid?: string;
 
-    @Expose({ name: "user" })
+    @Expose({ name: 'user' })
     @Transform(({ value }) => plainToInstance(UserDTO, value))
     account?: UserDTO;
 
@@ -19,7 +19,7 @@ export class ShopDTO {
     @Expose()
     name?: string;
 
-    @Expose({ name: "verify" })
+    @Expose({ name: 'verify' })
     status?: number; // 0: Chưa xác nhận mail, 1: Đã xác thực, 2: Khóa shop
 
     item_count?: number;
@@ -54,10 +54,9 @@ export class ShopDTO {
     }
 }
 
-
 export class RegisterInfoShopDTO {
     @IsEmpty()
-    user_id?: string
+    user_id?: string;
 
     @IsNotEmpty()
     name?: string;

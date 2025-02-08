@@ -2,11 +2,11 @@ post:
     tags:
         - auth
     summary: Xác thực mail
-    description: "Gửi verify_email_token và code lên server"
+    description: 'Gửi verify_email_token và code lên server'
     operationId: verify_email
     parameters:
         # - $ref: "../../parameters/useragent.yaml"
-        - $ref: "../../parameters/platform.yaml"
+        - $ref: '../../parameters/platform.yaml'
     requestBody:
         content:
             application/json:
@@ -17,12 +17,12 @@ post:
                             type: string
                         code:
                             type: string
-                            example: "123456"
+                            example: '123456'
                     required:
                         - verify_email_token
                         - code
     responses:
-        "200":
+        '200':
             description: Xác thực email thành công
             content:
                 application/json:
@@ -35,8 +35,8 @@ post:
                             message:
                                 type: string
                             result:
-                                $ref: "../../schemas/SuccessAuthenticate.yaml"
-        "400":
+                                $ref: '../../schemas/SuccessAuthenticate.yaml'
+        '400':
             description: Sai code
-        "422":
+        '422':
             description: Sai các trường thông tin

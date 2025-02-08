@@ -1,11 +1,11 @@
-import { Exclude, Expose } from "class-transformer";
-import { IsEmpty, IsNotEmpty, IsPhoneNumber } from "class-validator";
+import { Exclude, Expose } from 'class-transformer';
+import { IsEmpty, IsNotEmpty, IsPhoneNumber } from 'class-validator';
 
 @Exclude()
 export class AddressDTO {
     @Expose()
     @IsEmpty()
-    id: number
+    id: number;
 
     @Expose()
     city?: string;
