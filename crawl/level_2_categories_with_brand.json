@@ -1,0 +1,5243 @@
+[
+    {
+        "catid": 11035568,
+        "parent_catid": 11035567,
+        "name": "Jackets, Coats & Vests",
+        "display_name": "Áo Khoác",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035572,
+        "parent_catid": 11035567,
+        "name": "Suit Jackets & Blazers",
+        "display_name": "Áo Vest và Blazer",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035578,
+        "parent_catid": 11035567,
+        "name": "Hoodies & Sweatshirts",
+        "display_name": "Áo Hoodie, Áo Len & Áo Nỉ",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035583,
+        "parent_catid": 11035567,
+        "name": "Jeans",
+        "display_name": "Quần Jeans",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035584,
+        "parent_catid": 11035567,
+        "name": "Pants/Suits",
+        "display_name": "Quần Dài/Quần Âu",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035590,
+        "parent_catid": 11035567,
+        "name": "Shorts",
+        "display_name": "Quần Short",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035592,
+        "parent_catid": 11035567,
+        "name": "Tops",
+        "display_name": "Áo",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035597,
+        "parent_catid": 11035567,
+        "name": "Tanks",
+        "display_name": "Áo Ba Lỗ",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035598,
+        "parent_catid": 11035567,
+        "name": "Innerwear & Underwear",
+        "display_name": "Đồ Lót",
+        "attributes": [
+            {
+                "id": 1,
+                "name": "Size",
+                "display_name": "Kích thước"
+            },
+            {
+                "id": 2,
+                "name": "Color",
+                "display_name": "Màu sắc"
+            },
+            {
+                "id": 3,
+                "name": "Material",
+                "display_name": "Chất liệu"
+            },
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            },
+            {
+                "id": 5,
+                "name": "Pattern",
+                "display_name": "Họa tiết"
+            },
+            {
+                "id": 6,
+                "name": "Sleeve Length",
+                "display_name": "Chiều dài tay áo"
+            },
+            {
+                "id": 7,
+                "name": "Fit Type",
+                "display_name": "Dáng áo"
+            },
+            {
+                "id": 8,
+                "name": "Gender",
+                "display_name": "Giới tính"
+            },
+            {
+                "id": 9,
+                "name": "Occasion",
+                "display_name": "Dịp sử dụng"
+            },
+            {
+                "id": 10,
+                "name": "Season",
+                "display_name": "Mùa"
+            },
+            {
+                "id": 11,
+                "name": "Fabric Type",
+                "display_name": "Loại vải"
+            },
+            {
+                "id": 12,
+                "name": "Washing Instructions",
+                "display_name": "Hướng dẫn giặt"
+            }
+        ]
+    },
+    {
+        "catid": 11035603,
+        "parent_catid": 11035567,
+        "name": "Sleepwear",
+        "display_name": "Đồ Ngủ",
+        "attributes": [
+            {
+                "id": 1,
+                "name": "Size",
+                "display_name": "Kích thước"
+            },
+            {
+                "id": 2,
+                "name": "Color",
+                "display_name": "Màu sắc"
+            },
+            {
+                "id": 3,
+                "name": "Material",
+                "display_name": "Chất liệu"
+            },
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            },
+            {
+                "id": 5,
+                "name": "Pattern",
+                "display_name": "Họa tiết"
+            },
+            {
+                "id": 6,
+                "name": "Sleeve Length",
+                "display_name": "Chiều dài tay áo"
+            },
+            {
+                "id": 7,
+                "name": "Fit Type",
+                "display_name": "Dáng áo"
+            },
+            {
+                "id": 8,
+                "name": "Gender",
+                "display_name": "Giới tính"
+            },
+            {
+                "id": 9,
+                "name": "Occasion",
+                "display_name": "Dịp sử dụng"
+            },
+            {
+                "id": 10,
+                "name": "Season",
+                "display_name": "Mùa"
+            },
+            {
+                "id": 11,
+                "name": "Fabric Type",
+                "display_name": "Loại vải"
+            },
+            {
+                "id": 12,
+                "name": "Washing Instructions",
+                "display_name": "Hướng dẫn giặt"
+            }
+        ]
+    },
+    {
+        "catid": 11035604,
+        "parent_catid": 11035567,
+        "name": "Sets",
+        "display_name": "Đồ Bộ",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035605,
+        "parent_catid": 11035567,
+        "name": "Socks",
+        "display_name": "Vớ/Tất",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035606,
+        "parent_catid": 11035567,
+        "name": "Traditional Wear",
+        "display_name": "Trang Phục Truyền Thống",
+        "attributes": [
+            {
+                "id": 1,
+                "name": "Size",
+                "display_name": "Kích thước"
+            },
+            {
+                "id": 2,
+                "name": "Color",
+                "display_name": "Màu sắc"
+            },
+            {
+                "id": 3,
+                "name": "Material",
+                "display_name": "Chất liệu"
+            },
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            },
+            {
+                "id": 5,
+                "name": "Pattern",
+                "display_name": "Họa tiết"
+            },
+            {
+                "id": 6,
+                "name": "Sleeve Length",
+                "display_name": "Chiều dài tay áo"
+            },
+            {
+                "id": 7,
+                "name": "Fit Type",
+                "display_name": "Dáng áo"
+            },
+            {
+                "id": 8,
+                "name": "Gender",
+                "display_name": "Giới tính"
+            },
+            {
+                "id": 9,
+                "name": "Occasion",
+                "display_name": "Dịp sử dụng"
+            },
+            {
+                "id": 10,
+                "name": "Season",
+                "display_name": "Mùa"
+            },
+            {
+                "id": 11,
+                "name": "Fabric Type",
+                "display_name": "Loại vải"
+            },
+            {
+                "id": 12,
+                "name": "Washing Instructions",
+                "display_name": "Hướng dẫn giặt"
+            }
+        ]
+    },
+    {
+        "catid": 11035611,
+        "parent_catid": 11035567,
+        "name": "Costumes",
+        "display_name": "Đồ Hóa Trang",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035612,
+        "parent_catid": 11035567,
+        "name": "Occupational Attire",
+        "display_name": "Trang Phục Ngành Nghề",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035613,
+        "parent_catid": 11035567,
+        "name": "Others",
+        "display_name": "Khác",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035614,
+        "parent_catid": 11035567,
+        "name": "Men Jewelries",
+        "display_name": "Trang Sức Nam",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035620,
+        "parent_catid": 11035567,
+        "name": "Eyewear",
+        "display_name": "Kính Mắt Nam",
+        "attributes": [
+            {
+                "id": 1,
+                "name": "Size",
+                "display_name": "Kích thước"
+            },
+            {
+                "id": 2,
+                "name": "Color",
+                "display_name": "Màu sắc"
+            },
+            {
+                "id": 3,
+                "name": "Material",
+                "display_name": "Chất liệu"
+            },
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            },
+            {
+                "id": 5,
+                "name": "Pattern",
+                "display_name": "Họa tiết"
+            },
+            {
+                "id": 6,
+                "name": "Sleeve Length",
+                "display_name": "Chiều dài tay áo"
+            },
+            {
+                "id": 7,
+                "name": "Fit Type",
+                "display_name": "Dáng áo"
+            },
+            {
+                "id": 8,
+                "name": "Gender",
+                "display_name": "Giới tính"
+            },
+            {
+                "id": 9,
+                "name": "Occasion",
+                "display_name": "Dịp sử dụng"
+            },
+            {
+                "id": 10,
+                "name": "Season",
+                "display_name": "Mùa"
+            },
+            {
+                "id": 11,
+                "name": "Fabric Type",
+                "display_name": "Loại vải"
+            },
+            {
+                "id": 12,
+                "name": "Washing Instructions",
+                "display_name": "Hướng dẫn giặt"
+            }
+        ]
+    },
+    {
+        "catid": 11035625,
+        "parent_catid": 11035567,
+        "name": "Belts",
+        "display_name": "Thắt Lưng Nam",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035626,
+        "parent_catid": 11035567,
+        "name": "Neckties, Bow Ties & Cravats",
+        "display_name": "Cà vạt & Nơ cổ",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035627,
+        "parent_catid": 11035567,
+        "name": "Additional Accessories",
+        "display_name": "Phụ Kiện Nam",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035648,
+        "parent_catid": 11035639,
+        "name": "Pants & Leggings",
+        "display_name": "Quần",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035652,
+        "parent_catid": 11035639,
+        "name": "Shorts",
+        "display_name": "Quần đùi",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035656,
+        "parent_catid": 11035639,
+        "name": "Skirts",
+        "display_name": "Chân váy",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035657,
+        "parent_catid": 11035639,
+        "name": "Jeans",
+        "display_name": "Quần jeans",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035658,
+        "parent_catid": 11035639,
+        "name": "Dresses",
+        "display_name": "Đầm/Váy",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035659,
+        "parent_catid": 11035639,
+        "name": "Wedding Dresses",
+        "display_name": "Váy cưới",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035660,
+        "parent_catid": 11035639,
+        "name": "Jumpsuits, Playsuits & Overalls",
+        "display_name": "Đồ liền thân",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035665,
+        "parent_catid": 11035639,
+        "name": "Jackets, Coats & Vests",
+        "display_name": "Áo khoác, Áo choàng & Vest",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035672,
+        "parent_catid": 11035639,
+        "name": "Sweaters & Cardigans",
+        "display_name": "Áo len & Cardigan",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035673,
+        "parent_catid": 11035639,
+        "name": "Hoodies & Sweatshirts",
+        "display_name": "Hoodie và Áo nỉ",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035677,
+        "parent_catid": 11035639,
+        "name": "Sets",
+        "display_name": "Bộ",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035682,
+        "parent_catid": 11035639,
+        "name": "Lingerie & Underwear",
+        "display_name": "Đồ lót",
+        "attributes": [
+            {
+                "id": 1,
+                "name": "Size",
+                "display_name": "Kích thước"
+            },
+            {
+                "id": 2,
+                "name": "Color",
+                "display_name": "Màu sắc"
+            },
+            {
+                "id": 3,
+                "name": "Material",
+                "display_name": "Chất liệu"
+            },
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            },
+            {
+                "id": 5,
+                "name": "Pattern",
+                "display_name": "Họa tiết"
+            },
+            {
+                "id": 6,
+                "name": "Sleeve Length",
+                "display_name": "Chiều dài tay áo"
+            },
+            {
+                "id": 7,
+                "name": "Fit Type",
+                "display_name": "Dáng áo"
+            },
+            {
+                "id": 8,
+                "name": "Gender",
+                "display_name": "Giới tính"
+            },
+            {
+                "id": 9,
+                "name": "Occasion",
+                "display_name": "Dịp sử dụng"
+            },
+            {
+                "id": 10,
+                "name": "Season",
+                "display_name": "Mùa"
+            },
+            {
+                "id": 11,
+                "name": "Fabric Type",
+                "display_name": "Loại vải"
+            },
+            {
+                "id": 12,
+                "name": "Washing Instructions",
+                "display_name": "Hướng dẫn giặt"
+            }
+        ]
+    },
+    {
+        "catid": 11035692,
+        "parent_catid": 11035639,
+        "name": "Sleepwear & Pajamas",
+        "display_name": "Đồ ngủ",
+        "attributes": [
+            {
+                "id": 1,
+                "name": "Size",
+                "display_name": "Kích thước"
+            },
+            {
+                "id": 2,
+                "name": "Color",
+                "display_name": "Màu sắc"
+            },
+            {
+                "id": 3,
+                "name": "Material",
+                "display_name": "Chất liệu"
+            },
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            },
+            {
+                "id": 5,
+                "name": "Pattern",
+                "display_name": "Họa tiết"
+            },
+            {
+                "id": 6,
+                "name": "Sleeve Length",
+                "display_name": "Chiều dài tay áo"
+            },
+            {
+                "id": 7,
+                "name": "Fit Type",
+                "display_name": "Dáng áo"
+            },
+            {
+                "id": 8,
+                "name": "Gender",
+                "display_name": "Giới tính"
+            },
+            {
+                "id": 9,
+                "name": "Occasion",
+                "display_name": "Dịp sử dụng"
+            },
+            {
+                "id": 10,
+                "name": "Season",
+                "display_name": "Mùa"
+            },
+            {
+                "id": 11,
+                "name": "Fabric Type",
+                "display_name": "Loại vải"
+            },
+            {
+                "id": 12,
+                "name": "Washing Instructions",
+                "display_name": "Hướng dẫn giặt"
+            }
+        ]
+    },
+    {
+        "catid": 11035640,
+        "parent_catid": 11035639,
+        "name": "Tops",
+        "display_name": "Áo",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035730,
+        "parent_catid": 11035639,
+        "name": "Sportwear",
+        "display_name": "Đồ tập",
+        "attributes": [
+            {
+                "id": 1,
+                "name": "Size",
+                "display_name": "Kích thước"
+            },
+            {
+                "id": 2,
+                "name": "Color",
+                "display_name": "Màu sắc"
+            },
+            {
+                "id": 3,
+                "name": "Material",
+                "display_name": "Chất liệu"
+            },
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            },
+            {
+                "id": 5,
+                "name": "Pattern",
+                "display_name": "Họa tiết"
+            },
+            {
+                "id": 6,
+                "name": "Sleeve Length",
+                "display_name": "Chiều dài tay áo"
+            },
+            {
+                "id": 7,
+                "name": "Fit Type",
+                "display_name": "Dáng áo"
+            },
+            {
+                "id": 8,
+                "name": "Gender",
+                "display_name": "Giới tính"
+            },
+            {
+                "id": 9,
+                "name": "Occasion",
+                "display_name": "Dịp sử dụng"
+            },
+            {
+                "id": 10,
+                "name": "Season",
+                "display_name": "Mùa"
+            },
+            {
+                "id": 11,
+                "name": "Fabric Type",
+                "display_name": "Loại vải"
+            },
+            {
+                "id": 12,
+                "name": "Washing Instructions",
+                "display_name": "Hướng dẫn giặt"
+            }
+        ]
+    },
+    {
+        "catid": 11035697,
+        "parent_catid": 11035639,
+        "name": "Maternity Wear",
+        "display_name": "Đồ Bầu",
+        "attributes": [
+            {
+                "id": 1,
+                "name": "Size",
+                "display_name": "Kích thước"
+            },
+            {
+                "id": 2,
+                "name": "Color",
+                "display_name": "Màu sắc"
+            },
+            {
+                "id": 3,
+                "name": "Material",
+                "display_name": "Chất liệu"
+            },
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            },
+            {
+                "id": 5,
+                "name": "Pattern",
+                "display_name": "Họa tiết"
+            },
+            {
+                "id": 6,
+                "name": "Sleeve Length",
+                "display_name": "Chiều dài tay áo"
+            },
+            {
+                "id": 7,
+                "name": "Fit Type",
+                "display_name": "Dáng áo"
+            },
+            {
+                "id": 8,
+                "name": "Gender",
+                "display_name": "Giới tính"
+            },
+            {
+                "id": 9,
+                "name": "Occasion",
+                "display_name": "Dịp sử dụng"
+            },
+            {
+                "id": 10,
+                "name": "Season",
+                "display_name": "Mùa"
+            },
+            {
+                "id": 11,
+                "name": "Fabric Type",
+                "display_name": "Loại vải"
+            },
+            {
+                "id": 12,
+                "name": "Washing Instructions",
+                "display_name": "Hướng dẫn giặt"
+            }
+        ]
+    },
+    {
+        "catid": 11035705,
+        "parent_catid": 11035639,
+        "name": "Traditional Wear",
+        "display_name": "Đồ truyền thống",
+        "attributes": [
+            {
+                "id": 1,
+                "name": "Size",
+                "display_name": "Kích thước"
+            },
+            {
+                "id": 2,
+                "name": "Color",
+                "display_name": "Màu sắc"
+            },
+            {
+                "id": 3,
+                "name": "Material",
+                "display_name": "Chất liệu"
+            },
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            },
+            {
+                "id": 5,
+                "name": "Pattern",
+                "display_name": "Họa tiết"
+            },
+            {
+                "id": 6,
+                "name": "Sleeve Length",
+                "display_name": "Chiều dài tay áo"
+            },
+            {
+                "id": 7,
+                "name": "Fit Type",
+                "display_name": "Dáng áo"
+            },
+            {
+                "id": 8,
+                "name": "Gender",
+                "display_name": "Giới tính"
+            },
+            {
+                "id": 9,
+                "name": "Occasion",
+                "display_name": "Dịp sử dụng"
+            },
+            {
+                "id": 10,
+                "name": "Season",
+                "display_name": "Mùa"
+            },
+            {
+                "id": 11,
+                "name": "Fabric Type",
+                "display_name": "Loại vải"
+            },
+            {
+                "id": 12,
+                "name": "Washing Instructions",
+                "display_name": "Hướng dẫn giặt"
+            }
+        ]
+    },
+    {
+        "catid": 11035711,
+        "parent_catid": 11035639,
+        "name": "Costumes",
+        "display_name": "Đồ hóa trang",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035713,
+        "parent_catid": 11035639,
+        "name": "Fabric",
+        "display_name": "Vải",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035726,
+        "parent_catid": 11035639,
+        "name": "Socks & Stockings",
+        "display_name": "Vớ/ Tất",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035712,
+        "parent_catid": 11035639,
+        "name": "Others",
+        "display_name": "Khác",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036031,
+        "parent_catid": 11036030,
+        "name": "Mobile Phones",
+        "display_name": "Điện thoại",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            },
+            {
+                "id": 24,
+                "name": "Model",
+                "display_name": "Mẫu mã"
+            },
+            {
+                "id": 25,
+                "name": "Battery Life",
+                "display_name": "Thời lượng pin"
+            },
+            {
+                "id": 26,
+                "name": "Connectivity",
+                "display_name": "Kết nối"
+            },
+            {
+                "id": 27,
+                "name": "Warranty",
+                "display_name": "Bảo hành"
+            },
+            {
+                "id": 28,
+                "name": "Power Consumption",
+                "display_name": "Mức tiêu thụ điện"
+            },
+            {
+                "id": 29,
+                "name": "Weight",
+                "display_name": "Trọng lượng"
+            },
+            {
+                "id": 30,
+                "name": "Dimensions",
+                "display_name": "Kích thước"
+            },
+            {
+                "id": 31,
+                "name": "Processor",
+                "display_name": "Bộ vi xử lý"
+            },
+            {
+                "id": 32,
+                "name": "Operating System",
+                "display_name": "Hệ điều hành"
+            }
+        ]
+    },
+    {
+        "catid": 11036041,
+        "parent_catid": 11036030,
+        "name": "Tablets",
+        "display_name": "Máy tính bảng",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            },
+            {
+                "id": 24,
+                "name": "Model",
+                "display_name": "Mẫu mã"
+            },
+            {
+                "id": 25,
+                "name": "Battery Life",
+                "display_name": "Thời lượng pin"
+            },
+            {
+                "id": 26,
+                "name": "Connectivity",
+                "display_name": "Kết nối"
+            },
+            {
+                "id": 27,
+                "name": "Warranty",
+                "display_name": "Bảo hành"
+            },
+            {
+                "id": 28,
+                "name": "Power Consumption",
+                "display_name": "Mức tiêu thụ điện"
+            },
+            {
+                "id": 29,
+                "name": "Weight",
+                "display_name": "Trọng lượng"
+            },
+            {
+                "id": 30,
+                "name": "Dimensions",
+                "display_name": "Kích thước"
+            },
+            {
+                "id": 31,
+                "name": "Processor",
+                "display_name": "Bộ vi xử lý"
+            },
+            {
+                "id": 32,
+                "name": "Operating System",
+                "display_name": "Hệ điều hành"
+            }
+        ]
+    },
+    {
+        "catid": 11036048,
+        "parent_catid": 11036030,
+        "name": "Powerbanks",
+        "display_name": "Pin Dự Phòng",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036054,
+        "parent_catid": 11036030,
+        "name": "Batteries, Cables & Charger",
+        "display_name": "Pin Gắn Trong, Cáp và Bộ Sạc",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036060,
+        "parent_catid": 11036030,
+        "name": "Cases, Covers, & Skins",
+        "display_name": "Ốp lưng, bao da, Miếng dán điện thoại",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036064,
+        "parent_catid": 11036030,
+        "name": "Screen Protectors",
+        "display_name": "Bảo vệ màn hình",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036074,
+        "parent_catid": 11036030,
+        "name": "Phone Holders",
+        "display_name": "Đế giữ điện thoại",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            },
+            {
+                "id": 24,
+                "name": "Model",
+                "display_name": "Mẫu mã"
+            },
+            {
+                "id": 25,
+                "name": "Battery Life",
+                "display_name": "Thời lượng pin"
+            },
+            {
+                "id": 26,
+                "name": "Connectivity",
+                "display_name": "Kết nối"
+            },
+            {
+                "id": 27,
+                "name": "Warranty",
+                "display_name": "Bảo hành"
+            },
+            {
+                "id": 28,
+                "name": "Power Consumption",
+                "display_name": "Mức tiêu thụ điện"
+            },
+            {
+                "id": 29,
+                "name": "Weight",
+                "display_name": "Trọng lượng"
+            },
+            {
+                "id": 30,
+                "name": "Dimensions",
+                "display_name": "Kích thước"
+            },
+            {
+                "id": 31,
+                "name": "Processor",
+                "display_name": "Bộ vi xử lý"
+            },
+            {
+                "id": 32,
+                "name": "Operating System",
+                "display_name": "Hệ điều hành"
+            }
+        ]
+    },
+    {
+        "catid": 11036083,
+        "parent_catid": 11036030,
+        "name": "Memory Cards",
+        "display_name": "Thẻ nhớ",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036084,
+        "parent_catid": 11036030,
+        "name": "Sims",
+        "display_name": "Sim",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036091,
+        "parent_catid": 11036030,
+        "name": "Other Accessories",
+        "display_name": "Phụ kiện khác",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036097,
+        "parent_catid": 11036030,
+        "name": "Other devices",
+        "display_name": "Thiết bị khác",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036195,
+        "parent_catid": 11036194,
+        "name": "Baby Travel Essentials",
+        "display_name": "Đồ dùng du lịch cho bé",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036204,
+        "parent_catid": 11036194,
+        "name": "Feeding Essentials",
+        "display_name": "Đồ dùng ăn dặm cho bé",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036213,
+        "parent_catid": 11036194,
+        "name": "Maternity Accessories",
+        "display_name": "Phụ kiện cho mẹ",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036217,
+        "parent_catid": 11036194,
+        "name": "Maternity Healthcare",
+        "display_name": "Chăm sóc sức khỏe mẹ",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036222,
+        "parent_catid": 11036194,
+        "name": "Bath & Body Care",
+        "display_name": "Đồ dùng phòng tắm & Chăm sóc cơ thể bé",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036233,
+        "parent_catid": 11036194,
+        "name": "Nursery",
+        "display_name": "Đồ dùng phòng ngủ cho bé",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036240,
+        "parent_catid": 11036194,
+        "name": "Baby Safety",
+        "display_name": "An toàn cho bé",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036248,
+        "parent_catid": 11036194,
+        "name": "Baby Food",
+        "display_name": "Thực phẩm cho bé",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036253,
+        "parent_catid": 11036194,
+        "name": "Baby Healthcare",
+        "display_name": "Chăm sóc sức khỏe bé",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036260,
+        "parent_catid": 11036194,
+        "name": "Diapering & Potty",
+        "display_name": "Tã & bô em bé",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036266,
+        "parent_catid": 11036194,
+        "name": "Toys",
+        "display_name": "Đồ chơi",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036277,
+        "parent_catid": 11036194,
+        "name": "Gift Sets & Packages",
+        "display_name": "Bộ & Gói quà tặng",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036278,
+        "parent_catid": 11036194,
+        "name": "Others",
+        "display_name": "Khác",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11059299,
+        "parent_catid": 11036194,
+        "name": "Milk 24 months and ups",
+        "display_name": "Sữa công thức trên 24 tháng",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11059300,
+        "parent_catid": 11036194,
+        "name": "Milk Formula 0- 24 months",
+        "display_name": "Sữa công thức 0-24 tháng tuổi",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036160,
+        "parent_catid": 11036132,
+        "name": "Wearable Devices",
+        "display_name": "Thiết bị đeo thông minh",
+        "attributes": [
+            {
+                "id": 1,
+                "name": "Size",
+                "display_name": "Kích thước"
+            },
+            {
+                "id": 2,
+                "name": "Color",
+                "display_name": "Màu sắc"
+            },
+            {
+                "id": 3,
+                "name": "Material",
+                "display_name": "Chất liệu"
+            },
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            },
+            {
+                "id": 5,
+                "name": "Pattern",
+                "display_name": "Họa tiết"
+            },
+            {
+                "id": 6,
+                "name": "Sleeve Length",
+                "display_name": "Chiều dài tay áo"
+            },
+            {
+                "id": 7,
+                "name": "Fit Type",
+                "display_name": "Dáng áo"
+            },
+            {
+                "id": 8,
+                "name": "Gender",
+                "display_name": "Giới tính"
+            },
+            {
+                "id": 9,
+                "name": "Occasion",
+                "display_name": "Dịp sử dụng"
+            },
+            {
+                "id": 10,
+                "name": "Season",
+                "display_name": "Mùa"
+            },
+            {
+                "id": 11,
+                "name": "Fabric Type",
+                "display_name": "Loại vải"
+            },
+            {
+                "id": 12,
+                "name": "Washing Instructions",
+                "display_name": "Hướng dẫn giặt"
+            }
+        ]
+    },
+    {
+        "catid": 11036167,
+        "parent_catid": 11036132,
+        "name": "Tivi Accessories",
+        "display_name": "Phụ kiện tivi",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036172,
+        "parent_catid": 11036132,
+        "name": "Gaming & Console",
+        "display_name": "Máy Game Console",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036182,
+        "parent_catid": 11036132,
+        "name": "Console Accessories",
+        "display_name": "Phụ kiện Console",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036184,
+        "parent_catid": 11036132,
+        "name": "Video Games",
+        "display_name": "Đĩa game",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036133,
+        "parent_catid": 11036132,
+        "name": "Accessories and spare parts",
+        "display_name": "Linh phụ kiện",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036143,
+        "parent_catid": 11036132,
+        "name": "Earphones",
+        "display_name": "Tai nghe nhét tai",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            },
+            {
+                "id": 24,
+                "name": "Model",
+                "display_name": "Mẫu mã"
+            },
+            {
+                "id": 25,
+                "name": "Battery Life",
+                "display_name": "Thời lượng pin"
+            },
+            {
+                "id": 26,
+                "name": "Connectivity",
+                "display_name": "Kết nối"
+            },
+            {
+                "id": 27,
+                "name": "Warranty",
+                "display_name": "Bảo hành"
+            },
+            {
+                "id": 28,
+                "name": "Power Consumption",
+                "display_name": "Mức tiêu thụ điện"
+            },
+            {
+                "id": 29,
+                "name": "Weight",
+                "display_name": "Trọng lượng"
+            },
+            {
+                "id": 30,
+                "name": "Dimensions",
+                "display_name": "Kích thước"
+            },
+            {
+                "id": 31,
+                "name": "Processor",
+                "display_name": "Bộ vi xử lý"
+            },
+            {
+                "id": 32,
+                "name": "Operating System",
+                "display_name": "Hệ điều hành"
+            }
+        ]
+    },
+    {
+        "catid": 11036135,
+        "parent_catid": 11036132,
+        "name": "Audio",
+        "display_name": "Loa",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036151,
+        "parent_catid": 11036132,
+        "name": "Tivi",
+        "display_name": "Tivi",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036157,
+        "parent_catid": 11036132,
+        "name": "Tivi Box",
+        "display_name": "Tivi Box",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11109141,
+        "parent_catid": 11036132,
+        "name": "Headphones",
+        "display_name": "Headphones",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            },
+            {
+                "id": 24,
+                "name": "Model",
+                "display_name": "Mẫu mã"
+            },
+            {
+                "id": 25,
+                "name": "Battery Life",
+                "display_name": "Thời lượng pin"
+            },
+            {
+                "id": 26,
+                "name": "Connectivity",
+                "display_name": "Kết nối"
+            },
+            {
+                "id": 27,
+                "name": "Warranty",
+                "display_name": "Bảo hành"
+            },
+            {
+                "id": 28,
+                "name": "Power Consumption",
+                "display_name": "Mức tiêu thụ điện"
+            },
+            {
+                "id": 29,
+                "name": "Weight",
+                "display_name": "Trọng lượng"
+            },
+            {
+                "id": 30,
+                "name": "Dimensions",
+                "display_name": "Kích thước"
+            },
+            {
+                "id": 31,
+                "name": "Processor",
+                "display_name": "Bộ vi xử lý"
+            },
+            {
+                "id": 32,
+                "name": "Operating System",
+                "display_name": "Hệ điều hành"
+            }
+        ]
+    },
+    {
+        "catid": 11036683,
+        "parent_catid": 11036670,
+        "name": "Bedding",
+        "display_name": "Chăn, Ga, Gối & Nệm",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036695,
+        "parent_catid": 11036670,
+        "name": "Furniture",
+        "display_name": "Đồ nội thất",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036717,
+        "parent_catid": 11036670,
+        "name": "Home Decoration",
+        "display_name": "Trang trí nhà cửa",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036732,
+        "parent_catid": 11036670,
+        "name": "Tools and Home improvement",
+        "display_name": "Dụng cụ & Thiết bị tiện ích",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036748,
+        "parent_catid": 11036670,
+        "name": "Kitchenware and food storage",
+        "display_name": "Đồ dùng nhà bếp và hộp đựng thực phẩm",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036760,
+        "parent_catid": 11036670,
+        "name": "Lighting",
+        "display_name": "Đèn",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036776,
+        "parent_catid": 11036670,
+        "name": "Outdoor & Garden",
+        "display_name": "Ngoài trời & Sân vườn",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036671,
+        "parent_catid": 11036670,
+        "name": "Bathroom",
+        "display_name": "Đồ dùng phòng tắm",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11111670,
+        "parent_catid": 11036670,
+        "name": "Regilious and Worship items",
+        "display_name": "Vật phẩm thờ cúng",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11111669,
+        "parent_catid": 11036670,
+        "name": "Party supplies",
+        "display_name": "Đồ trang trí tiệc",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11111665,
+        "parent_catid": 11036670,
+        "name": "Housekeeping and Laundry",
+        "display_name": "Chăm sóc nhà cửa và giặt ủi",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11111668,
+        "parent_catid": 11036670,
+        "name": "Houseorganizers",
+        "display_name": "Sắp xếp nhà cửa",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11111666,
+        "parent_catid": 11036670,
+        "name": "Drinkware",
+        "display_name": "Dụng cụ pha chế",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11111664,
+        "parent_catid": 11036670,
+        "name": "Home Fragrance & Aromatherapy",
+        "display_name": "Tinh dầu thơm phòng",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11111667,
+        "parent_catid": 11036670,
+        "name": "Dinnerware",
+        "display_name": "Đồ dùng phòng ăn",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035955,
+        "parent_catid": 11035954,
+        "name": "Desktop Computers",
+        "display_name": "Máy Tính Bàn",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035961,
+        "parent_catid": 11035954,
+        "name": "Monitors",
+        "display_name": "Màn Hình",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035962,
+        "parent_catid": 11035954,
+        "name": "Desktop & Laptop Components",
+        "display_name": "Linh Kiện Máy Tính",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            },
+            {
+                "id": 24,
+                "name": "Model",
+                "display_name": "Mẫu mã"
+            },
+            {
+                "id": 25,
+                "name": "Battery Life",
+                "display_name": "Thời lượng pin"
+            },
+            {
+                "id": 26,
+                "name": "Connectivity",
+                "display_name": "Kết nối"
+            },
+            {
+                "id": 27,
+                "name": "Warranty",
+                "display_name": "Bảo hành"
+            },
+            {
+                "id": 28,
+                "name": "Power Consumption",
+                "display_name": "Mức tiêu thụ điện"
+            },
+            {
+                "id": 29,
+                "name": "Weight",
+                "display_name": "Trọng lượng"
+            },
+            {
+                "id": 30,
+                "name": "Dimensions",
+                "display_name": "Kích thước"
+            },
+            {
+                "id": 31,
+                "name": "Processor",
+                "display_name": "Bộ vi xử lý"
+            },
+            {
+                "id": 32,
+                "name": "Operating System",
+                "display_name": "Hệ điều hành"
+            }
+        ]
+    },
+    {
+        "catid": 11035975,
+        "parent_catid": 11035954,
+        "name": "Data Storage",
+        "display_name": "Thiết Bị Lưu Trữ",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035983,
+        "parent_catid": 11035954,
+        "name": "Network Components",
+        "display_name": "Thiết Bị Mạng",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035993,
+        "parent_catid": 11035954,
+        "name": "Printers, Scanners & Projectors",
+        "display_name": "Máy In, Máy Scan & Máy Chiếu",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036000,
+        "parent_catid": 11035954,
+        "name": "Peripherals & Accessories",
+        "display_name": "Phụ Kiện Máy Tính",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036015,
+        "parent_catid": 11035954,
+        "name": "Laptops",
+        "display_name": "Laptop",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            },
+            {
+                "id": 24,
+                "name": "Model",
+                "display_name": "Mẫu mã"
+            },
+            {
+                "id": 25,
+                "name": "Battery Life",
+                "display_name": "Thời lượng pin"
+            },
+            {
+                "id": 26,
+                "name": "Connectivity",
+                "display_name": "Kết nối"
+            },
+            {
+                "id": 27,
+                "name": "Warranty",
+                "display_name": "Bảo hành"
+            },
+            {
+                "id": 28,
+                "name": "Power Consumption",
+                "display_name": "Mức tiêu thụ điện"
+            },
+            {
+                "id": 29,
+                "name": "Weight",
+                "display_name": "Trọng lượng"
+            },
+            {
+                "id": 30,
+                "name": "Dimensions",
+                "display_name": "Kích thước"
+            },
+            {
+                "id": 31,
+                "name": "Processor",
+                "display_name": "Bộ vi xử lý"
+            },
+            {
+                "id": 32,
+                "name": "Operating System",
+                "display_name": "Hệ điều hành"
+            }
+        ]
+    },
+    {
+        "catid": 11036016,
+        "parent_catid": 11035954,
+        "name": "Others",
+        "display_name": "Khác",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036023,
+        "parent_catid": 11035954,
+        "name": "Gaming",
+        "display_name": "Gaming",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036328,
+        "parent_catid": 11036279,
+        "name": "Skincare",
+        "display_name": "Chăm sóc da mặt",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036280,
+        "parent_catid": 11036279,
+        "name": "Bath & Body Care",
+        "display_name": "Tắm & chăm sóc cơ thể",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036314,
+        "parent_catid": 11036279,
+        "name": "Makeup",
+        "display_name": "Trang điểm",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036297,
+        "parent_catid": 11036279,
+        "name": "Hair Care",
+        "display_name": "Chăm sóc tóc",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036321,
+        "parent_catid": 11036279,
+        "name": "Beauty Tools & Accessories",
+        "display_name": "Dụng cụ & Phụ kiện Làm đẹp",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11111646,
+        "parent_catid": 11036279,
+        "name": "Oral Care",
+        "display_name": "Vệ sinh răng miệng",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036310,
+        "parent_catid": 11036279,
+        "name": "Perfumes & Fragrances",
+        "display_name": "Nước hoa",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036304,
+        "parent_catid": 11036279,
+        "name": "Men's Care",
+        "display_name": "Chăm sóc nam giới",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036344,
+        "parent_catid": 11036279,
+        "name": "Others",
+        "display_name": "Khác",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11111647,
+        "parent_catid": 11036279,
+        "name": "Feminine Care",
+        "display_name": "Chăm sóc phụ nữ",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036343,
+        "parent_catid": 11036279,
+        "name": "Beauty Sets & Packages",
+        "display_name": "Bộ sản phẩm làm đẹp",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036102,
+        "parent_catid": 11036101,
+        "name": "Cameras",
+        "display_name": "Máy ảnh - Máy quay phim",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036109,
+        "parent_catid": 11036101,
+        "name": "Security Cameras & Systems",
+        "display_name": "Camera giám sát & Camera hệ thống",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036114,
+        "parent_catid": 11036101,
+        "name": "Memory Cards",
+        "display_name": "Thẻ nhớ",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036115,
+        "parent_catid": 11036101,
+        "name": "Lenses",
+        "display_name": "Ống kính",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036119,
+        "parent_catid": 11036101,
+        "name": "Camera Accessories",
+        "display_name": "Phụ kiện máy ảnh",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036129,
+        "parent_catid": 11036101,
+        "name": "Drones",
+        "display_name": "Máy bay camera & Phụ kiện",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036352,
+        "parent_catid": 11036345,
+        "name": "Medical Supplies",
+        "display_name": "Vật tư y tế",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036373,
+        "parent_catid": 11036345,
+        "name": "Insect Repellents",
+        "display_name": "Chống muỗi & xua đuổi côn trùng",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036346,
+        "parent_catid": 11036345,
+        "name": "Food Supplement",
+        "display_name": "Thực phẩm chức năng",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036370,
+        "parent_catid": 11036345,
+        "name": "Adult Diapers & Incontinence",
+        "display_name": "Tã người lớn",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036348,
+        "parent_catid": 11036345,
+        "name": "Beauty Supplements",
+        "display_name": "Hỗ trợ làm đẹp",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036375,
+        "parent_catid": 11036345,
+        "name": "Sexual Wellness",
+        "display_name": "Hỗ trợ tình dục",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036372,
+        "parent_catid": 11036345,
+        "name": "Massage & Therapy Devices",
+        "display_name": "Dụng cụ massage và trị liệu",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036381,
+        "parent_catid": 11036345,
+        "name": "Others",
+        "display_name": "Khác",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035789,
+        "parent_catid": 11035788,
+        "name": "Men Watches",
+        "display_name": "Đồng Hồ Nam",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035790,
+        "parent_catid": 11035788,
+        "name": "Women Watches",
+        "display_name": "Đồng Hồ Nữ",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035791,
+        "parent_catid": 11035788,
+        "name": "Set & Couple Watches",
+        "display_name": "Bộ Đồng Hồ & Đồng Hồ Cặp",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035792,
+        "parent_catid": 11035788,
+        "name": "Kid Watches",
+        "display_name": "Đồng Hồ Trẻ Em",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035793,
+        "parent_catid": 11035788,
+        "name": "Watches Accessories",
+        "display_name": "Phụ Kiện Đồng Hồ",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035800,
+        "parent_catid": 11035788,
+        "name": "Others",
+        "display_name": "Khác",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035826,
+        "parent_catid": 11035825,
+        "name": "Boots",
+        "display_name": "Bốt",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035830,
+        "parent_catid": 11035825,
+        "name": "Sneakers",
+        "display_name": "Giày Thể Thao/ Sneaker",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035831,
+        "parent_catid": 11035825,
+        "name": "Flats",
+        "display_name": "Giày Đế Bằng",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035837,
+        "parent_catid": 11035825,
+        "name": "Heels",
+        "display_name": "Giày Cao Gót",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035838,
+        "parent_catid": 11035825,
+        "name": "Wedges",
+        "display_name": "Giày Đế Xuồng",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035839,
+        "parent_catid": 11035825,
+        "name": "Flat Sandals & Flip Flops",
+        "display_name": "Xăng-đan Và Dép",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035845,
+        "parent_catid": 11035825,
+        "name": "Shoe Care & Accessories",
+        "display_name": "Phụ Kiện Giày",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035852,
+        "parent_catid": 11035825,
+        "name": "Others",
+        "display_name": "Giày Khác",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035802,
+        "parent_catid": 11035801,
+        "name": "Boots",
+        "display_name": "Bốt",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035807,
+        "parent_catid": 11035801,
+        "name": "Sneakers",
+        "display_name": "Giày Thể Thao/ Sneakers",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035808,
+        "parent_catid": 11035801,
+        "name": "Slip Ons & Mules",
+        "display_name": "Giày Sục",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035809,
+        "parent_catid": 11035801,
+        "name": "Loafers & Boat Shoes",
+        "display_name": "Giày Tây Lười",
+        "attributes": [
+            {
+                "id": 13,
+                "name": "Size",
+                "display_name": "Kích thước"
+            },
+            {
+                "id": 14,
+                "name": "Color",
+                "display_name": "Màu sắc"
+            },
+            {
+                "id": 15,
+                "name": "Material",
+                "display_name": "Chất liệu"
+            },
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            },
+            {
+                "id": 17,
+                "name": "Heel Height",
+                "display_name": "Chiều cao gót"
+            },
+            {
+                "id": 18,
+                "name": "Closure Type",
+                "display_name": "Loại khóa"
+            },
+            {
+                "id": 19,
+                "name": "Sole Material",
+                "display_name": "Chất liệu đế"
+            },
+            {
+                "id": 20,
+                "name": "Gender",
+                "display_name": "Giới tính"
+            },
+            {
+                "id": 21,
+                "name": "Arch Support",
+                "display_name": "Hỗ trợ vòm chân"
+            },
+            {
+                "id": 22,
+                "name": "Waterproof",
+                "display_name": "Chống nước"
+            }
+        ]
+    },
+    {
+        "catid": 11035810,
+        "parent_catid": 11035801,
+        "name": "Oxfords & Lace-Ups",
+        "display_name": "Giày Oxfords & Giày Buộc Dây",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035811,
+        "parent_catid": 11035801,
+        "name": "Sandals & Flip Flops",
+        "display_name": "Xăng-đan và Dép",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035817,
+        "parent_catid": 11035801,
+        "name": "Shoe Care & Accessories",
+        "display_name": "Phụ kiện giày dép",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035824,
+        "parent_catid": 11035801,
+        "name": "Others",
+        "display_name": "Khác",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035762,
+        "parent_catid": 11035761,
+        "name": "Backpacks",
+        "display_name": "Ba Lô Nữ",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035763,
+        "parent_catid": 11035761,
+        "name": "Laptop Bags",
+        "display_name": "Cặp Laptop",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            },
+            {
+                "id": 24,
+                "name": "Model",
+                "display_name": "Mẫu mã"
+            },
+            {
+                "id": 25,
+                "name": "Battery Life",
+                "display_name": "Thời lượng pin"
+            },
+            {
+                "id": 26,
+                "name": "Connectivity",
+                "display_name": "Kết nối"
+            },
+            {
+                "id": 27,
+                "name": "Warranty",
+                "display_name": "Bảo hành"
+            },
+            {
+                "id": 28,
+                "name": "Power Consumption",
+                "display_name": "Mức tiêu thụ điện"
+            },
+            {
+                "id": 29,
+                "name": "Weight",
+                "display_name": "Trọng lượng"
+            },
+            {
+                "id": 30,
+                "name": "Dimensions",
+                "display_name": "Kích thước"
+            },
+            {
+                "id": 31,
+                "name": "Processor",
+                "display_name": "Bộ vi xử lý"
+            },
+            {
+                "id": 32,
+                "name": "Operating System",
+                "display_name": "Hệ điều hành"
+            }
+        ]
+    },
+    {
+        "catid": 11035768,
+        "parent_catid": 11035761,
+        "name": "Clutches & Wristlets",
+        "display_name": "Ví Dự Tiệc & Ví Cầm Tay",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035769,
+        "parent_catid": 11035761,
+        "name": "Waist Bags & Chest Bags",
+        "display_name": "Túi Đeo Hông & Túi Đeo Ngực",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035770,
+        "parent_catid": 11035761,
+        "name": "Tote Bags",
+        "display_name": "Túi Tote",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035771,
+        "parent_catid": 11035761,
+        "name": "Top-handle Bags",
+        "display_name": "Túi Quai Xách",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035772,
+        "parent_catid": 11035761,
+        "name": "Crossbody & Shoulder Bags",
+        "display_name": "Túi Đeo Chéo & Túi Đeo Vai",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035773,
+        "parent_catid": 11035761,
+        "name": "Wallets",
+        "display_name": "Ví/Bóp Nữ",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035780,
+        "parent_catid": 11035761,
+        "name": "Bag Accessories",
+        "display_name": "Phụ Kiện Túi",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035787,
+        "parent_catid": 11035761,
+        "name": "Others",
+        "display_name": "Khác",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036972,
+        "parent_catid": 11036971,
+        "name": "Kitchen Appliances",
+        "display_name": "Đồ gia dụng nhà bếp",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036990,
+        "parent_catid": 11036971,
+        "name": "Large Appliance",
+        "display_name": "Đồ gia dụng lớn",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11037000,
+        "parent_catid": 11036971,
+        "name": "Vacuums & Floor care",
+        "display_name": "Máy hút bụi & Thiết bị làm sạch",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11037007,
+        "parent_catid": 11036971,
+        "name": "Air Conditioners & Fans",
+        "display_name": "Quạt & Máy nóng lạnh",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11037016,
+        "parent_catid": 11036971,
+        "name": "Garment Care",
+        "display_name": "Thiết bị chăm sóc quần áo",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11037023,
+        "parent_catid": 11036971,
+        "name": "Others",
+        "display_name": "Khác",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11111623,
+        "parent_catid": 11036971,
+        "name": "Blenders, Mixers & Grinders",
+        "display_name": "Máy xay, ép, máy đánh trứng trộn bột, máy xay thực phẩm",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11111620,
+        "parent_catid": 11036971,
+        "name": "Electric Cookers",
+        "display_name": "Bếp điện",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035854,
+        "parent_catid": 11035853,
+        "name": "Rings",
+        "display_name": "Nhẫn",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035855,
+        "parent_catid": 11035853,
+        "name": "Earrings",
+        "display_name": "Bông tai",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035856,
+        "parent_catid": 11035853,
+        "name": "Scarves & Shawls",
+        "display_name": "Khăn choàng",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035857,
+        "parent_catid": 11035853,
+        "name": "Gloves",
+        "display_name": "Găng tay",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035858,
+        "parent_catid": 11035853,
+        "name": "Hair Accessories",
+        "display_name": "Phụ kiện tóc",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035865,
+        "parent_catid": 11035853,
+        "name": "Bracelets & Bangles",
+        "display_name": "Vòng tay & Lắc tay",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035866,
+        "parent_catid": 11035853,
+        "name": "Anklets",
+        "display_name": "Lắc chân",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035867,
+        "parent_catid": 11035853,
+        "name": "Hats & Caps",
+        "display_name": "Mũ",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035868,
+        "parent_catid": 11035853,
+        "name": "Necklaces",
+        "display_name": "Dây chuyền",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035869,
+        "parent_catid": 11035853,
+        "name": "Eyewear",
+        "display_name": "Kính mắt",
+        "attributes": [
+            {
+                "id": 1,
+                "name": "Size",
+                "display_name": "Kích thước"
+            },
+            {
+                "id": 2,
+                "name": "Color",
+                "display_name": "Màu sắc"
+            },
+            {
+                "id": 3,
+                "name": "Material",
+                "display_name": "Chất liệu"
+            },
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            },
+            {
+                "id": 5,
+                "name": "Pattern",
+                "display_name": "Họa tiết"
+            },
+            {
+                "id": 6,
+                "name": "Sleeve Length",
+                "display_name": "Chiều dài tay áo"
+            },
+            {
+                "id": 7,
+                "name": "Fit Type",
+                "display_name": "Dáng áo"
+            },
+            {
+                "id": 8,
+                "name": "Gender",
+                "display_name": "Giới tính"
+            },
+            {
+                "id": 9,
+                "name": "Occasion",
+                "display_name": "Dịp sử dụng"
+            },
+            {
+                "id": 10,
+                "name": "Season",
+                "display_name": "Mùa"
+            },
+            {
+                "id": 11,
+                "name": "Fabric Type",
+                "display_name": "Loại vải"
+            },
+            {
+                "id": 12,
+                "name": "Washing Instructions",
+                "display_name": "Hướng dẫn giặt"
+            }
+        ]
+    },
+    {
+        "catid": 11035874,
+        "parent_catid": 11035853,
+        "name": "Investment Precious Metals",
+        "display_name": "Kim loại quý",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035880,
+        "parent_catid": 11035853,
+        "name": "Belts",
+        "display_name": "Thắt lưng",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035881,
+        "parent_catid": 11035853,
+        "name": "Neckties, Bow Ties & Cravats",
+        "display_name": "Cà vạt & Nơ cổ",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035882,
+        "parent_catid": 11035853,
+        "name": "Additional Accessories",
+        "display_name": "Phụ kiện thêm",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035891,
+        "parent_catid": 11035853,
+        "name": "Accessories Sets & Packages",
+        "display_name": "Bộ phụ kiện",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035892,
+        "parent_catid": 11035853,
+        "name": "Others",
+        "display_name": "Khác",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035893,
+        "parent_catid": 11035853,
+        "name": "Socks & Stockings",
+        "display_name": "Vớ/ Tất",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035897,
+        "parent_catid": 11035853,
+        "name": "Umbrella",
+        "display_name": "Ô/Dù",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035479,
+        "parent_catid": 11035478,
+        "name": "Luggage",
+        "display_name": "Vali",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035487,
+        "parent_catid": 11035478,
+        "name": "Travel Bags",
+        "display_name": "Túi du lịch",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035492,
+        "parent_catid": 11035478,
+        "name": "Travel Accessories",
+        "display_name": "Phụ kiện du lịch",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035503,
+        "parent_catid": 11035478,
+        "name": "Sports & Outdoor Recreation Equipments",
+        "display_name": "Dụng Cụ Thể Thao & Dã Ngoại",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035531,
+        "parent_catid": 11035478,
+        "name": "Sports Footwear",
+        "display_name": "Giày Thể Thao",
+        "attributes": [
+            {
+                "id": 1,
+                "name": "Size",
+                "display_name": "Kích thước"
+            },
+            {
+                "id": 2,
+                "name": "Color",
+                "display_name": "Màu sắc"
+            },
+            {
+                "id": 3,
+                "name": "Material",
+                "display_name": "Chất liệu"
+            },
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            },
+            {
+                "id": 5,
+                "name": "Pattern",
+                "display_name": "Họa tiết"
+            },
+            {
+                "id": 6,
+                "name": "Sleeve Length",
+                "display_name": "Chiều dài tay áo"
+            },
+            {
+                "id": 7,
+                "name": "Fit Type",
+                "display_name": "Dáng áo"
+            },
+            {
+                "id": 8,
+                "name": "Gender",
+                "display_name": "Giới tính"
+            },
+            {
+                "id": 9,
+                "name": "Occasion",
+                "display_name": "Dịp sử dụng"
+            },
+            {
+                "id": 10,
+                "name": "Season",
+                "display_name": "Mùa"
+            },
+            {
+                "id": 11,
+                "name": "Fabric Type",
+                "display_name": "Loại vải"
+            },
+            {
+                "id": 12,
+                "name": "Washing Instructions",
+                "display_name": "Hướng dẫn giặt"
+            }
+        ]
+    },
+    {
+        "catid": 11035543,
+        "parent_catid": 11035478,
+        "name": "Sports & Outdoor Apparels",
+        "display_name": "Thời Trang Thể Thao & Dã Ngoại",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035553,
+        "parent_catid": 11035478,
+        "name": "Sports & Outdoor Accessories",
+        "display_name": "Phụ Kiện Thể Thao & Dã Ngoại",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035566,
+        "parent_catid": 11035478,
+        "name": "Others",
+        "display_name": "Khác",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036532,
+        "parent_catid": 11036525,
+        "name": "Snacks",
+        "display_name": "Đồ ăn vặt",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036526,
+        "parent_catid": 11036525,
+        "name": "Convenience / Ready-to-eat",
+        "display_name": "Đồ chế biến sẵn",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036544,
+        "parent_catid": 11036525,
+        "name": "Food Staples",
+        "display_name": "Nhu yếu phẩm",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036552,
+        "parent_catid": 11036525,
+        "name": "Cooking Essentials",
+        "display_name": "Nguyên liệu nấu ăn",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036562,
+        "parent_catid": 11036525,
+        "name": "Baking Needs",
+        "display_name": "Đồ làm bánh",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036591,
+        "parent_catid": 11036525,
+        "name": "Dairy & Eggs",
+        "display_name": "Sữa - trứng",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036576,
+        "parent_catid": 11036525,
+        "name": "Beverages",
+        "display_name": "Đồ uống",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036570,
+        "parent_catid": 11036525,
+        "name": "Breakfast Cereals & Spread",
+        "display_name": "Ngũ cốc & mứt",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036611,
+        "parent_catid": 11036525,
+        "name": "Bakery",
+        "display_name": "Các loại bánh",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036616,
+        "parent_catid": 11036525,
+        "name": "Alcoholic Beverages",
+        "display_name": "Đồ uống có cồn",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036622,
+        "parent_catid": 11036525,
+        "name": "Gift Set & Hampers",
+        "display_name": "Bộ quà tặng",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036601,
+        "parent_catid": 11036525,
+        "name": "Fresh & Frozen Food",
+        "display_name": "Thực phẩm tươi sống và thực phẩm đông lạnh",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036623,
+        "parent_catid": 11036525,
+        "name": "Others",
+        "display_name": "Khác",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036794,
+        "parent_catid": 11036793,
+        "name": "Bike, E-bike",
+        "display_name": "Xe đạp, xe điện",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036804,
+        "parent_catid": 11036793,
+        "name": "Motorbike",
+        "display_name": "Mô tô, xe máy",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036811,
+        "parent_catid": 11036793,
+        "name": "Car",
+        "display_name": "Xe Ô tô",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036817,
+        "parent_catid": 11036793,
+        "name": "Helmets",
+        "display_name": "Mũ bảo hiểm",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036824,
+        "parent_catid": 11036793,
+        "name": "Motorbike Accessories",
+        "display_name": "Phụ kiện xe máy",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036846,
+        "parent_catid": 11036793,
+        "name": "Bicycle & E-bike Accessories",
+        "display_name": "Phụ kiện xe đạp",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11108984,
+        "parent_catid": 11036793,
+        "name": "Interior Accessories",
+        "display_name": "Phụ kiện bên trong ô tô",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11108967,
+        "parent_catid": 11036793,
+        "name": "Automotive Oils & Lubes",
+        "display_name": "Dầu nhớt & dầu nhờn",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11109015,
+        "parent_catid": 11036793,
+        "name": "Auto Parts & Spares",
+        "display_name": "Phụ tùng ô tô",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11108953,
+        "parent_catid": 11036793,
+        "name": "Motorbike Spare Parts",
+        "display_name": "Phụ tùng xe máy",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11109002,
+        "parent_catid": 11036793,
+        "name": "Exterior Accessories",
+        "display_name": "Phụ kiện bên ngoài ô tô",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11108974,
+        "parent_catid": 11036793,
+        "name": "Automotive Care",
+        "display_name": "Chăm sóc ô tô",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11116267,
+        "parent_catid": 11036793,
+        "name": "Automotive Services",
+        "display_name": "Dịch vụ cho xe",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11108503,
+        "parent_catid": 11036863,
+        "name": "Domestic Books",
+        "display_name": "Sách Tiếng Việt",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11108540,
+        "parent_catid": 11036863,
+        "name": "Foreign Books",
+        "display_name": "Sách ngoại văn",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11108576,
+        "parent_catid": 11036863,
+        "name": "Gift & Wrapping",
+        "display_name": "Gói Quà",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11108584,
+        "parent_catid": 11036863,
+        "name": "Writing & Correction",
+        "display_name": "Bút viết",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11108591,
+        "parent_catid": 11036863,
+        "name": "School & Office Supplies",
+        "display_name": "Dụng cụ học sinh & văn phòng",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11108635,
+        "parent_catid": 11036863,
+        "name": "Coloring & Arts",
+        "display_name": "Màu, Họa Cụ và Đồ Thủ Công",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11108610,
+        "parent_catid": 11036863,
+        "name": "Notebooks & Paper Products",
+        "display_name": "Sổ và Giấy Các Loại",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036914,
+        "parent_catid": 11036863,
+        "name": "Souvenirs",
+        "display_name": "Quà Lưu Niệm",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11108624,
+        "parent_catid": 11036863,
+        "name": "Music & Media",
+        "display_name": "Nhạc cụ và phụ kiện âm nhạc",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035742,
+        "parent_catid": 11035741,
+        "name": "Backpacks",
+        "display_name": "Ba Lô Nam",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035743,
+        "parent_catid": 11035741,
+        "name": "Laptop Backpacks",
+        "display_name": "Ba Lô Laptop Nam",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            },
+            {
+                "id": 24,
+                "name": "Model",
+                "display_name": "Mẫu mã"
+            },
+            {
+                "id": 25,
+                "name": "Battery Life",
+                "display_name": "Thời lượng pin"
+            },
+            {
+                "id": 26,
+                "name": "Connectivity",
+                "display_name": "Kết nối"
+            },
+            {
+                "id": 27,
+                "name": "Warranty",
+                "display_name": "Bảo hành"
+            },
+            {
+                "id": 28,
+                "name": "Power Consumption",
+                "display_name": "Mức tiêu thụ điện"
+            },
+            {
+                "id": 29,
+                "name": "Weight",
+                "display_name": "Trọng lượng"
+            },
+            {
+                "id": 30,
+                "name": "Dimensions",
+                "display_name": "Kích thước"
+            },
+            {
+                "id": 31,
+                "name": "Processor",
+                "display_name": "Bộ vi xử lý"
+            },
+            {
+                "id": 32,
+                "name": "Operating System",
+                "display_name": "Hệ điều hành"
+            }
+        ]
+    },
+    {
+        "catid": 11035744,
+        "parent_catid": 11035741,
+        "name": "Laptop Bags & Cases",
+        "display_name": "Túi & Cặp Đựng Laptop",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            },
+            {
+                "id": 24,
+                "name": "Model",
+                "display_name": "Mẫu mã"
+            },
+            {
+                "id": 25,
+                "name": "Battery Life",
+                "display_name": "Thời lượng pin"
+            },
+            {
+                "id": 26,
+                "name": "Connectivity",
+                "display_name": "Kết nối"
+            },
+            {
+                "id": 27,
+                "name": "Warranty",
+                "display_name": "Bảo hành"
+            },
+            {
+                "id": 28,
+                "name": "Power Consumption",
+                "display_name": "Mức tiêu thụ điện"
+            },
+            {
+                "id": 29,
+                "name": "Weight",
+                "display_name": "Trọng lượng"
+            },
+            {
+                "id": 30,
+                "name": "Dimensions",
+                "display_name": "Kích thước"
+            },
+            {
+                "id": 31,
+                "name": "Processor",
+                "display_name": "Bộ vi xử lý"
+            },
+            {
+                "id": 32,
+                "name": "Operating System",
+                "display_name": "Hệ điều hành"
+            }
+        ]
+    },
+    {
+        "catid": 11035747,
+        "parent_catid": 11035741,
+        "name": "Laptop Sleeves",
+        "display_name": "Túi Chống Sốc Laptop Nam",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            },
+            {
+                "id": 24,
+                "name": "Model",
+                "display_name": "Mẫu mã"
+            },
+            {
+                "id": 25,
+                "name": "Battery Life",
+                "display_name": "Thời lượng pin"
+            },
+            {
+                "id": 26,
+                "name": "Connectivity",
+                "display_name": "Kết nối"
+            },
+            {
+                "id": 27,
+                "name": "Warranty",
+                "display_name": "Bảo hành"
+            },
+            {
+                "id": 28,
+                "name": "Power Consumption",
+                "display_name": "Mức tiêu thụ điện"
+            },
+            {
+                "id": 29,
+                "name": "Weight",
+                "display_name": "Trọng lượng"
+            },
+            {
+                "id": 30,
+                "name": "Dimensions",
+                "display_name": "Kích thước"
+            },
+            {
+                "id": 31,
+                "name": "Processor",
+                "display_name": "Bộ vi xử lý"
+            },
+            {
+                "id": 32,
+                "name": "Operating System",
+                "display_name": "Hệ điều hành"
+            }
+        ]
+    },
+    {
+        "catid": 11035748,
+        "parent_catid": 11035741,
+        "name": "Tote Bags",
+        "display_name": "Túi Tote Nam",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035749,
+        "parent_catid": 11035741,
+        "name": "Briefcases",
+        "display_name": "Cặp Xách Công Sở Nam",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035750,
+        "parent_catid": 11035741,
+        "name": "Clutches",
+        "display_name": "Ví Cầm Tay Nam",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035751,
+        "parent_catid": 11035741,
+        "name": "Waist Bags & Chest Bags",
+        "display_name": "Túi Đeo Hông & Túi Đeo Ngực Nam",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035752,
+        "parent_catid": 11035741,
+        "name": "Crossbody & Shoulder Bags",
+        "display_name": "Túi Đeo Chéo Nam",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035753,
+        "parent_catid": 11035741,
+        "name": "Wallets",
+        "display_name": "Bóp/Ví Nam",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035760,
+        "parent_catid": 11035741,
+        "name": "Others",
+        "display_name": "Khác",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036418,
+        "parent_catid": 11036382,
+        "name": "Boy Clothes",
+        "display_name": "Trang phục bé trai",
+        "attributes": [
+            {
+                "id": 1,
+                "name": "Size",
+                "display_name": "Kích thước"
+            },
+            {
+                "id": 2,
+                "name": "Color",
+                "display_name": "Màu sắc"
+            },
+            {
+                "id": 3,
+                "name": "Material",
+                "display_name": "Chất liệu"
+            },
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            },
+            {
+                "id": 5,
+                "name": "Pattern",
+                "display_name": "Họa tiết"
+            },
+            {
+                "id": 6,
+                "name": "Sleeve Length",
+                "display_name": "Chiều dài tay áo"
+            },
+            {
+                "id": 7,
+                "name": "Fit Type",
+                "display_name": "Dáng áo"
+            },
+            {
+                "id": 8,
+                "name": "Gender",
+                "display_name": "Giới tính"
+            },
+            {
+                "id": 9,
+                "name": "Occasion",
+                "display_name": "Dịp sử dụng"
+            },
+            {
+                "id": 10,
+                "name": "Season",
+                "display_name": "Mùa"
+            },
+            {
+                "id": 11,
+                "name": "Fabric Type",
+                "display_name": "Loại vải"
+            },
+            {
+                "id": 12,
+                "name": "Washing Instructions",
+                "display_name": "Hướng dẫn giặt"
+            }
+        ]
+    },
+    {
+        "catid": 11036438,
+        "parent_catid": 11036382,
+        "name": "Girl Clothes",
+        "display_name": "Trang phục bé gái",
+        "attributes": [
+            {
+                "id": 1,
+                "name": "Size",
+                "display_name": "Kích thước"
+            },
+            {
+                "id": 2,
+                "name": "Color",
+                "display_name": "Màu sắc"
+            },
+            {
+                "id": 3,
+                "name": "Material",
+                "display_name": "Chất liệu"
+            },
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            },
+            {
+                "id": 5,
+                "name": "Pattern",
+                "display_name": "Họa tiết"
+            },
+            {
+                "id": 6,
+                "name": "Sleeve Length",
+                "display_name": "Chiều dài tay áo"
+            },
+            {
+                "id": 7,
+                "name": "Fit Type",
+                "display_name": "Dáng áo"
+            },
+            {
+                "id": 8,
+                "name": "Gender",
+                "display_name": "Giới tính"
+            },
+            {
+                "id": 9,
+                "name": "Occasion",
+                "display_name": "Dịp sử dụng"
+            },
+            {
+                "id": 10,
+                "name": "Season",
+                "display_name": "Mùa"
+            },
+            {
+                "id": 11,
+                "name": "Fabric Type",
+                "display_name": "Loại vải"
+            },
+            {
+                "id": 12,
+                "name": "Washing Instructions",
+                "display_name": "Hướng dẫn giặt"
+            }
+        ]
+    },
+    {
+        "catid": 11036461,
+        "parent_catid": 11036382,
+        "name": "Boy Shoes",
+        "display_name": "Giày dép bé trai",
+        "attributes": [
+            {
+                "id": 13,
+                "name": "Size",
+                "display_name": "Kích thước"
+            },
+            {
+                "id": 14,
+                "name": "Color",
+                "display_name": "Màu sắc"
+            },
+            {
+                "id": 15,
+                "name": "Material",
+                "display_name": "Chất liệu"
+            },
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            },
+            {
+                "id": 17,
+                "name": "Heel Height",
+                "display_name": "Chiều cao gót"
+            },
+            {
+                "id": 18,
+                "name": "Closure Type",
+                "display_name": "Loại khóa"
+            },
+            {
+                "id": 19,
+                "name": "Sole Material",
+                "display_name": "Chất liệu đế"
+            },
+            {
+                "id": 20,
+                "name": "Gender",
+                "display_name": "Giới tính"
+            },
+            {
+                "id": 21,
+                "name": "Arch Support",
+                "display_name": "Hỗ trợ vòm chân"
+            },
+            {
+                "id": 22,
+                "name": "Waterproof",
+                "display_name": "Chống nước"
+            }
+        ]
+    },
+    {
+        "catid": 11036469,
+        "parent_catid": 11036382,
+        "name": "Girl Shoes",
+        "display_name": "Giày dép bé gái",
+        "attributes": [
+            {
+                "id": 13,
+                "name": "Size",
+                "display_name": "Kích thước"
+            },
+            {
+                "id": 14,
+                "name": "Color",
+                "display_name": "Màu sắc"
+            },
+            {
+                "id": 15,
+                "name": "Material",
+                "display_name": "Chất liệu"
+            },
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            },
+            {
+                "id": 17,
+                "name": "Heel Height",
+                "display_name": "Chiều cao gót"
+            },
+            {
+                "id": 18,
+                "name": "Closure Type",
+                "display_name": "Loại khóa"
+            },
+            {
+                "id": 19,
+                "name": "Sole Material",
+                "display_name": "Chất liệu đế"
+            },
+            {
+                "id": 20,
+                "name": "Gender",
+                "display_name": "Giới tính"
+            },
+            {
+                "id": 21,
+                "name": "Arch Support",
+                "display_name": "Hỗ trợ vòm chân"
+            },
+            {
+                "id": 22,
+                "name": "Waterproof",
+                "display_name": "Chống nước"
+            }
+        ]
+    },
+    {
+        "catid": 11036477,
+        "parent_catid": 11036382,
+        "name": "Others",
+        "display_name": "Khác",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036383,
+        "parent_catid": 11036382,
+        "name": "Baby Clothes",
+        "display_name": "Quần áo em bé",
+        "attributes": [
+            {
+                "id": 1,
+                "name": "Size",
+                "display_name": "Kích thước"
+            },
+            {
+                "id": 2,
+                "name": "Color",
+                "display_name": "Màu sắc"
+            },
+            {
+                "id": 3,
+                "name": "Material",
+                "display_name": "Chất liệu"
+            },
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            },
+            {
+                "id": 5,
+                "name": "Pattern",
+                "display_name": "Họa tiết"
+            },
+            {
+                "id": 6,
+                "name": "Sleeve Length",
+                "display_name": "Chiều dài tay áo"
+            },
+            {
+                "id": 7,
+                "name": "Fit Type",
+                "display_name": "Dáng áo"
+            },
+            {
+                "id": 8,
+                "name": "Gender",
+                "display_name": "Giới tính"
+            },
+            {
+                "id": 9,
+                "name": "Occasion",
+                "display_name": "Dịp sử dụng"
+            },
+            {
+                "id": 10,
+                "name": "Season",
+                "display_name": "Mùa"
+            },
+            {
+                "id": 11,
+                "name": "Fabric Type",
+                "display_name": "Loại vải"
+            },
+            {
+                "id": 12,
+                "name": "Washing Instructions",
+                "display_name": "Hướng dẫn giặt"
+            }
+        ]
+    },
+    {
+        "catid": 11036396,
+        "parent_catid": 11036382,
+        "name": "Baby Mittens & Footwear",
+        "display_name": "Giày tập đi & Tất sơ sinh",
+        "attributes": [
+            {
+                "id": 1,
+                "name": "Size",
+                "display_name": "Kích thước"
+            },
+            {
+                "id": 2,
+                "name": "Color",
+                "display_name": "Màu sắc"
+            },
+            {
+                "id": 3,
+                "name": "Material",
+                "display_name": "Chất liệu"
+            },
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            },
+            {
+                "id": 5,
+                "name": "Pattern",
+                "display_name": "Họa tiết"
+            },
+            {
+                "id": 6,
+                "name": "Sleeve Length",
+                "display_name": "Chiều dài tay áo"
+            },
+            {
+                "id": 7,
+                "name": "Fit Type",
+                "display_name": "Dáng áo"
+            },
+            {
+                "id": 8,
+                "name": "Gender",
+                "display_name": "Giới tính"
+            },
+            {
+                "id": 9,
+                "name": "Occasion",
+                "display_name": "Dịp sử dụng"
+            },
+            {
+                "id": 10,
+                "name": "Season",
+                "display_name": "Mùa"
+            },
+            {
+                "id": 11,
+                "name": "Fabric Type",
+                "display_name": "Loại vải"
+            },
+            {
+                "id": 12,
+                "name": "Washing Instructions",
+                "display_name": "Hướng dẫn giặt"
+            }
+        ]
+    },
+    {
+        "catid": 11036397,
+        "parent_catid": 11036382,
+        "name": "Baby & Kids Accessories",
+        "display_name": "Phụ kiện trẻ em",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036933,
+        "parent_catid": 11036932,
+        "name": "Hobbies & Collectibles",
+        "display_name": "Sở thích & Sưu tầm",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036939,
+        "parent_catid": 11036932,
+        "name": "Game Zone",
+        "display_name": "Đồ chơi giải trí",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036946,
+        "parent_catid": 11036932,
+        "name": "Educational Toys",
+        "display_name": "Đồ chơi giáo dục",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036954,
+        "parent_catid": 11036932,
+        "name": "Baby & Toddler Toys",
+        "display_name": "Đồ chơi cho trẻ sơ sinh & trẻ nhỏ",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036960,
+        "parent_catid": 11036932,
+        "name": "Action & Outdoor Toys",
+        "display_name": "Đồ chơi vận động & ngoài trời",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036966,
+        "parent_catid": 11036932,
+        "name": "Dolls & Stuffed Toys",
+        "display_name": "Búp bê & Đồ chơi nhồi bông",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036625,
+        "parent_catid": 11036624,
+        "name": "Laundry",
+        "display_name": "Giặt giũ & Chăm sóc nhà cửa",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036634,
+        "parent_catid": 11036624,
+        "name": "Toilet Paper",
+        "display_name": "Giấy vệ sinh, khăn giấy",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036639,
+        "parent_catid": 11036624,
+        "name": "Household Cleaning",
+        "display_name": "Vệ sinh nhà cửa",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036647,
+        "parent_catid": 11036624,
+        "name": "Dishwashing",
+        "display_name": "Vệ sinh bát đĩa",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036649,
+        "parent_catid": 11036624,
+        "name": "Cleaning Tools",
+        "display_name": "Dụng cụ vệ sinh",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036654,
+        "parent_catid": 11036624,
+        "name": "Air Fresheners",
+        "display_name": "Chất khử mùi, làm thơm",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036660,
+        "parent_catid": 11036624,
+        "name": "Insect Killer",
+        "display_name": "Thuốc diệt côn trùng",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036664,
+        "parent_catid": 11036624,
+        "name": "Food preservation",
+        "display_name": "Túi, màng bọc thực phẩm",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036668,
+        "parent_catid": 11036624,
+        "name": "Trash Bags",
+        "display_name": "Bao bì, túi đựng rác",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036479,
+        "parent_catid": 11036478,
+        "name": "Pet Food",
+        "display_name": "Thức ăn cho thú cưng",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036490,
+        "parent_catid": 11036478,
+        "name": "Pet Accessories",
+        "display_name": "Phụ kiện cho thú cưng",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036498,
+        "parent_catid": 11036478,
+        "name": "Litter & Toilet",
+        "display_name": "Vệ sinh cho thú cưng",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036510,
+        "parent_catid": 11036478,
+        "name": "Pet Clothing & Accessories",
+        "display_name": "Quần áo thú cưng",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036519,
+        "parent_catid": 11036478,
+        "name": "Pet Healthcare",
+        "display_name": "Chăm sóc sức khỏe",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11116223,
+        "parent_catid": 11036478,
+        "name": "Pet Grooming",
+        "display_name": "Làm đẹp cho thú cưng",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11036524,
+        "parent_catid": 11036478,
+        "name": "Others",
+        "display_name": "Khác",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035905,
+        "parent_catid": 11035898,
+        "name": "F&B",
+        "display_name": "Nhà hàng & Ăn uống",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035899,
+        "parent_catid": 11035898,
+        "name": "Events & Attractions",
+        "display_name": "Sự kiện & Giải trí",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035931,
+        "parent_catid": 11035898,
+        "name": "Telco",
+        "display_name": "Nạp tiền tài khoản",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035922,
+        "parent_catid": 11035898,
+        "name": "Beauty & Wellness",
+        "display_name": "Sức khỏe & Làm đẹp",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035929,
+        "parent_catid": 11035898,
+        "name": "Transport",
+        "display_name": "Gọi xe",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035930,
+        "parent_catid": 11035898,
+        "name": "Lessons & Workshops",
+        "display_name": "Khóa học",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035936,
+        "parent_catid": 11035898,
+        "name": "Travel",
+        "display_name": "Du lịch & Khách sạn",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035909,
+        "parent_catid": 11035898,
+        "name": "Shopping",
+        "display_name": "Mua sắm",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035949,
+        "parent_catid": 11035898,
+        "name": "Shopee",
+        "display_name": "Mã quà tặng Shopee",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035913,
+        "parent_catid": 11035898,
+        "name": "Utilities",
+        "display_name": "Thanh toán hóa đơn",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11035914,
+        "parent_catid": 11035898,
+        "name": "Services",
+        "display_name": "Dịch vụ khác",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11116487,
+        "parent_catid": 11116484,
+        "name": "Handtool",
+        "display_name": "Dụng cụ cầm tay",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11116485,
+        "parent_catid": 11116484,
+        "name": "Large tools and equipment",
+        "display_name": "Dụng cụ điện và thiết bị lớn",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11116489,
+        "parent_catid": 11116484,
+        "name": "Electrical Circuitry & Parts",
+        "display_name": "Thiết bị mạch điện",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11116488,
+        "parent_catid": 11116484,
+        "name": "Building and construction",
+        "display_name": "Vật liệu xây dựng",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    },
+    {
+        "catid": 11116486,
+        "parent_catid": 11116484,
+        "name": "Accessories",
+        "display_name": "Thiết bị và phụ kiện xây dựng",
+        "attributes": [
+            {
+                "id": 99,
+                "name": "Brand",
+                "display_name": "Thương hiệu"
+            }
+        ]
+    }
+]

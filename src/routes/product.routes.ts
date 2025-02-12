@@ -17,4 +17,15 @@ router
      */
     .post(platformValidator, accessTokenValidator, isShop(), asyncHandler(productController.uploadProductImages));
 
+router
+    .route('/create-product-infos')
+    /**
+     * Description. Create product infos
+     * Path: /create-product-infos
+     * Method: POST
+     * Headers: { Authorization: string, User-Agent: string }
+     * Body: UploadProductDTO
+     */
+    .post(platformValidator, accessTokenValidator, isShop(), asyncHandler(productController.createProductInfos));
+
 export default router;

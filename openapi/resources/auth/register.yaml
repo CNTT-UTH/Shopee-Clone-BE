@@ -27,7 +27,9 @@ post:
                                 type: string
                                 example: Register success
                             result:
-                                $ref: '../../schemas/SuccessAuthenticate.yaml'
+                                type: object
+                                properties:
+                                    verify_mail_token: string
         '400':
             description: Nền tảng không hợp lệ
         '422':

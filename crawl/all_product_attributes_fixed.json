@@ -1,0 +1,152 @@
+[
+    {
+        "id": 99,
+        "name": "Brand",
+        "display_name": "Thương hiệu"
+    },
+    {
+        "id": 1,
+        "name": "Size",
+        "display_name": "Kích thước"
+    },
+    {
+        "id": 2,
+        "name": "Color",
+        "display_name": "Màu sắc"
+    },
+    {
+        "id": 3,
+        "name": "Material",
+        "display_name": "Chất liệu"
+    },
+    {
+        "id": 5,
+        "name": "Pattern",
+        "display_name": "Họa tiết"
+    },
+    {
+        "id": 6,
+        "name": "Sleeve Length",
+        "display_name": "Chiều dài tay áo"
+    },
+    {
+        "id": 7,
+        "name": "Fit Type",
+        "display_name": "Dáng áo"
+    },
+    {
+        "id": 8,
+        "name": "Gender",
+        "display_name": "Giới tính"
+    },
+    {
+        "id": 9,
+        "name": "Occasion",
+        "display_name": "Dịp sử dụng"
+    },
+    {
+        "id": 10,
+        "name": "Season",
+        "display_name": "Mùa"
+    },
+    {
+        "id": 11,
+        "name": "Fabric Type",
+        "display_name": "Loại vải"
+    },
+    {
+        "id": 12,
+        "name": "Washing Instructions",
+        "display_name": "Hướng dẫn giặt"
+    },
+    {
+        "id": 24,
+        "name": "Model",
+        "display_name": "Mẫu mã"
+    },
+    {
+        "id": 25,
+        "name": "Battery Life",
+        "display_name": "Thời lượng pin"
+    },
+    {
+        "id": 26,
+        "name": "Connectivity",
+        "display_name": "Kết nối"
+    },
+    {
+        "id": 27,
+        "name": "Warranty",
+        "display_name": "Bảo hành"
+    },
+    {
+        "id": 28,
+        "name": "Power Consumption",
+        "display_name": "Mức tiêu thụ điện"
+    },
+    {
+        "id": 29,
+        "name": "Weight",
+        "display_name": "Trọng lượng"
+    },
+    {
+        "id": 30,
+        "name": "Dimensions",
+        "display_name": "Kích thước"
+    },
+    {
+        "id": 31,
+        "name": "Processor",
+        "display_name": "Bộ vi xử lý"
+    },
+    {
+        "id": 32,
+        "name": "Operating System",
+        "display_name": "Hệ điều hành"
+    },
+    {
+        "id": 13,
+        "name": "Size",
+        "display_name": "Kích thước"
+    },
+    {
+        "id": 14,
+        "name": "Color",
+        "display_name": "Màu sắc"
+    },
+    {
+        "id": 15,
+        "name": "Material",
+        "display_name": "Chất liệu"
+    },
+    {
+        "id": 17,
+        "name": "Heel Height",
+        "display_name": "Chiều cao gót"
+    },
+    {
+        "id": 18,
+        "name": "Closure Type",
+        "display_name": "Loại khóa"
+    },
+    {
+        "id": 19,
+        "name": "Sole Material",
+        "display_name": "Chất liệu đế"
+    },
+    {
+        "id": 20,
+        "name": "Gender",
+        "display_name": "Giới tính"
+    },
+    {
+        "id": 21,
+        "name": "Arch Support",
+        "display_name": "Hỗ trợ vòm chân"
+    },
+    {
+        "id": 22,
+        "name": "Waterproof",
+        "display_name": "Chống nước"
+    }
+]

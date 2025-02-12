@@ -10,6 +10,18 @@ class ProductController {
             result,
         });
     }
+
+    async createProductInfos(req: Request, res: Response) {
+        // Lấy CreateProductDTO
+
+        // const result = await mediaService.uploadProductInfos(req);
+// 
+        // res.send({
+            // success: true,
+            // mesage: null,
+            // result,
+        // });
+    }
 }
 
 export default new ProductController();

@@ -11,9 +11,12 @@ import {
     PrimaryColumn,
     ManyToOne,
     JoinColumn,
+    ManyToMany,
+    JoinTable,
 } from 'typeorm';
 import { Product } from './product.entity';
 import { Option } from './variant.entiity';
+import { Category } from './category.entity';
 
 @Entity('attributes')
 export class Attribute extends BaseEntity {
@@ -28,6 +31,10 @@ export class Attribute extends BaseEntity {
 
     @UpdateDateColumn()
     updated_at: Date;
+
+    @ManyToMany(() => Category, (cate) => {cate.cate_id})
+    @JoinTable({name: 'attribute_category'})
+    cates: Category[];
 }
 
 @Entity('attribute_values')
