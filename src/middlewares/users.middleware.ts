@@ -66,8 +66,8 @@ export const loginValidator = validate(
         },
         username: {
             in: ['body'],
-            escape: true,
             optional: true,
+            escape: true,
             custom: {
                 options: async (value: string, { req }) => {
                     if (req.body?.email) return true;
@@ -80,6 +80,16 @@ export const loginValidator = validate(
 
                     if (!check) {
                         throw USERS_MESSAGES.USERNAME_DOES_NOT_EXIST;
+                    }
+                    return true;
+                },
+            },
+        },
+        oneOfField: {
+            custom: {
+                options: (value, { req }) => {
+                    if (!req.body.email && !req.body.username) {
+                        throw new Error('Phải có ít nhất một trong hai trường: email hoặc username');
                     }
                     return true;
                 },

@@ -1,6 +1,6 @@
 import { DeliveryStatus, OrderStatus, PaymentStatus } from '~/constants/enums';
 import { AddressDTO } from './AddressDTO';
-import { ShippingDTO } from './ProductDTO';
+import { ShippingInfoDTO } from './ShippingDTO';
 
 export class OrderDTO {
     order_id?: string;
@@ -16,7 +16,7 @@ export class OrderDTO {
     shop_name?: string;
     shop_url?: string;
 
-    shipping?: ShippingDTO;
+    shipping?: ShippingInfoDTO;
     delivery_address?: AddressDTO;
 
     delivery_tracking?: TrackingDeliveryOrderDTO[];

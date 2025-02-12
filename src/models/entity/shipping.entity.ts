@@ -38,6 +38,25 @@ export class Shipping extends BaseEntity {
     updated_at: Date;
 }
 
+@Entity('shipping_product_infos')
+export class ShippingProductInfo {
+    @PrimaryGeneratedColumn('increment')
+    id: number;
+
+    @ManyToOne(() => Product, (product) => product._id)
+    @JoinColumn({name: 'product_id'})
+    product: Product;
+    
+    @ManyToOne(() => Shipping, (shipping) => shipping.shipping_channel_id)
+    @JoinColumn({name: 'shipping_channel_id'})
+    shipping: Shipping;
+
+    fee: number;
+    estimated_delivery_days_min: number;
+    estimated_delivery_days_max: number;
+    freeship: boolean;
+}
+
 @Entity('shipping_details')
 export class ShippingDetail extends BaseEntity {
     @PrimaryGeneratedColumn('increment')

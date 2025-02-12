@@ -6,6 +6,9 @@ import shopRoutes from './shop.routes';
 import cateRoutes from './category.routes';
 import addressRoutes from './address.routes';
 import productRoutes from './product.routes';
+import brandRoutes from './brand.routes';
+import attributeRoutes from './attribute.route';
+import shippingRoutes from './shipping.routes'
 
 export const initWebRoutes = (app: Express) => {
     app.use('/api/v1/home', homeRoutes);
@@ -15,4 +18,7 @@ export const initWebRoutes = (app: Express) => {
     app.use('/api/v1/categories', cateRoutes);
     app.use('/api/v1/addresses', addressRoutes);
     app.use('/api/v1/products', productRoutes);
+    app.use('/api/v1/brands', brandRoutes);
+    app.use('/api/v1/attributes', attributeRoutes);
+    app.use('/api/v1/shippings', shippingRoutes);
 };

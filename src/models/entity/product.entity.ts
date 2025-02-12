@@ -60,6 +60,15 @@ export class Product extends BaseEntity {
     @Column({ nullable: true, default: 0 })
     buyturn: number;
 
+    @Column({nullable: false})
+    weight: number;
+    @Column({nullable: true})
+    width: number;
+    @Column({nullable: true})
+    height: number;
+    @Column({nullable: true})
+    length: number;
+
     @CreateDateColumn()
     created_at: Date;
 

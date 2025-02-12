@@ -1,6 +1,6 @@
 import { Exclude, Expose } from 'class-transformer';
-import { CategoryDTO } from './CategoryDTO';
-import { ShippingInfoDTO } from './ShippingDTO';
+import { CategoryDTO } from '../CategoryDTO';
+import { ShippingInfoDTO } from '../ShippingDTO';
 
 @Exclude()
 export class ProductDTO {
@@ -9,7 +9,7 @@ export class ProductDTO {
 
     @Expose()
     title?: string;
-    @Expose()
+    @Expose()   
     description?: string;
 
     @Expose()
@@ -20,8 +20,8 @@ export class ProductDTO {
     @Expose()
     cates?: CategoryDTO[];
 
-    @Expose()
     review?: ProductReviewDTO;
+    
     @Expose()
     options?: OptionsDTO[];
     @Expose()
@@ -29,6 +29,7 @@ export class ProductDTO {
 
     @Expose()
     product_price?: PriceDTO[];
+
     @Expose()
     shipping_from?: string;
 
@@ -61,15 +62,14 @@ export class AttributeDTO {
     name?: string;
     value?: string;
     brand_id?: string;
-    url?: string;
 
-    constructor(data: Partial<AttributeDTO> = {}) {
-        this.id = data.id;
-        this.name = data.name;
-        this.value = data.value;
-        this.brand_id = data.brand_id;
-        this.url = data.url;
-    }
+    // constructor(data: Partial<AttributeDTO> = {}) {
+    //     this.id = data.id;
+    //     this.name = data.name;
+    //     this.value = data.value;
+    //     this.brand_id = data.brand_id;
+    //     this.url = data.url;
+    // }
 }
 
 export class ProductReviewDTO {
@@ -79,13 +79,13 @@ export class ProductReviewDTO {
     rating_star?: number;
     global_sold?: number;
 
-    constructor(data: Partial<ProductReviewDTO> = {}) {
-        this.cmt_count = data.cmt_count ?? 0;
-        this.liked_count = data.liked_count ?? 0;
-        this.rating_count = data.rating_count ?? [0, 0, 0, 0, 0, 0];
-        this.rating_star = data.rating_star ?? 0;
-        this.global_sold = data.global_sold ?? 0;
-    }
+    // constructor(data: Partial<ProductReviewDTO> = {}) {
+    //     this.cmt_count = data.cmt_count ?? 0;
+    //     this.liked_count = data.liked_count ?? 0;
+    //     this.rating_count = data.rating_count ?? [0, 0, 0, 0, 0, 0];
+    //     this.rating_star = data.rating_star ?? 0;
+    //     this.global_sold = data.global_sold ?? 0;
+    // }
 }
 
 export class OptionsDTO {
@@ -94,16 +94,17 @@ export class OptionsDTO {
     image_urls?: string[];
     sold_out?: boolean[];
 
-    constructor(data: Partial<OptionsDTO>) {
-        this.name = data.name;
-        this.value = data.value;
-        this.image_urls = data.image_urls;
-        this.sold_out = data.sold_out;
-    }
+    // constructor(data: Partial<OptionsDTO>) {
+    //     this.name = data.name;
+    //     this.value = data.value;
+    //     this.image_urls = data.image_urls;
+    //     this.sold_out = data.sold_out;
+    // }
 }
 
 export class variantDTO {
     product_id?: number;
+    variant_id?: number;
     sku?: string;
     name?: string;
     price?: number;
@@ -111,15 +112,15 @@ export class variantDTO {
     sold?: number;
     stock?: number; //số lượng tồn kho
 
-    constructor(data: Partial<variantDTO>) {
-        this.product_id = data.product_id;
-        this.sku = data.sku;
-        this.name = data.name;
-        this.price = data.price;
-        this.price_before_discount = data.price_before_discount;
-        this.sold = data.sold;
-        this.stock = data.stock;
-    }
+    // constructor(data: Partial<variantDTO>) {
+    //     this.product_id = data.product_id;
+    //     this.sku = data.sku;
+    //     this.name = data.name;
+    //     this.price = data.price;
+    //     this.price_before_discount = data.price_before_discount;
+    //     this.sold = data.sold;
+    //     this.stock = data.stock;
+    // }
 }
 
 export class PriceDTO {
@@ -133,13 +134,15 @@ export class PriceDTO {
     range_min_before_discount?: number;
     range_max_before_discount?: number;
 
-    constructor(data: Partial<PriceDTO>) {
-        this.discount = data.discount;
-        this.price = data.price;
-        this.price_before_discount = data.price_before_discount;
-        this.range_min = data.range_min;
-        this.range_max = data.range_max;
-        this.range_min_before_discount = data.range_min_before_discount;
-        this.range_max_before_discount = data.range_max_before_discount;
-    }
+    // constructor(data: Partial<PriceDTO>) {
+    //     this.discount = data.discount;
+    //     this.price = data.price;
+    //     this.price_before_discount = data.price_before_discount;
+    //     this.range_min = data.range_min;
+    //     this.range_max = data.range_max;
+    //     this.range_min_before_discount = data.range_min_before_discount;
+    //     this.range_max_before_discount = data.range_max_before_discount;
+    // }
 }
+
+

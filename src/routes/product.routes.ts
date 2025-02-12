@@ -2,6 +2,8 @@ import { Router } from 'express';
 import { Role } from '~/constants/enums';
 import productController from '~/controllers/product.controller';
 import { accessTokenValidator, authorizeRole, isShop, platformValidator } from '~/middlewares/auth.middleware';
+import { validationMiddleware } from '~/middlewares/validation.middleware';
+import { CreateProductDTO } from '~/models/dtos/product/CreateProductDTO';
 import { asyncHandler } from '~/utils/asyncHandler';
 
 const router = Router();
@@ -18,14 +20,15 @@ router
     .post(platformValidator, accessTokenValidator, isShop(), asyncHandler(productController.uploadProductImages));
 
 router
-    .route('/create-product-infos')
+    .route('/create-new-product')
     /**
      * Description. Create product infos
-     * Path: /create-product-infos
+     * Path: /create-new-product
      * Method: POST
      * Headers: { Authorization: string, User-Agent: string }
      * Body: UploadProductDTO
      */
-    .post(platformValidator, accessTokenValidator, isShop(), asyncHandler(productController.createProductInfos));
+    .post(validationMiddleware(CreateProductDTO), asyncHandler(productController.createProductInfos));
+    // .post(platformValidator, accessTokenValidator, isShop(), asyncHandler(productController.createProductInfos));
 
 export default router;

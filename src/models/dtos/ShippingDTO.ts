@@ -1,13 +1,16 @@
 export class ShippingInfoDTO {
     channel_id?: number;
-    name?: number; // Ex: Nhanh, Hỏa tốc,...
+    name?: string; // Ex: Nhanh, Hỏa tốc,...
 
     fee?: number;
     freeship?: boolean; // Miễn phí vận chuyển
     unsupport?: boolean; // Không hổ trợ
 
-    estimated_delivery_date_from?: string; // timestamp
-    estimated_delivery_date_to?: string; // timestamp
+    estimated_delivery_days_min?: number; 
+    estimated_delivery_days_max?: number; 
+
+    estimated_delivery_date_from?: number; // timestamp
+    estimated_delivery_date_to?: number; // timestamp
     delivery_text?: string; // Ex: Nhận từ 15 Th01 - 16 Th01
 
     is_fastest?: boolean;

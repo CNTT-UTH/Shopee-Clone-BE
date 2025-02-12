@@ -20,7 +20,7 @@ class AuthController {
         });
     };
 
-    login = async (req: Request<ParamsDictionary, any, RegisterReqBody>, res: Response) => {
+    login = async (req: Request<ParamsDictionary, any, LoginReqBody>, res: Response) => {
         const reqBody: LoginReqBody = req.body;
         const userAgent = req.headers['user-agent'] as string;
 
