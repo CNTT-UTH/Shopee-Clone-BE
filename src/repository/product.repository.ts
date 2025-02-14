@@ -17,6 +17,14 @@ export class ProductRepository {
           this.repo = AppDataSource.getRepository(Product);
      }
 
+     async findProductById(id: number) {
+          return await this.repo.findOneBy({_id: id})
+     }
+
+     async findAll() {
+          return await this.repo.find() ?? [];
+     }
+
      async createProduct(
           data: Partial<CreateProductDTO>,
           // brand: Brand,
@@ -49,10 +57,6 @@ export class ProductRepository {
           }).save();
 
           return product;
-     }
-
-     async findProductByID(id: number) {
-          return await this.repo.findOneBy({ _id: id });
      }
 
      async updateRelations(

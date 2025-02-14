@@ -27,6 +27,28 @@ class ProductController {
             result,
         });
     }
+
+    async getProductById(req: Request, res: Response) {
+        const id: number = Number(req.params.id);
+        const result = await productService.getProduct(id);
+
+        res.send({
+            success: true,
+            mesage: null,
+            result,
+        });
+    }
+
+    async getAllProducts(req: Request, res: Response) {
+
+        const result = await productService.getAllProducts();
+
+        res.send({
+            success: true,
+            mesage: null,
+            result,
+        });
+    }
 }
 
 export default new ProductController();

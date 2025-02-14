@@ -743,6 +743,67 @@ paths:
                   message:
                     type: string
                   result:
+                    $ref: '#/paths/~1products~1%7Bid%7D/get/responses/200/content/application~1json/schema/properties/result'
+        '400':
+          description: null
+        '422':
+          description: Sai các trường thông tin
+  /products/all:
+    get:
+      tags:
+        - products
+      summary: Lấy tất cả sản phẩm
+      description: null
+      operationId: product_get_all
+      responses:
+        '200':
+          description: null
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    success:
+                      type: boolean
+                      example: true
+                    message:
+                      type: string
+                    result:
+                      $ref: '#/paths/~1products~1%7Bid%7D/get/responses/200/content/application~1json/schema/properties/result'
+        '400':
+          description: null
+        '422':
+          description: Sai các trường thông tin
+  '/products/{id}':
+    get:
+      tags:
+        - products
+      summary: Lấy sản phẩm bằng id
+      description: null
+      operationId: product_get_by_id
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: number
+          required: true
+          example: 1
+      responses:
+        '200':
+          description: null
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                  result:
                     type: object
                     properties:
                       success:

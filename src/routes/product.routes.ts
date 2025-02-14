@@ -28,7 +28,24 @@ router
      * Headers: { Authorization: string, User-Agent: string }
      * Body: UploadProductDTO
      */
-    .post(accessTokenValidator, validationMiddleware(CreateProductDTO), asyncHandler(productController.createProductInfos));
-    // .post(platformValidator, accessTokenValidator, isShop(), asyncHandler(productController.createProductInfos));
+    .post(platformValidator, accessTokenValidator, validationMiddleware(CreateProductDTO), isShop(), asyncHandler(productController.createProductInfos));
+
+router
+    .route('/all')
+    /**
+     * Description. Get all products
+     * Path: /all'
+     * Method: GET
+     */
+    .get(asyncHandler(productController.getAllProducts));
+
+router
+    .route('/:id')
+    /**
+     * Description. Get produc by id
+     * Path: /:id'
+     * Method: GET
+     */
+    .get(asyncHandler(productController.getProductById));
 
 export default router;

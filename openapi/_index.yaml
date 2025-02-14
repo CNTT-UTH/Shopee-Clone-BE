@@ -78,6 +78,10 @@ paths:
         $ref: './resources/product/uploadProductImages.yaml'
     /products/create-new-product:
         $ref: './resources/product/createProduct.yaml'
+    /products/all:
+        $ref: './resources/product/getProductAll.yaml'
+    /products/{id}:
+        $ref: './resources/product/getProduct.yaml'
 
     #   CATEGORIES ROUTES
     /categories/get-category-tree:

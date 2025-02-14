@@ -41,7 +41,7 @@ class ProductService {
           this.shippingRepository = new ShippingRepository();
           this.variantRepository = new VariantRepository();
           this.cateRepository = new CategoryRepository();
-          
+
      }
 
      async toDTO(product: Product): Promise<ProductDTO> {
@@ -103,14 +103,14 @@ class ProductService {
           priceDTO.price = product.price;
           priceDTO.price_before_discount = product.old_price
           priceDTO.discount = product.discount;
-          priceDTO.range_min = Math.min(...variants.map((variant) => {return variant.price as number}))
-          priceDTO.range_max = Math.max(...variants.map((variant) => {return variant.price as number}))
-          priceDTO.range_min_before_discount = Math.min(...variants.map((variant) => {return variant.price_before_discount as number}))
-          priceDTO.range_max_before_discount = Math.max(...variants.map((variant) => {return variant.price_before_discount as number}))
+          priceDTO.range_min = Math.min(...variants.map((variant) => { return variant.price as number }))
+          priceDTO.range_max = Math.max(...variants.map((variant) => { return variant.price as number }))
+          priceDTO.range_min_before_discount = Math.min(...variants.map((variant) => { return variant.price_before_discount as number }))
+          priceDTO.range_max_before_discount = Math.max(...variants.map((variant) => { return variant.price_before_discount as number }))
           productDTO.product_price = priceDTO;
 
           productDTO.cate_levels = await this.cateRepository.getPathTreeFromLeafCate(product.category_id)
-          
+
           return productDTO;
      }
 
@@ -138,12 +138,30 @@ class ProductService {
           const shippingDTOs: ShippingInfoDTO[] = data.dimension ? await shippingRatesManagementService.countingRates(data.dimension, data.shipping_channels ?? []) : [];
           const shipping_infos: ShippingProductInfo[] = await this.shippingRepository.updateProductShippingInfo(shippingDTOs, product);
           const variants: ProductVariant[] = data.variants ? await this.variantRepository.createVariants(data.variants, product) : [];
-          
+
 
           product = await this.productRepository.updateRelations({ shop }, product);
 
           // const brand: Brand = this.brandRepository.getBrandById();
           return await this.toDTO(product);
+     }
+
+     async getProduct(id: number) {
+
+          const product: Product | null = await this.productRepository.findProductById(id);
+
+          if (!product) throw new ApiError("Sản phẩm không tồn tại!", HTTP_STATUS.NOT_FOUND);
+
+          return await this.toDTO(product);
+
+     }
+
+     async getAllProducts() {
+          const products = await this.productRepository.findAll();
+
+          const productDTOs = await Promise.all(products.map(async (product) => await this.toDTO(product)));
+
+          return productDTOs;
      }
 }
 
