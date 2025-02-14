@@ -28,6 +28,8 @@ tags:
       description: Danh mục
     - name: addresses
       description: Địa chỉ
+    - name: shippings
+      description: Giao hàng
 paths:
     #   AUTH ROUTES
     /auth/login:
@@ -94,6 +96,12 @@ paths:
         $ref: './resources/addresses/getAllDistricts.yaml'
     /addresses/get-all-wards/{district_code}:
         $ref: './resources/addresses/getAllWards.yaml'
+
+    #   SHIPPINGS ROUTES
+    /shippings/get-shipping-channels:
+        $ref: './resources/shippings/getShippingChannel.yaml'
+    /shippings/couting-shipping-fees:
+        $ref: './resources/shippings/coutingShippingFee.yaml'
 
 components:
     # parameters:

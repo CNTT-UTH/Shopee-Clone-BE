@@ -1,0 +1,18 @@
+post:
+    tags:
+        - shippings
+    summary: Tính phí ship
+    description: ''
+    operationId: shipping_counting_fee
+    requestBody:
+        content:
+            application/json:
+                schema:
+                    $ref: '../../schemas/ProductDimensionDTO.yaml'
+    responses:
+        '200':
+            description: Thành công
+        '400':
+            description: Nền tảng không hợp lệ
+        '422':
+            description: Sai các trường thông tin

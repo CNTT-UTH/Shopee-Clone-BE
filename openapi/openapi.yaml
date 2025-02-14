@@ -27,6 +27,8 @@ tags:
     description: Danh mục
   - name: addresses
     description: Địa chỉ
+  - name: shippings
+    description: Giao hàng
 paths:
   /auth/login:
     post:
@@ -1061,6 +1063,39 @@ paths:
       responses:
         '200':
           description: Thành công
+  /shippings/get-shipping-channels:
+    get:
+      tags:
+        - shippings
+      summary: Lấy tất cả các kênh vận chuyển
+      description: ''
+      operationId: shipping_channels
+      responses:
+        '200':
+          description: Thành công
+        '400':
+          description: Nền tảng không hợp lệ
+        '422':
+          description: Sai các trường thông tin
+  /shippings/couting-shipping-fees:
+    post:
+      tags:
+        - shippings
+      summary: Tính phí ship
+      description: ''
+      operationId: shipping_counting_fee
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductDimensionDTO'
+      responses:
+        '200':
+          description: Thành công
+        '400':
+          description: Nền tảng không hợp lệ
+        '422':
+          description: Sai các trường thông tin
 components:
   schemas:
     User:

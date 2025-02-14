@@ -10,6 +10,6 @@ router
 
 router
      .route('/couting-shipping-fees')
-     .get(asyncHandler(shippingController.countingRates));
+     .post(asyncHandler(shippingController.countingRates));
 
 export default router;
