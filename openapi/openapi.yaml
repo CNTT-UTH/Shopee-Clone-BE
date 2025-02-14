@@ -122,7 +122,8 @@ paths:
                   result:
                     type: object
                     properties:
-                      verify_mail_token: string
+                      verify_mail_token:
+                        type: string
         '400':
           description: Nền tảng không hợp lệ
         '422':
@@ -670,7 +671,7 @@ paths:
     post:
       tags:
         - products
-      summary: Cập nhật avatar người dùng
+      summary: Upload ảnh sản phẩm nhận về url
       description: null
       operationId: product_upload_images
       security:

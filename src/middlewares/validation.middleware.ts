@@ -17,18 +17,19 @@ interface ErrorValidation {
 
 const getError = async (errors: ValidationError[] | undefined) => {
     if (!errors) return undefined;
-    const results = Promise.all(errors.map(async (error) : Promise<ErrorValidation> => {
-        return {
-            property: error.property,
-            value: error.value,
-            constraints: error.constraints,
-            children: await getError(error.children),
-            
-        };
-    }));
-    
+    const results = Promise.all(
+        errors.map(async (error): Promise<ErrorValidation> => {
+            return {
+                property: error.property,
+                value: error.value,
+                constraints: error.constraints,
+                children: await getError(error.children),
+            };
+        }),
+    );
+
     return results;
-}
+};
 
 export const validationMiddleware = (dtoClass: any) => {
     return async (req: Request, res: Response, next: NextFunction) => {

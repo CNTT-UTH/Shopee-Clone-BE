@@ -29,7 +29,8 @@ post:
                             result:
                                 type: object
                                 properties:
-                                    verify_mail_token: string
+                                    verify_mail_token: 
+                                        type: string
         '400':
             description: Nền tảng không hợp lệ
         '422':

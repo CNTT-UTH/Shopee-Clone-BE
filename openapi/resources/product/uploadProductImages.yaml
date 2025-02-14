@@ -1,14 +1,14 @@
 post:
     tags:
         - products
-    summary: Cập nhật avatar người dùng
+    summary: Upload ảnh sản phẩm nhận về url
     description:
     operationId: product_upload_images
     security:
         - BearerAuth: []
     parameters:
         # - $ref: "../../parameters/useragent.yaml"
-        - $ref: '../../parameters/platform.yaml'
+        - $ref: "../../parameters/platform.yaml"
     requestBody:
         content:
             multipart/form-data:
@@ -18,11 +18,11 @@ post:
                         image:
                             type: array
                             items:
-                              type: string
-                              format: binary
-                              require: true
+                                type: string
+                                format: binary
+                                require: true
     responses:
-        '200':
+        "200":
             description:
             schema:
                 type: object
@@ -37,12 +37,12 @@ post:
                         items:
                             url:
                                 type: string
-                                example: 'https://res.cloudinary.com/dnoq9necr/image/upload/v1737452337/gwkov3rafwq0uompfv75.jpg'
+                                example: "https://res.cloudinary.com/dnoq9necr/image/upload/v1737452337/gwkov3rafwq0uompfv75.jpg"
                             type:
                                 type: string
-                                example: 'image'
+                                example: "image"
 
-        '400':
+        "400":
             description:
-        '422':
+        "422":
             description: Sai các trường thông tin

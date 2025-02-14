@@ -44,7 +44,6 @@ export const loginValidator = validate(
             in: ['body'],
             optional: true,
             isEmail: true,
-            normalizeEmail: true,
             escape: true,
             custom: {
                 options: async (value: string, { req }) => {
@@ -111,7 +110,6 @@ export const registerValidator = validate(
                 errorMessage: USERS_MESSAGES.EMAIL_IS_REQUIRED,
             },
             isEmail: true,
-            normalizeEmail: true,
             errorMessage: USERS_MESSAGES.EMAIL_IS_INVALID,
             custom: {
                 options: async (value: string) => {
