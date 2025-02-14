@@ -1,66 +1,23 @@
-import { Exclude, Expose } from 'class-transformer';
-import { CategoryDTO } from '../CategoryDTO';
+import { Exclude, Expose, Type } from 'class-transformer';
+import { CategoryDTO, CategoryLevelDTO } from '../CategoryDTO';
 import { ShippingInfoDTO } from '../ShippingDTO';
+import { IsNotEmpty } from 'class-validator';
+import { ShopDTO } from '../ShopDTO';
+
 
 @Exclude()
-export class ProductDTO {
+export class AttributeDTO {
     @Expose()
-    product_id?: number;
-
-    @Expose()
-    title?: string;
-    @Expose()   
-    description?: string;
-
-    @Expose()
-    product_attributes?: AttributeDTO[];
-
-    @Expose()
-    cat_id?: number;
-    @Expose()
-    cates?: CategoryDTO[];
-
-    review?: ProductReviewDTO;
+    @IsNotEmpty()
+    id?: number;
     
     @Expose()
-    options?: OptionsDTO[];
-    @Expose()
-    variants?: variantDTO[];
-
-    @Expose()
-    product_price?: PriceDTO[];
-
-    @Expose()
-    shipping_from?: string;
-
-    @Expose()
-    shipping_channel?: ShippingInfoDTO[];
-
-    // constructor(data: Partial<ProductDTO> = {}) {
-    //     this.product_id = data.product_id;
-    //     this.title = data.title;
-    //     this.description = data.description;
-
-    //     this.product_attributes = data.product_attributes || [];
-    //     this.cat_id = data.cat_id;
-    //     this.cates = data.cates || [];
-
-    //     this.review = data.review ? new ProductReviewDTO(data.review) : undefined;
-    //     this.options = data.options ? data.options.map((opt) => new OptionsDTO(opt)) : [];
-    //     this.variants = data.variants ? data.variants.map((variant) => new variantDTO(variant)) : [];
-
-    //     this.product_price = data.product_price ? data.product_price.map((price) => new PriceDTO(price)) : [];
-    //     this.shipping_from = data.shipping_from;
-    //     this.shipping_channel = data.shipping_channel
-    //         ? data.shipping_channel.map((channel) => new ShippingDTO(channel))
-    //         : [];
-    // }
-}
-
-export class AttributeDTO {
-    id?: number;
     name?: string;
+
+    @Expose({name: "value"})
+    @IsNotEmpty()
     value?: string;
+    
     brand_id?: string;
 
     // constructor(data: Partial<AttributeDTO> = {}) {
@@ -88,11 +45,15 @@ export class ProductReviewDTO {
     // }
 }
 
+@Exclude()
 export class OptionsDTO {
+    @Expose()
     name?: string;
+    
     value?: string[];
+
     image_urls?: string[];
-    sold_out?: boolean[];
+    // sold_out?: boolean[];
 
     // constructor(data: Partial<OptionsDTO>) {
     //     this.name = data.name;
@@ -102,14 +63,22 @@ export class OptionsDTO {
     // }
 }
 
-export class variantDTO {
+@Exclude()
+export class VariantDTO {
     product_id?: number;
+    @Expose({})
     variant_id?: number;
+    @Expose()
     sku?: string;
+    @Expose()
     name?: string;
+    @Expose()
     price?: number;
+    @Expose({name: "old_price"})
     price_before_discount?: number;
+    @Expose({name: "buyturn"})
     sold?: number;
+    @Expose({name: "quantity"})
     stock?: number; //số lượng tồn kho
 
     // constructor(data: Partial<variantDTO>) {
@@ -123,9 +92,11 @@ export class variantDTO {
     // }
 }
 
+
 export class PriceDTO {
     discount?: number;
     price?: number;
+
     price_before_discount?: number;
 
     /* đối với sản phẩm có nhiều biến thể */
@@ -146,3 +117,69 @@ export class PriceDTO {
 }
 
 
+@Exclude()
+export class ProductDTO {
+    @Expose({name: "_id"})
+    product_id?: number;
+
+    @Expose()
+    title?: string;
+    @Expose()   
+    description?: string;
+
+    @Expose()
+    product_attributes?: AttributeDTO[];
+
+    @Expose()
+    cate_id?: number;
+    
+    @Expose()
+    cates?: CategoryDTO[];
+
+    cate_levels: CategoryLevelDTO;
+
+    review?: ProductReviewDTO;
+    
+    @Expose()
+    options?: OptionsDTO[];
+    @Expose()
+    variants?: VariantDTO[];
+
+    @Expose()
+    product_price?: PriceDTO;
+
+    @Expose()
+    shipping_from?: string;
+
+    @Expose()
+    shipping_channel?: ShippingInfoDTO[];
+
+    image_urls?: string[];
+    
+    @Expose({name: "shop"})
+    @Type(() => ShopDTO)
+    shop: ShopDTO;
+    
+    @Expose({name: "sku"})
+    sku: string;
+
+    // constructor(data: Partial<ProductDTO> = {}) {
+    //     this.product_id = data.product_id;
+    //     this.title = data.title;
+    //     this.description = data.description;
+
+    //     this.product_attributes = data.product_attributes || [];
+    //     this.cat_id = data.cat_id;
+    //     this.cates = data.cates || [];
+
+    //     this.review = data.review ? new ProductReviewDTO(data.review) : undefined;
+    //     this.options = data.options ? data.options.map((opt) => new OptionsDTO(opt)) : [];
+    //     this.variants = data.variants ? data.variants.map((variant) => new variantDTO(variant)) : [];
+
+    //     this.product_price = data.product_price ? data.product_price.map((price) => new PriceDTO(price)) : [];
+    //     this.shipping_from = data.shipping_from;
+    //     this.shipping_channel = data.shipping_channel
+    //         ? data.shipping_channel.map((channel) => new ShippingDTO(channel))
+    //         : [];
+    // }
+}

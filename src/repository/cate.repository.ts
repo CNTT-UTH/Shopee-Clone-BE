@@ -1,5 +1,7 @@
+import { plainToInstance } from 'class-transformer';
 import { Repository } from 'typeorm';
 import AppDataSource from '~/dbs/db';
+import { CategoryDTO, CategoryLevelDTO } from '~/models/dtos/CategoryDTO';
 import { Category } from '~/models/entity/category.entity';
 
 export class CategoryRepository {
@@ -17,5 +19,22 @@ export class CategoryRepository {
     async getAllChildrenCate(parent_id: number) {
         const cates = this.repo.findBy({ parent_cate_id: parent_id });
         return cates;
+    }
+
+    async getPathTreeFromLeafCate(leaf_id: number): Promise<CategoryLevelDTO> {
+        const cateLevelDTO : CategoryLevelDTO = {}
+        const getRoot = async (child_id: number) => {
+            const child = await this.repo.findOneBy({cate_id: child_id});
+
+            if (!child) return;
+
+            cateLevelDTO[child?.level] = plainToInstance(CategoryDTO, child);
+
+            if (child.parent_cate_id) return getRoot(child.parent_cate_id);
+        }
+
+        await getRoot(leaf_id);
+
+        return cateLevelDTO;
     }
 }

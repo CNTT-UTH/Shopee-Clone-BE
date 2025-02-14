@@ -28,3 +28,8 @@ export class CategoryDTO {
     //     this.image_url = data.image_url;
     // }
 }
+
+
+export class CategoryLevelDTO {
+    [level: number] : CategoryDTO
+}

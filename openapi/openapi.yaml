@@ -118,7 +118,9 @@ paths:
                     type: string
                     example: Register success
                   result:
-                    $ref: '#/components/schemas/SuccessAuthenticate'
+                    type: object
+                    properties:
+                      verify_mail_token: string
         '400':
           description: Nền tảng không hợp lệ
         '422':
@@ -709,6 +711,232 @@ paths:
           description: null
         '422':
           description: Sai các trường thông tin
+  /products/create-new-product:
+    post:
+      tags:
+        - products
+      summary: Đăng sản phẩm
+      description: null
+      operationId: product_create
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/paths/~1shops/get/parameters/0'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateProductDTO'
+      responses:
+        '200':
+          description: null
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                  result:
+                    type: object
+                    properties:
+                      success:
+                        type: boolean
+                        example: true
+                      message:
+                        type: string
+                        nullable: true
+                      result:
+                        type: object
+                        properties:
+                          product_id:
+                            type: integer
+                            example: 65
+                          title:
+                            type: string
+                            example: aa
+                          description:
+                            type: string
+                            example: aaa
+                          product_attributes:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                id:
+                                  type: integer
+                                  example: 99
+                                name:
+                                  type: string
+                                  example: Thương hiệu
+                                value:
+                                  type: string
+                                  example: No Brand
+                          cate_levels:
+                            type: object
+                            properties:
+                              '1':
+                                type: object
+                                properties:
+                                  cate_id:
+                                    type: integer
+                                  name:
+                                    type: string
+                                  level:
+                                    type: integer
+                                  parent_id:
+                                    type: integer
+                                    nullable: true
+                                  image_url:
+                                    type: string
+                              '2':
+                                type: object
+                                properties:
+                                  cate_id:
+                                    type: integer
+                                  name:
+                                    type: string
+                                  level:
+                                    type: integer
+                                  parent_id:
+                                    type: integer
+                                    nullable: true
+                                  image_url:
+                                    type: string
+                          options:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                name:
+                                  type: string
+                                value:
+                                  type: array
+                                  items:
+                                    type: string
+                          variants:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                variant_id:
+                                  type: integer
+                                sku:
+                                  type: string
+                                name:
+                                  type: string
+                                price:
+                                  type: integer
+                                price_before_discount:
+                                  type: integer
+                                sold:
+                                  type: integer
+                                stock:
+                                  type: integer
+                          product_price:
+                            type: object
+                            properties:
+                              price:
+                                type: integer
+                              price_before_discount:
+                                type: integer
+                              discount:
+                                type: number
+                              range_min:
+                                type: integer
+                              range_max:
+                                type: integer
+                              range_min_before_discount:
+                                type: integer
+                              range_max_before_discount:
+                                type: integer
+                          shipping_channel:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                channel_id:
+                                  type: integer
+                                name:
+                                  type: string
+                                fee:
+                                  type: integer
+                                freeship:
+                                  type: boolean
+                                estimated_delivery_days_min:
+                                  type: integer
+                                estimated_delivery_days_max:
+                                  type: integer
+                                estimated_delivery_date_from:
+                                  type: integer
+                                estimated_delivery_date_to:
+                                  type: integer
+                                delivery_text:
+                                  type: string
+                          image_urls:
+                            type: array
+                            items:
+                              type: string
+                          shop:
+                            type: object
+                            properties:
+                              shopid:
+                                type: integer
+                              account:
+                                type: object
+                                properties:
+                                  user_id:
+                                    type: string
+                                  username:
+                                    type: string
+                                  email:
+                                    type: string
+                                  name:
+                                    type: string
+                                    nullable: true
+                                  gender:
+                                    type: integer
+                                  phone:
+                                    type: string
+                                    nullable: true
+                                  is_shop:
+                                    type: boolean
+                                  status:
+                                    type: integer
+                                  avatar:
+                                    type: string
+                                    nullable: true
+                              description:
+                                type: string
+                                nullable: true
+                              name:
+                                type: string
+                              item_count:
+                                type: integer
+                              rating_star:
+                                type: integer
+                              total_rating:
+                                type: integer
+                              response_rate:
+                                type: integer
+                              response_time:
+                                type: integer
+                              follower_count:
+                                type: integer
+                              created_at:
+                                type: integer
+                              default_address:
+                                type: integer
+                          sku:
+                            type: string
+                            example: KSHSO
+        '400':
+          description: null
+        '422':
+          description: Sai các trường thông tin
   /categories/get-category-tree:
     get:
       tags:
@@ -936,6 +1164,162 @@ components:
         refresh_token:
           type: string
           example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjRiZTBhZDJlNDNkMjQ2NDM5NGZlZWRiIiwidG9rZW5fdHlwZSI6MSwidmVyaWZ5IjoxLCJpYXQiOjE2OTEzODMyMjYsImV4cCI6MTcwMDAyMzIyNn0.bFnaBfxWl-Q48HCwAeMpNzZwTO9LEjcBd7Zyipjqr64
+    CreateProductDTO:
+      type: object
+      required:
+        - sku
+        - title
+        - description
+        - product_attributes
+        - cate_id
+        - price
+        - stock
+        - image_urls
+        - shipping_channels
+        - dimension
+      properties:
+        sku:
+          type: string
+          example: KSHSO
+        title:
+          type: string
+          example: aa
+        description:
+          type: string
+          example: aaa
+        product_attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/AttributeDTO'
+        cate_id:
+          type: integer
+          example: 11035503
+        options:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateOptionDTO'
+        variants:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateOptionValueDTO'
+        price:
+          type: number
+          format: float
+          example: 10000
+        stock:
+          type: integer
+          example: 10000
+        discount:
+          type: number
+          format: float
+          example: 0.1
+        image_urls:
+          type: array
+          items:
+            type: string
+          example:
+            - a
+            - b
+            - c
+        shipping_channels:
+          type: array
+          items:
+            type: integer
+          example:
+            - 2
+        dimension:
+          $ref: '#/components/schemas/ProductDimensionDTO'
+    AttributeDTO:
+      type: object
+      required:
+        - id
+        - name
+        - value
+      properties:
+        id:
+          type: integer
+          example: 99
+        name:
+          type: string
+          example: Thương hiệu
+        value:
+          type: string
+          example: No Brand
+    CreateVariantDTO:
+      type: object
+      required:
+        - name
+        - sku
+        - option_values
+        - price
+        - stock
+      properties:
+        name:
+          type: string
+          example: cacsc
+        sku:
+          type: string
+          example: SKU123
+        option_values:
+          type: array
+          items:
+            $ref: '#./CreateOptionValueDTO.yaml'
+        price:
+          type: number
+          format: float
+          example: 120000
+        stock:
+          type: integer
+          example: 100
+    CreateOptionDTO:
+      type: object
+      required:
+        - name
+        - value
+      properties:
+        name:
+          type: string
+          example: Màu sắc
+        value:
+          type: array
+          items:
+            type: string
+          example:
+            - Đỏ
+            - Vàng
+    CreateOptionValueDTO:
+      type: object
+      required:
+        - name
+        - value
+      properties:
+        name:
+          type: string
+          example: Màu sắc
+        value:
+          type: string
+          example: Đỏ
+    ProductDimensionDTO:
+      type: object
+      required:
+        - weight
+      properties:
+        weight:
+          type: number
+          format: float
+          example: 0.9
+        height:
+          type: number
+          format: float
+          nullable: true
+        width:
+          type: number
+          format: float
+          nullable: true
+        length:
+          type: number
+          format: float
+          nullable: true
   securitySchemes:
     BearerAuth:
       type: http

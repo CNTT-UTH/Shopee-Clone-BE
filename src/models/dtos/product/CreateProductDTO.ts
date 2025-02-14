@@ -1,4 +1,4 @@
-import { IsNotEmpty, Min, ValidateNested } from "class-validator";
+import { ArrayMaxSize, ArrayMinSize, IsArray, IsNotEmpty, IsNumber, IsString, Length, Min, ValidateBy, ValidateIf, ValidateNested } from "class-validator";
 import { AttributeDTO, PriceDTO } from "./ProductDTO";
 import { Type } from "class-transformer";
 
@@ -19,7 +19,7 @@ export class CreateVariantDTO {
      @IsNotEmpty()
      sku?: string;
      @IsNotEmpty()
-     option_values?: CreateOptionValueDTO[];
+     option_values: CreateOptionValueDTO[];
      @IsNotEmpty()
      price?: PriceDTO;
      @IsNotEmpty()
@@ -29,13 +29,11 @@ export class CreateVariantDTO {
 
 export class ProductDimensionDTO {
      @IsNotEmpty()
+     @IsNumber()
      weight?: number;
 
-     @IsNotEmpty()
      height?: number;
-     @IsNotEmpty()
      width?: number;
-     @IsNotEmpty()
      length?: number;
 }
 
@@ -57,47 +55,72 @@ export class ProductDimensionDTO {
  * }
  */
 export class CreateProductDTO {
-
+     @IsString()
      @IsNotEmpty()
      sku?: string;
-     
+
+     @IsString()
      @IsNotEmpty()
      title?: string;
-     
+
+     @IsString()
      @IsNotEmpty()
      description?: string;
-     
+
      @IsNotEmpty()
+     @IsArray()
+     @ArrayMinSize(1)
+     @ValidateNested({ each: true })
+     @Type(() => AttributeDTO)
      product_attributes?: AttributeDTO[];
-     
+
      @IsNotEmpty()
-     cat_id?: number;
-     
+     cate_id?: number;
+
      @IsNotEmpty()
+     @IsArray()
+     @ArrayMaxSize(2)
+     @ValidateNested({ each: true })
+     @Type(() => CreateOptionDTO)
      options?: CreateOptionDTO[];
-     
+
+     @ValidateIf(object => object?.options?.length !== 0)
      @IsNotEmpty()
-     @ValidateNested()
+     @IsArray()
+     @ArrayMinSize(1)
+     @ValidateNested({ each: true })
      @Type(() => CreateVariantDTO)
      variants?: CreateVariantDTO[];
-     
+
+
      @IsNotEmpty()
-     product_price?: PriceDTO;
-     
+     @IsNumber()
+     @Min(0.1)
+     price: number;
+
+     @ValidateIf((o) => o.variants.length === 0)
      @IsNotEmpty()
      @Min(1)
      stock?: number;
-     
+
      @IsNotEmpty()
+     @IsNumber()
      discount?: number;
-     
+
      @IsNotEmpty()
+     @IsArray()
+     @ArrayMinSize(3)
+     @ArrayMaxSize(3)
      image_urls?: string[];
 
-     
+
      @IsNotEmpty()
+     @IsArray()
+     @ArrayMinSize(1)
      shipping_channels: number[];
-     
+
      @IsNotEmpty()
+     @ValidateNested({ each: true })
+     @Type(() => ProductDimensionDTO)
      dimension: ProductDimensionDTO;
 }

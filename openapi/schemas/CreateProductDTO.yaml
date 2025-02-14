@@ -1,0 +1,60 @@
+type: object
+required:
+  - sku
+  - title
+  - description
+  - product_attributes
+  - cate_id
+  - price
+  - stock
+  - image_urls
+  - shipping_channels
+  - dimension
+properties:
+  sku:
+    type: string
+    example: "KSHSO"
+  title:
+    type: string
+    example: "aa"
+  description:
+    type: string
+    example: "aaa"
+  product_attributes:
+    type: array
+    items:
+      $ref: "./AttributeDTO.yaml"
+  cate_id:
+    type: integer
+    example: 11035503
+  options:
+    type: array
+    items:
+      $ref: "./CreateOptionDTO.yaml"
+  variants:
+    type: array
+    items:
+      $ref: "./CreateOptionValueDTO.yaml"
+  price:
+    type: number
+    format: float
+    example: 10000
+  stock:
+    type: integer
+    example: 10000
+  discount:
+    type: number
+    format: float
+    example: 0.1
+  image_urls:
+    type: array
+    items:
+      type: string
+    example: ["a", "b", "c"]
+  shipping_channels:
+    type: array
+    items:
+      type: integer
+    example: [2]
+  dimension:
+    $ref: "./ProductDimensionDTO.yaml"

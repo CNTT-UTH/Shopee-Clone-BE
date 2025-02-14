@@ -1,16 +1,24 @@
+import { Exclude, Expose } from "class-transformer";
+
+@Exclude()
 export class ShippingInfoDTO {
     channel_id?: number;
     name?: string; // Ex: Nhanh, Hỏa tốc,...
 
+    @Expose()
     fee?: number;
+    @Expose()
     freeship?: boolean; // Miễn phí vận chuyển
     unsupport?: boolean; // Không hổ trợ
-
+    
+    @Expose()
     estimated_delivery_days_min?: number; 
+    @Expose()
     estimated_delivery_days_max?: number; 
-
+    
     estimated_delivery_date_from?: number; // timestamp
     estimated_delivery_date_to?: number; // timestamp
+
     delivery_text?: string; // Ex: Nhận từ 15 Th01 - 16 Th01
 
     is_fastest?: boolean;

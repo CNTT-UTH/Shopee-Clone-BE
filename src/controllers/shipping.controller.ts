@@ -19,7 +19,7 @@ class ShippingController {
 
      async countingRates(req: Request, res: Response) {
           const payload: ProductDimensionDTO = req.body;
-          const result = await shippingRatesManagementService.countingRates(payload);
+          const result = await shippingRatesManagementService.countingRates(payload, "all");
 
           res.send({
                success: true,

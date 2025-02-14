@@ -1,0 +1,11 @@
+type: object
+required:
+  - name
+  - value
+properties:
+  name:
+    type: string
+    example: "Màu sắc"
+  value:
+    type: string
+    example: "Đỏ"

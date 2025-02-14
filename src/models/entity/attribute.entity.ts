@@ -39,11 +39,8 @@ export class Attribute extends BaseEntity {
 
 @Entity('attribute_values')
 export class AttributeValue extends BaseEntity {
-    @PrimaryColumn()
+    @PrimaryGeneratedColumn('increment')
     id: number;
-
-    @PrimaryColumn()
-    product_id: number;
 
     @Column()
     value: string;
@@ -54,7 +51,7 @@ export class AttributeValue extends BaseEntity {
     @UpdateDateColumn()
     updated_at: Date;
 
-    @OneToOne(() => Attribute, (attribute) => attribute.id, {
+    @ManyToOne(() => Attribute, (attribute) => attribute.id, {
         cascade: true,
     })
     @JoinColumn({ name: 'attribute_id' })

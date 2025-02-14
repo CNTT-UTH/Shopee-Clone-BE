@@ -12,3 +12,16 @@ FailedValidation:
     $ref: './FailedValidation.yaml'
 SuccessAuthenticate:
     $ref: './SuccessAuthenticate.yaml'
+CreateProductDTO:
+    $ref: './CreateProductDTO.yaml'
+AttributeDTO:
+    $ref: './AttributeDTO.yaml'
+CreateVariantDTO:
+    $ref: './CreateVariantDTO.yaml'
+CreateOptionDTO:
+    $ref: './CreateOptionDTO.yaml'
+CreateOptionValueDTO:
+    $ref: './CreateOptionValueDTO.yaml'
+ProductDimensionDTO:
+    $ref: './ProductDimensionDTO.yaml'
+

@@ -1,0 +1,15 @@
+type: object
+required:
+  - id
+  - name
+  - value
+properties:
+  id:
+    type: integer
+    example: 99
+  name:
+    type: string
+    example: "Thương hiệu"
+  value:
+    type: string
+    example: "No Brand"

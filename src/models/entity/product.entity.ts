@@ -46,16 +46,13 @@ export class Product extends BaseEntity {
     quantity: number;
 
     @Column({ nullable: true, default: 0 })
-    old_price: number;
-
-    @Column({ nullable: true, default: 0 })
     price: number;
 
     @Column({ nullable: true, default: 0 })
-    range_min_price: number;
+    old_price: number;
 
-    @Column({ nullable: true, default: 0 })
-    range_max_price: number;
+    @Column({ nullable: true, default: 0, type: 'float' })
+    discount: number;
 
     @Column({ nullable: true, default: 0 })
     buyturn: number;
@@ -84,7 +81,7 @@ export class Product extends BaseEntity {
     brand: Brand;
 
     @OneToMany(() => Image, (image) => image.product)
-    images: Image;
+    images: Image[];
 
     @OneToMany(() => Option, (option) => option.product)
     options: Option[];
@@ -105,4 +102,6 @@ export class Product extends BaseEntity {
     @ManyToMany(() => Shipping, (shipping) => shipping.shipping_channel_id)
     @JoinTable()
     shipping_channels: Shipping[];
+
+    
 }

@@ -39,7 +39,7 @@ export class Shipping extends BaseEntity {
 }
 
 @Entity('shipping_product_infos')
-export class ShippingProductInfo {
+export class ShippingProductInfo extends BaseEntity {
     @PrimaryGeneratedColumn('increment')
     id: number;
 
@@ -51,9 +51,13 @@ export class ShippingProductInfo {
     @JoinColumn({name: 'shipping_channel_id'})
     shipping: Shipping;
 
+    @Column()
     fee: number;
+    @Column()
     estimated_delivery_days_min: number;
+    @Column()
     estimated_delivery_days_max: number;
+    @Column()
     freeship: boolean;
 }
 

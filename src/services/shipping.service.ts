@@ -45,12 +45,13 @@ class ShippingRatesManagementService extends ShippingService {
           return (dimension.height * dimension.length * dimension.width) / DIMENSION_FACTOR;
      }
 
-     async countingRates(payload: ProductDimensionDTO) {
+     async countingRates(payload: ProductDimensionDTO, shipping_channels: number[] | "all") {
           const channels: Shipping[] = await this.shippingRepository.getAllChannels();
 
           const shippingDTOs: ShippingInfoDTO[] = [];
 
           for (let channel of channels) {
+               if (shipping_channels !== "all" && !shipping_channels.includes(channel.shipping_channel_id)) continue;
                const shippingDTO: ShippingInfoDTO = {};
 
                shippingDTO.channel_id = channel.shipping_channel_id;

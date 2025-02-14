@@ -1,0 +1,25 @@
+type: object
+required:
+  - name
+  - sku
+  - option_values
+  - price
+  - stock
+properties:
+  name:
+    type: string
+    example: "cacsc"
+  sku:
+    type: string
+    example: "SKU123"
+  option_values:
+    type: array
+    items:
+      $ref: "#./CreateOptionValueDTO.yaml"
+  price:
+    type: number
+    format: float
+    example: 120000
+  stock:
+    type: integer
+    example: 100

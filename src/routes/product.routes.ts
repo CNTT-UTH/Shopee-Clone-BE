@@ -28,7 +28,7 @@ router
      * Headers: { Authorization: string, User-Agent: string }
      * Body: UploadProductDTO
      */
-    .post(validationMiddleware(CreateProductDTO), asyncHandler(productController.createProductInfos));
+    .post(accessTokenValidator, validationMiddleware(CreateProductDTO), asyncHandler(productController.createProductInfos));
     // .post(platformValidator, accessTokenValidator, isShop(), asyncHandler(productController.createProductInfos));
 
 export default router;

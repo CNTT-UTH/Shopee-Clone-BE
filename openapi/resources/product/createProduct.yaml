@@ -1,0 +1,36 @@
+post:
+    tags:
+        - products
+    summary: Đăng sản phẩm
+    description:
+    operationId: product_create
+    security:
+        - BearerAuth: []
+    parameters:
+        # - $ref: "../../parameters/useragent.yaml"
+        - $ref: '../../parameters/platform.yaml'
+    requestBody:
+        content:
+            application/json:
+                schema:
+                    $ref: '../../schemas/CreateProductDTO.yaml'
+    responses:
+        '200':
+            description:
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            success:
+                                type: boolean
+                                example: true
+                            message:
+                                type: string
+                            result:
+                                $ref: '../../schemas/Product.yaml'                
+
+        '400':
+            description:
+        '422':
+            description: Sai các trường thông tin

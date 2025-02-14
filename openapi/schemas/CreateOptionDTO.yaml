@@ -1,0 +1,13 @@
+type: object
+required:
+  - name
+  - value
+properties:
+  name:
+    type: string
+    example: "Màu sắc"
+  value:
+    type: array
+    items:
+      type: string
+    example: ["Đỏ", "Vàng"]

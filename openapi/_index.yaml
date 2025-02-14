@@ -74,6 +74,8 @@ paths:
     #   PRODUCTS ROUTES
     /products/upload-product-images:
         $ref: './resources/product/uploadProductImages.yaml'
+    /products/create-new-product:
+        $ref: './resources/product/createProduct.yaml'
 
     #   CATEGORIES ROUTES
     /categories/get-category-tree:
@@ -97,7 +99,7 @@ components:
     # parameters:
     #     $ref: "./parameters/_index.yaml"
     schemas:
-        $ref: './schemas/_index.yaml'
+        $ref: './schemas/_index.yaml'    
     securitySchemes:
         BearerAuth:
             type: http

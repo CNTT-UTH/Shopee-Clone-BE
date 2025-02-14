@@ -1,0 +1,20 @@
+type: object
+required:
+  - weight
+properties:
+  weight:
+    type: number
+    format: float
+    example: 0.9
+  height:
+    type: number
+    format: float
+    nullable: true
+  width:
+    type: number
+    format: float
+    nullable: true
+  length:
+    type: number
+    format: float
+    nullable: true

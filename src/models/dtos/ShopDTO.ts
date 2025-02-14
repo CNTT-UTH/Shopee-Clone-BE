@@ -3,6 +3,7 @@ import { AddressDTO } from './AddressDTO';
 import { UserDTO } from './UserDTO';
 import { IsEmpty, IsNotEmpty, IsPhoneNumber, ValidateNested } from 'class-validator';
 import { verify } from 'crypto';
+import addressService from '~/services/address.service';
 
 @Exclude()
 export class ShopDTO {
@@ -35,6 +36,10 @@ export class ShopDTO {
     @Expose()
     @Transform(({ value }) => value?.getTime())
     created_at?: number; // timestamp
+
+
+    @Expose({name: "default_address_id"})
+    default_address: AddressDTO | number;
 
     constructor(data: Partial<ShopDTO> = {}) {
         this.shopid = data.shopid;
