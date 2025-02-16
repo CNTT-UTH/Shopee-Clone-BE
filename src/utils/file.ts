@@ -63,7 +63,7 @@ export const getNameFromFullname = (fullname: string) => {
 export const checkIfDirectoryExist = (path: string): void => {
     if (!fs.existsSync(path)) {
         fs.mkdir(path, { recursive: true }, (err) => {
-            if (err) throw new ApiError("Tạo đường dẫn không thành công", HTTP_STATUS.INTERNAL_SERVER_ERROR);
+            if (err) throw new ApiError('Tạo đường dẫn không thành công', HTTP_STATUS.INTERNAL_SERVER_ERROR);
         });
     }
 };

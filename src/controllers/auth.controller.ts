@@ -12,8 +12,7 @@ import {
 } from '~/models/requests/auth.requests';
 
 export class AuthController {
-    constructor(private readonly authService: AuthService) {
-     }
+    constructor(private readonly authService: AuthService) {}
 
     greetings = async (req: Request, res: Response) => {
         // (req);
@@ -113,10 +112,14 @@ export class AuthController {
         const reqBody: EmailVerifyReqBody = req.body;
         const userAgent = req.headers['user-agent'] as string;
 
-        const result = await this.authService.resendVerifyEmail(reqBody?.verify_email_token, req?.decoded as TokenPayload, {
-            platform: req.query?.platform == 'mobile' ? 'mobile' : 'web',
-            user_agent: userAgent,
-        });
+        const result = await this.authService.resendVerifyEmail(
+            reqBody?.verify_email_token,
+            req?.decoded as TokenPayload,
+            {
+                platform: req.query?.platform == 'mobile' ? 'mobile' : 'web',
+                user_agent: userAgent,
+            },
+        );
 
         res.send({
             suscess: true,

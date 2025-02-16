@@ -22,16 +22,16 @@ export class CategoryRepository {
     }
 
     async getPathTreeFromLeafCate(leaf_id: number): Promise<CategoryLevelDTO> {
-        const cateLevelDTO : CategoryLevelDTO = {}
+        const cateLevelDTO: CategoryLevelDTO = {};
         const getRoot = async (child_id: number) => {
-            const child = await this.repo.findOneBy({cate_id: child_id});
+            const child = await this.repo.findOneBy({ cate_id: child_id });
 
             if (!child) return;
 
             cateLevelDTO[child?.level] = plainToInstance(CategoryDTO, child);
 
             if (child.parent_cate_id) return getRoot(child.parent_cate_id);
-        }
+        };
 
         await getRoot(leaf_id);
 

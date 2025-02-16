@@ -5,8 +5,8 @@ import { ShippingService, ShippingRatesManagementService } from '~/services/ship
 export class ShippingController {
     constructor(
         private readonly shippingService: ShippingService,
-        private readonly shippingRatesManagementService: ShippingRatesManagementService
-    ) { }
+        private readonly shippingRatesManagementService: ShippingRatesManagementService,
+    ) {}
 
     async getAllShippingChannels(req: Request, res: Response) {
         const result = await this.shippingService.getAllShippingChannels();
@@ -14,19 +14,18 @@ export class ShippingController {
         res.send({
             success: true,
             message: null,
-            result
-        })
+            result,
+        });
     }
 
     async countingRates(req: Request, res: Response) {
         const payload: ProductDimensionDTO = req.body;
-        const result = await this.shippingRatesManagementService.countingRates(payload, "all");
+        const result = await this.shippingRatesManagementService.countingRates(payload, 'all');
 
         res.send({
             success: true,
             message: null,
-            result
-        })
+            result,
+        });
     }
 }
-

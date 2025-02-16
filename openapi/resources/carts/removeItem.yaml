@@ -1,0 +1,27 @@
+delete:
+    tags:
+        - carts
+    summary: Xóa sản phẩm giỏ hàng
+    description:
+    operationId: cart_remove
+    security:
+        - BearerAuth: []
+    parameters:
+        # - $ref: "../../parameters/useragent.yaml"
+        - $ref: "../../parameters/platform.yaml"
+    requestBody:
+        content:
+            application/json:
+                schema:
+                    type: object
+                    properties:
+                        item_id:
+                            type: string
+    responses:
+        '200':
+            description:             
+
+        '400':
+            description:
+        '422':
+            description: Sai các trường thông tin

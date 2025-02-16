@@ -1,4 +1,4 @@
-import { MigrationInterface, QueryRunner } from "typeorm";
+import { MigrationInterface, QueryRunner } from 'typeorm';
 import fs from 'fs';
 import path from 'path';
 
@@ -24,5 +24,4 @@ export class InitDataAttributeCategoryTable1739323988397 implements MigrationInt
 
         await queryRunner.query(sql_scripts);
     }
-
 }

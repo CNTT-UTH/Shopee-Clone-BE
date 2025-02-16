@@ -1,0 +1,12 @@
+type: object
+properties:
+    product_id:
+        type: number
+    product_variant_id:
+        type: number
+    shop_id:
+        type: string
+    quantity:
+        type: number
+    selected_to_checkout:
+        type: boolean

@@ -20,9 +20,9 @@ interface Attribute {
 }
 
 const toSql = (cates: Cate[], sqlScripts: string) => {
-    for (let cate of cates) {
+    for (const cate of cates) {
         const cate_id = cate.catid;
-        for (let attri of cate["attributes"]) {
+        for (const attri of cate['attributes']) {
             const attri_id = attri.id;
             sqlScripts += INSERT_TEMPLATE_1 + `(${attri_id}, ${cate_id});\n`;
         }
@@ -53,8 +53,7 @@ fs.readFile(path.resolve(__dirname, '..', 'crawl', 'level_2_categories_with_bran
         // printTree(obj?.["category_list"]);
 
         //toSQL
-        const sqlScripts = toSql(obj,
-            ``);
+        const sqlScripts = toSql(obj, ``);
         // console.log(sqlScripts);
         output(TO_SQL_FILE_PATH, sqlScripts);
     }

@@ -6,14 +6,14 @@ const INSERT_TEMPLATE_1 = 'INSERT INTO attributes(id, `name`) VALUES ';
 const INSERT_TEMPLATE_2 = 'INSERT INTO attributes(id, name) VALUES ';
 
 interface Attribute {
-     id: string;
-     name: string;
-     display_name:string;
+    id: string;
+    name: string;
+    display_name: string;
 }
 
 const toSql = (attributes: Attribute[], sqlScripts: string) => {
-    for (let attri of attributes) {
-          sqlScripts +=  INSERT_TEMPLATE_1 + `(${ + attri?.["id"]}, ${"'" + attri?.["display_name"] + "'"});\n`;
+    for (const attri of attributes) {
+        sqlScripts += INSERT_TEMPLATE_1 + `(${+attri?.['id']}, ${"'" + attri?.['display_name'] + "'"});\n`;
     }
     return sqlScripts;
 };
@@ -35,7 +35,7 @@ fs.readFile(path.resolve(__dirname, '..', 'crawl', 'all_product_attributes_fixed
         console.log(err);
     } else {
         obj = JSON.parse(data);
-     //    console.log(obj);
+        //    console.log(obj);
 
         //print tree
         // printTree(obj?.["category_list"]);

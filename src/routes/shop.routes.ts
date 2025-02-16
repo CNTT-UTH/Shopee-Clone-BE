@@ -8,7 +8,7 @@ import { RegisterInfoShopDTO } from '~/models/dtos/ShopDTO';
 import { asyncHandler } from '~/utils/asyncHandler';
 
 const router = Router();
-const api = makeInvoker<ShopController>(() => container.resolve('shopController'))
+const api = makeInvoker<ShopController>(() => container.resolve('shopController'));
 
 router
     .route('/register')

@@ -5,7 +5,7 @@ import { AttributeValue } from '~/models/entity/attribute.entity';
 import { Brand } from '~/models/entity/brand.entity';
 import { Image } from '~/models/entity/image.entity';
 import { Product } from '~/models/entity/product.entity';
-import { ShippingProductInfo } from '~/models/entity/shipping.entity';
+import { Shipping, ShippingProductInfo } from '~/models/entity/shipping.entity';
 import { Shop } from '~/models/entity/shop.entity';
 import { Option, ProductVariant } from '~/models/entity/variant.entiity';
 import { AttributeRepository } from '~/repository/attribute.repository';
@@ -14,7 +14,7 @@ import { ImageRepository, OptionValueRepository, VariantRepository } from '~/rep
 import { ProductRepository } from '~/repository/product.repository';
 import { ShopRepository } from '~/repository/shop.repository';
 import { ApiError } from '~/utils/errors';
-import { ShippingRatesManagementService } from './shipping.service';
+import { ShippingRatesManagementService, ShippingService } from './shipping.service';
 import { ShippingRepository } from '~/repository/shipping.repository';
 import { AttributeDTO, OptionsDTO, PriceDTO, ProductDTO, VariantDTO } from '~/models/dtos/product/ProductDTO';
 import { plainToInstance } from 'class-transformer';
@@ -34,7 +34,10 @@ export class ProductService {
     private readonly variantRepository: VariantRepository;
     private readonly cateRepository: CategoryRepository;
 
-    constructor(private readonly shippingRatesManagementService: ShippingRatesManagementService) {
+    constructor(
+        private readonly shippingRatesManagementService: ShippingRatesManagementService,
+        private readonly shippingService: ShippingService
+    ) {
         this.shopRepository = new ShopRepository();
         this.brandRepository = new BrandRepository();
         this.imageRepository = new ImageRepository();
@@ -48,11 +51,6 @@ export class ProductService {
 
     async toDTO(product: Product): Promise<ProductDTO> {
         const productDTO: ProductDTO = plainToInstance(ProductDTO, product);
-
-        const images: string[] = (await this.imageRepository.getProductImages(product._id))?.map(
-            (image) => image.image_url,
-        );
-        productDTO.image_urls = images;
 
         const attributes: AttributeDTO[] =
             (await this.attriRepository?.getProductAttributes(product))?.map((att) => {
@@ -156,9 +154,11 @@ export class ProductService {
             throw new ApiError('SHOP KHÔNG TỒN TẠI', HTTP_STATUS.BAD_REQUEST);
         }
 
-        let product: Product = await this.productRepository.createProduct(data);
+        const priceDetail: PriceDTO = await this.countingPrice(data);
 
-        const images: Image[] = await this.imageRepository.addImagesProduct(data.image_urls as string[], product);
+        const product: Product = await this.productRepository.createProduct(data, priceDetail, shop.id);
+
+        await this.imageRepository.addImagesProduct(data.image_urls as string[], product);
         const options: Option[] = data.options
             ? await this.optionRepository.addProductOptions(data.options, product)
             : [];
@@ -176,10 +176,8 @@ export class ProductService {
             ? await this.variantRepository.createVariants(data.variants, product)
             : [];
 
-        product = await this.productRepository.updateRelations({ shop }, product);
-
-        // const brand: Brand = this.brandRepository.getBrandById();
-        return await this.toDTO(product);
+        // return await this.toDTO(product);
+        return await this.getProduct(product._id);
     }
 
     async getProduct(id: number) {
@@ -188,6 +186,7 @@ export class ProductService {
         if (!product) throw new ApiError('Sản phẩm không tồn tại!', HTTP_STATUS.NOT_FOUND);
 
         return await this.toDTO(product);
+        // return product;
     }
 
     async getAllProducts() {
@@ -196,5 +195,34 @@ export class ProductService {
         const productDTOs = await Promise.all(products.map(async (product) => await this.toDTO(product)));
 
         return productDTOs;
+    }
+
+    async countingPrice(data: Partial<CreateProductDTO>): Promise<PriceDTO> {
+        const priceDTO: PriceDTO = {
+            discount: Number(data.discount),
+        };
+
+        if (!data.options) {
+            priceDTO.price = Number(data.price) * (1 - Number(data.discount));
+            priceDTO.price_before_discount = data.price;
+        } else {
+            priceDTO.range_min_before_discount = data.variants
+                ? Math.min(...data.variants.map((variant) => Number(variant.price)))
+                : undefined;
+
+            priceDTO.range_max_before_discount = data.variants
+                ? Math.max(...data.variants.map((variant) => Number(variant.price)))
+                : undefined;
+
+            priceDTO.range_min = priceDTO.range_min_before_discount
+                ? priceDTO.range_min_before_discount * (1 - Number(priceDTO.discount))
+                : undefined;
+
+            priceDTO.range_max = priceDTO.range_max_before_discount
+                ? priceDTO.range_max_before_discount * (1 - Number(priceDTO.discount))
+                : undefined;
+        }
+
+        return priceDTO;
     }
 }

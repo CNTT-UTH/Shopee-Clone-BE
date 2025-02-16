@@ -23,6 +23,8 @@ tags:
     description: Cửa hàng
   - name: products
     description: Sản phẩm
+  - name: carts
+    description: Giỏ hàng
   - name: category
     description: Danh mục
   - name: addresses
@@ -1001,6 +1003,73 @@ paths:
           description: null
         '422':
           description: Sai các trường thông tin
+  /carts/get-my-cart:
+    get:
+      tags:
+        - carts
+      summary: Lấy giỏ hàng
+      security:
+        - BearerAuth: []
+      description: null
+      operationId: cart_get
+      parameters:
+        - $ref: '#/paths/~1shops/get/parameters/0'
+      responses:
+        '200':
+          description: null
+        '400':
+          description: null
+        '422':
+          description: Sai các trường thông tin
+  /carts/add-item:
+    post:
+      tags:
+        - carts
+      summary: Thêm sản phẩm giỏ hàng
+      description: null
+      operationId: cart_add
+      parameters:
+        - $ref: '#/paths/~1shops/get/parameters/0'
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CartItemDTO'
+      responses:
+        '200':
+          description: null
+        '400':
+          description: null
+        '422':
+          description: Sai các trường thông tin
+  /carts/remove-item:
+    delete:
+      tags:
+        - carts
+      summary: Xóa sản phẩm giỏ hàng
+      description: null
+      operationId: cart_remove
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/paths/~1shops/get/parameters/0'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                item_id:
+                  type: string
+      responses:
+        '200':
+          description: null
+        '400':
+          description: null
+        '422':
+          description: Sai các trường thông tin
   /categories/get-category-tree:
     get:
       tags:
@@ -1417,6 +1486,32 @@ components:
           type: number
           format: float
           nullable: true
+    CartDTO:
+      type: object
+      properties:
+        username:
+          type: string
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/CartItemDTO'
+        total:
+          type: number
+        total_before_discount:
+          type: number
+    CartItemDTO:
+      type: object
+      properties:
+        product_id:
+          type: number
+        product_variant_id:
+          type: number
+        shop_id:
+          type: string
+        quantity:
+          type: number
+        selected_to_checkout:
+          type: boolean
   securitySchemes:
     BearerAuth:
       type: http

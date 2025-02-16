@@ -1,23 +1,22 @@
 import { Request } from 'express';
 import { MediaDTO } from '~/models/dtos/MediaDTO';
 import { checkIfDirectoryExist, deleteFile, getNameFromFullname, handleUploadImage } from '~/utils/file';
-import cloudsService from '~/services/cloud.service';
+import { Cloudinary } from '~/services/cloud.service';
 import { UserRepository } from '~/repository/user.repository';
 import path from 'path';
 import { UPLOAD_IMAGE_DIR, UPLOAD_IMAGE_TEMP_DIR } from '~/constants/dir';
 import sharp from 'sharp';
 import { ShopRepository } from '~/repository/shop.repository';
 
+const cloudsService = new Cloudinary();
+
 export class MediaService {
     private readonly userRepository: UserRepository = new UserRepository();
     private readonly shopRepository: ShopRepository = new ShopRepository();
 
-    constructor() {
-        
-    }
+    constructor() {}
 
     async uploadUserAvatar(req: Request) {
-
         const files = await handleUploadImage(req);
         const result: MediaDTO[] = await Promise.all(
             files.map(async (file) => {
@@ -79,4 +78,3 @@ export class MediaService {
         return result;
     }
 }
-

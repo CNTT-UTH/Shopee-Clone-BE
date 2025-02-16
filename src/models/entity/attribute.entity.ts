@@ -32,8 +32,13 @@ export class Attribute extends BaseEntity {
     @UpdateDateColumn()
     updated_at: Date;
 
-    @ManyToMany(() => Category, (cate) => {cate.cate_id})
-    @JoinTable({name: 'attribute_category'})
+    @ManyToMany(
+        () => Category,
+        (cate) => {
+            cate.cate_id;
+        },
+    )
+    @JoinTable({ name: 'attribute_category' })
     cates: Category[];
 }
 

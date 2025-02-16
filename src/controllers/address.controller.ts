@@ -3,7 +3,7 @@ import { AddressDTO } from '~/models/dtos/AddressDTO';
 import { AddressService } from '~/services/address.service';
 
 export class AddressController {
-    constructor(private readonly addressService: AddressService) { }
+    constructor(private readonly addressService: AddressService) {}
 
     async getAddress(req: Request, res: Response) {
         const id: number = Number(req.params.id);

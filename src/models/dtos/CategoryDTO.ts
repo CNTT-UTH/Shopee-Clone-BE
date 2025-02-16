@@ -29,7 +29,6 @@ export class CategoryDTO {
     // }
 }
 
-
 export class CategoryLevelDTO {
-    [level: number] : CategoryDTO
+    [level: number]: CategoryDTO;
 }

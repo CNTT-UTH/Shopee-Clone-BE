@@ -1,5 +1,5 @@
-import { Request, Response } from "express";
-import { AttributeService } from "~/services/attribute.service";
+import { Request, Response } from 'express';
+import { AttributeService } from '~/services/attribute.service';
 
 export class AttributeController {
     constructor(private readonly attributeService: AttributeService) {}

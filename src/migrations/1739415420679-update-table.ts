@@ -1,10 +1,12 @@
-import { MigrationInterface, QueryRunner } from "typeorm";
+import { MigrationInterface, QueryRunner } from 'typeorm';
 
 export class UpdateTable1739415420679 implements MigrationInterface {
-    name = 'UpdateTable1739415420679'
+    name = 'UpdateTable1739415420679';
 
     public async up(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.query(`CREATE TABLE \`shipping_product_infos\` (\`id\` int NOT NULL AUTO_INCREMENT, \`product_id\` int NULL, \`shipping_channel_id\` int NULL, PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);
+        await queryRunner.query(
+            `CREATE TABLE \`shipping_product_infos\` (\`id\` int NOT NULL AUTO_INCREMENT, \`product_id\` int NULL, \`shipping_channel_id\` int NULL, PRIMARY KEY (\`id\`)) ENGINE=InnoDB`,
+        );
         await queryRunner.query(`ALTER TABLE \`products\` DROP COLUMN \`old_price\``);
         await queryRunner.query(`ALTER TABLE \`products\` DROP COLUMN \`range_min_price\``);
         await queryRunner.query(`ALTER TABLE \`products\` DROP COLUMN \`range_max_price\``);
@@ -24,5 +26,4 @@ export class UpdateTable1739415420679 implements MigrationInterface {
         await queryRunner.query(`ALTER TABLE \`products\` ADD \`old_price\` int NULL DEFAULT '0'`);
         await queryRunner.query(`DROP TABLE \`shipping_product_infos\``);
     }
-
 }

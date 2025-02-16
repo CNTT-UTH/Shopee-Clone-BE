@@ -2,15 +2,14 @@ import { makeInvoker } from 'awilix-express';
 import { Router } from 'express';
 import { Role } from '~/constants/enums';
 import container from '~/container';
-import {ProductController} from '~/controllers/product.controller';
+import { ProductController } from '~/controllers/product.controller';
 import { accessTokenValidator, authorizeRole, isShop, platformValidator } from '~/middlewares/auth.middleware';
 import { validationMiddleware } from '~/middlewares/validation.middleware';
 import { CreateProductDTO } from '~/models/dtos/product/CreateProductDTO';
 import { asyncHandler } from '~/utils/asyncHandler';
 
 const router = Router();
-const api = makeInvoker<ProductController>(() => container.resolve('productController'))
-
+const api = makeInvoker<ProductController>(() => container.resolve('productController'));
 
 router
     .route('/upload-product-images')
@@ -32,7 +31,13 @@ router
      * Headers: { Authorization: string, User-Agent: string }
      * Body: UploadProductDTO
      */
-    .post(platformValidator, accessTokenValidator, validationMiddleware(CreateProductDTO), isShop(), asyncHandler(api('createProductInfos')));
+    .post(
+        platformValidator,
+        accessTokenValidator,
+        validationMiddleware(CreateProductDTO),
+        isShop(),
+        asyncHandler(api('createProductInfos')),
+    );
 
 router
     .route('/all')

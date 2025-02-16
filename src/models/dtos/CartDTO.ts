@@ -1,4 +1,5 @@
-import { Exclude, Expose } from "class-transformer";
+import { Exclude, Expose } from 'class-transformer';
+import { IsNotEmpty, IsNumber } from 'class-validator';
 
 @Exclude()
 export class CartDTO {
@@ -11,11 +12,19 @@ export class CartDTO {
     total_before_discount: number;
 }
 
-
 export class CartItemDTO {
+    @IsNotEmpty()
+    @IsNumber()
     product_id: number;
+
     product_variant_id: number;
-    shop_id: number;
+
+    @IsNotEmpty()
+    shop_id: string;
+
+    @IsNotEmpty()
+    @IsNumber()
     quantity: number;
+
     selected_to_checkout: false;
 }

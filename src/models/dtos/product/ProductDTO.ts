@@ -1,23 +1,23 @@
-import { Exclude, Expose, Type } from 'class-transformer';
+import { Exclude, Expose, Transform, Type } from 'class-transformer';
 import { CategoryDTO, CategoryLevelDTO } from '../CategoryDTO';
 import { ShippingInfoDTO } from '../ShippingDTO';
 import { IsNotEmpty } from 'class-validator';
 import { ShopDTO } from '../ShopDTO';
-
+import { Image } from '~/models/entity/image.entity';
 
 @Exclude()
 export class AttributeDTO {
     @Expose()
     @IsNotEmpty()
     id?: number;
-    
+
     @Expose()
     name?: string;
 
-    @Expose({name: "value"})
+    @Expose({ name: 'value' })
     @IsNotEmpty()
     value?: string;
-    
+
     brand_id?: string;
 
     // constructor(data: Partial<AttributeDTO> = {}) {
@@ -49,7 +49,7 @@ export class ProductReviewDTO {
 export class OptionsDTO {
     @Expose()
     name?: string;
-    
+
     value?: string[];
 
     image_urls?: string[];
@@ -74,11 +74,11 @@ export class VariantDTO {
     name?: string;
     @Expose()
     price?: number;
-    @Expose({name: "old_price"})
+    @Expose({ name: 'old_price' })
     price_before_discount?: number;
-    @Expose({name: "buyturn"})
+    @Expose({ name: 'buyturn' })
     sold?: number;
-    @Expose({name: "quantity"})
+    @Expose({ name: 'quantity' })
     stock?: number; //số lượng tồn kho
 
     // constructor(data: Partial<variantDTO>) {
@@ -91,7 +91,6 @@ export class VariantDTO {
     //     this.stock = data.stock;
     // }
 }
-
 
 export class PriceDTO {
     discount?: number;
@@ -116,15 +115,14 @@ export class PriceDTO {
     // }
 }
 
-
 @Exclude()
 export class ProductDTO {
-    @Expose({name: "_id"})
+    @Expose({ name: '_id' })
     product_id?: number;
 
     @Expose()
     title?: string;
-    @Expose()   
+    @Expose()
     description?: string;
 
     @Expose()
@@ -132,14 +130,14 @@ export class ProductDTO {
 
     @Expose()
     cate_id?: number;
-    
+
     @Expose()
     cates?: CategoryDTO[];
 
     cate_levels: CategoryLevelDTO;
 
     review?: ProductReviewDTO;
-    
+
     @Expose()
     options?: OptionsDTO[];
     @Expose()
@@ -154,13 +152,17 @@ export class ProductDTO {
     @Expose()
     shipping_channel?: ShippingInfoDTO[];
 
+    @Expose({ name: 'images' })
+    @Transform(({ value }) => value.map((v: Image) => v.image_url))
     image_urls?: string[];
-    
-    @Expose({name: "shop"})
+
+    @Expose({ name: 'shop' })
     @Type(() => ShopDTO)
     shop: ShopDTO;
-    
-    @Expose({name: "sku"})
+
+    shop_id: string;
+
+    @Expose({ name: 'sku' })
     sku: string;
 
     // constructor(data: Partial<ProductDTO> = {}) {

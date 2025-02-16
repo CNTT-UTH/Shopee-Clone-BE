@@ -15,7 +15,7 @@ import {
 import { Category } from './category.entity';
 import { Brand } from './brand.entity';
 import { Image } from './image.entity';
-import { Option } from './variant.entiity';
+import { Option, ProductVariant } from './variant.entiity';
 import { AttributeValue } from './attribute.entity';
 import { CartItem } from './cart.entity';
 import { Shop } from './shop.entity';
@@ -51,19 +51,31 @@ export class Product extends BaseEntity {
     @Column({ nullable: true, default: 0 })
     old_price: number;
 
+    @Column({ nullable: true, default: 0 })
+    price_range_min: number;
+
+    @Column({ nullable: true, default: 0 })
+    price_range_max: number;
+
+    @Column({ nullable: true, default: 0 })
+    price_range_min_old: number;
+
+    @Column({ nullable: true, default: 0 })
+    price_range_max_old: number;
+
     @Column({ nullable: true, default: 0, type: 'float' })
     discount: number;
 
     @Column({ nullable: true, default: 0 })
     buyturn: number;
 
-    @Column({nullable: false})
+    @Column({ nullable: false })
     weight: number;
-    @Column({nullable: true})
+    @Column({ nullable: true })
     width: number;
-    @Column({nullable: true})
+    @Column({ nullable: true })
     height: number;
-    @Column({nullable: true})
+    @Column({ nullable: true })
     length: number;
 
     @CreateDateColumn()
@@ -86,6 +98,9 @@ export class Product extends BaseEntity {
     @OneToMany(() => Option, (option) => option.product)
     options: Option[];
 
+    @OneToMany(() => ProductVariant, (variant) => variant.product)
+    variants: ProductVariant[];
+
     @OneToMany(() => AttributeValue, (attribute_value) => attribute_value.product)
     attributes: AttributeValue[];
 
@@ -102,6 +117,4 @@ export class Product extends BaseEntity {
     @ManyToMany(() => Shipping, (shipping) => shipping.shipping_channel_id)
     @JoinTable()
     shipping_channels: Shipping[];
-
-    
 }

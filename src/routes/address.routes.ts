@@ -8,7 +8,7 @@ import { validationMiddleware } from '~/middlewares/validation.middleware';
 import { AddressDTO } from '~/models/dtos/AddressDTO';
 
 const router = Router();
-const api = makeInvoker<AddressController>(() => container.resolve('addressController'))
+const api = makeInvoker<AddressController>(() => container.resolve('addressController'));
 
 // Get address by id
 router.route('/get-address/:id').get(api('getAddress'));

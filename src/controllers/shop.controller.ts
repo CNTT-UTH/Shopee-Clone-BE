@@ -4,11 +4,7 @@ import { RegisterInfoShopDTO } from '~/models/dtos/ShopDTO';
 import { ShopService } from '~/services/shop.service';
 
 export class ShopController {
-    constructor(
-        private readonly shopService: ShopService,
-    ) {
-
-    }
+    constructor(private readonly shopService: ShopService) {}
     async register(req: Request<ParamsDictionary, any, RegisterInfoShopDTO>, res: Response, next: NextFunction) {
         const payload: RegisterInfoShopDTO = req.body;
         console.log(req.decoded);

@@ -24,6 +24,8 @@ tags:
       description: Cửa hàng
     - name: products
       description: Sản phẩm
+    - name: carts
+      description: Giỏ hàng
     - name: category
       description: Danh mục
     - name: addresses
@@ -82,6 +84,16 @@ paths:
         $ref: './resources/product/getProductAll.yaml'
     /products/{id}:
         $ref: './resources/product/getProduct.yaml'
+
+    #   CARTS ROUTES
+    /carts/get-my-cart:
+        $ref: './resources/carts/getMyCart.yaml'
+    /carts/add-item:
+        $ref: './resources/carts/addItem.yaml'
+    /carts/remove-item:
+        $ref: './resources/carts/removeItem.yaml'
+    
+
 
     #   CATEGORIES ROUTES
     /categories/get-category-tree:

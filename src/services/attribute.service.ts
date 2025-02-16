@@ -1,15 +1,15 @@
-import { AttributeRepository } from "~/repository/attribute.repository";
+import { AttributeRepository } from '~/repository/attribute.repository';
 
 export class AttributeService {
-     private readonly attributeRepository: AttributeRepository;
+    private readonly attributeRepository: AttributeRepository;
 
-     constructor() {
-          this.attributeRepository = new AttributeRepository(); 
-     }
+    constructor() {
+        this.attributeRepository = new AttributeRepository();
+    }
 
-     async getAttributeByCateid(cate_id: number) {
-          const result = await this.attributeRepository.getAttriByCateid(cate_id);
+    async getAttributeByCateid(cate_id: number) {
+        const result = await this.attributeRepository.getAttriByCateid(cate_id);
 
-          return result;
-     }
+        return result;
+    }
 }

@@ -1,27 +1,30 @@
 User:
-    $ref: './User.yaml'
+    $ref: "./User.yaml"
 RegisterBody:
-    $ref: './RegisterBody.yaml'
+    $ref: "./RegisterBody.yaml"
 LoginBody:
-    $ref: './LoginBody.yaml'
+    $ref: "./LoginBody.yaml"
 LogoutBody:
-    $ref: './LogoutBody.yaml'
+    $ref: "./LogoutBody.yaml"
 ApiResponse:
-    $ref: './ApiResponse.yaml'
+    $ref: "./ApiResponse.yaml"
 FailedValidation:
-    $ref: './FailedValidation.yaml'
+    $ref: "./FailedValidation.yaml"
 SuccessAuthenticate:
-    $ref: './SuccessAuthenticate.yaml'
+    $ref: "./SuccessAuthenticate.yaml"
 CreateProductDTO:
-    $ref: './CreateProductDTO.yaml'
+    $ref: "./CreateProductDTO.yaml"
 AttributeDTO:
-    $ref: './AttributeDTO.yaml'
+    $ref: "./AttributeDTO.yaml"
 CreateVariantDTO:
-    $ref: './CreateVariantDTO.yaml'
+    $ref: "./CreateVariantDTO.yaml"
 CreateOptionDTO:
-    $ref: './CreateOptionDTO.yaml'
+    $ref: "./CreateOptionDTO.yaml"
 CreateOptionValueDTO:
-    $ref: './CreateOptionValueDTO.yaml'
+    $ref: "./CreateOptionValueDTO.yaml"
 ProductDimensionDTO:
-    $ref: './ProductDimensionDTO.yaml'
-
+    $ref: "./ProductDimensionDTO.yaml"
+CartDTO:
+    $ref: "./CartDTO.yaml"
+CartItemDTO:
+    $ref: "./CartItemDTO.yaml"

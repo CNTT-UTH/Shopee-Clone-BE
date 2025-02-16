@@ -18,6 +18,10 @@ export class UserService {
         this.userRepository = new UserRepository();
     }
 
+    async getOne(_id: string) {
+        return await this.userRepository.findById(_id);
+    }
+
     async getProfile(_id: string) {
         const user = await this.userRepository.findById(_id);
 

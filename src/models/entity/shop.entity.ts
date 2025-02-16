@@ -67,7 +67,7 @@ export class Shop extends BaseEntity {
     @UpdateDateColumn()
     updated_at: Date;
 
-    @OneToMany(() => Address, (address) => address.user)
+    @OneToMany(() => Address, (address) => address.shop)
     addresses: Address[];
 
     @OneToMany(() => Product, (product) => product.shop)

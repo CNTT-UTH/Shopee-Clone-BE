@@ -25,6 +25,7 @@ import { BrandService } from './services/brand.service';
 import { CategoryService } from './services/cate.service';
 import { ShippingRatesManagementService, ShippingService } from './services/shipping.service';
 import { ShopService } from './services/shop.service';
+import { MediaService } from './services/media.service';
 // import { PaymentService } from './services/payment.service';
 // import { PaymentController } from './controllers/payment.controller';
 // import { PaymentRepository } from './repository/payment.repository';
@@ -82,6 +83,7 @@ container.register({
     shopController: asClass(ShopController).scoped(),
     shopService: asClass(ShopService).singleton(),
 
-})
+    mediaService: asClass(MediaService).singleton(),
+});
 
 export default container;

@@ -7,8 +7,8 @@ import { ProductService } from '~/services/product.service';
 export class ProductController {
     constructor(
         private readonly productService: ProductService,
-        private readonly mediaService: MediaService
-    ) { }
+        private readonly mediaService: MediaService,
+    ) {}
 
     async uploadProductImages(req: Request, res: Response) {
         const result = await this.mediaService.uploadImagesProduct(req);
@@ -26,7 +26,7 @@ export class ProductController {
         const user_id: string = req?.decoded?._id as string;
 
         const result = await this.productService.createProduct(createProductDTO, user_id);
-        // 
+        //
         res.send({
             success: true,
             mesage: null,
@@ -46,7 +46,6 @@ export class ProductController {
     }
 
     async getAllProducts(req: Request, res: Response) {
-
         const result = await this.productService.getAllProducts();
 
         res.send({
@@ -56,4 +55,3 @@ export class ProductController {
         });
     }
 }
-

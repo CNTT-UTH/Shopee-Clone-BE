@@ -6,4 +6,3 @@ export class HomeController {
         res.send({ status: 'suscess' });
     };
 }
-

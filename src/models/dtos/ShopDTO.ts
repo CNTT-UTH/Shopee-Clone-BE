@@ -38,8 +38,7 @@ export class ShopDTO {
     @Transform(({ value }) => value?.getTime())
     created_at?: number; // timestamp
 
-
-    @Expose({ name: "default_address_id" })
+    @Expose({ name: 'default_address_id' })
     default_address: AddressDTO | number;
 
     constructor(data: Partial<ShopDTO> = {}) {

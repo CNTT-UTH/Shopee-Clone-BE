@@ -27,8 +27,7 @@ export class AuthService {
 
     constructor() {
         this.userRepository = new UserRepository();
-        console.log("Inject!")
-
+        console.log('Inject!');
     }
 
     private signAccessToken(payload: TokenPayload) {
@@ -428,4 +427,3 @@ export class AuthService {
         };
     }
 }
-

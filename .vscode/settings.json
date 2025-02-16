@@ -1,8 +1,9 @@
 {
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
-    "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": "explicit"
+      "source.fixAll": true // ✅ Bật auto fix cho tất cả lỗi (bao gồm ESLint)
     },
-    "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"]
+    "editor.formatOnSave": true, // ✅ Format code tự động khi save
+    "eslint.format.enable": true, // ✅ Dùng ESLint để format
+    "eslint.lintTask.enable": true, // ✅ Bật ESLint trên tất cả file
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint" // ✅ Đặt ESLint làm formatter mặc định
   }

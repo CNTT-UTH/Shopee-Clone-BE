@@ -10,6 +10,7 @@ import {
     OneToOne,
     JoinColumn,
     ManyToOne,
+    RelationId,
 } from 'typeorm';
 import { Product } from './product.entity';
 import { User } from './user.entity';
@@ -25,10 +26,10 @@ export class Cart extends BaseEntity {
     @JoinColumn({ name: 'user_id' })
     user: User;
 
-    @Column({ nullable: true, default: 0 })
+    @Column({ nullable: true, default: 0, type: 'int' })
     total: string;
 
-    @Column({ nullable: true, default: 0 })
+    @Column({ nullable: true, default: 0, type: 'int' })
     total_before_discount: string;
 
     @OneToMany(() => CartItem, (cart_item) => cart_item.cart_id)
@@ -47,7 +48,7 @@ export class CartItem extends BaseEntity {
     id: number;
 
     @ManyToOne(() => Cart, (cart) => cart.id)
-    @JoinColumn({name: 'cart_id'})
+    @JoinColumn({ name: 'cart_id' })
     cart_id: number;
 
     @ManyToOne(() => Product, (product) => product.cart_items)
@@ -73,4 +74,13 @@ export class CartItem extends BaseEntity {
 
     @UpdateDateColumn()
     updated_at: Date;
+
+    @RelationId((cart_item: CartItem) => cart_item.product)
+    product_id: number;
+
+    @RelationId((cart_item: CartItem) => cart_item.productvariant)
+    product_variant_id: number;
+
+    @RelationId((cart_item: CartItem) => cart_item.shop)
+    shop_id: number;
 }

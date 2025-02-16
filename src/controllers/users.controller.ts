@@ -8,10 +8,8 @@ import { MediaService } from '~/services/media.service';
 export class UserController {
     constructor(
         private readonly userService: UserService,
-        private readonly mediaService: MediaService
-    ) {
-
-    }
+        private readonly mediaService: MediaService,
+    ) {}
     async getProfile(req: Request, res: Response) {
         const userId: string = req?.decoded?._id as string;
 
@@ -69,4 +67,3 @@ export class UserController {
         });
     }
 }
-

@@ -44,11 +44,11 @@ export class ShippingProductInfo extends BaseEntity {
     id: number;
 
     @ManyToOne(() => Product, (product) => product._id)
-    @JoinColumn({name: 'product_id'})
+    @JoinColumn({ name: 'product_id' })
     product: Product;
-    
+
     @ManyToOne(() => Shipping, (shipping) => shipping.shipping_channel_id)
-    @JoinColumn({name: 'shipping_channel_id'})
+    @JoinColumn({ name: 'shipping_channel_id' })
     shipping: Shipping;
 
     @Column()
