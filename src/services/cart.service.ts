@@ -36,7 +36,9 @@ export class CartService {
             ? await this.cartRepo.updateItem(cart, item)
             : await this.cartRepo.addItem(cart, item);
 
-        return updatedCart;
+        if (!updatedCart) return null;
+
+        return await this.updateTotal(updatedCart);
     }
 
     async removeItem(user_id: string, item_id: number) {
@@ -47,7 +49,26 @@ export class CartService {
         if (!cart) return null;
 
         const updatedCart = await this.cartRepo.removeItem(cart, item_id);
+        if (!updatedCart) return null;
 
-        return updatedCart;
+        return await this.updateTotal(updatedCart);
+    }
+
+    async updateTotal(cart: Cart) {
+        const [total, totalBeforeDiscount] = await this.countingPrice(cart);
+
+        return this.cartRepo.updateTotal(cart, [total, totalBeforeDiscount]);
+    }
+
+    async countingPrice(cart: Cart) {
+        let total: number = 0;
+        let totalBeforeDiscount: number = 0;
+
+        cart.cart_items.map((item) => {
+            total += item.productvariant ? item.productvariant.price : item.product.price;
+            totalBeforeDiscount += item.productvariant ? item.productvariant.old_price : item.product.old_price;
+        });
+
+        return [total, totalBeforeDiscount];
     }
 }

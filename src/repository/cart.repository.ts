@@ -121,4 +121,10 @@ export class CartRepository {
 
         return await this.getCartById(cart.id);
     }
+
+    async updateTotal(cart: Cart, [total, total_before_discount]: number[]) {
+        await this.cartRepo.update({ id: cart.id }, { total: total, total_before_discount: total_before_discount });
+
+        return await this.getCartById(cart.id);
+    }
 }

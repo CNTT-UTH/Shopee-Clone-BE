@@ -27,10 +27,10 @@ export class Cart extends BaseEntity {
     user: User;
 
     @Column({ nullable: true, default: 0, type: 'int' })
-    total: string;
+    total: number;
 
     @Column({ nullable: true, default: 0, type: 'int' })
-    total_before_discount: string;
+    total_before_discount: number;
 
     @OneToMany(() => CartItem, (cart_item) => cart_item.cart_id)
     cart_items: CartItem[];
