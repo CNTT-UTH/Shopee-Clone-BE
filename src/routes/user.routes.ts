@@ -9,7 +9,7 @@ import { updateProfileValidator } from '~/middlewares/users.middleware';
 import { asyncHandler } from '~/utils/asyncHandler';
 
 const router = express.Router();
-const api = makeInvoker<UserController>(() => container.resolve('usersController'))
+const api = makeInvoker<UserController>(() => container.resolve('userController'))
 
 router
     .route('/profile')
