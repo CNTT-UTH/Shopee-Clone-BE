@@ -46,7 +46,7 @@ export class ShopService {
 
         const shopDTO: ShopDTO = plainToInstance(ShopDTO, shop);
         console.log(shopDTO);
-        return shopDTO;
+        return await this.getInfo(user._id);
     }
 
     async getInfo(user_id: string) {

@@ -25,7 +25,7 @@ export class UserDTO {
     @Expose()
     phone?: string; // format : +84...
 
-    @Expose()
+    @Expose({name: 'is_shop'})
     is_shop?: boolean;
 
     @Expose({ name: 'verify' })
@@ -37,6 +37,7 @@ export class UserDTO {
 
     @Expose()
     avatar?: string;
+    
 
     // constructor(data: Partial<UserDTO>) {
     //     this.user_id = data.user_id;
