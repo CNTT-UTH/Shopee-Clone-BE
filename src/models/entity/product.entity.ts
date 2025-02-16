@@ -110,7 +110,7 @@ export class Product extends BaseEntity {
     @OneToMany(() => OrderItem, (orderitem) => orderitem.product)
     order_items: OrderItem[];
 
-    @ManyToOne(() => Shop, (shop) => shop.products)
+    @ManyToOne(() => Shop, (shop) => shop.products, { onDelete: 'SET NULL' })
     @JoinColumn({ name: 'shop_id' })
     shop: Shop;
 

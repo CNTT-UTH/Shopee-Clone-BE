@@ -59,7 +59,7 @@ export class CartItem extends BaseEntity {
     @JoinColumn({ name: 'product_variant_id' })
     productvariant: ProductVariant;
 
-    @ManyToOne(() => Shop, (shop) => shop.cart_items)
+    @ManyToOne(() => Shop, (shop) => shop.cart_items, {onDelete: "SET NULL"})
     @JoinColumn({ name: 'shop_id' })
     shop: Shop;
 

@@ -46,4 +46,6 @@ router
      */
     .get(asyncHandler(api('getInfoById')));
 
+router.route('/delete-shop').delete(accessTokenValidator, asyncHandler(api('deleteShop')));
+
 export default router;

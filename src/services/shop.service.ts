@@ -68,4 +68,11 @@ export class ShopService {
 
         return shopDTO;
     }
+
+    async deleteShop(user_id: string) {
+        await this.shopRepository.deleteByUserId(user_id);
+        await this.userRepository.updateRemoveShop(user_id);
+
+        return;
+    }
 }

@@ -43,4 +43,12 @@ export class ShopRepository {
             return false;
         }
     }
+
+    async deleteByUserId(user_id: string) {
+        await this.repo.delete({
+            user: {
+                _id: user_id
+            }
+        })
+    }
 }

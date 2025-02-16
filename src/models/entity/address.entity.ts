@@ -41,11 +41,11 @@ export class Address extends BaseEntity {
     @UpdateDateColumn()
     updated_at: Date;
 
-    @ManyToOne(() => User, (user) => user.addresses, { cascade: true })
+    @ManyToOne(() => User, (user) => user.addresses, { cascade: true, onDelete: "CASCADE" })
     @JoinColumn({ name: 'user' })
     user: User;
 
-    @ManyToOne(() => Shop, (shop) => shop.addresses, { cascade: true })
+    @ManyToOne(() => Shop, (shop) => shop.addresses, { cascade: true, onDelete: "CASCADE" })
     @JoinColumn({ name: 'shop' })
     shop: Shop;
 }

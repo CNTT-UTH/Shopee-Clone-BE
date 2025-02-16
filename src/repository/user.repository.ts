@@ -92,4 +92,13 @@ export class UserRepository {
             },
         );
     }
+
+    async updateRemoveShop(_id: string) {
+        await this.repo.update(
+            { _id },
+            {
+                is_shop: false,
+            },
+        );
+    }
 }
