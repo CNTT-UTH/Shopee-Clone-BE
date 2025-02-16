@@ -14,13 +14,13 @@ import { ImageRepository, OptionValueRepository, VariantRepository } from "~/rep
 import { ProductRepository } from "~/repository/product.repository";
 import { ShopRepository } from "~/repository/shop.repository";
 import { ApiError } from "~/utils/errors";
-import { shippingRatesManagementService } from './shipping.service';
+import { ShippingRatesManagementService } from './shipping.service';
 import { ShippingRepository } from "~/repository/shipping.repository";
 import { AttributeDTO, OptionsDTO, PriceDTO, ProductDTO, VariantDTO } from "~/models/dtos/product/ProductDTO";
 import { plainToInstance } from "class-transformer";
 import { CategoryRepository } from "~/repository/cate.repository";
 
-class ProductService {
+export class ProductService {
      private readonly shopRepository: ShopRepository;
      private readonly brandRepository: BrandRepository;
      private readonly imageRepository: ImageRepository;
@@ -30,8 +30,10 @@ class ProductService {
      private readonly shippingRepository: ShippingRepository;
      private readonly variantRepository: VariantRepository;
      private readonly cateRepository: CategoryRepository;
+     private readonly shippingRatesManagementService: ShippingRatesManagementService
 
-     constructor() {
+     constructor(
+     ) {
           this.shopRepository = new ShopRepository();
           this.brandRepository = new BrandRepository();
           this.imageRepository = new ImageRepository();
@@ -164,5 +166,3 @@ class ProductService {
           return productDTOs;
      }
 }
-
-export default new ProductService();

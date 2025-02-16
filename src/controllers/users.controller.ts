@@ -5,7 +5,7 @@ import { UpdateProfileReqBody } from '~/models/requests/users.requests';
 import usersService from '~/services/users.service';
 import mediasService from '~/services/media.service';
 
-class UserController {
+export class UserController {
     async getProfile(req: Request, res: Response) {
         const userId: string = req?.decoded?._id as string;
 
@@ -64,4 +64,3 @@ class UserController {
     }
 }
 
-export default new UserController();

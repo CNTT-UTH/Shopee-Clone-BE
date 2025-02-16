@@ -19,7 +19,7 @@ const DELIVERY_DAYS: { [index: number]: number[] } = {
 
 const DIMENSION_FACTOR = 139;
 
-class ShippingService {
+export class ShippingService {
      protected readonly shippingRepository: ShippingRepository;
 
      constructor() {
@@ -33,7 +33,7 @@ class ShippingService {
      }
 }
 
-class ShippingRatesManagementService extends ShippingService {
+export class ShippingRatesManagementService extends ShippingService {
 
 
      constructor() {
@@ -66,11 +66,3 @@ class ShippingRatesManagementService extends ShippingService {
           return shippingDTOs;
      }
 }
-
-const shippingService = new ShippingService();
-const shippingRatesManagementService = new ShippingRatesManagementService();
-
-export {
-     shippingService,
-     shippingRatesManagementService,
-};

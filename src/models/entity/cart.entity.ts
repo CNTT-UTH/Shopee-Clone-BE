@@ -31,6 +31,9 @@ export class Cart extends BaseEntity {
     @Column({ nullable: true, default: 0 })
     total_before_discount: string;
 
+    @OneToMany(() => CartItem, (cart_item) => cart_item.cart_id)
+    cart_items: CartItem[];
+
     @CreateDateColumn()
     created_at: Date;
 
@@ -42,6 +45,10 @@ export class Cart extends BaseEntity {
 export class CartItem extends BaseEntity {
     @PrimaryGeneratedColumn('increment')
     id: number;
+
+    @ManyToOne(() => Cart, (cart) => cart.id)
+    @JoinColumn({name: 'cart_id'})
+    cart_id: number;
 
     @ManyToOne(() => Product, (product) => product.cart_items)
     @JoinColumn({ name: 'product_id' })

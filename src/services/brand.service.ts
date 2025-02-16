@@ -1,6 +1,6 @@
 import { BrandRepository } from "~/repository/brand.repository";
 
-class BrandService {
+export class BrandService {
      private readonly brandRepository: BrandRepository;
 
      constructor () {
@@ -11,5 +11,3 @@ class BrandService {
           return this.brandRepository.getBrands();
      }
 }
-
-export default new BrandService();

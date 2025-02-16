@@ -3,11 +3,11 @@ import { envConfig } from '~/constants/env';
 import HTTP_STATUS from '~/constants/httpStatus';
 import { ApiError } from '~/utils/errors';
 
-class CloudService {
+export class CloudService {
     constructor() {}
 }
 
-class Cloudinary {
+export class Cloudinary {
     cloud = cloudinary;
 
     constructor() {
@@ -26,5 +26,3 @@ class Cloudinary {
         return result;
     }
 }
-
-export default new Cloudinary();

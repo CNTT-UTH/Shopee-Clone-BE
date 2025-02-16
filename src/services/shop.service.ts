@@ -11,7 +11,7 @@ import { ShopRepository } from '~/repository/shop.repository';
 import { UserRepository } from '~/repository/user.repository';
 import { ApiError } from '~/utils/errors';
 
-class ShopService {
+export class ShopService {
     private shopRepository: ShopRepository;
     private addressRepository: AddressRepository;
     private userRepository: UserRepository;
@@ -69,5 +69,3 @@ class ShopService {
         return shopDTO;
     }
 }
-
-export default new ShopService();

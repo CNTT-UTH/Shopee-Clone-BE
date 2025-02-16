@@ -1,6 +1,6 @@
 import { AttributeRepository } from "~/repository/attribute.repository";
 
-class AttributeService {
+export class AttributeService {
      private readonly attributeRepository: AttributeRepository;
 
      constructor() {
@@ -13,5 +13,3 @@ class AttributeService {
           return result;
      }
 }
-
-export default new AttributeService();

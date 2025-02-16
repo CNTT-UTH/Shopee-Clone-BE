@@ -22,7 +22,7 @@ import { plainToInstance } from 'class-transformer';
 
 const codeVerifyMail: Record<string, string> = {} as const;
 
-class AuthService {
+export class AuthService {
     private readonly userRepository: UserRepository;
 
     constructor() {
@@ -427,4 +427,3 @@ class AuthService {
     }
 }
 
-export default new AuthService();

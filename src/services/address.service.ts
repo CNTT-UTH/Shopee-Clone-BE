@@ -9,7 +9,7 @@ import { CityRepository } from '~/repository/city.repository';
 import { UserRepository } from '~/repository/user.repository';
 import { ApiError } from '~/utils/errors';
 
-class AddressService {
+export class AddressService {
     private readonly addressRepository: AddressRepository;
     private readonly userRepository: UserRepository;
     private readonly cityRepository: CityRepository;
@@ -63,5 +63,3 @@ class AddressService {
         return data;
     }
 }
-
-export default new AddressService();

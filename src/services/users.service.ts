@@ -10,7 +10,7 @@ import { AddressRepository } from '~/repository/address.repository';
 import { UserRepository } from '~/repository/user.repository';
 import { ApiError } from '~/utils/errors';
 
-class UserService {
+export class UserService {
     private readonly userRepository: UserRepository;
     private readonly addressRepository: AddressRepository;
 
@@ -79,5 +79,3 @@ class UserService {
         };
     }
 }
-
-export default new UserService();

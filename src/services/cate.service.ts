@@ -4,7 +4,7 @@ import { CategoryDTO } from '~/models/dtos/CategoryDTO';
 import { Category } from '~/models/entity/category.entity';
 import { CategoryRepository } from '~/repository/cate.repository';
 
-class CategoryService {
+export class CategoryService {
     private readonly cateRepository: CategoryRepository;
 
     constructor() {
@@ -29,5 +29,3 @@ class CategoryService {
         return cateTree;
     }
 }
-
-export default new CategoryService();

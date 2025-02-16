@@ -8,7 +8,7 @@ import { UPLOAD_IMAGE_DIR, UPLOAD_IMAGE_TEMP_DIR } from '~/constants/dir';
 import sharp from 'sharp';
 import { ShopRepository } from '~/repository/shop.repository';
 
-class MediaService {
+export class MediaService {
     private readonly userRepository: UserRepository = new UserRepository();
     private readonly shopRepository: ShopRepository = new ShopRepository();
 
@@ -80,4 +80,3 @@ class MediaService {
     }
 }
 
-export default new MediaService();
