@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import express from 'express';
-import AuthController from '~/controllers/auth.controller';
+import { AuthController } from '~/controllers/auth.controller';
 import { asyncHandler } from '~/utils/asyncHandler';
 import { loginValidator, registerValidator } from '~/middlewares/users.middleware';
 import {
@@ -14,9 +14,12 @@ import {
     verifyPasswordValidator,
 } from '~/middlewares/auth.middleware';
 import { Role } from '~/constants/enums';
+import { makeInvoker } from 'awilix-express';
+import container from '~/container';
 
 const router = express.Router();
-
+const api = makeInvoker(() => container.resolve('authController'))
+console.log(container.resolve("authController"));
 /**
  * Description. Login
  * Path: /login
@@ -24,7 +27,7 @@ const router = express.Router();
  * Headers: { User-Agent: string }
  * Body: { email?: string, username?: string, password: string }
  */
-router.route('/login').post(platformValidator, loginValidator, asyncHandler(AuthController.login));
+router.route('/login').post(platformValidator, loginValidator, api('login'));
 
 /**
  * Description. Register Email
@@ -33,7 +36,7 @@ router.route('/login').post(platformValidator, loginValidator, asyncHandler(Auth
  * Headers: { User-Agent: string }
  * Body: { email: string, username: string, password: string, confirm_password: string }
  */
-router.route('/register').post(platformValidator, registerValidator, asyncHandler(AuthController.register));
+router.route('/register').post(platformValidator, registerValidator, asyncHandler(api('register')));
 
 /**
  * Description. Verify Email
@@ -42,7 +45,7 @@ router.route('/register').post(platformValidator, registerValidator, asyncHandle
  * Headers: { User-Agent: string }
  * Body: { verify_email_token: string, opt: string }
  */
-router.route('/verify-email').post(platformValidator, verifyEmailValidator, asyncHandler(AuthController.verifyMail));
+router.route('/verify-email').post(platformValidator, verifyEmailValidator, asyncHandler(api('verifyMail')));
 
 /**
  * Description. Resend Verify Email
@@ -53,7 +56,7 @@ router.route('/verify-email').post(platformValidator, verifyEmailValidator, asyn
  */
 router
     .route('/resend-verify-email')
-    .post(platformValidator, verifyEmailValidator, asyncHandler(AuthController.resendVerifyMail));
+    .post(platformValidator, verifyEmailValidator, asyncHandler(api('resendVerifyMail')));
 
 /**
  * Description. Refresh token
@@ -64,7 +67,7 @@ router
  */
 router
     .route('/refresh-token')
-    .post(platformValidator, refreshTokenValidator, asyncHandler(AuthController.refreshToken));
+    .post(platformValidator, refreshTokenValidator, asyncHandler(api('refreshToken')));
 
 /**
  * Description. Forgot password
@@ -75,7 +78,7 @@ router
  */
 router
     .route('/forgot-password')
-    .post(platformValidator, forgotPasswordValidator, asyncHandler(AuthController.forgotPassword));
+    .post(platformValidator, forgotPasswordValidator, asyncHandler(api('forgotPassword')));
 
 /**
  * Description. Verify password
@@ -86,7 +89,7 @@ router
  */
 router
     .route('/verify-password')
-    .post(platformValidator, verifyPasswordValidator, asyncHandler(AuthController.verifyForgotPassword));
+    .post(platformValidator, verifyPasswordValidator, asyncHandler(api('verifyForgotPassword')));
 
 /**
  * Description. Resend verify password
@@ -97,7 +100,7 @@ router
  */
 router
     .route('/resend-verify-password')
-    .post(platformValidator, verifyPasswordValidator, asyncHandler(AuthController.resendForgotPassword));
+    .post(platformValidator, verifyPasswordValidator, asyncHandler(api('resendForgotPassword')));
 
 /**
  * Description. Reset password
@@ -108,7 +111,7 @@ router
  */
 router
     .route('/reset-password')
-    .post(platformValidator, resetPasswordValidator, asyncHandler(AuthController.resetPassword));
+    .post(platformValidator, resetPasswordValidator, asyncHandler(api('resetPassword')));
 
 /**
  * Description. Logout
@@ -119,6 +122,6 @@ router
  */
 router
     .route('/logout')
-    .post(platformValidator, accessTokenValidator, refreshTokenValidator, asyncHandler(AuthController.logout));
+    .post(platformValidator, accessTokenValidator, refreshTokenValidator, asyncHandler(api('logout')));
 
 export default router;

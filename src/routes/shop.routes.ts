@@ -1,11 +1,14 @@
+import { makeInvoker } from 'awilix-express';
 import { Router } from 'express';
-import shopController from '~/controllers/shop.controller';
+import container from '~/container';
+import { ShopController } from '~/controllers/shop.controller';
 import { accessTokenValidator, isShop } from '~/middlewares/auth.middleware';
 import { validationMiddleware } from '~/middlewares/validation.middleware';
 import { RegisterInfoShopDTO } from '~/models/dtos/ShopDTO';
 import { asyncHandler } from '~/utils/asyncHandler';
 
 const router = Router();
+const api = makeInvoker<ShopController>(() => container.resolve('shopController'))
 
 router
     .route('/register')
@@ -21,7 +24,7 @@ router
      *    pickup_address: AddressDTO;
      * }
      */
-    .post(accessTokenValidator, validationMiddleware(RegisterInfoShopDTO), asyncHandler(shopController.register));
+    .post(accessTokenValidator, validationMiddleware(RegisterInfoShopDTO), asyncHandler(api('register')));
 
 router
     .route('')
@@ -31,7 +34,7 @@ router
      * Method: GET
      * Headers: { Authorization: string, User-Agent: string }
      */
-    .get(accessTokenValidator, isShop(), asyncHandler(shopController.getInfo));
+    .get(accessTokenValidator, isShop(), asyncHandler(api('getInfo')));
 
 router
     .route('/:shop_id')
@@ -41,6 +44,6 @@ router
      * Method: GET
      * Headers: { Authorization: string, User-Agent: string }
      */
-    .get(asyncHandler(shopController.getInfoById));
+    .get(asyncHandler(api('getInfoById')));
 
 export default router;

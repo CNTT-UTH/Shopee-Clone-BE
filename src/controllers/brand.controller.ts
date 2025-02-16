@@ -1,15 +1,15 @@
-import { Request, Response } from "express";
-import brandService from "~/services/brand.service";
-class BrandController {
-     async getBrands(req: Request, res: Response) {
-          const result = await brandService.getBrands();
+import { Request, Response } from 'express';
+import { BrandService } from '~/services/brand.service';
 
-          res.send({
-               success: true,
-               message: null,
-               result 
-          })
-     }
-} 
+export class BrandController {
+    constructor(private readonly brandService: BrandService) {}
+    async getBrands(req: Request, res: Response) {
+        const result = await this.brandService.getBrands();
 
-export default new BrandController();
+        res.send({
+            success: true,
+            message: null,
+            result,
+        });
+    }
+}

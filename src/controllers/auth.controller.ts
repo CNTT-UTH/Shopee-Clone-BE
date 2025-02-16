@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { ParamsDictionary } from 'express-serve-static-core';
 import { LoginReqBody, RegisterReqBody, TokenPayload } from '~/models/requests/users.requests';
-import AuthService from '~/services/auth.service';
+import { AuthService } from '~/services/auth.service';
 import { USERS_MESSAGES } from '~/constants/messages';
 import {
     EmailVerifyReqBody,
@@ -11,7 +11,10 @@ import {
     VerifyPasswordReqBody,
 } from '~/models/requests/auth.requests';
 
-class AuthController {
+export class AuthController {
+    constructor(private readonly authService: AuthService) {
+     }
+
     greetings = async (req: Request, res: Response) => {
         // (req);
         res.send({
@@ -24,7 +27,7 @@ class AuthController {
         const reqBody: LoginReqBody = req.body;
         const userAgent = req.headers['user-agent'] as string;
 
-        const result = await AuthService.login(reqBody, {
+        const result = await this.authService.login(reqBody, {
             platform: req.query?.platform == 'mobile' ? 'mobile' : 'web',
             user_agent: userAgent,
         });
@@ -40,7 +43,7 @@ class AuthController {
         const reqBody: RegisterReqBody = req.body;
         const userAgent = req.headers['user-agent'] as string;
 
-        const result = await AuthService.register(reqBody, {
+        const result = await this.authService.register(reqBody, {
             platform: req.query?.platform == 'mobile' ? 'mobile' : 'web',
             user_agent: userAgent,
         });
@@ -56,7 +59,7 @@ class AuthController {
         const reqBody: RefreshReqBody = req.body;
         const userAgent = req.headers['user-agent'] as string;
 
-        const result = await AuthService.logout(
+        const result = await this.authService.logout(
             { _id: (req?.decoded as TokenPayload)._id },
             {
                 platform: req.query?.platform == 'mobile' ? 'mobile' : 'web',
@@ -75,7 +78,7 @@ class AuthController {
         const reqBody: RefreshReqBody = req.body;
         const userAgent = req.headers['user-agent'] as string;
 
-        const result = await AuthService.refreshToken(
+        const result = await this.authService.refreshToken(
             { token: reqBody.refresh_token, decoded: req?.decoded as TokenPayload },
             {
                 platform: req.query?.platform == 'mobile' ? 'mobile' : 'web',
@@ -94,7 +97,7 @@ class AuthController {
         const reqBody: EmailVerifyReqBody = req.body;
         const userAgent = req.headers['user-agent'] as string;
 
-        const result = await AuthService.verifyMail(reqBody, req?.decoded as TokenPayload, {
+        const result = await this.authService.verifyMail(reqBody, req?.decoded as TokenPayload, {
             platform: req.query?.platform == 'mobile' ? 'mobile' : 'web',
             user_agent: userAgent,
         });
@@ -110,7 +113,7 @@ class AuthController {
         const reqBody: EmailVerifyReqBody = req.body;
         const userAgent = req.headers['user-agent'] as string;
 
-        const result = await AuthService.resendVerifyEmail(reqBody?.verify_email_token, req?.decoded as TokenPayload, {
+        const result = await this.authService.resendVerifyEmail(reqBody?.verify_email_token, req?.decoded as TokenPayload, {
             platform: req.query?.platform == 'mobile' ? 'mobile' : 'web',
             user_agent: userAgent,
         });
@@ -126,7 +129,7 @@ class AuthController {
         const reqBody: ForgotPasswordReqBody = req.body;
         const userAgent = req.headers['user-agent'] as string;
 
-        const result = await AuthService.forgotPassword(reqBody, {
+        const result = await this.authService.forgotPassword(reqBody, {
             platform: req.query?.platform == 'mobile' ? 'mobile' : 'web',
             user_agent: userAgent,
         });
@@ -142,7 +145,7 @@ class AuthController {
         const reqBody: VerifyPasswordReqBody = req.body;
         const userAgent = req.headers['user-agent'] as string;
 
-        const result = await AuthService.resendForgotPassword(
+        const result = await this.authService.resendForgotPassword(
             reqBody,
             {
                 platform: req.query?.platform == 'mobile' ? 'mobile' : 'web',
@@ -162,7 +165,7 @@ class AuthController {
         const reqBody: VerifyPasswordReqBody = req.body;
         const userAgent = req.headers['user-agent'] as string;
 
-        const result = await AuthService.verifyForgotPassword(
+        const result = await this.authService.verifyForgotPassword(
             reqBody,
             {
                 platform: req.query?.platform == 'mobile' ? 'mobile' : 'web',
@@ -182,7 +185,7 @@ class AuthController {
         const reqBody: ResetPasswordReqBody = req.body;
         const userAgent = req.headers['user-agent'] as string;
 
-        const result = await AuthService.resetPassword(
+        const result = await this.authService.resetPassword(
             reqBody,
             {
                 platform: req.query?.platform == 'mobile' ? 'mobile' : 'web',
@@ -198,5 +201,3 @@ class AuthController {
         });
     };
 }
-
-export default new AuthController();

@@ -1,19 +1,24 @@
 import { Request, Response } from "express";
-import cartService from "~/services/cart.service";
-class CartController {
+import { CartService } from "~/services/cart.service";
 
-     async getMyCart(req: Request, res: Response) {
-          
-          const user_id: string = req?.decoded?._id as string;
+export class CartController {
+    constructor(
+        private readonly cartService: CartService
+    ) {
 
-          const result = await cartService.getMyCart(user_id);
+    }
 
-          res.send( {
-               success: true,
-               message: null,
-               result
-          })
-     }
+    async getMyCart(req: Request, res: Response) {
+
+        const user_id: string = req?.decoded?._id as string;
+
+        const result = await this.cartService.getMyCart(user_id);
+
+        res.send({
+            success: true,
+            message: null,
+            result
+        })
+    }
 }
 
-export default new CartController();

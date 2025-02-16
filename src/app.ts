@@ -13,6 +13,8 @@ import path from 'path';
 import morgan from 'morgan';
 import helmet from 'helmet';
 import compression from 'compression';
+import container from './container';
+import { scopePerRequest } from 'awilix-express';
 
 const file = fs.readFileSync(path.resolve(__dirname, '../openapi/openapi.yaml'), 'utf8');
 const swaggerDocs = YAML.parse(file);
@@ -41,6 +43,8 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
+app.use(scopePerRequest(container));
+// console.log(container.registrations);
 initWebRoutes(app);
 
 app.use(errorHandler);

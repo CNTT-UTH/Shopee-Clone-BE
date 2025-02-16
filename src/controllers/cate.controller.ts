@@ -1,9 +1,14 @@
 import { Request, Response, NextFunction } from 'express';
-import cateService from '~/services/cate.service';
+import { CategoryService } from '~/services/cate.service';
 
-class CategoryController {
+export class CategoryController {
+    constructor(
+        private readonly cateService: CategoryService
+    ){
+
+    }
     async getCateTree(req: Request, res: Response) {
-        const result = await cateService.getCateTree();
+        const result = await this.cateService.getCateTree();
 
         res.send({
             success: true,
@@ -13,4 +18,3 @@ class CategoryController {
     }
 }
 
-export default new CategoryController();

@@ -27,6 +27,8 @@ export class AuthService {
 
     constructor() {
         this.userRepository = new UserRepository();
+        console.log("Inject!")
+
     }
 
     private signAccessToken(payload: TokenPayload) {

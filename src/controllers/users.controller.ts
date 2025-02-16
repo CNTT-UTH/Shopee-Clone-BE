@@ -2,14 +2,20 @@ import { Request, Response, NextFunction } from 'express';
 import { ParamsDictionary } from 'express-serve-static-core';
 import { USERS_MESSAGES } from '~/constants/messages';
 import { UpdateProfileReqBody } from '~/models/requests/users.requests';
-import usersService from '~/services/users.service';
-import mediasService from '~/services/media.service';
+import { UserService } from '~/services/users.service';
+import { MediaService } from '~/services/media.service';
 
 export class UserController {
+    constructor(
+        private readonly userService: UserService,
+        private readonly mediaService: MediaService
+    ) {
+
+    }
     async getProfile(req: Request, res: Response) {
         const userId: string = req?.decoded?._id as string;
 
-        const result = await usersService.getProfile(userId);
+        const result = await this.userService.getProfile(userId);
 
         res.send({
             success: true,
@@ -21,7 +27,7 @@ export class UserController {
     async getProfileById(req: Request, res: Response) {
         const userId: string = req?.params?.user_id as string;
 
-        const result = await usersService.getProfile(userId);
+        const result = await this.userService.getProfile(userId);
 
         res.send({
             success: true,
@@ -31,7 +37,7 @@ export class UserController {
     }
 
     async getAll(req: Request, res: Response) {
-        const result = await usersService.getAll();
+        const result = await this.userService.getAll();
 
         res.send({
             success: true,
@@ -44,7 +50,7 @@ export class UserController {
         const payload: Partial<UpdateProfileReqBody> = req.body;
         const userID: string = req?.decoded?._id as string;
 
-        const result = await usersService.updateProfile(payload, userID);
+        const result = await this.userService.updateProfile(payload, userID);
 
         res.send({
             success: true,
@@ -54,7 +60,7 @@ export class UserController {
     }
 
     async updateAvatar(req: Request, res: Response) {
-        const result = await mediasService.uploadUserAvatar(req);
+        const result = await this.mediaService.uploadUserAvatar(req);
 
         res.send({
             success: true,

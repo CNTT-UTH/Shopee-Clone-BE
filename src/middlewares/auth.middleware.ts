@@ -7,8 +7,9 @@ import { ApiError } from '~/utils/errors';
 import { verifyToken } from '~/utils/jwt';
 import HTTP_STATUS from '~/constants/httpStatus';
 import { validate } from '~/utils/validate';
-import authServices from '~/services/auth.service';
 import useragent from 'useragent';
+import { AuthService } from '~/services/auth.service';
+const authServices = new AuthService();
 
 const passwordParam = {
     notEmpty: {

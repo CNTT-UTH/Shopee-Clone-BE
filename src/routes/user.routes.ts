@@ -1,12 +1,15 @@
 /* eslint-disable prettier/prettier */
+import { makeInvoker } from 'awilix-express';
 import express from 'express';
 import { Role } from '~/constants/enums';
-import usersController from '~/controllers/users.controller';
+import container from '~/container';
+import { UserController } from '~/controllers/users.controller';
 import { accessTokenValidator, authorizeRole, platformValidator } from '~/middlewares/auth.middleware';
 import { updateProfileValidator } from '~/middlewares/users.middleware';
 import { asyncHandler } from '~/utils/asyncHandler';
 
 const router = express.Router();
+const api = makeInvoker<UserController>(() => container.resolve('usersController'))
 
 router
     .route('/profile')
@@ -16,7 +19,7 @@ router
      * Method: GET
      * Headers: { Authorization: string, User-Agent: string }
      */
-    .get(platformValidator, accessTokenValidator, authorizeRole([Role.User]), asyncHandler(usersController.getProfile));
+    .get(platformValidator, accessTokenValidator, authorizeRole([Role.User]), asyncHandler(api('getProfile')));
 
 router
     .route('/profile/all')
@@ -26,7 +29,7 @@ router
      * Method: GET
      * Body: {}
      */
-    .get(platformValidator, accessTokenValidator, authorizeRole([Role.Admin]), asyncHandler(usersController.getAll));
+    .get(platformValidator, accessTokenValidator, authorizeRole([Role.Admin]), asyncHandler(api('getAll')));
 
 router
     .route('/profile/:user_id')
@@ -35,7 +38,7 @@ router
      * Path: /profile/:user_id
      * Method: GET
      */
-    .get(asyncHandler(usersController.getProfileById));
+    .get(asyncHandler(api('getProfileById')));
 
 router
     .route('/update-profile')
@@ -51,7 +54,7 @@ router
         updateProfileValidator,
         accessTokenValidator,
         authorizeRole([Role.User]),
-        asyncHandler(usersController.updateProfile),
+        asyncHandler(api('updateProfile')),
     );
 
 router
@@ -67,7 +70,7 @@ router
         platformValidator,
         accessTokenValidator,
         authorizeRole([Role.User]),
-        asyncHandler(usersController.updateAvatar),
+        asyncHandler(api('updateAvatar')),
     );
 
 // router
@@ -82,7 +85,7 @@ router
 //         platformValidator,
 //         accessTokenValidator,
 //         authorizeRole([Role.User]),
-//         asyncHandler(usersController.updateProfile),
+//         asyncHandler(api('updateProfile')),
 //     );
 
 export default router;
