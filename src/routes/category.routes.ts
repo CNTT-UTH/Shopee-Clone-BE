@@ -5,7 +5,7 @@ import { CategoryController } from '~/controllers/cate.controller';
 import { asyncHandler } from '~/utils/asyncHandler';
 
 const router = Router();
-const api = makeInvoker<CategoryController>(() => container.resolve('cartController'));
+const api = makeInvoker<CategoryController>(() => container.resolve('cateController'));
 
 router.route('/get-category-tree').get(asyncHandler(api('getCateTree')));
 
