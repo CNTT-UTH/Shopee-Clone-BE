@@ -57,7 +57,7 @@ export class ShippingProductInfo extends BaseEntity {
     estimated_delivery_days_min: number;
     @Column()
     estimated_delivery_days_max: number;
-    @Column()
+    @Column({ type: 'boolean', default: false })
     freeship: boolean;
 }
 
