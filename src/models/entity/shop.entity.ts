@@ -36,7 +36,7 @@ export class Shop extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: string;
 
-    @OneToOne(() => User, (user) => user._id)
+    @OneToOne(() => User, (user) => user._id, {onDelete: 'CASCADE'})
     @JoinColumn({ name: 'user_id' })
     user: User;
 

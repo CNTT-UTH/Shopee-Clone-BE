@@ -1,6 +1,6 @@
 {
     "editor.codeActionsOnSave": {
-      "source.fixAll": true // ✅ Bật auto fix cho tất cả lỗi (bao gồm ESLint)
+      "source.fixAll": "explicit"
     },
     "editor.formatOnSave": true, // ✅ Format code tự động khi save
     "eslint.format.enable": true, // ✅ Dùng ESLint để format
