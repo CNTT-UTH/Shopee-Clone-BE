@@ -40,18 +40,18 @@ export class ImageRepository extends Repository<Image> {
     }
 }
 
-export class OptionValueRepository {
-    private repoOption: Repository<Option>;
+export class OptionValueRepository extends Repository<Option> {
     private repoValue: Repository<OptionValue>;
 
     constructor() {
-        this.repoOption = AppDataSource.getRepository(Option);
+        super(Option, AppDataSource.manager)
+        // this.repoOption = AppDataSource.getRepository(Option);
         this.repoValue = AppDataSource.getRepository(OptionValue);
     }
 
     async getProductOptions(product: Product) {
         return (
-            (await this.repoOption.find({
+            (await this.find({
                 where: {
                     product: {
                         _id: product._id,
@@ -63,7 +63,7 @@ export class OptionValueRepository {
     }
 
     async getOrCreateOption(name: string, product: Product) {
-        const option = await this.repoOption.findOne({
+        const option = await this.findOne({
             where: {
                 product: { _id: product._id },
                 name: name,
@@ -72,7 +72,7 @@ export class OptionValueRepository {
 
         if (option) return option;
         else {
-            return await this.repoOption
+            return await this
                 .create({
                     name,
                     product,

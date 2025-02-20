@@ -4,22 +4,23 @@ import { AttributeDTO } from '~/models/dtos/product/ProductDTO';
 import { Attribute, AttributeValue } from '~/models/entity/attribute.entity';
 import { Product } from '~/models/entity/product.entity';
 
-export class AttributeRepository {
-    private repoAttribute: Repository<Attribute>;
+export class AttributeRepository extends Repository<Attribute> {
+    // private repoAttribute: Repository<Attribute>;
     private repoAttriValue: Repository<AttributeValue>;
 
     constructor() {
-        this.repoAttribute = AppDataSource.getRepository(Attribute);
+        super(Attribute, AppDataSource.manager);
+        // this.repoAttribute = AppDataSource.getRepository(Attribute);
         this.repoAttriValue = AppDataSource.getRepository(AttributeValue);
     }
 
     async getAttriByCateid(cate_id: number) {
-        const result = await this.repoAttribute.findBy({ cates: { cate_id: cate_id } });
+        const result = await this.findBy({ cates: { cate_id: cate_id } });
         return result;
     }
 
     async getAttriById(id: number) {
-        return await this.repoAttribute.findOneBy({ id });
+        return await this.findOneBy({ id });
     }
 
     async getProductAttributes(product: Product) {

@@ -161,6 +161,16 @@ export class ProductService {
                 .withRepository(this.imageRepository)
                 .addImagesProduct(data.image_urls as string[], product);
 
+            if (data.options)
+                await queryRunner.manager
+                    .withRepository(this.optionRepository)
+                    .addProductOptions(data.options, product);
+
+            if (data.product_attributes)
+                await queryRunner.manager
+                    .withRepository(this.attriRepository)
+                    .addProductAttriValues(data.product_attributes, product);
+
             await queryRunner.commitTransaction();
         } catch (error) {
             await queryRunner.rollbackTransaction();
