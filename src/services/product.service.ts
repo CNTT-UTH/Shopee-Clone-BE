@@ -19,6 +19,8 @@ import { ShippingRepository } from '~/repository/shipping.repository';
 import { AttributeDTO, OptionsDTO, PriceDTO, ProductDTO, VariantDTO } from '~/models/dtos/product/ProductDTO';
 import { plainToInstance } from 'class-transformer';
 import { CategoryRepository } from '~/repository/cate.repository';
+import { DataSource, QueryRunner } from 'typeorm';
+import AppDataSource from '~/dbs/db';
 
 export class ProductService {
     /**
@@ -36,7 +38,7 @@ export class ProductService {
 
     constructor(
         private readonly shippingRatesManagementService: ShippingRatesManagementService,
-        private readonly shippingService: ShippingService
+        private readonly shippingService: ShippingService,
     ) {
         this.shopRepository = new ShopRepository();
         this.brandRepository = new BrandRepository();
@@ -139,45 +141,48 @@ export class ProductService {
     }
 
     async createProduct(data: Partial<CreateProductDTO>, user_id: string) {
-        //Validation more...
-        // {
-        //      const option_name: string[] = data.options?.map((o) => o.name) ?? [];
-        //      for (let variant of data.variants ?? []) {
-
-        //           if (option_name.includes(variant.option_values))
-        //      }
-        // }
-
         const shop: Shop | null = user_id ? await this.shopRepository.getShopByUserId(user_id) : null;
 
-        if (!shop) {
-            throw new ApiError('SHOP KHÔNG TỒN TẠI', HTTP_STATUS.BAD_REQUEST);
-        }
+        if (!shop) throw new ApiError('SHOP KHÔNG TỒN TẠI', HTTP_STATUS.BAD_REQUEST);
 
         const priceDetail: PriceDTO = await this.countingPrice(data);
 
-        const product: Product = await this.productRepository.createProduct(data, priceDetail, shop.id);
+        const queryRunner: QueryRunner = AppDataSource.createQueryRunner();
 
-        await this.imageRepository.addImagesProduct(data.image_urls as string[], product);
-        const options: Option[] = data.options
-            ? await this.optionRepository.addProductOptions(data.options, product)
-            : [];
-        const attributes: AttributeValue[] = data.product_attributes
-            ? await this.attriRepository.addProductAttriValues(data.product_attributes, product)
-            : [];
-        const shippingDTOs: ShippingInfoDTO[] = data.dimension
-            ? await this.shippingRatesManagementService.countingRates(data.dimension, data.shipping_channels ?? [])
-            : [];
-        const shipping_infos: ShippingProductInfo[] = await this.shippingRepository.updateProductShippingInfo(
-            shippingDTOs,
-            product,
-        );
-        const variants: ProductVariant[] = data.variants
-            ? await this.variantRepository.createVariants(data.variants, product)
-            : [];
+        await queryRunner.connect();
+        await queryRunner.startTransaction();
+
+        try {
+            const product: Product = await queryRunner.manager
+                .withRepository(this.productRepository)
+                .createProduct(data, priceDetail, shop.id);
+
+            await queryRunner.manager
+                .withRepository(this.imageRepository)
+                .addImagesProduct(data.image_urls as string[], product);
+
+            await queryRunner.commitTransaction();
+        } catch (error) {
+            await queryRunner.rollbackTransaction();
+            throw error;
+        } finally {
+            await queryRunner.release();
+        }
+
+        // await this.imageRepository.addImagesProduct(data.image_urls as string[], product);
+        // if (data.options) await this.optionRepository.addProductOptions(data.options, product);
+        // if (data.product_attributes) await this.attriRepository.addProductAttriValues(data.product_attributes, product);
+
+        // const shippingDTOs: ShippingInfoDTO[] = data.dimension
+        //     ? await this.shippingRatesManagementService.countingRates(data.dimension, data.shipping_channels ?? [])
+        //     : [];
+
+        // await this.shippingRepository.updateProductShippingInfo(shippingDTOs, product);
+
+        // if (data.variants) await this.variantRepository.createVariants(data.variants, product);
 
         // return await this.toDTO(product);
-        return await this.getProduct(product._id);
+        // return await this.getProduct(product._id);
     }
 
     async getProduct(id: number) {

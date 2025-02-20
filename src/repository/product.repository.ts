@@ -11,22 +11,21 @@ import { Shipping } from '~/models/entity/shipping.entity';
 import { Shop } from '~/models/entity/shop.entity';
 import { Option } from '~/models/entity/variant.entiity';
 
-export class ProductRepository {
-    private repo: Repository<Product>;
-
+export class ProductRepository extends Repository<Product> {
     constructor() {
-        this.repo = AppDataSource.getRepository(Product);
+        super(Product, AppDataSource.manager);
+        // this.repo = AppDataSource.getRepository(Product);
     }
 
     async findProductById(id: number) {
-        return await this.repo.findOne({
+        return await this.findOne({
             where: { _id: id },
             relations: ['shop', 'shipping_channels', 'images', 'options', 'attributes', 'variants'],
         });
     }
 
     async findAll() {
-        return (await this.repo.find()) ?? [];
+        return (await this.find()) ?? [];
     }
 
     async createProduct(
@@ -40,36 +39,34 @@ export class ProductRepository {
         // shop: Shop,
         // shipping_channels: Shipping[]
     ) {
-        const product = await this.repo
-            .create({
-                title: data.title,
-                sku: data.sku,
-                description: data.description,
-                category_id: data.cate_id,
-                quantity: data.stock,
-                price: price_detail.price,
-                old_price: price_detail.price_before_discount,
-                price_range_min: price_detail.range_min,
-                price_range_max: price_detail.range_max,
-                price_range_min_old: price_detail.range_min_before_discount,
-                price_range_max_old: price_detail.range_max_before_discount,
-                discount: price_detail.discount,
-                buyturn: 0,
-                weight: data.dimension?.weight ? data.dimension?.weight * 1000 : 0,
-                width: data.dimension?.width,
-                height: data.dimension?.height,
-                length: data.dimension?.length,
-                shop: {
-                    id: shop_id,
-                },
-                // brand,
-                // images,
-                // options,
-                // attributes,
-                // shop,
-                // shipping_channels,
-            })
-            .save();
+        const product = await this.create({
+            title: data.title,
+            sku: data.sku,
+            description: data.description,
+            category_id: data.cate_id,
+            quantity: data.stock,
+            price: price_detail.price,
+            old_price: price_detail.price_before_discount,
+            price_range_min: price_detail.range_min,
+            price_range_max: price_detail.range_max,
+            price_range_min_old: price_detail.range_min_before_discount,
+            price_range_max_old: price_detail.range_max_before_discount,
+            discount: price_detail.discount,
+            buyturn: 0,
+            weight: data.dimension?.weight ? data.dimension?.weight * 1000 : 0,
+            width: data.dimension?.width,
+            height: data.dimension?.height,
+            length: data.dimension?.length,
+            shop: {
+                id: shop_id,
+            },
+            // brand,
+            // images,
+            // options,
+            // attributes,
+            // shop,
+            // shipping_channels,
+        }).save();
 
         return product;
     }
@@ -82,10 +79,8 @@ export class ProductRepository {
         },
         product: Product,
     ) {
-        return await this.repo
-            .merge(product, {
-                ...data,
-            })
-            .save();
+        return await this.merge(product, {
+            ...data,
+        }).save();
     }
 }

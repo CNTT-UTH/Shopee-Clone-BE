@@ -64,25 +64,32 @@ container.register({
     // paymentService: asClass(PaymentService).singleton(),
     // paymentController: asClass(PaymentController).singleton(),
 
+    // ADDRESS MODULE:
     addressController: asClass(AddressController).scoped(),
     addressService: asClass(AddressService).singleton(),
 
+    // ATTRIBUTE MODULE:
     attributeController: asClass(AttributeController).scoped(),
     attributeService: asClass(AttributeService).singleton(),
 
+    // BRAND MODULE:
     brandController: asClass(BrandController).scoped(),
     brandService: asClass(BrandService).singleton(),
 
+    // CATEGORY MODULE:
     cateController: asClass(CategoryController).scoped(),
     cateService: asClass(CategoryService).singleton(),
 
+    // SHIPPING MODULE:
     shippingController: asClass(ShippingController).scoped(),
     shippingService: asClass(ShippingService).singleton(),
     shippingRatesManagementService: asClass(ShippingRatesManagementService).singleton(),
 
+    // SHOP MODULE:
     shopController: asClass(ShopController).scoped(),
     shopService: asClass(ShopService).singleton(),
 
+    // MEDIA MODULE:
     mediaService: asClass(MediaService).singleton(),
 });
 

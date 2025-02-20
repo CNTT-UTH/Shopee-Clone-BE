@@ -7,22 +7,18 @@ import { Image } from '~/models/entity/image.entity';
 import { Product } from '~/models/entity/product.entity';
 import { Option, OptionValue, ProductVariant } from '~/models/entity/variant.entiity';
 
-export class ImageRepository {
-    private repo: Repository<Image>;
-
+export class ImageRepository extends Repository<Image> {
     constructor() {
-        this.repo = AppDataSource.getRepository(Image);
+        super(Image, AppDataSource.manager);
     }
 
     async addImagesProduct(urls: string[], product: Product) {
         const results = await Promise.all(
             urls.map(async (url) => {
-                const image = await this.repo
-                    .create({
-                        image_url: url,
-                        product,
-                    })
-                    .save();
+                const image = await this.create({
+                    image_url: url,
+                    product,
+                }).save();
 
                 return image;
             }),
@@ -33,7 +29,7 @@ export class ImageRepository {
 
     async getProductImages(id: number) {
         return (
-            (await this.repo.find({
+            (await this.find({
                 where: {
                     product: {
                         _id: id,
