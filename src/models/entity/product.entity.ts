@@ -20,7 +20,7 @@ import { AttributeValue } from './attribute.entity';
 import { CartItem } from './cart.entity';
 import { Shop } from './shop.entity';
 import { OrderItem } from './order.entity';
-import { Shipping } from './shipping.entity';
+import { Shipping, ShippingProductInfo } from './shipping.entity';
 
 @Entity('products')
 export class Product extends BaseEntity {
@@ -114,7 +114,6 @@ export class Product extends BaseEntity {
     @JoinColumn({ name: 'shop_id' })
     shop: Shop;
 
-    @ManyToMany(() => Shipping, (shipping) => shipping.shipping_channel_id)
-    @JoinTable()
-    shipping_channels: Shipping[];
+    @OneToMany(() => ShippingProductInfo, (shipping) => shipping.product)
+    shipping_channels: ShippingProductInfo[];
 }

@@ -11,6 +11,10 @@ export class CategoryService {
         this.cateRepository = new CategoryRepository();
     }
 
+    async ifExist(cate_id: number) {
+        return !!(await this.cateRepository.findOneByCateId(cate_id));
+    }
+
     async getCateTree() {
         const rootCates: Category[] = await this.cateRepository.getAllRootCate();
         const cateTree: CategoryDTO[] = await Promise.all(
@@ -27,5 +31,12 @@ export class CategoryService {
         ).then((res) => res);
 
         return cateTree;
+    }
+
+    async getPathTreeFromLeafCate(cate_id: number) {
+        return this.cateRepository.getPathTreeFromLeafCate(cate_id);
+    }
+    async getCateList(cate_id: number) {
+        return this.cateRepository.getCateList(cate_id);
     }
 }

@@ -95,6 +95,20 @@ export class CreateProductDTO {
     options?: CreateOptionDTO[];
 
     @ValidateIf((object) => object?.options?.length !== 0)
+    // @ValidateIf((object) => {
+    //     const opts: { [index: string]: string[] } = {};
+    //     let variant_count: number = 1;
+
+    //     object?.options.map((opt: { name: string; value: string[] }) => {
+    //         opts[String(opt.name)] = opt.value.map((v: string) => v);
+    //         variant_count *= opt.value.length;
+    //     });
+
+    //     console.log(opts, variant_count, object.variants.length);
+    //     if (variant_count !== object.variants.length) return false;
+
+    //     return true;
+    // })
     @IsNotEmpty()
     @IsArray()
     @ArrayMinSize(1)

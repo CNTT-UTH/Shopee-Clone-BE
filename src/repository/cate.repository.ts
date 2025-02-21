@@ -11,6 +11,10 @@ export class CategoryRepository {
         this.repo = AppDataSource.getRepository(Category);
     }
 
+    async findOneByCateId(cate_id: number) {
+        return await this.repo.findOneBy({ cate_id: cate_id });
+    }
+
     async getAllRootCate() {
         const cates = this.repo.findBy({ level: 1 });
         return cates;
@@ -36,5 +40,23 @@ export class CategoryRepository {
         await getRoot(leaf_id);
 
         return cateLevelDTO;
+    }
+
+    async getCateList(leaf_id: number): Promise<number[]> {
+        const cateList: number[] = [];
+
+        const getRoot = async (child_id: number) => {
+            const child = await this.repo.findOneBy({ cate_id: child_id });
+
+            if (!child) return;
+
+            cateList.push(child_id);
+
+            if (child.parent_cate_id) return getRoot(child.parent_cate_id);
+        };
+
+        await getRoot(leaf_id);
+
+        return cateList;
     }
 }

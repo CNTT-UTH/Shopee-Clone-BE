@@ -44,7 +44,7 @@ export class OptionValueRepository extends Repository<Option> {
     private repoValue: Repository<OptionValue>;
 
     constructor() {
-        super(Option, AppDataSource.manager)
+        super(Option, AppDataSource.manager);
         // this.repoOption = AppDataSource.getRepository(Option);
         this.repoValue = AppDataSource.getRepository(OptionValue);
     }
@@ -72,12 +72,10 @@ export class OptionValueRepository extends Repository<Option> {
 
         if (option) return option;
         else {
-            return await this
-                .create({
-                    name,
-                    product,
-                })
-                .save();
+            return await this.create({
+                name,
+                product,
+            }).save();
         }
     }
 
@@ -131,12 +129,13 @@ export class OptionValueRepository extends Repository<Option> {
     }
 }
 
-export class VariantRepository {
-    private repo: Repository<ProductVariant>;
+export class VariantRepository extends Repository<ProductVariant> {
+    // private repo: Repository<ProductVariant>;
     private readonly repoOptionValue: OptionValueRepository;
 
     constructor() {
-        this.repo = AppDataSource.getRepository(ProductVariant);
+        // this. = AppDataSource.getRepository(ProductVariant);
+        super(ProductVariant, AppDataSource.manager);
         this.repoOptionValue = new OptionValueRepository();
     }
 
@@ -155,18 +154,16 @@ export class VariantRepository {
                     }),
                 );
 
-                return await this.repo
-                    .create({
-                        name: variant.name,
-                        sku: variant.sku,
-                        quantity: variant.stock,
-                        buyturn: 0,
-                        price: (variant.price as number) * (1.0 - product.discount),
-                        old_price: variant.price as number,
-                        product,
-                        options,
-                    })
-                    .save();
+                return await this.create({
+                    name: variant.name,
+                    sku: variant.sku,
+                    quantity: variant.stock,
+                    buyturn: 0,
+                    price: (variant.price as number) * (1.0 - product.discount),
+                    old_price: variant.price as number,
+                    product,
+                    options,
+                }).save();
             }),
         );
 
@@ -174,7 +171,7 @@ export class VariantRepository {
     }
 
     async getVariants(product: Product) {
-        return await this.repo.find({
+        return await this.find({
             where: {
                 product: {
                     _id: product._id,

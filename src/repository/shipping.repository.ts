@@ -4,21 +4,20 @@ import { ShippingInfoDTO } from '~/models/dtos/ShippingDTO';
 import { Product } from '~/models/entity/product.entity';
 import { Shipping, ShippingProductInfo } from '~/models/entity/shipping.entity';
 
-export class ShippingRepository {
-    private repo: Repository<Shipping>;
+export class ShippingRepository extends Repository<Shipping> {
     private repoShippingProduct: Repository<ShippingProductInfo>;
 
     constructor() {
-        this.repo = AppDataSource.getRepository(Shipping);
+        super(Shipping, AppDataSource.manager);
         this.repoShippingProduct = AppDataSource.getRepository(ShippingProductInfo);
     }
 
     async getAllChannels() {
-        return (await this.repo.find()) ?? [];
+        return (await this.find()) ?? [];
     }
 
     async getChannelById(id: number) {
-        return (await this.repo.findOneBy({ shipping_channel_id: id })) ?? undefined;
+        return (await this.findOneBy({ shipping_channel_id: id })) ?? undefined;
     }
 
     async getInfoByProductId(product_id: number) {

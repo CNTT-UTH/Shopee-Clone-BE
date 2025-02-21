@@ -21,6 +21,7 @@ import { plainToInstance } from 'class-transformer';
 import { CategoryRepository } from '~/repository/cate.repository';
 import { DataSource, QueryRunner } from 'typeorm';
 import AppDataSource from '~/dbs/db';
+import { CategoryService } from './cate.service';
 
 export class ProductService {
     /**
@@ -39,6 +40,7 @@ export class ProductService {
     constructor(
         private readonly shippingRatesManagementService: ShippingRatesManagementService,
         private readonly shippingService: ShippingService,
+        private readonly cateService: CategoryService,
     ) {
         this.shopRepository = new ShopRepository();
         this.brandRepository = new BrandRepository();
@@ -145,17 +147,32 @@ export class ProductService {
 
         if (!shop) throw new ApiError('SHOP KHÔNG TỒN TẠI', HTTP_STATUS.BAD_REQUEST);
 
+        if (!(await this.cateService.ifExist(data.cate_id as number))) {
+            throw new ApiError('DANH MỤC KHÔNG TỒN TẠI', HTTP_STATUS.BAD_REQUEST);
+        }
+
+        const categories_id = await this.cateService.getCateList(data.cate_id as number);
+
         const priceDetail: PriceDTO = await this.countingPrice(data);
 
         const queryRunner: QueryRunner = AppDataSource.createQueryRunner();
 
         await queryRunner.connect();
+
+        // Init Transaction
         await queryRunner.startTransaction();
 
+        let product_id: number;
+
         try {
+            // Add product
             const product: Product = await queryRunner.manager
                 .withRepository(this.productRepository)
                 .createProduct(data, priceDetail, shop.id);
+
+            await queryRunner.manager
+                .withRepository(this.productRepository)
+                .addCategoriesProduct(categories_id, product._id);
 
             await queryRunner.manager
                 .withRepository(this.imageRepository)
@@ -171,6 +188,19 @@ export class ProductService {
                     .withRepository(this.attriRepository)
                     .addProductAttriValues(data.product_attributes, product);
 
+            const shippingDTOs: ShippingInfoDTO[] = data.dimension
+                ? await this.shippingRatesManagementService.countingRates(data.dimension, data.shipping_channels ?? [])
+                : [];
+
+            await queryRunner.manager
+                .withRepository(this.shippingRepository)
+                .updateProductShippingInfo(shippingDTOs, product);
+
+            if (data.variants)
+                await queryRunner.manager.withRepository(this.variantRepository).createVariants(data.variants, product);
+
+            product_id = product._id;
+
             await queryRunner.commitTransaction();
         } catch (error) {
             await queryRunner.rollbackTransaction();
@@ -182,17 +212,11 @@ export class ProductService {
         // await this.imageRepository.addImagesProduct(data.image_urls as string[], product);
         // if (data.options) await this.optionRepository.addProductOptions(data.options, product);
         // if (data.product_attributes) await this.attriRepository.addProductAttriValues(data.product_attributes, product);
-
-        // const shippingDTOs: ShippingInfoDTO[] = data.dimension
-        //     ? await this.shippingRatesManagementService.countingRates(data.dimension, data.shipping_channels ?? [])
-        //     : [];
-
         // await this.shippingRepository.updateProductShippingInfo(shippingDTOs, product);
-
         // if (data.variants) await this.variantRepository.createVariants(data.variants, product);
-
         // return await this.toDTO(product);
-        // return await this.getProduct(product._id);
+
+        return await this.getProduct(product_id);
     }
 
     async getProduct(id: number) {
@@ -200,8 +224,8 @@ export class ProductService {
 
         if (!product) throw new ApiError('Sản phẩm không tồn tại!', HTTP_STATUS.NOT_FOUND);
 
-        return await this.toDTO(product);
-        // return product;
+        // return await this.toDTO(product);
+        return product;
     }
 
     async getAllProducts() {

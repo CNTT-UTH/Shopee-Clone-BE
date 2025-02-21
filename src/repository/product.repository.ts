@@ -20,7 +20,15 @@ export class ProductRepository extends Repository<Product> {
     async findProductById(id: number) {
         return await this.findOne({
             where: { _id: id },
-            relations: ['shop', 'shipping_channels', 'images', 'options', 'attributes', 'variants'],
+            relations: [
+                'shop',
+                'shipping_channels',
+                'images',
+                'options',
+                'attributes',
+                'variants.options',
+                'categories',
+            ],
         });
     }
 
@@ -82,5 +90,9 @@ export class ProductRepository extends Repository<Product> {
         return await this.merge(product, {
             ...data,
         }).save();
+    }
+
+    async addCategoriesProduct(categories: number[], product_id: number) {
+        await this.createQueryBuilder().relation(Product, 'categories').of(product_id).add(categories);
     }
 }
