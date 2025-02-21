@@ -4,6 +4,7 @@ import { ShippingInfoDTO } from '../ShippingDTO';
 import { IsNotEmpty } from 'class-validator';
 import { ShopDTO } from '../ShopDTO';
 import { Image } from '~/models/entity/image.entity';
+import { OptionValue } from '~/models/entity/variant.entiity';
 
 @Exclude()
 export class AttributeDTO {
@@ -11,7 +12,8 @@ export class AttributeDTO {
     @IsNotEmpty()
     id?: number;
 
-    @Expose()
+    @Expose({ name: 'attribute' })
+    @Transform(({ value }) => value.name)
     name?: string;
 
     @Expose({ name: 'value' })
@@ -50,6 +52,10 @@ export class OptionsDTO {
     @Expose()
     name?: string;
 
+    @Expose({ name: 'values' })
+    @Transform(({ value }) => {
+        return value.map((v: OptionValue) => v.value_name);
+    })
     value?: string[];
 
     image_urls?: string[];
@@ -66,18 +72,25 @@ export class OptionsDTO {
 @Exclude()
 export class VariantDTO {
     product_id?: number;
-    @Expose({})
+
+    @Expose()
     variant_id?: number;
+
     @Expose()
     sku?: string;
+
     @Expose()
     name?: string;
+
     @Expose()
     price?: number;
+
     @Expose({ name: 'old_price' })
     price_before_discount?: number;
+
     @Expose({ name: 'buyturn' })
     sold?: number;
+
     @Expose({ name: 'quantity' })
     stock?: number; //số lượng tồn kho
 
@@ -125,22 +138,27 @@ export class ProductDTO {
     @Expose()
     description?: string;
 
-    @Expose()
+    @Expose({ name: 'attributes' })
+    @Type(() => AttributeDTO)
     product_attributes?: AttributeDTO[];
 
     @Expose()
     cate_id?: number;
 
-    @Expose()
+    @Expose({ name: 'categories' })
+    @Type(() => CategoryDTO)
     cates?: CategoryDTO[];
 
     cate_levels: CategoryLevelDTO;
 
     review?: ProductReviewDTO;
 
-    @Expose()
+    @Expose({ name: 'options' })
+    @Type(() => OptionsDTO)
     options?: OptionsDTO[];
-    @Expose()
+
+    @Expose({ name: 'variants' })
+    @Type(() => VariantDTO)
     variants?: VariantDTO[];
 
     @Expose()
