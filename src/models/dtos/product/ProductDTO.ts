@@ -54,7 +54,7 @@ export class OptionsDTO {
 
     @Expose({ name: 'values' })
     @Transform(({ value }) => {
-        return value.map((v: OptionValue) => v.value_name);
+        return value?.map((v: OptionValue) => v.value_name);
     })
     value?: string[];
 
@@ -171,7 +171,7 @@ export class ProductDTO {
     shipping_channel?: ShippingInfoDTO[];
 
     @Expose({ name: 'images' })
-    @Transform(({ value }) => value.map((v: Image) => v.image_url))
+    @Transform(({ value }) => value?.map((v: Image) => v.image_url))
     image_urls?: string[];
 
     @Expose({ name: 'shop' })

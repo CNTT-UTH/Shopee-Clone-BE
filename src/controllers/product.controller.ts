@@ -3,12 +3,14 @@ import { CreateProductDTO } from '~/models/dtos/product/CreateProductDTO';
 import { ParamsDictionary } from 'express-serve-static-core';
 import { MediaService } from '~/services/media.service';
 import { ProductService } from '~/services/product.service';
+import { Pagination } from '~/models/dtos/PaginationDTO';
+import { Filter } from '~/models/dtos/FilterDTO';
 
 export class ProductController {
     constructor(
         private readonly productService: ProductService,
         private readonly mediaService: MediaService,
-    ) {}
+    ) { }
 
     async uploadProductImages(req: Request, res: Response) {
         const result = await this.mediaService.uploadImagesProduct(req);
@@ -46,8 +48,20 @@ export class ProductController {
     }
 
     async getAllProducts(req: Request, res: Response) {
-        const result = await this.productService.getAllProducts();
+        const pagination: Pagination = {
+            // offset: req?.query?.offset ? Number(req?.query?.offset) : 0,
+            limit: req?.query?.limit ? Number(req?.query?.limit) : 20,
+            page: req?.query?.page ? Number(req?.query?.page) : 1,
+        };
 
+        const filter: Filter = {
+            by: (req?.query?.by as 'price' | 'ctime') ?? 'price',
+            order: (req?.query?.by as 'asc' | 'desc') ?? 'asc',
+            price_min: req?.query?.price_min ? Number(req?.query?.price_min) : 0,
+            price_max: req?.query?.price_max ? Number(req?.query?.price_min) : undefined,
+        };
+
+        const result = await this.productService.getAllProducts({ pagination, filter });
         res.send({
             success: true,
             mesage: null,

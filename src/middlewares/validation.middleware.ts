@@ -31,10 +31,15 @@ const getError = async (errors: ValidationError[] | undefined) => {
     return results;
 };
 
-export const validationMiddleware = (dtoClass: any) => {
+export const validationMiddleware = (dtoClass: any, sent_in?: 'body' | 'params' | 'query') => {
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const dtoInstance = plainToInstance(dtoClass, req.body);
+            const sent_in_mapping = {
+                body: req.body,
+                params: req.params,
+                query: req.query,
+            };
+            const dtoInstance = plainToInstance(dtoClass, sent_in_mapping[sent_in ?? 'body']);
 
             const errors = await validate(dtoInstance);
 

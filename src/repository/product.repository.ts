@@ -1,5 +1,16 @@
-import { Repository } from 'typeorm';
+import {
+    Between,
+    FindOneOptions,
+    FindOptionsOrder,
+    LegacyOracleNamingStrategy,
+    MoreThan,
+    MoreThanOrEqual,
+    Not,
+    Repository,
+} from 'typeorm';
 import AppDataSource from '~/dbs/db';
+import { Filter } from '~/models/dtos/FilterDTO';
+import { Pagination } from '~/models/dtos/PaginationDTO';
 import { CreateProductDTO } from '~/models/dtos/product/CreateProductDTO';
 import { PriceDTO } from '~/models/dtos/product/ProductDTO';
 import { AttributeValue } from '~/models/entity/attribute.entity';
@@ -34,8 +45,26 @@ export class ProductRepository extends Repository<Product> {
         });
     }
 
-    async findAll() {
-        return (await this.find()) ?? [];
+    async findAll({ pagination, filter }: { pagination?: Pagination; filter?: Filter }) {
+        return (
+            (await this.find({
+                skip: pagination?.limit ? pagination?.limit * ((pagination?.page ?? 1) - 1) : 0,
+                take: pagination?.limit,
+                order: {
+                    price: filter?.by === 'price' ? filter?.order : undefined,
+                    created_at: filter?.by === 'ctime' ? 'asc' : undefined,
+                },
+                where: {
+                    price: filter?.price_max
+                        ? Between(filter?.price_min as number, filter?.price_max as number)
+                        : MoreThanOrEqual(filter?.price_min as number),
+                },
+            })) ?? []
+        );
+    }
+
+    async countAll() {
+        return await this.count({ cache: true });
     }
 
     async createProduct(

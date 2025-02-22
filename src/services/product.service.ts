@@ -22,6 +22,9 @@ import { CategoryRepository } from '~/repository/cate.repository';
 import { DataSource, QueryRunner } from 'typeorm';
 import AppDataSource from '~/dbs/db';
 import { CategoryService } from './cate.service';
+import { range } from 'lodash';
+import { Pagination } from '~/models/dtos/PaginationDTO';
+import { Filter } from '~/models/dtos/FilterDTO';
 
 export class ProductService {
     /**
@@ -228,12 +231,26 @@ export class ProductService {
         // return product;
     }
 
-    async getAllProducts() {
-        const products = await this.productRepository.findAll();
+    async getAllProducts({ pagination, filter }: { pagination: Pagination; filter?: Filter }) {
+        pagination!.total_page = Math.ceil((await this.productRepository.countAll()) / pagination!.limit);
 
-        const productDTOs = await Promise.all(products.map(async (product) => await this.toDTO(product)));
+        pagination = {
+            ...pagination!,
 
-        return productDTOs;
+            cur_page: pagination!.page,
+            prev_page: pagination!.page - 1 > 0 ? pagination!.page - 1 : null,
+            next_page: pagination!.page + 1 < pagination!.total_page ? pagination!.page + 1 : null,
+        };
+
+        if (pagination.cur_page && pagination.total_page && pagination.cur_page > pagination.total_page) {
+            throw new ApiError('Trang tìm kiếm không tồn tài', HTTP_STATUS.NOT_FOUND);
+        }
+
+        const products = await this.productRepository.findAll({ pagination, filter });
+
+        const productDTOs = await Promise.all(products.map((product) => plainToInstance(ProductDTO, product)));
+
+        return { data: productDTOs, pagination };
     }
 
     async countingPrice(data: Partial<CreateProductDTO>): Promise<PriceDTO> {
@@ -260,6 +277,9 @@ export class ProductService {
             priceDTO.range_max = priceDTO.range_max_before_discount
                 ? priceDTO.range_max_before_discount * (1 - Number(priceDTO.discount))
                 : undefined;
+
+            priceDTO.price = priceDTO.range_min;
+            priceDTO.price_before_discount = priceDTO.range_min_before_discount;
         }
 
         return priceDTO;

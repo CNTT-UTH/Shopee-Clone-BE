@@ -5,6 +5,7 @@ import container from '~/container';
 import { ProductController } from '~/controllers/product.controller';
 import { accessTokenValidator, authorizeRole, isShop, platformValidator } from '~/middlewares/auth.middleware';
 import { validationMiddleware } from '~/middlewares/validation.middleware';
+import { Pagination } from '~/models/dtos/PaginationDTO';
 import { CreateProductDTO } from '~/models/dtos/product/CreateProductDTO';
 import { asyncHandler } from '~/utils/asyncHandler';
 
@@ -46,7 +47,7 @@ router
      * Path: /all'
      * Method: GET
      */
-    .get(asyncHandler(api('getAllProducts')));
+    .get(validationMiddleware(Pagination, 'query'), asyncHandler(api('getAllProducts')));
 
 router
     .route('/:id')
