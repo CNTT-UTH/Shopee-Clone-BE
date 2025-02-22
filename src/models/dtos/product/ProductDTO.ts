@@ -13,7 +13,7 @@ export class AttributeDTO {
     id?: number;
 
     @Expose({ name: 'attribute' })
-    @Transform(({ value }) => value.name)
+    @Transform(({ value }) => value?.name)
     name?: string;
 
     @Expose({ name: 'value' })
@@ -162,6 +162,16 @@ export class ProductDTO {
     variants?: VariantDTO[];
 
     @Expose()
+    @Type(() => PriceDTO)
+    @Transform(({ obj }) => ({
+        discount: obj.discount,
+        price: obj.price,
+        price_before_discount: obj.old_price,
+        range_min: obj.price_range_min,
+        range_max: obj.price_range_max,
+        range_min_before_discount: obj.price_range_min_old,
+        range_max_before_discount: obj.price_range_max_old,
+    }))
     product_price?: PriceDTO;
 
     @Expose()

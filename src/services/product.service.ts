@@ -146,6 +146,7 @@ export class ProductService {
     }
 
     async createProduct(data: Partial<CreateProductDTO>, user_id: string) {
+        // console.log(data);
         const shop: Shop | null = user_id ? await this.shopRepository.getShopByUserId(user_id) : null;
 
         if (!shop) throw new ApiError('SHOP KHÔNG TỒN TẠI', HTTP_STATUS.BAD_REQUEST);
@@ -172,6 +173,8 @@ export class ProductService {
             const product: Product = await queryRunner.manager
                 .withRepository(this.productRepository)
                 .createProduct(data, priceDetail, shop.id);
+
+            console.log(product);
 
             await queryRunner.manager
                 .withRepository(this.productRepository)

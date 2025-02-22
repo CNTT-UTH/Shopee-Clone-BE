@@ -59,6 +59,7 @@ export class ProductRepository extends Repository<Product> {
                         ? Between(filter?.price_min as number, filter?.price_max as number)
                         : MoreThanOrEqual(filter?.price_min as number),
                 },
+                relations: ['images'],
             })) ?? []
         );
     }
