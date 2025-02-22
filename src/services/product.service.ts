@@ -230,8 +230,8 @@ export class ProductService {
 
         if (!product) throw new ApiError('Sản phẩm không tồn tại!', HTTP_STATUS.NOT_FOUND);
 
-        return plainToInstance(ProductDTO, product);
         // return product;
+        return plainToInstance(ProductDTO, product);
     }
 
     async getAllProducts({ pagination, filter }: { pagination: Pagination; filter?: Filter }) {

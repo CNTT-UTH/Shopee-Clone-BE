@@ -4,7 +4,7 @@ import { ShippingInfoDTO } from '../ShippingDTO';
 import { IsNotEmpty } from 'class-validator';
 import { ShopDTO } from '../ShopDTO';
 import { Image } from '~/models/entity/image.entity';
-import { OptionValue } from '~/models/entity/variant.entiity';
+import { OptionValue, ProductVariant } from '~/models/entity/variant.entiity';
 
 @Exclude()
 export class AttributeDTO {
@@ -193,6 +193,24 @@ export class ProductDTO {
     @Expose({ name: 'sku' })
     sku: string;
 
+    @Expose()
+    @Transform(({ obj }) => {
+        const value = obj.variants;
+        const mapping: { [index: string]: number | { [index: string]: number } } = {};
+        value?.map((variant: ProductVariant) => {
+            if (variant.options.length == 1) {
+                mapping[variant.options[0].value_name] = variant.variant_id;
+            } else {
+                mapping[variant.options[0].value_name] = { [variant.options[1].value_name]: variant.variant_id };
+                mapping[variant.options[1].value_name] = { [variant.options[0].value_name]: variant.variant_id };
+            }
+        });
+
+        console.log(mapping);
+
+        return mapping;
+    })
+    variants_mapping: object;
     // constructor(data: Partial<ProductDTO> = {}) {
     //     this.product_id = data.product_id;
     //     this.title = data.title;
