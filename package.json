@@ -21,7 +21,9 @@
         "migration:generate": "npx typeorm-ts-node-commonjs migration:generate -d ./src/dbs/db.ts ",
         "migration:run": "npx typeorm-ts-node-commonjs migration:run -d ./src/dbs/db.ts",
         "migration:revert": "npx typeorm-ts-node-commonjs migration:revert -d ./src/dbs/db.ts",
-        "apidocs": "swagger-cli bundle ./openapi/_index.yaml --outfile ./openapi/openapi.yaml --type yaml"
+        "apidocs": "swagger-cli bundle ./openapi/_index.yaml --outfile ./openapi/openapi.yaml --type yaml",
+        "seed:run": "npx typeorm-ts-node-commonjs migration:run -d ./src/dbs/db.ts",
+        "seed:revert": "npx typeorm-ts-node-commonjs migration:revert -d ./src/dbs/db.ts"
     },
     "author": "",
     "license": "ISC",
@@ -29,6 +31,7 @@
         "@babel/core": "^7.26.9",
         "@babel/preset-env": "^7.26.9",
         "@eslint/js": "^9.17.0",
+        "@faker-js/faker": "^9.5.0",
         "@jest/globals": "^29.7.0",
         "@types/bcrypt": "^5.0.2",
         "@types/body-parser": "^1.19.5",
@@ -37,6 +40,7 @@
         "@types/cors": "^2.8.17",
         "@types/express": "^5.0.0",
         "@types/express-ejs-layouts": "^2.5.4",
+        "@types/faker": "^6.6.8",
         "@types/helmet": "^0.0.48",
         "@types/jest": "^29.5.14",
         "@types/lodash": "^4.17.13",
@@ -84,6 +88,7 @@
         "express": "^4.21.2",
         "express-ejs-layouts": "^2.5.1",
         "express-validator": "^7.2.0",
+        "faker": "^6.6.6",
         "formidable": "^3.5.2",
         "jest": "^29.7.0",
         "lodash": "^4.17.21",
@@ -94,6 +99,7 @@
         "swagger-jsdoc": "^6.2.8",
         "swagger-ui-express": "^5.0.1",
         "tsconfig-paths": "^4.2.0",
+        "typeorm-seeding": "^1.6.1",
         "useragent": "^2.3.0",
         "yaml": "^2.6.1"
     }

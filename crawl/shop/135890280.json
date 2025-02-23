@@ -1,0 +1,160 @@
+{
+    "error": 0,
+    "error_msg": "",
+    "data": {
+        "shopid": 135890280,
+        "userid": 135892104,
+        "name": "Fonterra Official Store",
+        "cover": "e03048a5576062894717bb1ab92241f2",
+        "follower_count": 99847,
+        "show_official_shop_label": true,
+        "is_preferred_plus_seller": false,
+        "is_shopee_verified": false,
+        "chat_disabled": false,
+        "rating_star": 4.911224,
+        "has_decoration": true,
+        "account": {
+            "username": "anlene_officialstore",
+            "following_count": 4,
+            "portrait": "0a44b957b23a563c58901e4b31ca8044",
+            "is_seller": true,
+            "phone_verified": true,
+            "email_verified": false,
+            "fbid": "",
+            "total_avg_star": 0,
+            "hide_likes": 0,
+            "feed_account_info": {
+                "can_post_feed": true
+            },
+            "status": 1
+        },
+        "last_active_time": 1740205903,
+        "vacation": false,
+        "is_blocking_owner": false,
+        "followed": false,
+        "ab_test_info": {
+            "header_tabs_layout": "control",
+            "deep_discount_item_card": "default",
+            "item_card": "control",
+            "feeds_live_landing": "treatment",
+            "image_category": "new_image_cat",
+            "remove_item_count_on_category_tab": "default",
+            "default_component_improvement": "top_products",
+            "deep_discount_enhancement": "default",
+            "new_default_scp": "treatment_2",
+            "default_landing": "control",
+            "two_tier_category": "default",
+            "two_tier_category_for_layoutc": "default",
+            "live_stream_auto_play": "treatment",
+            "dd_item_card_2": "control",
+            "tier_shop_category": "treatment_new_layout",
+            "product_one_per_row": "control",
+            "fashion_shop_improvement": "current",
+            "shop_rfy_entrypoint": "treatment",
+            "voucher_popup_non_buyers": "control",
+            "category_ui_improvement_1": "new_category_ui",
+            "autoplay_highlight_video": "default",
+            "ads_shop_improvement": "control",
+            "non_deco_shop_homepage_personalization": "treatment_1",
+            "brand_day_overlap": "control",
+            "truncate_shop_item_card": "control",
+            "popup_new_design": "treatment_1",
+            "shop_entry_landing_redirection": "control_1",
+            "shop_live_stream_floating": "treatment_1",
+            "shop_voucher_ui_revamp": "treatment_2",
+            "remove_rfy_experiment_1": "treatment",
+            "remove_rfy_experiment_2": "treatment_5",
+            "remove_rfy_experiment_3": "control",
+            "brand_shop_revamp": "control",
+            "promotion_card_in_product_tab": "control",
+            "in_shop_notice": "treatment_2",
+            "new_arrival_zone": "control_1",
+            "scp_add_item_cards": "control",
+            "scp_add_atc_button": "control",
+            "lower_the_height_of_shop_header": "treatment",
+            "category_decoration_standard_layout_tier_1": "control",
+            "category_decoration_standard_layout_tier_2": "treatment_2",
+            "category_decoration_image_layout": "treatment_2",
+            "category_decoration_item_layout": "treatment_2",
+            "change_shop_header_background_image": "control",
+            "landing_tab_from_live_room": "treatment_1",
+            "remove_new_tag_in_product_tab": "control_1",
+            "in_shop_noti_item_collection_scenarios": "control_1"
+        },
+        "description": "",
+        "item_count": 234,
+        "response_rate": 100,
+        "show_video_entry": false,
+        "video_entry_info": "",
+        "campaign_hot_deal_discount_min": 10,
+        "show_deco_entry": false,
+        "shop_rating": {
+            "rating_normal": 1595,
+            "rating_bad": 1194,
+            "rating_good": 127430
+        },
+        "seller_metrics": {
+            "cancellation_visibility": 0,
+            "cancellation_warning": 10,
+            "cancellation_rate": 0
+        },
+        "response_time": 2671,
+        "ctime": 1553597080,
+        "video_entry_name": "",
+        "show_tab": {
+            "new_arrival_tab": {
+                "show_new_arrival_items": true,
+                "new_arrival_items_start_ts": 1737648000,
+                "latest_item_ctime": 1739499622
+            },
+            "show_live_tab": false,
+            "membership_tab": {
+                "show_membership_tab": true,
+                "has_join_membership": false
+            },
+            "show_flash_sale_tab": true
+        },
+        "toggles": {
+            "disable_chat_performance": false,
+            "deco_product_page_banner": true,
+            "deco_theme_color_compo_layout": true
+        },
+        "shop_tab_meta": {
+            "shop_is_non_deco": false,
+            "shop_without_op_behavior": false,
+            "decoration_type": "general_deco",
+            "is_high_end_brand_shop": false
+        },
+        "in_shop_notice_config": {
+            "promotion_notice_quota": {
+                "total_quota": 4,
+                "max_quota_per_shop": 2,
+                "session_total_quota": 2,
+                "session_max_quota_per_shop": 1
+            },
+            "notice_interval_sec": 10,
+            "chatbot_notice_quota": {
+                "total_quota": 2,
+                "max_quota_per_shop": 1,
+                "session_total_quota": 0,
+                "session_max_quota_per_shop": 0
+            },
+            "delay_config": {
+                "in_shop_notice_sec": 30,
+                "category_notice_browsed_sec": 8,
+                "category_notice_observed_sec": 20
+            }
+        },
+        "block_cb_user": false,
+        "video_rn_jump_url": "",
+        "background_color": "",
+        "highlight_color": "",
+        "brand_day_end_time": 0,
+        "is_shopee_choice_shop": false,
+        "delay_config": {
+            "in_shop_notice_sec": 30,
+            "category_notice_browsed_sec": 8,
+            "category_notice_observed_sec": 20
+        }
+    }
+}

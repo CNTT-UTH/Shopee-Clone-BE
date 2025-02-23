@@ -13,6 +13,9 @@ const AppDataSource = new DataSource({
     synchronize: false,
     logging: false,
     migrations: [__dirname + '/../migrations/*.{ts, js}'],
-    entities: [__dirname + '/../models/entity/*.{ts, js}'],
+    entities: [
+        __dirname + '/../models/entity/*.{ts, js}',
+        // __dirname + '/../seeders/*.{ts, js}'
+    ],
 });
 export default AppDataSource;

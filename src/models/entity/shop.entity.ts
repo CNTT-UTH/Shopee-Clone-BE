@@ -36,7 +36,7 @@ export class Shop extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: string;
 
-    @OneToOne(() => User, (user) => user._id, {onDelete: 'CASCADE'})
+    @OneToOne(() => User, (user) => user._id, { onDelete: 'CASCADE' })
     @JoinColumn({ name: 'user_id' })
     user: User;
 
@@ -67,8 +67,9 @@ export class Shop extends BaseEntity {
     @UpdateDateColumn()
     updated_at: Date;
 
-    @OneToMany(() => Address, (address) => address.shop)
-    addresses: Address[];
+    @OneToOne(() => Address, (address) => address.shop)
+    @JoinColumn({ name: 'default_address_id' })
+    default_address: Address[];
 
     @OneToMany(() => Product, (product) => product.shop)
     products: Product[];
