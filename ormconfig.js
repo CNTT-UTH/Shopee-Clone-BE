@@ -1,5 +1,7 @@
-import path from 'path';
-import { envConfig } from '~/constants/env';
+// eslint-disable-next-line @typescript-eslint/no-require-imports, no-undef
+const path = require('path');
+// eslint-disable-next-line @typescript-eslint/no-require-imports, no-undef
+const { envConfig } = require('~/constants/env');
 
 // eslint-disable-next-line no-undef
 module.exports = {
@@ -13,10 +15,10 @@ module.exports = {
     logging: false,
     migrations: [
         // __dirname + '/../migrations/*.{ts, js}',
-        path.join(path.dirname, 'src', 'migrations', '*.{ts, js}'),
+        path.join('src', 'migrations', '*.{ts, js}'),
     ],
     entities: [
         // __dirname + '/../models/entity/*.{ts, js}',
-        path.join(path.dirname, 'src', 'models', 'entity', '*.{ts, js}'),
+        path.join('src', 'models', 'entity', '*.{ts, js}'),
     ],
 };
