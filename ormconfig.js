@@ -1,4 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/no-require-imports, no-undef
+require('module-alias/register'); // Ensure this is at the top
+
+// eslint-disable-next-line @typescript-eslint/no-require-imports, no-undef
 const path = require('path');
 // eslint-disable-next-line @typescript-eslint/no-require-imports, no-undef
 const { envConfig } = require('~/constants/env');
@@ -21,4 +24,6 @@ module.exports = {
         // __dirname + '/../models/entity/*.{ts, js}',
         path.join('src', 'models', 'entity', '*.{ts, js}'),
     ],
+    seeds: [path.join('src', 'seeders', '*.seed.{ts, js}')],
+    factories: [path.join('src', 'seeders', '*.factory.{ts, js}')],
 };

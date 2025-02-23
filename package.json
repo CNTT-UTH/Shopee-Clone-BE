@@ -22,8 +22,8 @@
         "migration:run": "npx typeorm-ts-node-commonjs migration:run -d ./src/dbs/db.ts",
         "migration:revert": "npx typeorm-ts-node-commonjs migration:revert -d ./src/dbs/db.ts",
         "apidocs": "swagger-cli bundle ./openapi/_index.yaml --outfile ./openapi/openapi.yaml --type yaml",
-        "seed:run": "npx typeorm-ts-node-commonjs migration:run -d ./src/dbs/db.ts",
-        "seed:config": "npx ts-node ./node_modules/typeorm-seeding/dist/cli.js config"
+        "seed:config": "npx ts-node ./node_modules/typeorm-seeding/dist/cli.js config",
+        "seed:run": "npx ts-node ./node_modules/typeorm-seeding/dist/cli.js seed"
     },
     "author": "",
     "license": "ISC",
