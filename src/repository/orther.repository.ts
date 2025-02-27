@@ -74,7 +74,7 @@ export class OptionValueRepository extends Repository<Option> {
         else {
             return await this.create({
                 name,
-                product,
+                product: [product],
             }).save();
         }
     }

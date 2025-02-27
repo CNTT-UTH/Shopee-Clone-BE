@@ -2,6 +2,7 @@ export class Shop {
     shopid?: number;
     shop_location?: string;
     shop_name?: string;
+    avatar?: string;
 }
 
 export class Product {

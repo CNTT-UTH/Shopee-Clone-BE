@@ -1,60 +1,12 @@
 import path from 'path';
 import fs from 'fs';
+import { Shop, Product, ProductOption, ProductVariant } from './../src/seeders/data/model';
 
-const SHOP_DATA_PATH = path.join(__dirname, '..', 'crawl', 'SHOP_DATA.JSON');
-const PRODUCT_DATA_PATH = path.join(__dirname, '..', 'crawl', 'PRODUCT_DATA.JSON');
+const SHOP_DATA_PATH = path.join(__dirname, '..', 'src', 'seeders', 'data', 'SHOP_DATA.JSON');
+const PRODUCT_DATA_PATH = path.join(__dirname, '..', 'src', 'seeders', 'data', 'PRODUCT_DATA.JSON');
 const RAW_JSON_ROOT = path.join(__dirname, '..', 'crawl', 'product');
 
 const FILES = ['11036030.json', '11036194.json', '11036525_1.json', '11036525.json'];
-
-class Shop {
-    shopid?: number;
-    shop_location?: string;
-    shop_name?: string;
-}
-
-class Product {
-    itemid?: number;
-    shopid?: number;
-    name?: string;
-    images?: string[];
-    catid?: string;
-    price?: number;
-    price_before_discount?: number;
-    price_min?: number;
-    price_max?: number;
-    price_min_before_discount?: number;
-    price_max_before_discount?: number;
-    raw_discount?: number;
-    options?: ProductOption[];
-    weight?: number;
-    shipping_channels?: number[];
-    variants?: ProductVariant[];
-    stock?: number;
-    buyturn?: number;
-    ctime?: number;
-    sold?: number;
-}
-
-class ProductOption {
-    name: string;
-    values: string[];
-}
-
-class OptionValue {
-    option_name?: string;
-    value?: string;
-}
-
-class ProductVariant {
-    name?: string;
-    options: OptionValue[];
-    price?: number;
-    price_before_discount?: number;
-    stock?: number;
-    buyturn?: number;
-    image_url?: string;
-}
 
 const outputData = (path: string, data: Shop[] | Product[]) => {
     fs.writeFile(path, JSON.stringify(data), (err) => {
@@ -81,18 +33,21 @@ const toShop = (data: Item[]) => {
             shopid: elm?.['shopid'],
             shop_location: elm?.['shop_location'],
             shop_name: elm?.['shop_name'],
+            avatar: 'https://down-bs-vn.img.susercontent.com/' + elm?.['image'],
         };
 
         outputShop.push(newElm);
     }
 };
 
+let id: number = 1;
 const toProduct = (data: Item[]) => {
     if (!data) return;
 
     for (const elm of data) {
         const newElm: Product = {
-            itemid: elm?.['itemid'],
+            // itemid: elm?.['itemid'],
+            itemid: id++,
             shopid: elm?.['shopid'],
             name: elm?.['name'],
             images: elm?.['images']?.map((image: string) => 'https://down-bs-vn.img.susercontent.com/' + image),
@@ -131,16 +86,16 @@ const toProduct = (data: Item[]) => {
                     price:
                         Math.ceil(
                             Math.ceil(Math.random() * ((newElm!.price_max as number) - (newElm!.price_min as number))) +
-                            (newElm!.price_min as number) / 100,
+                                (newElm!.price_min as number) / 100,
                         ) * 100,
                     price_before_discount:
                         Math.ceil(
                             Math.ceil(
                                 Math.random() *
-                                ((newElm!.price_max_before_discount as number) -
-                                    (newElm!.price_min_before_discount as number)),
+                                    ((newElm!.price_max_before_discount as number) -
+                                        (newElm!.price_min_before_discount as number)),
                             ) +
-                            (newElm!.price_min_before_discount as number) / 100,
+                                (newElm!.price_min_before_discount as number) / 100,
                         ) * 100,
                 };
             });
@@ -169,7 +124,7 @@ const toProduct = (data: Item[]) => {
                 for (const value2 of options_mapping[newElm.options[1].name]) {
                     if (!newElm.variants) continue;
 
-                    newElm.variants[0] = {
+                    newElm.variants.push({
                         name: newElm.name + ` (${value1}, ${value2})`,
                         options: [
                             {
@@ -177,7 +132,7 @@ const toProduct = (data: Item[]) => {
                                 value: value1,
                             },
                             {
-                                option_name: newElm?.options?.[0]?.name,
+                                option_name: newElm?.options?.[1]?.name,
                                 value: value2,
                             },
                         ],
@@ -186,20 +141,37 @@ const toProduct = (data: Item[]) => {
                                 Math.ceil(
                                     Math.random() * ((newElm!.price_max as number) - (newElm!.price_min as number)),
                                 ) +
-                                (newElm!.price_min as number) / 100,
+                                    (newElm!.price_min as number) / 100,
                             ) * 100,
                         price_before_discount:
                             Math.ceil(
                                 Math.ceil(
                                     Math.random() *
-                                    ((newElm!.price_max_before_discount as number) -
-                                        (newElm!.price_min_before_discount as number)),
+                                        ((newElm!.price_max_before_discount as number) -
+                                            (newElm!.price_min_before_discount as number)),
                                 ) +
-                                (newElm!.price_min_before_discount as number) / 100,
+                                    (newElm!.price_min_before_discount as number) / 100,
                             ) * 100,
-                    };
+                    });
                 }
             }
+        }
+
+        const base_stock: number = Math.round(
+            newElm.variants && newElm.variants?.length > 0 ? (newElm.stock ?? 0) / newElm.variants.length : 0,
+        );
+        const base_buyturn: number = Math.round(
+            newElm.variants && newElm.variants?.length > 0 ? (newElm.buyturn ?? 0) / newElm.variants.length : 0,
+        );
+
+        for (const variant of newElm.variants ?? []) {
+            variant.buyturn = base_buyturn;
+            variant.stock = base_stock;
+        }
+
+        if (newElm.variants && newElm.variants?.length > 0) {
+            newElm.variants[0].buyturn = (newElm.buyturn ?? 0) - (newElm.variants.length - 1) * base_buyturn;
+            newElm.variants[0].stock = (newElm.stock ?? 0) - (newElm.variants.length - 1) * base_stock;
         }
 
         outputProduct.push(newElm);
@@ -217,5 +189,6 @@ for (const id of FILES) {
         toProduct(obj?.['data']?.['sections']?.[0]?.['data']?.['item']);
 
         if (id === '11036525.json') outputData(PRODUCT_DATA_PATH, outputProduct);
+        // if (id === '11036525.json') outputData(SHOP_DATA_PATH, outputShop);
     });
 }

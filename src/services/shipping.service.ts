@@ -51,6 +51,8 @@ export class ShippingRatesManagementService extends ShippingService {
         const shippingDTOs: ShippingInfoDTO[] = [];
 
         for (const channel of channels) {
+            if (!channel.shipping_channel_id) continue;
+            
             if (shipping_channels !== 'all' && !shipping_channels.includes(channel.shipping_channel_id)) continue;
             const shippingDTO: ShippingInfoDTO = {};
 

@@ -84,7 +84,7 @@ export class Product extends BaseEntity {
     @UpdateDateColumn()
     updated_at: Date;
 
-    @ManyToMany(() => Category, (category) => category.cate_id)
+    @ManyToMany(() => Category, (category) => category.cate_id, { onDelete: 'CASCADE' })
     @JoinTable()
     categories: Category[];
 
@@ -95,10 +95,15 @@ export class Product extends BaseEntity {
     @OneToMany(() => Image, (image) => image.product)
     images: Image[];
 
-    @OneToMany(() => Option, (option) => option.product)
+    @ManyToMany(() => Option, (option) => option.product)
+    @JoinTable({
+        name: 'product_options',
+        joinColumns: [{ name: 'product_id', referencedColumnName: '_id' }],
+        inverseJoinColumns: [{ name: 'option_id', referencedColumnName: 'id' }],
+    })
     options: Option[];
 
-    @OneToMany(() => ProductVariant, (variant) => variant.product)
+    @OneToMany(() => ProductVariant, (variant) => variant.product, { cascade: true })
     variants: ProductVariant[];
 
     @OneToMany(() => AttributeValue, (attribute_value) => attribute_value.product)
@@ -110,7 +115,7 @@ export class Product extends BaseEntity {
     @OneToMany(() => OrderItem, (orderitem) => orderitem.product)
     order_items: OrderItem[];
 
-    @ManyToOne(() => Shop, (shop) => shop.products, { onDelete: 'SET NULL' })
+    @ManyToOne(() => Shop, (shop) => shop.products, { onDelete: 'CASCADE' })
     @JoinColumn({ name: 'shop_id' })
     shop: Shop;
 

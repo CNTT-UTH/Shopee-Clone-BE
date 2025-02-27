@@ -34,7 +34,7 @@ import { Order } from './order.entity';
 @Entity('shops')
 export class Shop extends BaseEntity {
     @PrimaryGeneratedColumn()
-    id: string;
+    id: number;
 
     @OneToOne(() => User, (user) => user._id, { onDelete: 'CASCADE' })
     @JoinColumn({ name: 'user_id' })
@@ -61,6 +61,9 @@ export class Shop extends BaseEntity {
     @Column({ nullable: true })
     default_address_id: number;
 
+    @Column({ nullable: true })
+    shop_location: string;
+
     @CreateDateColumn()
     created_at: Date;
 
@@ -71,7 +74,7 @@ export class Shop extends BaseEntity {
     @JoinColumn({ name: 'default_address_id' })
     default_address: Address[];
 
-    @OneToMany(() => Product, (product) => product.shop)
+    @OneToMany(() => Product, (product) => product.shop, { onDelete: 'SET NULL' })
     products: Product[];
 
     @OneToMany(() => CartItem, (cartitem) => cartitem.shop)

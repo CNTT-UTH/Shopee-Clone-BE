@@ -34,15 +34,13 @@ export class Option extends BaseEntity {
     @UpdateDateColumn()
     updated_at: Date;
 
-    @ManyToOne(() => Product, (product) => product._id, {
-        cascade: true,
-    })
-    @JoinColumn({ name: 'product_id' })
-    product: Product;
+    @ManyToMany(() => Product, (product) => product.options)
+    product: Product[];
 
     @OneToMany(() => OptionValue, (optionvalue) => optionvalue.option)
     values: OptionValue[];
 }
+
 
 @Entity('option_values')
 export class OptionValue extends BaseEntity {
@@ -61,7 +59,7 @@ export class OptionValue extends BaseEntity {
     @UpdateDateColumn()
     updated_at: Date;
 
-    @ManyToOne(() => Option, (option) => option.values, { cascade: true })
+    @ManyToOne(() => Option, (option) => option.values, { cascade: true, onDelete: 'CASCADE' })
     @JoinColumn({ name: 'option_id', referencedColumnName: 'id' })
     option: Option;
 
@@ -101,11 +99,15 @@ export class ProductVariant extends BaseEntity {
     @UpdateDateColumn()
     updated_at: Date;
 
-    @ManyToOne(() => Product, (product) => product._id)
+    @ManyToOne(() => Product, (product) => product._id, {
+        onDelete: 'CASCADE',
+    })
     @JoinColumn({ name: 'product_id' })
     product: Product;
 
-    @ManyToMany(() => OptionValue, (option_value) => option_value.variants)
+    @ManyToMany(() => OptionValue, (option_value) => option_value.variants, {
+        onDelete: 'CASCADE',
+    })
     @JoinTable({
         name: 'variant_option_values',
         joinColumns: [{ name: 'variant_id', referencedColumnName: 'variant_id' }],

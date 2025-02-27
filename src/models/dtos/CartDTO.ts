@@ -20,7 +20,7 @@ export class CartItemDTO {
     product_variant_id: number;
 
     @IsNotEmpty()
-    shop_id: string;
+    shop_id: number;
 
     @IsNotEmpty()
     @IsNumber()

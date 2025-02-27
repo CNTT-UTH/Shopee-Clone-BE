@@ -17,20 +17,21 @@ import { Product } from './product.entity';
 @Entity('images')
 export class Image extends BaseEntity {
     @PrimaryColumn()
-    image_url: string;
+    image_url?: string;
 
     // @Column()
     // product_id: number;
 
     @CreateDateColumn()
-    created_at: Date;
+    created_at?: Date;
 
     @UpdateDateColumn()
-    updated_at: Date;
+    updated_at?: Date;
 
     @ManyToOne(() => Product, (product) => product.images, {
         cascade: true,
+        onDelete: 'CASCADE',
     })
     @JoinColumn({ name: 'product_id' })
-    product: Product;
+    product?: Product;
 }

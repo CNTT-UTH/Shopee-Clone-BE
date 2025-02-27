@@ -22,7 +22,7 @@ export class Cart extends BaseEntity {
     @PrimaryGeneratedColumn('increment')
     id: number;
 
-    @OneToOne(() => User, (user) => user.cart, {onDelete: 'CASCADE'})
+    @OneToOne(() => User, (user) => user.cart, { onDelete: 'CASCADE' })
     @JoinColumn({ name: 'user_id' })
     user: User;
 
@@ -47,11 +47,11 @@ export class CartItem extends BaseEntity {
     @PrimaryGeneratedColumn('increment')
     id: number;
 
-    @ManyToOne(() => Cart, (cart) => cart.id, {onDelete: 'CASCADE'})
+    @ManyToOne(() => Cart, (cart) => cart.id, { onDelete: 'CASCADE' })
     @JoinColumn({ name: 'cart_id' })
     cart_id: number;
 
-    @ManyToOne(() => Product, (product) => product.cart_items)
+    @ManyToOne(() => Product, (product) => product.cart_items, { onDelete: 'SET NULL' })
     @JoinColumn({ name: 'product_id' })
     product: Product;
 
@@ -59,7 +59,7 @@ export class CartItem extends BaseEntity {
     @JoinColumn({ name: 'product_variant_id' })
     productvariant: ProductVariant;
 
-    @ManyToOne(() => Shop, (shop) => shop.cart_items, {onDelete: "SET NULL"})
+    @ManyToOne(() => Shop, (shop) => shop.cart_items, { onDelete: 'SET NULL' })
     @JoinColumn({ name: 'shop_id' })
     shop: Shop;
 

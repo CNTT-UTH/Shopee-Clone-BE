@@ -64,6 +64,7 @@ export class AttributeValue extends BaseEntity {
 
     @ManyToOne(() => Product, (product) => product.attributes, {
         cascade: true,
+        onDelete: 'CASCADE',
     })
     @JoinColumn({ name: 'product_id' })
     product: Product;

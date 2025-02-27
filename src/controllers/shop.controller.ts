@@ -4,7 +4,7 @@ import { RegisterInfoShopDTO } from '~/models/dtos/ShopDTO';
 import { ShopService } from '~/services/shop.service';
 
 export class ShopController {
-    constructor(private readonly shopService: ShopService) { }
+    constructor(private readonly shopService: ShopService) {}
     async register(req: Request<ParamsDictionary, any, RegisterInfoShopDTO>, res: Response, next: NextFunction) {
         const payload: RegisterInfoShopDTO = req.body;
         console.log(req.decoded);
@@ -29,7 +29,7 @@ export class ShopController {
     }
 
     async getInfoById(req: Request, res: Response, next: NextFunction) {
-        const result = await this.shopService.getInfoById(req?.params?.shop_id);
+        const result = await this.shopService.getInfoById(Number(req?.params?.shop_id));
 
         res.send({
             success: true,
@@ -42,7 +42,7 @@ export class ShopController {
         const user_id: string = req?.decoded?._id as string;
 
         await this.shopService.deleteShop(user_id);
-        
+
         res.send({
             success: true,
             message: null,

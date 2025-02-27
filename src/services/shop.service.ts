@@ -57,7 +57,7 @@ export class ShopService {
         return shopDTO;
     }
 
-    async getInfoById(shop_id: string) {
+    async getInfoById(shop_id: number) {
         const shop = await this.shopRepository.getShopByShopId(shop_id);
 
         if (!shop) {

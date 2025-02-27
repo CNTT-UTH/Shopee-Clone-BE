@@ -20,22 +20,22 @@ import { Order } from './order.entity';
 @Entity('shippings')
 export class Shipping extends BaseEntity {
     @PrimaryGeneratedColumn('increment')
-    shipping_channel_id: number;
+    shipping_channel_id?: number;
 
     @Column()
-    name: string;
+    name?: string;
 
     @Column({ nullable: true, type: 'text' })
-    desc: string;
+    desc?: string;
 
     @OneToMany(() => ShippingDetail, (shipping_detail) => shipping_detail.shipping_channel)
-    shipping_details: ShippingDetail[];
+    shipping_details?: ShippingDetail[];
 
     @CreateDateColumn()
-    created_at: Date;
+    created_at?: Date;
 
     @UpdateDateColumn()
-    updated_at: Date;
+    updated_at?: Date;
 }
 
 @Entity('shipping_product_infos')
@@ -43,7 +43,7 @@ export class ShippingProductInfo extends BaseEntity {
     @PrimaryGeneratedColumn('increment')
     id: number;
 
-    @ManyToOne(() => Product, (product) => product._id)
+    @ManyToOne(() => Product, (product) => product._id, { onDelete: 'CASCADE' })
     @JoinColumn({ name: 'product_id' })
     product: Product;
 
