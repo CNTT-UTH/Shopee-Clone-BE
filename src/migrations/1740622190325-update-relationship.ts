@@ -62,6 +62,7 @@ export class UpdateRelationship1740622190325 implements MigrationInterface {
         await queryRunner.query(`ALTER TABLE \`options\` ADD CONSTRAINT \`FK_8f509b13eba74e88f50da0d1133\` FOREIGN KEY (\`product_id\`) REFERENCES \`products\`(\`_id\`) ON DELETE CASCADE ON UPDATE NO ACTION`);
         await queryRunner.query(`ALTER TABLE \`option_values\` ADD CONSTRAINT \`FK_866eecd9bde39fd5bc4b8d86369\` FOREIGN KEY (\`option_id\`) REFERENCES \`options\`(\`id\`) ON DELETE CASCADE ON UPDATE NO ACTION`);
         await queryRunner.query(`ALTER TABLE \`product_variants\` ADD CONSTRAINT \`FK_6343513e20e2deab45edfce1316\` FOREIGN KEY (\`product_id\`) REFERENCES \`products\`(\`_id\`) ON DELETE CASCADE ON UPDATE NO ACTION`);
+        await queryRunner.query(`ALTER TABLE \`variant_option_values\` DROP FOREIGN KEY \`FK_9451561b94b0f1ca37d8713b901\``);
         await queryRunner.query(`ALTER TABLE \`variant_option_values\` ADD CONSTRAINT \`FK_9451561b94b0f1ca37d8713b901\` FOREIGN KEY (\`value_id\`) REFERENCES \`option_values\`(\`value_id\`) ON DELETE NO ACTION ON UPDATE NO ACTION`);
     }
 
