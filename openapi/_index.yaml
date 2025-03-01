@@ -35,95 +35,93 @@ tags:
 paths:
     #   AUTH ROUTES
     /auth/login:
-        $ref: './resources/auth/login.yaml'
+        $ref: "./resources/auth/login.yaml"
     /auth/logout:
-        $ref: './resources/auth/logout.yaml'
+        $ref: "./resources/auth/logout.yaml"
     /auth/register:
-        $ref: './resources/auth/register.yaml'
+        $ref: "./resources/auth/register.yaml"
     /auth/refresh-token:
-        $ref: './resources/auth/refreshToken.yaml'
+        $ref: "./resources/auth/refreshToken.yaml"
     /auth/verify-email:
-        $ref: './resources/auth/verifyEmail.yaml'
+        $ref: "./resources/auth/verifyEmail.yaml"
     /auth/resend-verify-email:
-        $ref: './resources/auth/resendVerifyEmail.yaml'
+        $ref: "./resources/auth/resendVerifyEmail.yaml"
     /auth/forgot-password:
-        $ref: './resources/auth/forgotPassword.yaml'
+        $ref: "./resources/auth/forgotPassword.yaml"
     /auth/verify-password:
-        $ref: './resources/auth/verifyPassword.yaml'
+        $ref: "./resources/auth/verifyPassword.yaml"
     /auth/resend-verify-password:
-        $ref: './resources/auth/resendVerifyPassword.yaml'
+        $ref: "./resources/auth/resendVerifyPassword.yaml"
     /auth/reset-password:
-        $ref: './resources/auth/resetPassword.yaml'
+        $ref: "./resources/auth/resetPassword.yaml"
 
     #   USERS ROUTES
     /users/profile:
-        $ref: './resources/users/profile.yaml'
+        $ref: "./resources/users/profile.yaml"
     /users/profile/all:
-        $ref: './resources/users/profile_all.yaml'
+        $ref: "./resources/users/profile_all.yaml"
     /users/profile/{user_id}:
-        $ref: './resources/users/profile_user_id.yaml'
+        $ref: "./resources/users/profile_user_id.yaml"
     /users/update-profile:
-        $ref: './resources/users/update_profile.yaml'
+        $ref: "./resources/users/update_profile.yaml"
     /users/upload-avatar:
-        $ref: './resources/users/upload_avatar.yaml'
+        $ref: "./resources/users/upload_avatar.yaml"
 
     #   SHOPS ROUTES
     /shops:
-        $ref: './resources/shops/getShopInfo.yaml'
+        $ref: "./resources/shops/getShopInfo.yaml"
     /shops/{shop_id}:
-        $ref: './resources/shops/getShopInfoById.yaml'
+        $ref: "./resources/shops/getShopInfoById.yaml"
     /shops/register:
-        $ref: './resources/shops/register.yaml'
-    
+        $ref: "./resources/shops/register.yaml"
+
     #   PRODUCTS ROUTES
     /products/upload-product-images:
-        $ref: './resources/product/uploadProductImages.yaml'
+        $ref: "./resources/product/uploadProductImages.yaml"
     /products/create-new-product:
-        $ref: './resources/product/createProduct.yaml'
+        $ref: "./resources/product/createProduct.yaml"
     /products/all:
-        $ref: './resources/product/getProductAll.yaml'
+        $ref: "./resources/product/getProductAll.yaml"
     /products/{id}:
-        $ref: './resources/product/getProduct.yaml'
+        $ref: "./resources/product/getProduct.yaml"
 
     #   CARTS ROUTES
     /carts/get-my-cart:
-        $ref: './resources/carts/getMyCart.yaml'
-    /carts/add-item:
-        $ref: './resources/carts/addItem.yaml'
+        $ref: "./resources/carts/getMyCart.yaml"
+    /carts/add-or-update-item:
+        $ref: "./resources/carts/addItem.yaml"
     /carts/remove-item:
-        $ref: './resources/carts/removeItem.yaml'
-    
-
+        $ref: "./resources/carts/removeItem.yaml"
 
     #   CATEGORIES ROUTES
     /categories/get-category-tree:
-        $ref: './resources/cate/getCategoryTree.yaml'
+        $ref: "./resources/cate/getCategoryTree.yaml"
 
     #   ADDRESSES ROUTES
     /addresses/get-address/{id}:
-        $ref: './resources/addresses/getAddress.yaml'
+        $ref: "./resources/addresses/getAddress.yaml"
     /addresses/get-user-addresses:
-        $ref: './resources/addresses/getUserAddresses.yaml'
+        $ref: "./resources/addresses/getUserAddresses.yaml"
     /addresses/create-user-address:
-        $ref: './resources/addresses/createUserAddress.yaml'
+        $ref: "./resources/addresses/createUserAddress.yaml"
     /addresses/get-all-cities:
-        $ref: './resources/addresses/getAllCities.yaml'
+        $ref: "./resources/addresses/getAllCities.yaml"
     /addresses/get-all-districts/{city_code}:
-        $ref: './resources/addresses/getAllDistricts.yaml'
+        $ref: "./resources/addresses/getAllDistricts.yaml"
     /addresses/get-all-wards/{district_code}:
-        $ref: './resources/addresses/getAllWards.yaml'
+        $ref: "./resources/addresses/getAllWards.yaml"
 
     #   SHIPPINGS ROUTES
     /shippings/get-shipping-channels:
-        $ref: './resources/shippings/getShippingChannel.yaml'
+        $ref: "./resources/shippings/getShippingChannel.yaml"
     /shippings/couting-shipping-fees:
-        $ref: './resources/shippings/coutingShippingFee.yaml'
+        $ref: "./resources/shippings/coutingShippingFee.yaml"
 
 components:
     # parameters:
     #     $ref: "./parameters/_index.yaml"
     schemas:
-        $ref: './schemas/_index.yaml'    
+        $ref: "./schemas/_index.yaml"
     securitySchemes:
         BearerAuth:
             type: http

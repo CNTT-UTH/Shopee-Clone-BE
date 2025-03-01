@@ -5,6 +5,7 @@ import { MediaService } from '~/services/media.service';
 import { ProductService } from '~/services/product.service';
 import { Pagination } from '~/models/dtos/PaginationDTO';
 import { Filter } from '~/models/dtos/FilterDTO';
+import { BASE_FILTER_BY } from '~/constants/productFilter';
 
 export class ProductController {
     constructor(
@@ -55,13 +56,37 @@ export class ProductController {
         };
 
         const filter: Filter = {
-            by: (req?.query?.by as 'price' | 'ctime') ?? 'price',
+            by: (req?.query?.by as BASE_FILTER_BY) ?? 'price',
             order: (req?.query?.by as 'asc' | 'desc') ?? 'asc',
             price_min: req?.query?.price_min ? Number(req?.query?.price_min) : 0,
             price_max: req?.query?.price_max ? Number(req?.query?.price_min) : undefined,
         };
 
         const result = await this.productService.getAllProducts({ pagination, filter });
+        res.send({
+            success: true,
+            mesage: null,
+            result,
+        });
+    }
+
+    async getProductsByCate(req: Request, res: Response){
+        const pagination: Pagination = {
+            // offset: req?.query?.offset ? Number(req?.query?.offset) : 0,
+            limit: req?.query?.limit ? Number(req?.query?.limit) : 20,
+            page: req?.query?.page ? Number(req?.query?.page) : 1,
+        };
+
+        const filter: Filter = {
+            by: (req?.query?.by as BASE_FILTER_BY) ?? 'price',
+            order: (req?.query?.by as 'asc' | 'desc') ?? 'asc',
+            price_min: req?.query?.price_min ? Number(req?.query?.price_min) : 0,
+            price_max: req?.query?.price_max ? Number(req?.query?.price_min) : undefined,
+        };
+
+        const cate_id:number = Number(req?.params?.cate_id);
+
+        const result = await this.productService.getProductsByCate({ pagination, filter, cate_id });
         res.send({
             success: true,
             mesage: null,

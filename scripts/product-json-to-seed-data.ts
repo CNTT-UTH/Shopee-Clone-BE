@@ -6,7 +6,7 @@ const SHOP_DATA_PATH = path.join(__dirname, '..', 'src', 'seeders', 'data', 'SHO
 const PRODUCT_DATA_PATH = path.join(__dirname, '..', 'src', 'seeders', 'data', 'PRODUCT_DATA.JSON');
 const RAW_JSON_ROOT = path.join(__dirname, '..', 'crawl', 'product');
 
-const FILES = ['11036030.json', '11036194.json', '11036525_1.json', '11036525.json'];
+const FILES = ['11035567.json', '11036030.json', '11036194.json', '11036525.json'];
 
 const outputData = (path: string, data: Shop[] | Product[]) => {
     fs.writeFile(path, JSON.stringify(data), (err) => {
@@ -41,7 +41,7 @@ const toShop = (data: Item[]) => {
 };
 
 let id: number = 1;
-const toProduct = (data: Item[]) => {
+const toProduct = (data: Item[], cate?: number) => {
     if (!data) return;
 
     for (const elm of data) {
@@ -51,7 +51,7 @@ const toProduct = (data: Item[]) => {
             shopid: elm?.['shopid'],
             name: elm?.['name'],
             images: elm?.['images']?.map((image: string) => 'https://down-bs-vn.img.susercontent.com/' + image),
-            catid: elm?.['catid'],
+            catid: cate ?? 0,
             price: Math.round(elm?.['price'] / 100000),
             price_before_discount: Math.round(elm?.['price_before_discount'] / 100000),
             price_min: Math.round(elm?.['price_min'] / 100000),
@@ -86,16 +86,16 @@ const toProduct = (data: Item[]) => {
                     price:
                         Math.ceil(
                             Math.ceil(Math.random() * ((newElm!.price_max as number) - (newElm!.price_min as number))) +
-                                (newElm!.price_min as number) / 100,
+                            (newElm!.price_min as number) / 100,
                         ) * 100,
                     price_before_discount:
                         Math.ceil(
                             Math.ceil(
                                 Math.random() *
-                                    ((newElm!.price_max_before_discount as number) -
-                                        (newElm!.price_min_before_discount as number)),
+                                ((newElm!.price_max_before_discount as number) -
+                                    (newElm!.price_min_before_discount as number)),
                             ) +
-                                (newElm!.price_min_before_discount as number) / 100,
+                            (newElm!.price_min_before_discount as number) / 100,
                         ) * 100,
                 };
             });
@@ -141,16 +141,16 @@ const toProduct = (data: Item[]) => {
                                 Math.ceil(
                                     Math.random() * ((newElm!.price_max as number) - (newElm!.price_min as number)),
                                 ) +
-                                    (newElm!.price_min as number) / 100,
+                                (newElm!.price_min as number) / 100,
                             ) * 100,
                         price_before_discount:
                             Math.ceil(
                                 Math.ceil(
                                     Math.random() *
-                                        ((newElm!.price_max_before_discount as number) -
-                                            (newElm!.price_min_before_discount as number)),
+                                    ((newElm!.price_max_before_discount as number) -
+                                        (newElm!.price_min_before_discount as number)),
                                 ) +
-                                    (newElm!.price_min_before_discount as number) / 100,
+                                (newElm!.price_min_before_discount as number) / 100,
                             ) * 100,
                     });
                 }
@@ -183,10 +183,10 @@ for (const id of FILES) {
         if (err) throw err;
 
         const obj = JSON.parse(data);
-        // console.log(obj);
+        console.log(id);
 
         // toShop(obj?.['data']?.['sections']?.[0]?.['data']?.['item']);
-        toProduct(obj?.['data']?.['sections']?.[0]?.['data']?.['item']);
+        toProduct(obj?.['data']?.['sections']?.[0]?.['data']?.['item'], Number(id.split('.')[0]));
 
         if (id === '11036525.json') outputData(PRODUCT_DATA_PATH, outputProduct);
         // if (id === '11036525.json') outputData(SHOP_DATA_PATH, outputShop);

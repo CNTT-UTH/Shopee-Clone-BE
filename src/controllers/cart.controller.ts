@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import { CartItemDTO } from '~/models/dtos/CartDTO';
+import { CartItemDTO, UpdateQuantityDTO } from '~/models/dtos/cart/CartDTO';
 import { CartService } from '~/services/cart.service';
 
 export class CartController {
-    constructor(private readonly cartService: CartService) {}
+    constructor(private readonly cartService: CartService) { }
 
     async getMyCart(req: Request, res: Response) {
         const user_id: string = req?.decoded?._id as string;
@@ -17,11 +17,11 @@ export class CartController {
         });
     }
 
-    async addItem(req: Request, res: Response) {
+    async addOrUpdateItem(req: Request, res: Response) {
         const user_id: string = req?.decoded?._id as string;
         const item: CartItemDTO = req.body;
 
-        const result = await this.cartService.addItem(user_id, item);
+        const result = await this.cartService.addOrUpdateItem(user_id, item);
 
         res.send({
             success: true,

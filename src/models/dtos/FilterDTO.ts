@@ -1,5 +1,7 @@
+import { BASE_FILTER_BY } from "~/constants/productFilter";
+
 export class Filter {
-    by: 'price' | 'ctime';
+    by: BASE_FILTER_BY;
     order: 'asc' | 'desc';
 
     price_min?: number;

@@ -1,5 +1,6 @@
 import { Exclude, Expose } from 'class-transformer';
-import { IsNotEmpty, IsNumber } from 'class-validator';
+import { IsNotEmpty, IsNumber, Min, Validate } from 'class-validator';
+import { IsProductExist } from '~/validate/product.validate';
 
 @Exclude()
 export class CartDTO {
@@ -24,7 +25,19 @@ export class CartItemDTO {
 
     @IsNotEmpty()
     @IsNumber()
+    @Min(1)
     quantity: number;
 
     selected_to_checkout: false;
+}
+
+export class UpdateQuantityDTO {
+    @IsNotEmpty()
+    @IsNumber()
+    item_id: number;
+
+    @IsNotEmpty()
+    @IsNumber()
+    @Min(1)
+    quantity: number;
 }

@@ -45,7 +45,7 @@ export class ProductRepository extends Repository<Product> {
         });
     }
 
-    async findAll({ pagination, filter }: { pagination?: Pagination; filter?: Filter }) {
+    async findAll({ pagination, filter, cate_id }: { pagination?: Pagination; filter?: Filter; cate_id?: number }) {
         return (
             (await this.find({
                 skip: pagination?.limit ? pagination?.limit * ((pagination?.page ?? 1) - 1) : 0,
@@ -58,6 +58,7 @@ export class ProductRepository extends Repository<Product> {
                     price: filter?.price_max
                         ? Between(filter?.price_min as number, filter?.price_max as number)
                         : MoreThanOrEqual(filter?.price_min as number),
+                    category_id: cate_id,
                 },
                 relations: ['images'],
             })) ?? []

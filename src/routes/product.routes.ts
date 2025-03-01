@@ -41,6 +41,16 @@ router
     );
 
 router
+    .route('/search-by-cate/:cate_id')
+    /**
+     * Description. Search product by cate
+     * Path: /search-by-cate/:cate_id
+     * Method: POST
+     * Headers: { Authorization: string, User-Agent: string }
+     */
+    .get(validationMiddleware(Pagination, 'query'), asyncHandler(api('getProductsByCate')));
+
+router
     .route('/all')
     /**
      * Description. Get all products

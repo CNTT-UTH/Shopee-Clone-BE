@@ -1,6 +1,6 @@
 import { Repository } from 'typeorm';
 import AppDataSource from '~/dbs/db';
-import { CartItemDTO } from '~/models/dtos/CartDTO';
+import { CartItemDTO } from '~/models/dtos/cart/CartDTO';
 import { Cart, CartItem } from '~/models/entity/cart.entity';
 import { User } from '~/models/entity/user.entity';
 
@@ -106,6 +106,20 @@ export class CartRepository {
                 product: {
                     _id: item.product_id,
                 },
+            },
+            {
+                quantity: item.quantity,
+                selected_to_checkout: item.selected_to_checkout,
+            },
+        );
+
+        return this.getCartById(cart.id);
+    }
+
+    async updateItemByItemIdm(cart: Cart, item: CartItemDTO) {
+        await this.itemRepo.update(
+            {
+                cart_id: cart.id,
             },
             {
                 quantity: item.quantity,

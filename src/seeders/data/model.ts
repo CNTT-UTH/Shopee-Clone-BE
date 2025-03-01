@@ -10,7 +10,7 @@ export class Product {
     shopid?: number;
     name?: string;
     images?: string[];
-    catid?: string;
+    catid?: number;
     price?: number;
     price_before_discount?: number;
     price_min?: number;

@@ -1021,7 +1021,7 @@ paths:
           description: null
         '422':
           description: Sai các trường thông tin
-  /carts/add-item:
+  /carts/add-or-update-item:
     post:
       tags:
         - carts

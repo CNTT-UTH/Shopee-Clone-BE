@@ -26,6 +26,7 @@ import { CategoryService } from './services/cate.service';
 import { ShippingRatesManagementService, ShippingService } from './services/shipping.service';
 import { ShopService } from './services/shop.service';
 import { MediaService } from './services/media.service';
+import { CityRepository } from './repository/city.repository';
 // import { PaymentService } from './services/payment.service';
 // import { PaymentController } from './controllers/payment.controller';
 // import { PaymentRepository } from './repository/payment.repository';
@@ -91,6 +92,8 @@ container.register({
 
     // MEDIA MODULE:
     mediaService: asClass(MediaService).singleton(),
+
+    cityRepository: asClass(CityRepository).singleton(),
 });
 
 export default container;
