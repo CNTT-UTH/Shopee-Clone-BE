@@ -26,12 +26,14 @@ export class AuthController {
         const reqBody: LoginReqBody = req.body;
         const userAgent = req.headers['user-agent'] as string;
 
+        // console.log(req.query?.platform);
+
         const result = await this.authService.login(reqBody, {
             platform: req.query?.platform == 'mobile' ? 'mobile' : 'web',
             user_agent: userAgent,
         });
 
-        if (req.query?.platform === 'web') {
+        if (req.query?.platform !== 'mobile') {
             res.cookie('refresh_token', result.refresh_token, {
                 maxAge: 1000 * 3600 * 60 * 7,
                 secure: true,
@@ -95,7 +97,8 @@ export class AuthController {
 
         if (req.query?.platform === 'web') {
             res.cookie('refresh_token', result.refresh_token, {
-                maxAge: 1000 * 3600 * 60 * 7,
+                maxAge: 1000 * 3600 * 24 * 7,
+                // expires: 1000 * 3600 * 60 * 7,
                 secure: true,
                 httpOnly: true,
             });
