@@ -95,7 +95,7 @@ export class AuthController {
             },
         );
 
-        if (req.query?.platform === 'web') {
+        if (req.query?.platform !== 'mobile') {
             res.cookie('refresh_token', result.refresh_token, {
                 maxAge: 1000 * 3600 * 24 * 7,
                 // expires: 1000 * 3600 * 60 * 7,
@@ -120,7 +120,7 @@ export class AuthController {
             user_agent: userAgent,
         });
 
-        if (req.query?.platform === 'web') {
+        if (req.query?.platform !== 'mobile') {
             res.cookie('refresh_token', result.refresh_token, {
                 maxAge: 1000 * 3600 * 60 * 7,
                 secure: true,
