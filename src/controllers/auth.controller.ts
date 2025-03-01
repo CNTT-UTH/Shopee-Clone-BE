@@ -12,7 +12,7 @@ import {
 } from '~/models/requests/auth.requests';
 
 export class AuthController {
-    constructor(private readonly authService: AuthService) {}
+    constructor(private readonly authService: AuthService) { }
 
     greetings = async (req: Request, res: Response) => {
         // (req);
@@ -30,6 +30,14 @@ export class AuthController {
             platform: req.query?.platform == 'mobile' ? 'mobile' : 'web',
             user_agent: userAgent,
         });
+
+        if (req.query?.platform === 'web') {
+            res.cookie('refresh_token', result.refresh_token, {
+                maxAge: 1000 * 3600 * 60 * 7,
+                secure: true,
+                httpOnly: true,
+            });
+        }
 
         res.send({
             suscess: true,
@@ -85,6 +93,14 @@ export class AuthController {
             },
         );
 
+        if (req.query?.platform === 'web') {
+            res.cookie('refresh_token', result.refresh_token, {
+                maxAge: 1000 * 3600 * 60 * 7,
+                secure: true,
+                httpOnly: true,
+            });
+        }
+
         res.send({
             suscess: true,
             message: USERS_MESSAGES.REFRESH_TOKEN_SUCCESS,
@@ -100,6 +116,14 @@ export class AuthController {
             platform: req.query?.platform == 'mobile' ? 'mobile' : 'web',
             user_agent: userAgent,
         });
+
+        if (req.query?.platform === 'web') {
+            res.cookie('refresh_token', result.refresh_token, {
+                maxAge: 1000 * 3600 * 60 * 7,
+                secure: true,
+                httpOnly: true,
+            });
+        }
 
         res.send({
             suscess: true,
