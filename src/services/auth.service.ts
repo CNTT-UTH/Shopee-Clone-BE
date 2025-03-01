@@ -239,6 +239,7 @@ export class AuthService {
             role: user.role,
             verify: user.verify,
             user_agent: platformParams.user_agent,
+            isShop: user.is_shop as boolean,
         };
 
         const [accessToken, refreshToken] = await Promise.all([
