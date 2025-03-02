@@ -93,4 +93,15 @@ export class ProductController {
             result,
         });
     }
+
+    async deleteProduct(req: Request, res: Response) {
+        const id: number = Number(req.params.id);
+        const result = await this.productService.deleteProduct(id);
+
+        res.send({
+            success: true,
+            mesage: null,
+            result,
+        });
+    }
 }

@@ -66,6 +66,7 @@ router
      * Path: /:id'
      * Method: GET
      */
-    .get(asyncHandler(api('getProductById')));
+    .get(asyncHandler(api('getProductById')))
+    .delete(platformValidator, accessTokenValidator, isShop(), asyncHandler(api('deleteProduct')));
 
 export default router;

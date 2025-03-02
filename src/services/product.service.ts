@@ -323,4 +323,16 @@ export class ProductService {
 
         return priceDTO;
     }
+
+    async deleteProduct(id: number) {
+        const product = this.productRepository.findOneBy({ _id: id });
+
+        if (!product) {
+            throw new ApiError('Product does not exist!', HTTP_STATUS.BAD_REQUEST);
+        }
+
+        await this.productRepository.delete({ _id: id });
+
+        return;
+    }
 }
