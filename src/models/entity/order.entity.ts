@@ -1,4 +1,4 @@
-import { OrderStatus, Role, ShopVerifyStatus, UserGender, UserVerifyStatus } from '~/constants/enums';
+import { DeliveryStatus, OrderStatus, Role, ShopVerifyStatus, UserGender, UserVerifyStatus } from '~/constants/enums';
 import {
     Entity,
     PrimaryGeneratedColumn,
@@ -18,19 +18,20 @@ import { Product } from './product.entity';
 import { ShippingDetail } from './shipping.entity';
 import { ProductVariant } from './variant.entiity';
 import { Shop } from './shop.entity';
+import { PaymentDetails } from './payment.entity';
 
 @Entity('orders')
 export class Order extends BaseEntity {
     @PrimaryGeneratedColumn('uuid')
-    shipping_channel_id: string;
+    id: string;
 
     @ManyToOne(() => User, (user) => user.orders, { cascade: true, onDelete: 'SET NULL' })
     @JoinColumn({ name: 'user_id' })
     user: User;
 
-    // @OneToOne(() => PaymentDetail, (payment_detail) => payment_detail.order_id)
-    // @JoinColumn({ name: "payment_id" })
-    // payment: Payment
+    @OneToOne(() => PaymentDetails, (payment_detail) => payment_detail.order)
+    @JoinColumn({ name: 'payment_id' })
+    payment: PaymentDetails;
 
     @Column({ default: 0 })
     total: number;
@@ -41,6 +42,9 @@ export class Order extends BaseEntity {
     @OneToOne(() => ShippingDetail, (shipping_detail) => shipping_detail.order)
     @JoinColumn({ name: 'shipping_detail_id' })
     shipping: ShippingDetail;
+
+    @OneToMany(() => DeliveryTracking, (d) => d.order)
+    delivery_tracking: DeliveryTracking[];
 
     @Column({ nullable: true, type: 'text' })
     desc: string;
@@ -93,4 +97,23 @@ export class OrderItem extends BaseEntity {
 
     @UpdateDateColumn()
     updated_at: Date;
+}
+
+@Entity('delivery_tracking')
+export class DeliveryTracking {
+    @PrimaryGeneratedColumn('increment', { type: 'int' })
+    id: number;
+
+    @Column({ type: 'enum', enum: DeliveryStatus })
+    status: DeliveryStatus;
+
+    @ManyToOne(() => Order, (o) => o.id, { onDelete: 'CASCADE' })
+    @JoinColumn({ name: 'order_id' })
+    order: Order;
+
+    @Column({ type: 'date' })
+    timestamp: Date;
+
+    @Column({ type: 'text' })
+    message: string;
 }
