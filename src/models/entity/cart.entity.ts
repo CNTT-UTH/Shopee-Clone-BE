@@ -47,6 +47,9 @@ export class CartItem extends BaseEntity {
     @PrimaryGeneratedColumn('increment')
     id: number;
 
+    @Column()
+    block_id: number;
+
     @ManyToOne(() => Cart, (cart) => cart.id, { onDelete: 'CASCADE' })
     @JoinColumn({ name: 'cart_id' })
     cart_id: number;

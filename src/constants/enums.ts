@@ -11,6 +11,8 @@ export enum ShopVerifyStatus {
 }
 
 export enum OrderStatus {
+
+    Pending, // Chờ hoàn tất đặt hàng
     Ordered, // Đã đặt hàng, chờ thanh toán
     Payment_Confirmed, // Đã xác nhận phương thức thanh toán, chờ vận chuyển
     Shipped, // Đang vận chuyển, chờ nhận hàng
