@@ -85,6 +85,7 @@ export class CartRepository {
                 shop: {
                     id: item.shop_id,
                 },
+                block_id: item.shop_id,
                 product: {
                     _id: item.product_id,
                 },
@@ -140,5 +141,14 @@ export class CartRepository {
         await this.cartRepo.update({ id: cart.id }, { total: total, total_before_discount: total_before_discount });
 
         return await this.getCartById(cart.id);
+    }
+
+    async getSelectedItem(user_id: string) {
+        return await this.cartRepo
+            .createQueryBuilder('carts')
+            .leftJoinAndSelect('carts.cart_items', 'cart_items')
+            .select()
+            .where('carts.user_id = :user_id AND selected_to_checkout = true', { user_id })
+            .getMany();
     }
 }

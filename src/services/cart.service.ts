@@ -14,6 +14,12 @@ export class CartService {
         private readonly cartRepository: CartRepository,
     ) { }
 
+    async getSelectedItem(user_id: string){
+        const cart: Cart[] | null = await this.cartRepository.getSelectedItem(user_id);
+
+        return cart;
+    }
+
     async getMyCart(user_id: string) {
         const user = await this.userService.getOne(user_id);
 

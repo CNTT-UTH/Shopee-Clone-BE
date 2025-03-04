@@ -24,7 +24,7 @@ export class Order extends BaseEntity {
     @PrimaryGeneratedColumn('uuid')
     shipping_channel_id: string;
 
-    @ManyToOne(() => User, (user) => user.orders)
+    @ManyToOne(() => User, (user) => user.orders, { cascade: true, onDelete: 'SET NULL' })
     @JoinColumn({ name: 'user_id' })
     user: User;
 
@@ -64,15 +64,15 @@ export class OrderItem extends BaseEntity {
     @PrimaryGeneratedColumn('increment')
     id: number;
 
-    @ManyToOne(() => Order, (order) => order.order_items)
+    @ManyToOne(() => Order, (order) => order.order_items, { cascade: true, onDelete: 'CASCADE' })
     @JoinColumn({ name: 'order_id' })
     order: Order;
 
-    @ManyToOne(() => Product, (product) => product.order_items, { onDelete: 'NO ACTION' })
+    @ManyToOne(() => Product, (product) => product.order_items, { onDelete: 'CASCADE' })
     @JoinColumn({ name: 'product_id' })
     product: Product;
 
-    @ManyToOne(() => ProductVariant, (productvariant) => productvariant.order_items)
+    @ManyToOne(() => ProductVariant, (productvariant) => productvariant.order_items, { onDelete: 'CASCADE' })
     @JoinColumn({ name: 'product_variant_id' })
     productvariant: ProductVariant;
 

@@ -23,6 +23,8 @@ export class CartItemDTO {
     @IsNotEmpty()
     shop_id: number;
 
+    block_id: number;
+
     @IsNotEmpty()
     @IsNumber()
     @Min(1)
