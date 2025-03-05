@@ -58,7 +58,7 @@ export class Order extends BaseEntity {
     @OneToMany(() => OrderItem, (orderitem) => orderitem.order)
     order_items: OrderItem[];
 
-    @ManyToOne(() => Shop, (shop) => shop.orders)
+    @ManyToOne(() => Shop, (s) => s.orders, { cascade: true, onDelete: 'SET NULL' })
     @JoinColumn({ name: 'shop_id' })
     shop: Shop;
 }
@@ -84,7 +84,7 @@ export class OrderItem extends BaseEntity {
     price: number;
 
     @Column()
-    price_before_discount: number;
+    totalprice: number;
 
     @Column({ default: 1 })
     quantity: number;

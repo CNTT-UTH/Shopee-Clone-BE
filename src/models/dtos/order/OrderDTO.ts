@@ -1,6 +1,6 @@
 import { DeliveryStatus, OrderStatus, PaymentStatus } from '~/constants/enums';
-import { AddressDTO } from './AddressDTO';
-import { ShippingInfoDTO } from './ShippingDTO';
+import { AddressDTO } from '../AddressDTO';
+import { ShippingInfoDTO } from '../ShippingDTO';
 
 export class OrderDTO {
     order_id?: string;
@@ -23,12 +23,12 @@ export class OrderDTO {
 }
 
 export class OrderItemDTO {
-    product_id?: string;
-    product_variant_id?: string; // Nếu sản phẩm ko có biến thể thì là null
+    product_id?: number;
+    product_variant_id?: number | null; // Nếu sản phẩm ko có biến thể thì là null
     sku?: string;
     quantity?: number;
-    price?: string;
-    price_before_discount?: string;
+    price?: number;
+    total_price?: number;
 }
 
 export class PaymentDTO {
@@ -38,6 +38,6 @@ export class PaymentDTO {
 
 export class TrackingDeliveryOrderDTO {
     status?: DeliveryStatus;
-    description?: string;
-    time?: string; //timestamp
+    message?: string;
+    time?: Date; 
 }

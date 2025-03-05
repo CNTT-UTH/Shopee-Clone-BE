@@ -1,4 +1,5 @@
 import {
+    ArrayContains,
     ArrayMaxSize,
     ArrayMinSize,
     IsArray,
@@ -139,6 +140,7 @@ export class CreateProductDTO {
     @IsNotEmpty()
     @IsArray()
     @ArrayMinSize(1)
+    @ArrayContains([2])
     shipping_channels: number[];
 
     @IsNotEmpty()

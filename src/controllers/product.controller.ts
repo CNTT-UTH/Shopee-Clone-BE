@@ -6,6 +6,8 @@ import { ProductService } from '~/services/product.service';
 import { Pagination } from '~/models/dtos/PaginationDTO';
 import { Filter } from '~/models/dtos/FilterDTO';
 import { BASE_FILTER_BY } from '~/constants/productFilter';
+import { ApiError } from '~/utils/errors';
+import HTTP_STATUS from '~/constants/httpStatus';
 
 export class ProductController {
     constructor(
@@ -39,6 +41,8 @@ export class ProductController {
 
     async getProductById(req: Request, res: Response) {
         const id: number = Number(req.params.id);
+        if (!id) throw new ApiError('ID không hợp lê!', HTTP_STATUS.BAD_REQUEST);
+
         const result = await this.productService.getProduct(id);
 
         res.send({
@@ -70,7 +74,7 @@ export class ProductController {
         });
     }
 
-    async getProductsByCate(req: Request, res: Response){
+    async getProductsByCate(req: Request, res: Response) {
         const pagination: Pagination = {
             // offset: req?.query?.offset ? Number(req?.query?.offset) : 0,
             limit: req?.query?.limit ? Number(req?.query?.limit) : 20,
@@ -84,7 +88,7 @@ export class ProductController {
             price_max: req?.query?.price_max ? Number(req?.query?.price_min) : undefined,
         };
 
-        const cate_id:number = Number(req?.params?.cate_id);
+        const cate_id: number = Number(req?.params?.cate_id);
 
         const result = await this.productService.getProductsByCate({ pagination, filter, cate_id });
         res.send({

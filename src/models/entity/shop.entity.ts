@@ -14,7 +14,7 @@ import { Address } from './address.entity';
 import { Cart, CartItem } from './cart.entity';
 import { User } from './user.entity';
 import { Product } from './product.entity';
-import { Order } from './order.entity';
+import { Order, OrderItem } from './order.entity';
 
 // export interface UserType {
 //     _id?: string;

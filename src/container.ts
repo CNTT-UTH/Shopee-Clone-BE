@@ -27,6 +27,9 @@ import { ShippingRatesManagementService, ShippingService } from './services/ship
 import { ShopService } from './services/shop.service';
 import { MediaService } from './services/media.service';
 import { CityRepository } from './repository/city.repository';
+import { PaymentController } from './controllers/payment.controller';
+import { PaymentService } from './services/payment.service';
+import { PaymentRepository } from './repository/payment.repository';
 // import { PaymentService } from './services/payment.service';
 // import { PaymentController } from './controllers/payment.controller';
 // import { PaymentRepository } from './repository/payment.repository';
@@ -61,9 +64,9 @@ container.register({
     cartController: asClass(CartController).scoped(),
 
     // PAYMENT MODULE:
-    // paymentRepository: asClass(PaymentRepository).singleton(),
-    // paymentService: asClass(PaymentService).singleton(),
-    // paymentController: asClass(PaymentController).singleton(),
+    paymentRepository: asClass(PaymentRepository).singleton(),
+    paymentService: asClass(PaymentService).singleton(),
+    paymentController: asClass(PaymentController).scoped(),
 
     // ADDRESS MODULE:
     addressController: asClass(AddressController).scoped(),

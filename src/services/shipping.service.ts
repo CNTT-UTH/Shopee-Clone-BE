@@ -32,7 +32,25 @@ export class ShippingService {
         return result;
     }
 
-    async getProductShippingInfo(product_id: number) {}
+    async getProductShippingInfo(product_id: number) { }
+
+    async shippingInfoMerge(shipping_infos: ShippingInfoDTO[]) {
+        let result: ShippingInfoDTO = {};
+
+        let totalShipping = 0;
+
+        for (const shipping_info of shipping_infos) {
+            if (shipping_info.channel_id == 2) {
+                totalShipping += shipping_info.fee ?? 0;
+            }
+        }
+
+        result = {
+            ...shipping_infos[0],
+            channel_id: 2,
+            fee: totalShipping,
+        };
+    }
 }
 
 export class ShippingRatesManagementService extends ShippingService {
@@ -52,7 +70,7 @@ export class ShippingRatesManagementService extends ShippingService {
 
         for (const channel of channels) {
             if (!channel.shipping_channel_id) continue;
-            
+
             if (shipping_channels !== 'all' && !shipping_channels.includes(channel.shipping_channel_id)) continue;
             const shippingDTO: ShippingInfoDTO = {};
 
@@ -61,7 +79,7 @@ export class ShippingRatesManagementService extends ShippingService {
             shippingDTO.fee =
                 Math.round(
                     ((Number(payload.weight) + this.countingDIM(payload) * 0.1) * UNIT_FEE[shippingDTO.channel_id]) /
-                        1000,
+                    1000,
                 ) * 1000;
             shippingDTO.estimated_delivery_days_min = DELIVERY_DAYS[shippingDTO.channel_id][0];
             shippingDTO.estimated_delivery_days_max = DELIVERY_DAYS[shippingDTO.channel_id][1];
