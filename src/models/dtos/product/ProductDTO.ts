@@ -180,6 +180,9 @@ export class ProductDTO {
     @Expose()
     shipping_channel?: ShippingInfoDTO[];
 
+    @Expose({ name: 'image' })
+    image?: string;
+
     @Expose({ name: 'images' })
     @Transform(({ value }) => value?.map((v: Image) => v.image_url))
     image_urls?: string[];

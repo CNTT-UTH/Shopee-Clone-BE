@@ -84,6 +84,7 @@ export class ProductRepository extends Repository<Product> {
             title: data.title ?? '',
             sku: data.sku ?? '',
             description: data.description ?? '',
+            image: data?.image_urls?.[0] ? data.image_urls[0] : undefined,
             category_id: data.cate_id ?? 0,
             quantity: data.stock ?? 0,
             price: price_detail.price ?? 0,

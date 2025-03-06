@@ -113,6 +113,9 @@ export class CartRepository {
                 },
                 quantity: item.quantity,
                 selected_to_checkout: false,
+                price: 0,
+                price_before_discount: 0,
+                total_price: 0,
             })
             .save();
 
