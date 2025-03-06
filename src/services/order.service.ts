@@ -7,6 +7,7 @@ import { CartService } from './cart.service';
 import { Cart } from '~/models/entity/cart.entity';
 import { genSession } from '~/utils/genSessionId';
 import { CartDTO } from '~/models/dtos/cart/CartDTO';
+import {v4 as uuidv4} from 'uuid';
 
 export class OrderService {
     constructor(
@@ -32,7 +33,9 @@ export class OrderService {
         }
 
         //* Create CheckoutTemp
-        const checkoutInfo: CheckoutTemp = {};
+        const checkoutInfo: CheckoutTemp = {
+            payment_id: 0,
+        };
 
         const getSession = (): string => {
             let id: string;

@@ -101,6 +101,7 @@
         "tsconfig-paths": "^4.2.0",
         "typeorm-seeding": "^1.6.1",
         "useragent": "^2.3.0",
+        "uuid": "^11.1.0",
         "yaml": "^2.6.1"
     }
 }

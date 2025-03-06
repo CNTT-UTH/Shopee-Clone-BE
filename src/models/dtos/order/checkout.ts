@@ -4,7 +4,7 @@ import { OrderDTO, PaymentDTO } from './OrderDTO';
 
 export class CheckoutTemp {
     orders?: OrderCheckout[];
-    payment_info?: PaymentDTO;
+    payment_id?: number;
     products_price?: number;
     ship_fee?: number;
     total_price?: number;

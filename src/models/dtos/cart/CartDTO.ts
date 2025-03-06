@@ -15,10 +15,27 @@ export class CartDTO {
 
     @Expose()
     total_before_discount: number;
+
+    @Expose()
+    @Transform(({ obj }) => {
+        const result: number[] = [];
+        const items: any = obj.cart_items;
+
+        items.map((i: any) => {
+            const id: number = i.shop_id;
+            if (!result.includes(id)) result.push(id);
+        });
+
+        return result;
+    })
+    shops: number[];
 }
 
 @Exclude()
 export class CartItemDTO {
+    @Expose()
+    id: number;
+
     @Expose()
     @IsNotEmpty()
     @IsNumber()
@@ -42,7 +59,7 @@ export class CartItemDTO {
 
     @Expose()
     selected_to_checkout: boolean;
-    
+
     @Expose()
     price?: number;
     @Expose()
