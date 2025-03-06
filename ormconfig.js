@@ -24,6 +24,11 @@ module.exports = {
         // __dirname + '/../models/entity/*.{ts, js}',
         path.join('src', 'models', 'entity', '*.{ts, js}'),
     ],
-    seeds: [path.join('src', 'seeders', '*.seed.{ts, js}')],
+    seeds: [
+        // path.join('src', 'seeders', '*.seed.{ts, js}'),
+        path.join('src', 'seeders', 'updateimage.seed.{ts, js}'),
+        
+
+    ],
     factories: [path.join('src', 'seeders', '*.factory.{ts, js}')],
 };

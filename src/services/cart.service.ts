@@ -12,7 +12,7 @@ export class CartService {
         private readonly userService: UserService,
         private readonly productService: ProductService,
         private readonly cartRepository: CartRepository,
-    ) { }
+    ) {}
 
     async getSelectedItem(user_id: string) {
         const cart: Cart[] | null = await this.cartRepository.getSelectedItem(user_id);
@@ -77,7 +77,7 @@ export class CartService {
         let totalBeforeDiscount: number = 0;
 
         cart.cart_items.map((item) => {
-            total += (item.productvariant ? item.productvariant.price : item.product.price) * item.quantity;
+            total += item.productvariant ? item.productvariant.price : item.product.price;
             totalBeforeDiscount +=
                 (item.productvariant ? item.productvariant.old_price : item.product.old_price) * item.quantity;
         });
