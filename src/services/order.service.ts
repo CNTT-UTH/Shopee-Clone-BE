@@ -50,6 +50,6 @@ export class OrderService {
 
         console.log(sessionID);
 
-        return this.SessionStorage;
+        return { cart };
     }
 }

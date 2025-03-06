@@ -92,6 +92,9 @@ export class Product extends BaseEntity {
     @JoinColumn({ name: 'brand_id' })
     brand: Brand;
 
+    @Column({ nullable: true, type: 'text' })
+    image: string;
+
     @OneToMany(() => Image, (image) => image.product)
     images: Image[];
 

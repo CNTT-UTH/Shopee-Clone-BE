@@ -31,22 +31,6 @@ export class CartRepository {
             relations: ['cart_items', 'cart_items.product', 'cart_items.productvariant', 'cart_items.shop'],
         });
 
-        // const result = await this.cartRepo
-        //     .createQueryBuilder('carts')
-        //     .leftJoinAndSelect('carts.cart_items', 'cart_items')
-        //     // .leftJoinAndSelect('cart_items', 'cart_items.product')
-        //     .select([
-        //         'carts.id',
-        //         'carts.total',
-        //         'carts.total_before_discount',
-        //         'cart_items.id',
-        //         'cart_items.quantity',
-        //         'cart_items.selected_to_checkout',
-        //         // 'product._id',
-        //     ])
-        //     .where('carts.user_id = :user_id', { user_id })
-        //     .getOne();
-
         return result;
     }
 
