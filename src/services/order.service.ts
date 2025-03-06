@@ -7,13 +7,13 @@ import { CartService } from './cart.service';
 import { Cart } from '~/models/entity/cart.entity';
 import { genSession } from '~/utils/genSessionId';
 import { CartDTO } from '~/models/dtos/cart/CartDTO';
-import {v4 as uuidv4} from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 
 export class OrderService {
     constructor(
         private readonly userService: UserService,
         private readonly cartService: CartService,
-    ) { }
+    ) {}
 
     private SessionStorage: {
         [index: string]: { data?: CheckoutTemp; exp: Date };
@@ -26,9 +26,10 @@ export class OrderService {
             throw new ApiError(USERS_MESSAGES.USERNAME_DOES_NOT_EXIST, HTTP_STATUS.BAD_REQUEST);
         }
 
-        const cart: CartDTO[] | null = await this.cartService.getSelectedItem(user_id);
+        const cart: CartDTO | null = await this.cartService.getSelectedItem(user_id);
 
-        if (!cart || cart.length == 0) {
+        // if (!cart || cart.items.length == 0) {
+        if (!cart) {
             throw new ApiError('Không sản phẩm nào được lựa chọn!!', HTTP_STATUS.BAD_REQUEST);
         }
 
@@ -36,6 +37,16 @@ export class OrderService {
         const checkoutInfo: CheckoutTemp = {
             payment_id: 0,
         };
+
+        const itemStorage: {
+            [index: number]: any[];
+        } = {};
+
+        cart.shops.map((s) => (itemStorage[s] = []));
+
+        cart.items.map((item) => {
+            itemStorage[item.block_id].push(item);
+        });
 
         const getSession = (): string => {
             let id: string;
@@ -54,6 +65,6 @@ export class OrderService {
 
         console.log(sessionID);
 
-        return { cart };
+        return { itemStorage };
     }
 }

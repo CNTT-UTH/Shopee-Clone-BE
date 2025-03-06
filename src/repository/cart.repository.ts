@@ -183,7 +183,7 @@ export class CartRepository {
             .select()
             .where('carts.user_id = :user_id AND selected_to_checkout = true', { user_id })
             // .groupBy('cart_items.block_id')
-            .getMany();
+            .getOne();
 
         // relations: ['cart_items', 'cart_items.product', 'cart_items.productvariant', 'cart_items.shop'],
     }

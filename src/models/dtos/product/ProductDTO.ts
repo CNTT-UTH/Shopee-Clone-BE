@@ -209,12 +209,12 @@ export class ProductDTO {
                 // mapping[variant.options[0].value_name] = { [variant.options[1].value_name]: variant.variant_id };
                 // mapping[variant.options[1].value_name] = { [variant.options[0].value_name]: variant.variant_id };
                 if (!mapping[variant.options[0].value_name]) mapping[variant.options[0].value_name] = {};
-                if (!mapping[variant.options[1].value_name]) mapping[variant.options[1].value_name] = {};
+                // if (!mapping[variant.options[1].value_name]) mapping[variant.options[1].value_name] = {};
 
                 (mapping[variant.options[0].value_name] as NestedObject)[variant.options[1].value_name] =
                     variant.variant_id;
-                (mapping[variant.options[1].value_name] as NestedObject)[variant.options[0].value_name] =
-                    variant.variant_id;
+                // (mapping[variant.options[1].value_name] as NestedObject)[variant.options[0].value_name] =
+                //     variant.variant_id;
             }
         });
 

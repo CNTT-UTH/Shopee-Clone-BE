@@ -16,7 +16,7 @@ export class CartService {
     ) {}
 
     async getSelectedItem(user_id: string) {
-        const cart: Cart[] | null = await this.cartRepository.getSelectedItem(user_id);
+        const cart: Cart | null = await this.cartRepository.getSelectedItem(user_id);
 
         // return cart;
         return plainToInstance(CartDTO, cart);
