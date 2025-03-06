@@ -21,6 +21,9 @@ export class ShopDTO {
     @Expose()
     name?: string;
 
+    @Expose()
+    avatar?: string;
+
     @Expose({ name: 'verify' })
     status?: number; // 0: Chưa xác nhận mail, 1: Đã xác thực, 2: Khóa shop
 

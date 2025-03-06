@@ -1,4 +1,4 @@
-import { Exclude, Expose, Type } from 'class-transformer';
+import { Exclude, Expose, Transform, Type } from 'class-transformer';
 import { IsNotEmpty, IsNumber, Min, Validate } from 'class-validator';
 import { IsProductExist } from '~/validate/product.validate';
 
@@ -6,7 +6,7 @@ import { IsProductExist } from '~/validate/product.validate';
 export class CartDTO {
     username: string;
 
-    @Expose()
+    @Expose({ name: 'cart_items' })
     @Type(() => CartItemDTO)
     items: CartItemDTO[];
 
@@ -42,10 +42,33 @@ export class CartItemDTO {
 
     @Expose()
     selected_to_checkout: boolean;
-
+    
+    @Expose()
     price?: number;
+    @Expose()
     price_before_discount?: number;
+    @Expose()
     total_price?: number;
+
+    @Expose({ name: 'product' })
+    @Transform(({ value }) => value?.title)
+    product_name: string;
+
+    @Expose({ name: 'productvariant' })
+    @Transform(({ value }) => value?.name)
+    variant_name: string;
+
+    @Expose()
+    @Transform(({ obj }) => obj?.product?.image)
+    image: string;
+
+    @Expose({ name: 'shop' })
+    @Transform(({ value }) => value?.name)
+    shop_name: string;
+
+    @Expose()
+    @Transform(({ obj }) => obj?.shop?.avatar)
+    shop_avatar: string;
 }
 
 export class UpdateQuantityDTO {

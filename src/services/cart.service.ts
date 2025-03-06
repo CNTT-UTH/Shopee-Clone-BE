@@ -4,8 +4,9 @@ import { UserService } from './users.service';
 import { ApiError } from '~/utils/errors';
 import { USERS_MESSAGES } from '~/constants/messages';
 import HTTP_STATUS from '~/constants/httpStatus';
-import { CartItemDTO, UpdateQuantityDTO } from '~/models/dtos/cart/CartDTO';
+import { CartDTO, CartItemDTO, UpdateQuantityDTO } from '~/models/dtos/cart/CartDTO';
 import { ProductService } from './product.service';
+import { plainToInstance } from 'class-transformer';
 
 export class CartService {
     constructor(
@@ -17,7 +18,8 @@ export class CartService {
     async getSelectedItem(user_id: string) {
         const cart: Cart[] | null = await this.cartRepository.getSelectedItem(user_id);
 
-        return cart;
+        // return cart;
+        return plainToInstance(CartDTO, cart);
     }
 
     async getMyCart(user_id: string) {
@@ -27,7 +29,8 @@ export class CartService {
 
         const cart: Cart | null = await this.cartRepository.createOrGetCart(user);
 
-        return cart;
+        // return cart;
+        return plainToInstance(CartDTO, cart);
     }
 
     async addOrUpdateItem(user_id: string, item: CartItemDTO) {

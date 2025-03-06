@@ -6,6 +6,7 @@ import { CheckoutTemp } from '~/models/dtos/order/checkout';
 import { CartService } from './cart.service';
 import { Cart } from '~/models/entity/cart.entity';
 import { genSession } from '~/utils/genSessionId';
+import { CartDTO } from '~/models/dtos/cart/CartDTO';
 
 export class OrderService {
     constructor(
@@ -24,7 +25,7 @@ export class OrderService {
             throw new ApiError(USERS_MESSAGES.USERNAME_DOES_NOT_EXIST, HTTP_STATUS.BAD_REQUEST);
         }
 
-        const cart: Cart[] | null = await this.cartService.getSelectedItem(user_id);
+        const cart: CartDTO[] | null = await this.cartService.getSelectedItem(user_id);
 
         if (!cart || cart.length == 0) {
             throw new ApiError('Không sản phẩm nào được lựa chọn!!', HTTP_STATUS.BAD_REQUEST);
