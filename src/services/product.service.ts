@@ -56,99 +56,15 @@ export class ProductService {
         this.cateRepository = new CategoryRepository();
     }
 
-    // async toDTO(product: Product): Promise<ProductDTO> {
-    //     const productDTO: ProductDTO = plainToInstance(ProductDTO, product);
-
-    //     const attributes: AttributeDTO[] =
-    //         (await this.attriRepository?.getProductAttributes(product))?.map((att) => {
-    //             const attribute: AttributeDTO = plainToInstance(AttributeDTO, att);
-    //             attribute.id = att.attribute?.id;
-    //             attribute.name = att.attribute?.name;
-
-    //             return attribute;
-    //         }) ?? [];
-    //     productDTO.product_attributes = attributes;
-
-    //     const options: OptionsDTO[] = (await this.optionRepository.getProductOptions(product))?.map((opt) => {
-    //         const optDTO: OptionsDTO = plainToInstance(OptionsDTO, opt);
-    //         optDTO.value = opt.values?.map((v) => v.value_name);
-
-    //         return optDTO;
-    //     });
-    //     productDTO.options = options;
-
-    //     const variants: VariantDTO[] = (await this.variantRepository.getVariants(product)).map((variant) => {
-    //         const variantDTO = plainToInstance(VariantDTO, variant);
-
-    //         return variantDTO;
-    //     });
-    //     productDTO.variants = variants;
-
-    //     const shippings: ShippingInfoDTO[] = (await this.shippingRepository.getShippingInfos(product)).map((s) => {
-    //         const shipping: ShippingInfoDTO = plainToInstance(ShippingInfoDTO, s);
-    //         const dayNow = new Date();
-
-    //         shipping.estimated_delivery_date_from =
-    //             dayNow.getTime() + Number(shipping.estimated_delivery_days_min) * 24 * 60 * 60 * 1000;
-    //         shipping.estimated_delivery_date_to =
-    //             dayNow.getTime() + Number(shipping.estimated_delivery_days_max) * 24 * 60 * 60 * 1000;
-    //         shipping.delivery_text = `Nhận từ ${new Date(shipping.estimated_delivery_date_from).toLocaleDateString(
-    //             'vi-VN',
-    //             {
-    //                 year: 'numeric',
-    //                 month: 'long',
-    //                 day: 'numeric',
-    //                 timeZone: 'Asia/Ho_Chi_Minh',
-    //             },
-    //         )} đến ${new Date(shipping.estimated_delivery_date_to).toLocaleDateString('vi-VN', {
-    //             year: 'numeric',
-    //             month: 'long',
-    //             day: 'numeric',
-    //             timeZone: 'Asia/Ho_Chi_Minh',
-    //         })}`;
-
-    //         shipping.channel_id = s.shipping.shipping_channel_id;
-    //         shipping.name = s.shipping.name;
-
-    //         return shipping;
-    //     });
-    //     productDTO.shipping_channel = shippings;
-
-    //     const priceDTO: PriceDTO = {};
-    //     priceDTO.price = product.price;
-    //     priceDTO.price_before_discount = product.old_price;
-    //     priceDTO.discount = product.discount;
-    //     priceDTO.range_min = Math.min(
-    //         ...variants.map((variant) => {
-    //             return variant.price as number;
-    //         }),
-    //     );
-    //     priceDTO.range_max = Math.max(
-    //         ...variants.map((variant) => {
-    //             return variant.price as number;
-    //         }),
-    //     );
-    //     priceDTO.range_min_before_discount = Math.min(
-    //         ...variants.map((variant) => {
-    //             return variant.price_before_discount as number;
-    //         }),
-    //     );
-    //     priceDTO.range_max_before_discount = Math.max(
-    //         ...variants.map((variant) => {
-    //             return variant.price_before_discount as number;
-    //         }),
-    //     );
-    //     productDTO.product_price = priceDTO;
-
-    //     productDTO.cate_levels = await this.cateRepository.getPathTreeFromLeafCate(product.category_id);
-
-    //     return productDTO;
-    // }
-
     async findOne({ product_id, variant_id }: { product_id: number; variant_id: number }) {
         return await this.productRepository.findOne({
             where: [{ _id: product_id }, { variants: { variant_id: variant_id } }],
+            // relations: ['product_variants'],
         });
+    }
+
+    async findOneVariant(variant_id: number) {
+        return await this.variantRepository.findOne({ where: { variant_id } });
     }
 
     async createProduct(data: Partial<CreateProductDTO>, user_id: string) {

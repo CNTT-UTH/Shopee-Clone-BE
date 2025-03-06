@@ -75,6 +75,44 @@ export class CartRepository {
         );
     }
 
+    async updatePrice({
+        cartItemID,
+        product_id,
+        variant_id,
+    }: {
+        cartItemID?: number;
+        product_id?: number;
+        variant_id?: number;
+    }) {
+        const item: CartItem | null = await this.itemRepo.findOne({
+            where: [
+                { id: cartItemID },
+                {
+                    product: {
+                        _id: product_id,
+                    },
+                    productvariant: {
+                        variant_id,
+                    },
+                },
+            ],
+            relations: ['product', 'productvariant'],
+        });
+
+        if (!item) return;
+
+        await this.itemRepo.update(
+            {
+                id: item.id,
+            },
+            {
+                price: item.productvariant ? item.productvariant.price : item.product.price,
+                price_before_discount: item.productvariant ? item.productvariant.old_price : item.product.old_price,
+                total_price: (item.productvariant ? item.productvariant.price : item.product.price) * item.quantity,
+            },
+        );
+    }
+
     async addItem(cart: Cart, item: CartItemDTO) {
         await this.itemRepo
             .create({
@@ -94,11 +132,13 @@ export class CartRepository {
             })
             .save();
 
+        await this.updatePrice({ product_id: item.product_id, variant_id: item.product_variant_id });
+
         return this.getCartById(cart.id);
     }
 
     async updateItem(cart: Cart, item: CartItemDTO) {
-        await this.itemRepo.update(
+        const cartItem = await this.itemRepo.update(
             {
                 cart_id: cart.id,
                 productvariant: {
@@ -114,10 +154,12 @@ export class CartRepository {
             },
         );
 
+        await this.updatePrice({ product_id: item.product_id, variant_id: item.product_variant_id });
+
         return this.getCartById(cart.id);
     }
 
-    async updateItemByItemIdm(cart: Cart, item: CartItemDTO) {
+    async updateItemByItemId(cart: Cart, item: CartItemDTO) {
         await this.itemRepo.update(
             {
                 cart_id: cart.id,
@@ -127,6 +169,7 @@ export class CartRepository {
                 selected_to_checkout: item.selected_to_checkout,
             },
         );
+        await this.updatePrice({ product_id: item.product_id, variant_id: item.product_variant_id });
 
         return this.getCartById(cart.id);
     }

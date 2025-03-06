@@ -50,6 +50,15 @@ export class CartItem extends BaseEntity {
     @Column()
     block_id: number;
 
+    @Column()
+    price: number;
+
+    @Column()
+    price_before_discount: number;
+
+    @Column()
+    total_price: number;
+
     @ManyToOne(() => Cart, (cart) => cart.id, { onDelete: 'CASCADE' })
     @JoinColumn({ name: 'cart_id' })
     cart_id: number;

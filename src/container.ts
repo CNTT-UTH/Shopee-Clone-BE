@@ -30,6 +30,9 @@ import { CityRepository } from './repository/city.repository';
 import { PaymentController } from './controllers/payment.controller';
 import { PaymentService } from './services/payment.service';
 import { PaymentRepository } from './repository/payment.repository';
+import { OrderController } from './controllers/order.controller';
+import { OrderService } from './services/order.service';
+import { OrderRepository } from './repository/order.repository';
 // import { PaymentService } from './services/payment.service';
 // import { PaymentController } from './controllers/payment.controller';
 // import { PaymentRepository } from './repository/payment.repository';
@@ -54,9 +57,9 @@ container.register({
     productController: asClass(ProductController).scoped(),
 
     // ORDER MODULE:
-    // orderRepository: asClass(OrderRepository).singleton(),
-    // orderService: asClass(OrderService).singleton(),
-    // orderController: asClass(OrderController).singleton(),
+    orderRepository: asClass(OrderRepository).singleton(),
+    orderService: asClass(OrderService).singleton(),
+    orderController: asClass(OrderController).scoped(),
 
     // CART MODULE:
     cartRepository: asClass(CartRepository).singleton(),

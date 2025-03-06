@@ -3,11 +3,11 @@ import { ShippingInfoDTO } from '../ShippingDTO';
 import { OrderDTO, PaymentDTO } from './OrderDTO';
 
 export class CheckoutTemp {
-    orders: OrderCheckout[];
-    payment_info: PaymentDTO;
-    products_price: number;
-    ship_fee: number;
-    total_price: number;
+    orders?: OrderCheckout[];
+    payment_info?: PaymentDTO;
+    products_price?: number;
+    ship_fee?: number;
+    total_price?: number;
 }
 
 export class OrderCheckout {
