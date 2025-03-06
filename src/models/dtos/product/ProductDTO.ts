@@ -196,17 +196,26 @@ export class ProductDTO {
     @Expose()
     @Transform(({ obj }) => {
         const value = obj.variants;
-        const mapping: { [index: string]: number | { [index: string]: number } } = {};
+        type NestedObject = { [index: string]: number | NestedObject };
+        const mapping: NestedObject = {};
+
         value?.map((variant: ProductVariant) => {
             if (variant.options.length == 1) {
                 mapping[variant.options[0].value_name] = variant.variant_id;
             } else {
-                mapping[variant.options[0].value_name] = { [variant.options[1].value_name]: variant.variant_id };
-                mapping[variant.options[1].value_name] = { [variant.options[0].value_name]: variant.variant_id };
+                // mapping[variant.options[0].value_name] = { [variant.options[1].value_name]: variant.variant_id };
+                // mapping[variant.options[1].value_name] = { [variant.options[0].value_name]: variant.variant_id };
+                if (!mapping[variant.options[0].value_name]) mapping[variant.options[0].value_name] = {};
+                if (!mapping[variant.options[1].value_name]) mapping[variant.options[1].value_name] = {};
+
+                (mapping[variant.options[0].value_name] as NestedObject)[variant.options[1].value_name] =
+                    variant.variant_id;
+                (mapping[variant.options[1].value_name] as NestedObject)[variant.options[0].value_name] =
+                    variant.variant_id;
             }
         });
 
-        // console.log(mapping);
+        console.log(mapping);
 
         return mapping;
     })
