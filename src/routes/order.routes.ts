@@ -3,6 +3,8 @@ import { Router } from 'express';
 import container from '~/container';
 import { OrderController } from '~/controllers/order.controller';
 import { accessTokenValidator } from '~/middlewares/auth.middleware';
+import { validationMiddleware } from '~/middlewares/validation.middleware';
+import { SessionId, UpdateCheckout } from '~/models/dtos/order/checkout';
 import { asyncHandler } from '~/utils/asyncHandler';
 
 const router = Router();
@@ -13,11 +15,25 @@ router
     .route('/checkout')
     /**
      * Description. Get all products
-     * Path: /checkout'
+     * Path: /checkout
      * Method: GET
      * Query: {  }
      */
-    .get(accessTokenValidator, asyncHandler(api('getCheckoutInfo')))
+    .get(accessTokenValidator, validationMiddleware(SessionId, 'query'), asyncHandler(api('getCheckoutInfo')))
     .post(accessTokenValidator, asyncHandler(api('handleCheckout')));
+
+router
+    .route('/update-order-info/:session_checkout_id')
+    /**
+     * Description. Get all products
+     * Path: /checkout
+     * Method: POST
+     */
+    .post(
+        accessTokenValidator,
+        validationMiddleware(SessionId, 'params'),
+        validationMiddleware(UpdateCheckout, 'body'),
+        asyncHandler(api('updateCheckout')),
+    );
 
 export default router;

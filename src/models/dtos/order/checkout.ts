@@ -1,6 +1,7 @@
 import { OrderItem } from '~/models/entity/order.entity';
 import { ShippingInfoDTO } from '../ShippingDTO';
 import { OrderDTO, OrderItemDTO, PaymentDTO } from './OrderDTO';
+import { IsNotEmpty, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator';
 
 export class CheckoutTemp {
     orders?: OrderCheckout[];
@@ -24,13 +25,33 @@ export class OrderCheckout {
 }
 
 export class UpdateCheckout {
+    @ValidateNested()
     orders: UpdateCheckoutOrder[];
+
+    @IsNumber()
+    @IsOptional()
     payment_method_id: number;
+
+    @IsNumber()
+    @IsOptional()
     address_id: number;
 }
 
 export class UpdateCheckoutOrder {
+    @IsString()
     order_temp_id: string;
+
+    @IsNumber()
+    @IsOptional()
     shipping_channel_id: number;
+
+    @IsString()
+    @IsOptional()
     notes: string;
+}
+
+export class SessionId {
+    @IsNotEmpty()
+    @IsString()
+    session_checkout_id: string;
 }

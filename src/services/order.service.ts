@@ -2,7 +2,7 @@ import { ApiError } from '~/utils/errors';
 import { UserService } from './users.service';
 import { USERS_MESSAGES } from '~/constants/messages';
 import HTTP_STATUS from '~/constants/httpStatus';
-import { CheckoutTemp, OrderCheckout } from '~/models/dtos/order/checkout';
+import { CheckoutTemp, OrderCheckout, UpdateCheckout } from '~/models/dtos/order/checkout';
 import { CartService } from './cart.service';
 import { Cart } from '~/models/entity/cart.entity';
 import { genSession } from '~/utils/genSessionId';
@@ -17,7 +17,7 @@ export class OrderService {
         private readonly userService: UserService,
         private readonly cartService: CartService,
         private readonly shippingService: ShippingService,
-    ) { }
+    ) {}
 
     private UserSessionStorage: {
         [index: string]: string;
@@ -136,6 +136,33 @@ export class OrderService {
     }
 
     async getCheckoutInfo(user_id: string, sessionID: string) {
+        this.validSession(user_id, sessionID);
+
+        return this.SessionStorage[sessionID].data;
+    }
+
+    async updateCheckout(user_id: string, sessionID: string, updateBody: UpdateCheckout) {
+        this.validSession(user_id, sessionID);
+
+        const checkoutInfo = this.SessionStorage[sessionID].data;
+
+        if (updateBody.payment_method_id) checkoutInfo!.payment_method_id = updateBody.payment_method_id;
+
+        if (updateBody.address_id) checkoutInfo!.address_id = updateBody.address_id;
+
+        updateBody.orders.map((order) => {
+            for (const old_order of checkoutInfo!.orders as OrderCheckout[]) {
+                if (old_order.order_temp_id !== order.order_temp_id) continue;
+
+                if (order.shipping_channel_id) old_order.shipping_channel_id_selected = order.shipping_channel_id;
+                if (order.notes) old_order.notes = order.notes;
+            }
+        });
+
+        return { session_checkout_id: sessionID };
+    }
+
+    private validSession(user_id: string, sessionID: string) {
         if (!this.SessionStorage[sessionID] && this.UserSessionStorage[user_id] !== sessionID)
             throw new ApiError('Không tìm thấy thông tin checkout!', HTTP_STATUS.NOT_FOUND);
 
@@ -146,7 +173,5 @@ export class OrderService {
 
             throw new ApiError('Không tìm thấy thông tin checkout!', HTTP_STATUS.NOT_FOUND);
         }
-
-        return this.SessionStorage[sessionID].data;
     }
 }
