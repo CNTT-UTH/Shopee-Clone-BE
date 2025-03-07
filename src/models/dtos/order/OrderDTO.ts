@@ -1,6 +1,7 @@
 import { DeliveryStatus, OrderStatus, PaymentStatus } from '~/constants/enums';
 import { AddressDTO } from '../AddressDTO';
 import { ShippingInfoDTO } from '../ShippingDTO';
+import { CartItemDTO } from '../cart/CartDTO';
 
 export class OrderDTO {
     order_id?: string;
@@ -22,14 +23,7 @@ export class OrderDTO {
     delivery_tracking?: TrackingDeliveryOrderDTO[];
 }
 
-export class OrderItemDTO {
-    product_id?: number;
-    product_variant_id?: number | null; // Nếu sản phẩm ko có biến thể thì là null
-    sku?: string;
-    quantity?: number;
-    price?: number;
-    total_price?: number;
-}
+export class OrderItemDTO extends CartItemDTO { }
 
 export class PaymentDTO {
     method?: number; // 0: COD, 1: VNPay
@@ -39,5 +33,5 @@ export class PaymentDTO {
 export class TrackingDeliveryOrderDTO {
     status?: DeliveryStatus;
     message?: string;
-    time?: Date; 
+    time?: Date;
 }

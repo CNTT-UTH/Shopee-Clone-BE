@@ -9,6 +9,15 @@ const router = Router();
 
 const api = makeInvoker<OrderController>(() => container.resolve('orderController'));
 
-router.route('/checkout').post(accessTokenValidator, asyncHandler(api('handleCheckout')))
+router
+    .route('/checkout')
+    /**
+     * Description. Get all products
+     * Path: /checkout'
+     * Method: GET
+     * Query: {  }
+     */
+    .get(accessTokenValidator, asyncHandler(api('getCheckoutInfo')))
+    .post(accessTokenValidator, asyncHandler(api('handleCheckout')));
 
 export default router;

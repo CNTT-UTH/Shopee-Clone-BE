@@ -19,6 +19,10 @@ export class OrderService {
         private readonly shippingService: ShippingService,
     ) { }
 
+    private UserSessionStorage: {
+        [index: string]: string;
+    } = {};
+
     private SessionStorage: {
         [index: string]: { data?: CheckoutTemp; exp: Date };
     } = {};
@@ -54,6 +58,7 @@ export class OrderService {
         cart.shops.map((s) => {
             const order: OrderCheckout = {
                 order_temp_id: uuidv4(),
+                shipping_info: {},
                 shipping_channel_id_selected: 2,
                 notes: '',
                 shop_id: s,
@@ -84,12 +89,30 @@ export class OrderService {
                         return plainToInstance(ShippingInfoDTO, {});
                     }),
                 );
+                let total_items_price = 0;
+                itemStorage[s].items?.map((item) => (total_items_price += item.total_price));
 
                 const finalShippingInfo: ShippingInfoDTO = await this.shippingService.shippingInfoMerge(shippingInfos);
 
-                itemStorage[s]!.order.shipping_info = [finalShippingInfo] as ShippingInfoDTO[];
+                itemStorage[s]!.order.shipping_info[finalShippingInfo?.channel_id as number] = finalShippingInfo;
+                itemStorage[s]!.order.items = itemStorage[s]!.items;
+                itemStorage[s]!.order.items_count = itemStorage[s]!.items.length;
+                itemStorage[s]!.order.ship_fee = finalShippingInfo.fee;
+                itemStorage[s]!.order.total_items_price = total_items_price;
             }),
         );
+
+        let total_products_price = 0,
+            total_ship_fee = 0;
+
+        checkoutInfo.orders?.map((order) => {
+            total_products_price += order.total_items_price as number;
+            total_ship_fee += order.ship_fee as number;
+        });
+
+        checkoutInfo.total_products_price = total_products_price;
+        checkoutInfo.total_ship_fee = total_ship_fee;
+        checkoutInfo.total_price = total_products_price + total_ship_fee;
 
         const getSession = (): string => {
             let id: string;
@@ -103,11 +126,27 @@ export class OrderService {
 
         const sessionID: string = getSession();
         this.SessionStorage[sessionID] = {
+            data: checkoutInfo,
             exp: new Date(Date.now() + 1000 * 3600),
         };
 
-        console.log(sessionID);
+        this.UserSessionStorage[user_id] = sessionID;
 
-        return { itemStorage, checkoutInfo };
+        return { session_checkout_id: sessionID };
+    }
+
+    async getCheckoutInfo(user_id: string, sessionID: string) {
+        if (!this.SessionStorage[sessionID] && this.UserSessionStorage[user_id] !== sessionID)
+            throw new ApiError('Không tìm thấy thông tin checkout!', HTTP_STATUS.NOT_FOUND);
+
+        console.log(this.SessionStorage[sessionID].exp.getTime(), Date.now());
+
+        if (this.SessionStorage[sessionID].exp.getTime() < Date.now()) {
+            delete sessionStorage[sessionID];
+
+            throw new ApiError('Không tìm thấy thông tin checkout!', HTTP_STATUS.NOT_FOUND);
+        }
+
+        return this.SessionStorage[sessionID].data;
     }
 }
