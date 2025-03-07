@@ -1,4 +1,4 @@
-import { Exclude, Expose, Transform, Type } from 'class-transformer';
+import { Exclude, Expose, plainToInstance, Transform, Type } from 'class-transformer';
 import { CategoryDTO, CategoryLevelDTO } from '../CategoryDTO';
 import { ShippingInfoDTO } from '../ShippingDTO';
 import { IsNotEmpty } from 'class-validator';
@@ -54,7 +54,10 @@ export class OptionsDTO {
 
     @Expose({ name: 'values' })
     @Transform(({ value }) => {
-        return value?.map((v: OptionValue) => v.value_name);
+        return value?.map((v: OptionValue) => {
+            if (v.value_name === '') return null;
+            return v.value_name;
+        });
     })
     value?: string[];
 
@@ -154,7 +157,13 @@ export class ProductDTO {
     review?: ProductReviewDTO;
 
     @Expose({ name: 'options' })
-    @Type(() => OptionsDTO)
+    @Transform(({ value }) => {
+        if (value[0].name === '') {
+            value = [];
+        }
+
+        return plainToInstance(OptionsDTO, value);
+    })
     options?: OptionsDTO[];
 
     @Expose({ name: 'variants' })
@@ -206,7 +215,7 @@ export class ProductDTO {
 
         value?.map((variant: ProductVariant) => {
             if (variant.options.length == 1) {
-                mapping[variant.options[0].value_name] = variant.variant_id;
+                if (variant.options[0].value_name !== '') mapping[variant.options[0].value_name] = variant.variant_id;
             } else {
                 // mapping[variant.options[0].value_name] = { [variant.options[1].value_name]: variant.variant_id };
                 // mapping[variant.options[1].value_name] = { [variant.options[0].value_name]: variant.variant_id };
