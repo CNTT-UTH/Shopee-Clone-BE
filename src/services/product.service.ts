@@ -251,4 +251,8 @@ export class ProductService {
 
         return;
     }
+
+    async getProductShippingInfo(id: number) {
+        
+    }
 }

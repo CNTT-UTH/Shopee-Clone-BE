@@ -61,6 +61,9 @@ export class Order extends BaseEntity {
     @ManyToOne(() => Shop, (s) => s.orders, { cascade: true, onDelete: 'SET NULL' })
     @JoinColumn({ name: 'shop_id' })
     shop: Shop;
+
+    @Column({ type: 'enum', enum: OrderStatus, default: OrderStatus.Ordered })
+    status: OrderStatus;
 }
 
 @Entity('order_items')
@@ -88,9 +91,6 @@ export class OrderItem extends BaseEntity {
 
     @Column({ default: 1 })
     quantity: number;
-
-    @Column({ type: 'enum', enum: OrderStatus, default: OrderStatus.Ordered })
-    status: OrderStatus;
 
     @CreateDateColumn()
     created_at: Date;

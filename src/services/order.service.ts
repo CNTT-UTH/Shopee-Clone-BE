@@ -2,18 +2,22 @@ import { ApiError } from '~/utils/errors';
 import { UserService } from './users.service';
 import { USERS_MESSAGES } from '~/constants/messages';
 import HTTP_STATUS from '~/constants/httpStatus';
-import { CheckoutTemp } from '~/models/dtos/order/checkout';
+import { CheckoutTemp, OrderCheckout } from '~/models/dtos/order/checkout';
 import { CartService } from './cart.service';
 import { Cart } from '~/models/entity/cart.entity';
 import { genSession } from '~/utils/genSessionId';
 import { CartDTO } from '~/models/dtos/cart/CartDTO';
 import { v4 as uuidv4 } from 'uuid';
+import { ShippingService } from './shipping.service';
+import { ShippingInfoDTO } from '~/models/dtos/ShippingDTO';
+import { plainToInstance } from 'class-transformer';
 
 export class OrderService {
     constructor(
         private readonly userService: UserService,
         private readonly cartService: CartService,
-    ) {}
+        private readonly shippingService: ShippingService,
+    ) { }
 
     private SessionStorage: {
         [index: string]: { data?: CheckoutTemp; exp: Date };
@@ -35,18 +39,57 @@ export class OrderService {
 
         //* Create CheckoutTemp
         const checkoutInfo: CheckoutTemp = {
-            payment_id: 0,
+            payment_method_id: 0,
+            orders: [],
+            address_id: user?.addresses?.[0]?.id,
         };
 
         const itemStorage: {
-            [index: number]: any[];
+            [index: number]: {
+                order: OrderCheckout;
+                items: any[];
+            };
         } = {};
 
-        cart.shops.map((s) => (itemStorage[s] = []));
+        cart.shops.map((s) => {
+            const order: OrderCheckout = {
+                order_temp_id: uuidv4(),
+                shipping_channel_id_selected: 2,
+                notes: '',
+                shop_id: s,
+            };
+
+            checkoutInfo.orders?.push(order);
+
+            itemStorage[s] = {
+                items: [],
+                order: order,
+            };
+        });
 
         cart.items.map((item) => {
-            itemStorage[item.block_id].push(item);
+            itemStorage[item.block_id]?.items.push(item);
         });
+
+        await Promise.all(
+            cart.shops.map(async (s) => {
+                const shippingInfos: ShippingInfoDTO[] = await Promise.all(
+                    itemStorage[s].items?.map(async (item) => {
+                        const infos = await this.shippingService.getProductShippingInfo(item.product_id);
+
+                        for (const info of infos) {
+                            if (info.shipping.shipping_channel_id === 2) return plainToInstance(ShippingInfoDTO, info);
+                        }
+
+                        return plainToInstance(ShippingInfoDTO, {});
+                    }),
+                );
+
+                const finalShippingInfo: ShippingInfoDTO = await this.shippingService.shippingInfoMerge(shippingInfos);
+
+                itemStorage[s]!.order.shipping_info = [finalShippingInfo] as ShippingInfoDTO[];
+            }),
+        );
 
         const getSession = (): string => {
             let id: string;
@@ -65,6 +108,6 @@ export class OrderService {
 
         console.log(sessionID);
 
-        return { itemStorage };
+        return { itemStorage, checkoutInfo };
     }
 }

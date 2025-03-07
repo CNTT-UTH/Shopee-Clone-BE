@@ -20,9 +20,7 @@ const DELIVERY_DAYS: { [index: number]: number[] } = {
 const DIMENSION_FACTOR = 139;
 
 export class ShippingService {
-    protected readonly shippingRepository: ShippingRepository;
-
-    constructor() {
+    constructor(protected readonly shippingRepository: ShippingRepository) {
         this.shippingRepository = new ShippingRepository();
     }
 
@@ -32,7 +30,9 @@ export class ShippingService {
         return result;
     }
 
-    async getProductShippingInfo(product_id: number) { }
+    async getProductShippingInfo(product_id: number) {
+        return await this.shippingRepository.getShippingInfos(product_id);
+    }
 
     async shippingInfoMerge(shipping_infos: ShippingInfoDTO[]) {
         let result: ShippingInfoDTO = {};
@@ -45,7 +45,7 @@ export class ShippingService {
             }
         }
 
-        result = {
+        return result = {
             ...shipping_infos[0],
             channel_id: 2,
             fee: totalShipping,
@@ -54,8 +54,8 @@ export class ShippingService {
 }
 
 export class ShippingRatesManagementService extends ShippingService {
-    constructor() {
-        super();
+    constructor(protected readonly shippingRepository: ShippingRepository) {
+        super(shippingRepository);
     }
 
     countingDIM(dimension: ProductDimensionDTO): number {

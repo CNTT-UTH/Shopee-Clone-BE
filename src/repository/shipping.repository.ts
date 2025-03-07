@@ -50,11 +50,11 @@ export class ShippingRepository extends Repository<Shipping> {
         return results;
     }
 
-    async getShippingInfos(product: Product) {
+    async getShippingInfos(product_id: number) {
         const results = await this.repoShippingProduct.find({
             where: {
                 product: {
-                    _id: product._id,
+                    _id: product_id,
                 },
             },
             relations: ['shipping'],

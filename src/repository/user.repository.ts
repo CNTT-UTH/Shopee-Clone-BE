@@ -24,7 +24,7 @@ export class UserRepository {
     }
 
     async findById(_id: string): Promise<User | null> {
-        return this.repo.findOneBy({ _id });
+        return this.repo.findOne({ where: { _id }, relations: ['addresses'] });
     }
 
     async findAll(): Promise<User[]> {

@@ -175,9 +175,11 @@ export class ProductDTO {
     product_price?: PriceDTO;
 
     @Expose()
+    @Transform(({ obj }) => obj.shop?.shop_location)
     shipping_from?: string;
 
-    @Expose()
+    @Expose({ name: 'shipping_channels' })
+    @Type(() => ShippingInfoDTO)
     shipping_channel?: ShippingInfoDTO[];
 
     @Expose({ name: 'image' })

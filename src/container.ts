@@ -33,6 +33,7 @@ import { PaymentRepository } from './repository/payment.repository';
 import { OrderController } from './controllers/order.controller';
 import { OrderService } from './services/order.service';
 import { OrderRepository } from './repository/order.repository';
+import { ShippingRepository } from './repository/shipping.repository';
 // import { PaymentService } from './services/payment.service';
 // import { PaymentController } from './controllers/payment.controller';
 // import { PaymentRepository } from './repository/payment.repository';
@@ -88,6 +89,7 @@ container.register({
     cateService: asClass(CategoryService).singleton(),
 
     // SHIPPING MODULE:
+    shippingRepository: asClass(ShippingRepository).singleton(),
     shippingController: asClass(ShippingController).scoped(),
     shippingService: asClass(ShippingService).singleton(),
     shippingRatesManagementService: asClass(ShippingRatesManagementService).singleton(),

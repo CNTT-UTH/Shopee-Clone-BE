@@ -34,6 +34,7 @@ export class ProductRepository extends Repository<Product> {
             relations: [
                 'shop',
                 'shipping_channels',
+                'shipping_channels.shipping',
                 'images',
                 // 'options',
                 'options.values',
@@ -129,4 +130,8 @@ export class ProductRepository extends Repository<Product> {
     async addCategoriesProduct(categories: number[], product_id: number) {
         await this.createQueryBuilder().relation(Product, 'categories').of(product_id).add(categories);
     }
+
+    async getShippingInfo(id: number) {
+        return await this.find
+    };
 }
