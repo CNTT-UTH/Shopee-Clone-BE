@@ -3,6 +3,7 @@ import {
     FindOneOptions,
     FindOptionsOrder,
     LegacyOracleNamingStrategy,
+    Like,
     MoreThan,
     MoreThanOrEqual,
     Not,
@@ -46,7 +47,17 @@ export class ProductRepository extends Repository<Product> {
         });
     }
 
-    async findAll({ pagination, filter, cate_id }: { pagination?: Pagination; filter?: Filter; cate_id?: number }) {
+    async findAll({
+        pagination,
+        filter,
+        cate_id,
+        keyword,
+    }: {
+        pagination?: Pagination;
+        filter?: Filter;
+        cate_id?: number;
+        keyword?: string;
+    }) {
         return (
             (await this.find({
                 skip: pagination?.limit ? pagination?.limit * ((pagination?.page ?? 1) - 1) : 0,
@@ -59,15 +70,22 @@ export class ProductRepository extends Repository<Product> {
                     price: filter?.price_max
                         ? Between(filter?.price_min as number, filter?.price_max as number)
                         : MoreThanOrEqual(filter?.price_min as number),
-                    category_id: cate_id,
+                    category_id: cate_id ?? undefined,
+                    title: keyword ? Like(`%${keyword}%`) : undefined,
                 },
                 relations: ['images'],
             })) ?? []
         );
     }
 
-    async countAll() {
-        return await this.count({ cache: true });
+    async countAll({ cate_id, keyword }: { cate_id?: number; keyword?: string }) {
+        return await this.count({
+            cache: true,
+            where: {
+                category_id: cate_id ?? undefined,
+                title: keyword ? Like(`%${keyword}%`) : undefined,
+            },
+        });
     }
 
     async createProduct(
@@ -132,6 +150,6 @@ export class ProductRepository extends Repository<Product> {
     }
 
     async getShippingInfo(id: number) {
-        return await this.find
-    };
+        return await this.find;
+    }
 }

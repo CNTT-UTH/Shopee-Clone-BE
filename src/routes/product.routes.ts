@@ -7,6 +7,7 @@ import { accessTokenValidator, authorizeRole, isShop, platformValidator } from '
 import { validationMiddleware } from '~/middlewares/validation.middleware';
 import { Pagination } from '~/models/dtos/PaginationDTO';
 import { CreateProductDTO } from '~/models/dtos/product/CreateProductDTO';
+import { CategoryId, Keyword } from '~/models/dtos/SearchValidDTO';
 import { asyncHandler } from '~/utils/asyncHandler';
 
 const router = Router();
@@ -41,14 +42,32 @@ router
     );
 
 router
-    .route('/search-by-cate/:cate_id')
+    .route('/search-by-cate')
     /**
      * Description. Search product by cate
-     * Path: /search-by-cate/:cate_id
-     * Method: POST
+     * Path: /search-by-cate
+     * Method: GET
      * Headers: { Authorization: string, User-Agent: string }
      */
-    .get(validationMiddleware(Pagination, 'query'), asyncHandler(api('getProductsByCate')));
+    .get(
+        validationMiddleware(Pagination, 'query'),
+        validationMiddleware(CategoryId, 'query'),
+        asyncHandler(api('getAllProducts')),
+    );
+
+router
+    .route('/search-by-keyword')
+    /**
+     * Description. Search product by keyword
+     * Path: /search-by-keyword
+     * Method: GET
+     * Query: { keyword: string }
+     */
+    .get(
+        validationMiddleware(Pagination, 'query'),
+        validationMiddleware(Keyword, 'query'),
+        asyncHandler(api('getAllProducts')),
+    );
 
 router
     .route('/all')

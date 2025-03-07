@@ -156,38 +156,20 @@ export class ProductService {
         return plainToInstance(ProductDTO, product);
     }
 
-    async getAllProducts({ pagination, filter }: { pagination: Pagination; filter?: Filter }) {
-        pagination!.total_page = Math.ceil((await this.productRepository.countAll()) / pagination!.limit);
-
-        pagination = {
-            ...pagination!,
-
-            cur_page: pagination!.page,
-            prev_page: pagination!.page - 1 > 0 ? pagination!.page - 1 : null,
-            next_page: pagination!.page + 1 < pagination!.total_page ? pagination!.page + 1 : null,
-        };
-
-        if (pagination.cur_page && pagination.total_page && pagination.cur_page > pagination.total_page) {
-            throw new ApiError('Trang tìm kiếm không tồn tài', HTTP_STATUS.NOT_FOUND);
-        }
-
-        const products = await this.productRepository.findAll({ pagination, filter });
-
-        const productDTOs = await Promise.all(products.map((product) => plainToInstance(ProductDTO, product)));
-
-        return { data: productDTOs, pagination };
-    }
-
-    async getProductsByCate({
+    async getAllProducts({
         pagination,
         filter,
         cate_id,
+        keyword,
     }: {
         pagination: Pagination;
         filter?: Filter;
-        cate_id: number;
+        cate_id?: number;
+        keyword?: string;
     }) {
-        pagination!.total_page = Math.ceil((await this.productRepository.countAll()) / pagination!.limit);
+        pagination!.total_page = Math.ceil(
+            (await this.productRepository.countAll({ cate_id: cate_id, keyword: keyword })) / pagination!.limit,
+        );
 
         pagination = {
             ...pagination!,
@@ -201,7 +183,7 @@ export class ProductService {
             throw new ApiError('Trang tìm kiếm không tồn tài', HTTP_STATUS.NOT_FOUND);
         }
 
-        const products = await this.productRepository.findAll({ pagination, filter, cate_id });
+        const products = await this.productRepository.findAll({ pagination, filter, cate_id, keyword });
 
         const productDTOs = await Promise.all(products.map((product) => plainToInstance(ProductDTO, product)));
 
@@ -252,7 +234,5 @@ export class ProductService {
         return;
     }
 
-    async getProductShippingInfo(id: number) {
-        
-    }
+    async getProductShippingInfo(id: number) { }
 }
