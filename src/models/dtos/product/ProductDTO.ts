@@ -158,7 +158,7 @@ export class ProductDTO {
 
     @Expose({ name: 'options' })
     @Transform(({ value }) => {
-        if (value[0].name === '') {
+        if (value?.[0]?.name === '') {
             value = [];
         }
 
