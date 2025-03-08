@@ -58,6 +58,7 @@ export class ProductRepository extends Repository<Product> {
         cate_id?: number;
         keyword?: string;
     }) {
+        console.log('🚀 ~ ProductRepository ~ keyword:', Like(`%${keyword}%`));
         return (
             (await this.find({
                 skip: pagination?.limit ? pagination?.limit * ((pagination?.page ?? 1) - 1) : 0,
@@ -71,7 +72,7 @@ export class ProductRepository extends Repository<Product> {
                         ? Between(filter?.price_min as number, filter?.price_max as number)
                         : MoreThanOrEqual(filter?.price_min as number),
                     category_id: cate_id ?? undefined,
-                    title: keyword ? Like(`%${keyword}%`) : undefined,
+                    title: keyword ? Like(`% ${keyword} %`) : undefined,
                 },
                 relations: ['images'],
             })) ?? []
@@ -83,7 +84,7 @@ export class ProductRepository extends Repository<Product> {
             cache: true,
             where: {
                 category_id: cate_id ?? undefined,
-                title: keyword ? Like(`%${keyword}%`) : undefined,
+                title: keyword ? Like(`% ${keyword} %`) : undefined,
             },
         });
     }

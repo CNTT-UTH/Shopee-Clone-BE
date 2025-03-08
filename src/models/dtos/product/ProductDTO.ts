@@ -229,7 +229,7 @@ export class ProductDTO {
             }
         });
 
-        console.log(mapping);
+        // console.log(mapping);
 
         return mapping;
     })

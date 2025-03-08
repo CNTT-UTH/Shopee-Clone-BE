@@ -167,6 +167,7 @@ export class ProductService {
         cate_id?: number;
         keyword?: string;
     }) {
+        console.log('🚀 ~ ProductService ~ keyword:', keyword);
         pagination!.total_page = Math.ceil(
             (await this.productRepository.countAll({ cate_id: cate_id, keyword: keyword })) / pagination!.limit,
         );
@@ -183,7 +184,12 @@ export class ProductService {
             throw new ApiError('Trang tìm kiếm không tồn tài', HTTP_STATUS.NOT_FOUND);
         }
 
-        const products = await this.productRepository.findAll({ pagination, filter, cate_id, keyword });
+        const products = await this.productRepository.findAll({
+            pagination: pagination,
+            filter: filter,
+            cate_id: cate_id,
+            keyword: keyword,
+        });
 
         const productDTOs = await Promise.all(products.map((product) => plainToInstance(ProductDTO, product)));
 
@@ -234,5 +240,5 @@ export class ProductService {
         return;
     }
 
-    async getProductShippingInfo(id: number) { }
+    async getProductShippingInfo(id: number) {}
 }
