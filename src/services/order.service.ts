@@ -200,8 +200,12 @@ export class OrderService {
     public async placeOrder(user_id: string, sessionID: string) {
         this.validSession(user_id, sessionID);
 
-        const checkoutInfo = this.SessionStorage[sessionID].data;
+        const checkoutInfo: CheckoutTemp | undefined = this.SessionStorage[sessionID].data;
 
         
+    }
+
+    private async createOrder(checkoutInfo: CheckoutTemp) {
+
     }
 }

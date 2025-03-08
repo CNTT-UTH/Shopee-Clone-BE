@@ -10,7 +10,7 @@
         "dev": "npx nodemon",
         "start": "npm run build:live",
         "build": "rimraf ./dist && tsc && tsc-alias",
-        "build:live": "nodemon --watch 'src/**/*.ts' --exec \"node\" dist/index.js",
+        "build:live": "\"node\" dist/src/index.js",
         "lint": "eslint .",
         "lint:fix": "eslint . --fix",
         "prettier": "prettier --check .",

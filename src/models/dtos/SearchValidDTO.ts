@@ -1,8 +1,8 @@
-import { IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsNotEmpty, IsNumber, IsNumberString, IsString } from 'class-validator';
 
 export class CategoryId {
     @IsNotEmpty()
-    @IsNumber()
+    @IsNumberString()
     cate_id: number;
 }
 

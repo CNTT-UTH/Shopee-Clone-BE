@@ -8,3 +8,7 @@ declare module 'express' {
         user?: User;
     }
 }
+declare module '*.yaml' {
+    const value: any;
+    export default value;
+}

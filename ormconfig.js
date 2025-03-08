@@ -27,8 +27,6 @@ module.exports = {
     seeds: [
         // path.join('src', 'seeders', '*.seed.{ts, js}'),
         path.join('src', 'seeders', 'updateimage.seed.{ts, js}'),
-        
-
     ],
     factories: [path.join('src', 'seeders', '*.factory.{ts, js}')],
 };
