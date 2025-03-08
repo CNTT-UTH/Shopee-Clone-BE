@@ -12,5 +12,10 @@ export class PaymentRepository extends Repository<PaymentDetails>{
         return await this.query('SELECT * FROM `payment_methods` WHERE 1');
     }
 
+    async findOneMethod(id: number){
+        // return await this.createQueryBuilder('payment_methods').select().getMany();
+        return await this.query(`SELECT * FROM \`payment_methods\` WHERE \`id\` = ${id}`);
+    }
+
 
 }

@@ -11,12 +11,16 @@ import { v4 as uuidv4 } from 'uuid';
 import { ShippingService } from './shipping.service';
 import { ShippingInfoDTO } from '~/models/dtos/ShippingDTO';
 import { plainToInstance } from 'class-transformer';
+import { PaymentService } from './payment.service';
+import { AddressService } from './address.service';
 
 export class OrderService {
     constructor(
         private readonly userService: UserService,
         private readonly cartService: CartService,
         private readonly shippingService: ShippingService,
+        private readonly paymentService: PaymentService,
+        private readonly addressService: AddressService,
     ) {}
 
     private UserSessionStorage: {
@@ -26,34 +30,16 @@ export class OrderService {
     private SessionStorage: {
         [index: string]: { data?: CheckoutTemp; exp: Date };
     } = {};
-
-    async handleCheckout(user_id: string) {
-        const user = await this.userService.getOne(user_id);
-
-        if (!user) {
-            throw new ApiError(USERS_MESSAGES.USERNAME_DOES_NOT_EXIST, HTTP_STATUS.BAD_REQUEST);
-        }
-
-        const cart: CartDTO | null = await this.cartService.getSelectedItem(user_id);
-
-        // if (!cart || cart.items.length == 0) {
-        if (!cart) {
-            throw new ApiError('Không sản phẩm nào được lựa chọn!!', HTTP_STATUS.BAD_REQUEST);
-        }
-
-        //* Create CheckoutTemp
-        const checkoutInfo: CheckoutTemp = {
+    private createCheckoutTemp(user: any): CheckoutTemp {
+        return {
             payment_method_id: 0,
             orders: [],
             address_id: user?.addresses?.[0]?.id,
         };
+    }
 
-        const itemStorage: {
-            [index: number]: {
-                order: OrderCheckout;
-                items: any[];
-            };
-        } = {};
+    private initializeItemStorage(cart: CartDTO): { [index: number]: { order: OrderCheckout; items: any[] } } {
+        const itemStorage: { [index: number]: { order: OrderCheckout; items: any[] } } = {};
 
         cart.shops.map((s) => {
             const order: OrderCheckout = {
@@ -63,8 +49,6 @@ export class OrderService {
                 notes: '',
                 shop_id: s,
             };
-
-            checkoutInfo.orders?.push(order);
 
             itemStorage[s] = {
                 items: [],
@@ -76,6 +60,13 @@ export class OrderService {
             itemStorage[item.block_id]?.items.push(item);
         });
 
+        return itemStorage;
+    }
+
+    private async processShippingInfo(
+        cart: CartDTO,
+        itemStorage: { [index: number]: { order: OrderCheckout; items: any[] } },
+    ) {
         await Promise.all(
             cart.shops.map(async (s) => {
                 const shippingInfos: ShippingInfoDTO[] = await Promise.all(
@@ -89,6 +80,7 @@ export class OrderService {
                         return plainToInstance(ShippingInfoDTO, {});
                     }),
                 );
+
                 let total_items_price = 0;
                 itemStorage[s].items?.map((item) => (total_items_price += item.total_price));
 
@@ -101,7 +93,9 @@ export class OrderService {
                 itemStorage[s]!.order.total_items_price = total_items_price;
             }),
         );
+    }
 
+    private calculateTotalPrices(checkoutInfo: CheckoutTemp) {
         let total_products_price = 0,
             total_ship_fee = 0;
 
@@ -113,7 +107,9 @@ export class OrderService {
         checkoutInfo.total_products_price = total_products_price;
         checkoutInfo.total_ship_fee = total_ship_fee;
         checkoutInfo.total_price = total_products_price + total_ship_fee;
+    }
 
+    private createSession(checkoutInfo: CheckoutTemp): string {
         const getSession = (): string => {
             let id: string;
 
@@ -130,36 +126,7 @@ export class OrderService {
             exp: new Date(Date.now() + 1000 * 3600),
         };
 
-        this.UserSessionStorage[user_id] = sessionID;
-
-        return { session_checkout_id: sessionID };
-    }
-
-    async getCheckoutInfo(user_id: string, sessionID: string) {
-        this.validSession(user_id, sessionID);
-
-        return this.SessionStorage[sessionID].data;
-    }
-
-    async updateCheckout(user_id: string, sessionID: string, updateBody: UpdateCheckout) {
-        this.validSession(user_id, sessionID);
-
-        const checkoutInfo = this.SessionStorage[sessionID].data;
-
-        if (updateBody.payment_method_id) checkoutInfo!.payment_method_id = updateBody.payment_method_id;
-
-        if (updateBody.address_id) checkoutInfo!.address_id = updateBody.address_id;
-
-        updateBody.orders.map((order) => {
-            for (const old_order of checkoutInfo!.orders as OrderCheckout[]) {
-                if (old_order.order_temp_id !== order.order_temp_id) continue;
-
-                if (order.shipping_channel_id) old_order.shipping_channel_id_selected = order.shipping_channel_id;
-                if (order.notes) old_order.notes = order.notes;
-            }
-        });
-
-        return { session_checkout_id: sessionID };
+        return sessionID;
     }
 
     private validSession(user_id: string, sessionID: string) {
@@ -173,5 +140,61 @@ export class OrderService {
 
             throw new ApiError('Không tìm thấy thông tin checkout!', HTTP_STATUS.NOT_FOUND);
         }
+    }
+
+    public async handleCheckout(user_id: string) {
+        const user = await this.userService.getOne(user_id);
+
+        if (!user) {
+            throw new ApiError(USERS_MESSAGES.USERNAME_DOES_NOT_EXIST, HTTP_STATUS.BAD_REQUEST);
+        }
+
+        const cart: CartDTO | null = await this.cartService.getSelectedItem(user_id);
+
+        if (!cart) {
+            throw new ApiError('Không sản phẩm nào được lựa chọn!!', HTTP_STATUS.BAD_REQUEST);
+        }
+
+        const checkoutInfo: CheckoutTemp = this.createCheckoutTemp(user);
+        const itemStorage = this.initializeItemStorage(cart);
+
+        await this.processShippingInfo(cart, itemStorage);
+
+        this.calculateTotalPrices(checkoutInfo);
+
+        const sessionID: string = this.createSession(checkoutInfo);
+        this.UserSessionStorage[user_id] = sessionID;
+
+        return { session_checkout_id: sessionID };
+    }
+
+    public async getCheckoutInfo(user_id: string, sessionID: string) {
+        this.validSession(user_id, sessionID);
+
+        return this.SessionStorage[sessionID].data;
+    }
+
+    public async updateCheckout(user_id: string, sessionID: string, updateBody: UpdateCheckout) {
+        this.validSession(user_id, sessionID);
+
+        const checkoutInfo = this.SessionStorage[sessionID].data;
+
+        if (updateBody.payment_method_id && !(await this.paymentService.findOneMethod(updateBody.payment_method_id)))
+            checkoutInfo!.payment_method_id = updateBody.payment_method_id;
+
+        if (updateBody.address_id && !(await this.addressService.getAddress(updateBody.address_id)))
+            checkoutInfo!.address_id = updateBody.address_id;
+
+        updateBody.orders.map((order) => {
+            for (const old_order of checkoutInfo!.orders as OrderCheckout[]) {
+                if (old_order.order_temp_id !== order.order_temp_id) continue;
+
+                if (order.shipping_channel_id && old_order.shipping_info[order.shipping_channel_id])
+                    old_order.shipping_channel_id_selected = order.shipping_channel_id;
+                if (order.notes) old_order.notes = order.notes;
+            }
+        });
+
+        return { session_checkout_id: sessionID };
     }
 }
