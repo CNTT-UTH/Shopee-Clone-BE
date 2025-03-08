@@ -53,4 +53,20 @@ export class OrderController {
             result,
         });
     }
+
+    async placeOrder(req: Request, res: Response) {
+        if (!req.decoded?._id || !req.params?.session_checkout_id)
+            throw new ApiError('Lỗi người dùng', HTTP_STATUS.BAD_REQUEST);
+
+        const user_id: string = req.decoded?._id;
+        const sessionID: string = req.params.session_checkout_id as string;
+
+        const result = await this.orderService.placeOrder(user_id, sessionID);
+
+        res.json({
+            success: true,
+            message: null,
+            result,
+        });
+    }
 }

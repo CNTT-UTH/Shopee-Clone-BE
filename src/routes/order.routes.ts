@@ -36,4 +36,8 @@ router
         asyncHandler(api('updateCheckout')),
     );
 
+router
+    .route('/place-order/:session_checkout_id')
+    .post(accessTokenValidator, validationMiddleware(SessionId, 'params'), asyncHandler(api('placeOrder')));
+
 export default router;

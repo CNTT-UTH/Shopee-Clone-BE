@@ -133,9 +133,8 @@ export class OrderService {
         if (!this.SessionStorage[sessionID] && this.UserSessionStorage[user_id] !== sessionID)
             throw new ApiError('Không tìm thấy thông tin checkout!', HTTP_STATUS.NOT_FOUND);
 
-        console.log(this.SessionStorage[sessionID].exp.getTime(), Date.now());
-
         if (this.SessionStorage[sessionID].exp.getTime() < Date.now()) {
+
             delete sessionStorage[sessionID];
 
             throw new ApiError('Không tìm thấy thông tin checkout!', HTTP_STATUS.NOT_FOUND);
@@ -196,5 +195,13 @@ export class OrderService {
         });
 
         return { session_checkout_id: sessionID };
+    }
+
+    public async placeOrder(user_id: string, sessionID: string) {
+        this.validSession(user_id, sessionID);
+
+        const checkoutInfo = this.SessionStorage[sessionID].data;
+
+        
     }
 }

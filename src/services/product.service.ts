@@ -58,7 +58,7 @@ export class ProductService {
 
     async findOne({ product_id, variant_id }: { product_id: number; variant_id: number }) {
         return await this.productRepository.findOne({
-            where: [{ _id: product_id }, { variants: { variant_id: variant_id } }],
+            where: { _id: product_id, variants: { variant_id: variant_id ?? undefined } },
             // relations: ['product_variants'],
         });
     }
