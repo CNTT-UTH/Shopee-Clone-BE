@@ -84,7 +84,8 @@
         "yaml": "^2.6.1",
         "yaml-loader": "^0.8.1",
         "@faker-js/faker": "^9.5.0",
-        "typeorm-seeding": "^1.6.1"
+        "typeorm-seeding": "^1.6.1",
+        "tsc-alias": "^1.8.10"
     },
     "devDependencies": {
         "@babel/core": "^7.26.9",
@@ -104,7 +105,6 @@
         "swagger-cli": "^4.0.4",
         "ts-jest": "^29.2.5",
         "ts-node": "^10.9.2",
-        "tsc-alias": "^1.8.10",
         "typescript": "^5.7.2",
         "typescript-eslint": "^8.18.1"
     }
