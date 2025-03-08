@@ -4,12 +4,12 @@
     "description": "",
     "main": "dist/index.js",
     "_moduleAliases": {
-        "~": "src"
+        "~": "./dist/src"
     },
     "scripts": {
         "dev": "npx nodemon",
         "start": "npm run build:live",
-        "build": "rimraf ./dist && tsc && tsc-alias && cpx openapi/openapi.yaml dist/openapi/openapi.yaml",
+        "build": "rimraf ./dist && tsc && tsc-alias && cpx src/**/*.{yaml,html,sql,json} dist/src && cpx openapi/openapi.yaml dist/openapi",
         "build:live": "\"node\" dist/src/index.js",
         "lint": "eslint .",
         "lint:fix": "eslint . --fix",

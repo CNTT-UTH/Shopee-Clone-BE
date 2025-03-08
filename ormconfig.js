@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 // eslint-disable-next-line @typescript-eslint/no-require-imports, no-undef
 require('module-alias/register'); // Ensure this is at the top
 
@@ -18,15 +19,15 @@ module.exports = {
     logging: false,
     migrations: [
         // __dirname + '/../migrations/*.{ts, js}',
-        path.join('src', 'migrations', '*.{ts, js}'),
+        path.join(__dirname, 'src', 'migrations', '*.{ts, js}'),
     ],
     entities: [
         // __dirname + '/../models/entity/*.{ts, js}',
-        path.join('src', 'models', 'entity', '*.{ts, js}'),
+        path.join(__dirname, 'src', 'models', 'entity', '*.{ts, js}'),
     ],
     seeds: [
         // path.join('src', 'seeders', '*.seed.{ts, js}'),
-        path.join('src', 'seeders', 'updateimage.seed.{ts, js}'),
+        path.join(__dirname, 'src', 'seeders', 'updateimage.seed.{ts, js}'),
     ],
-    factories: [path.join('src', 'seeders', '*.factory.{ts, js}')],
+    factories: [path.join(__dirname, 'src', 'seeders', '*.factory.{ts, js}')],
 };

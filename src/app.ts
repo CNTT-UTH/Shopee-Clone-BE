@@ -16,7 +16,7 @@ import compression from 'compression';
 import container from './container';
 import { scopePerRequest } from 'awilix-express';
 
-const file = fs.readFileSync(path.resolve(__dirname, '../openapi/openapi.yaml'), 'utf8');
+const file = fs.readFileSync(path.join(__dirname, '..', 'openapi/openapi.yaml'), 'utf8');
 const swaggerDocs = YAML.parse(file);
 
 const app = express();
