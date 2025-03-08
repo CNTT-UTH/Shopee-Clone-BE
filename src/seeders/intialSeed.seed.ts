@@ -84,6 +84,7 @@ export default class InitialDatabaseSeed implements Seeder {
                     price_range_min_old: product.price_min_before_discount,
                     price_range_max_old: product.price_max_before_discount,
                     discount: (product.raw_discount ?? 0) / 100,
+                    image: product?.images?.[0] ?? '',
                     // images: images,
                     // options: options,
                     // variants: variants,
@@ -131,47 +132,49 @@ export default class InitialDatabaseSeed implements Seeder {
                     };
                 } = {};
 
-                const options: Option[] = product.options
-                    ? await Promise.all(
-                          product.options?.map(async (opt) => {
-                              mapping[opt.name] = {};
-                              const values: OptionValue[] = await Promise.all(
-                                  opt.values.map(async (value: string) => {
-                                      const res = await factory(OptionValue)().create({ value_name: value });
-                                      if (mapping[opt.name]) mapping[opt.name][value] = res;
-                                      return res;
-                                  }),
-                              );
+                if (product?.options?.[0]?.name !== '') {
+                    const options: Option[] = product.options
+                        ? await Promise.all(
+                              product.options?.map(async (opt) => {
+                                  mapping[opt.name] = {};
+                                  const values: OptionValue[] = await Promise.all(
+                                      opt.values.map(async (value: string) => {
+                                          const res = await factory(OptionValue)().create({ value_name: value });
+                                          if (mapping[opt.name]) mapping[opt.name][value] = res;
+                                          return res;
+                                      }),
+                                  );
 
-                              return await factory(Option)().create({
-                                  name: opt.name,
-                                  values: values,
-                                  product: [newProduct],
-                              });
-                          }),
-                      )
-                    : [];
+                                  return await factory(Option)().create({
+                                      name: opt.name,
+                                      values: values,
+                                      product: [newProduct],
+                                  });
+                              }),
+                          )
+                        : [];
 
-                // console.log(mapping);
+                    // console.log(mapping);
 
-                const variants: ProductVariant[] = product.variants
-                    ? await Promise.all(
-                          product.variants.map(async (variant) => {
-                              return await factory(ProductVariant)().create({
-                                  sku: faker.string.alpha({ length: 10, casing: 'upper' }),
-                                  buyturn: variant.buyturn,
-                                  quantity: variant.stock,
-                                  name: variant.name,
-                                  price: variant.price,
-                                  old_price: variant.price_before_discount,
-                                  options: variant.options.map((opt) => {
-                                      return mapping[opt.option_name ?? ''][opt.value ?? ''];
-                                  }),
-                                  product: newProduct,
-                              });
-                          }),
-                      )
-                    : [];
+                    const variants: ProductVariant[] = product.variants
+                        ? await Promise.all(
+                              product.variants.map(async (variant) => {
+                                  return await factory(ProductVariant)().create({
+                                      sku: faker.string.alpha({ length: 10, casing: 'upper' }),
+                                      buyturn: variant.buyturn,
+                                      quantity: variant.stock,
+                                      name: variant.name,
+                                      price: variant.price,
+                                      old_price: variant.price_before_discount,
+                                      options: variant.options.map((opt) => {
+                                          return mapping[opt.option_name ?? ''][opt.value ?? ''];
+                                      }),
+                                      product: newProduct,
+                                  });
+                              }),
+                          )
+                        : [];
+                }
 
                 if (!product.shipping_channels) return;
 
