@@ -7,7 +7,7 @@ import { Image } from '~/models/entity/image.entity';
 import { Product } from '~/models/entity/product.entity';
 import { Shipping, ShippingProductInfo } from '~/models/entity/shipping.entity';
 import { Shop } from '~/models/entity/shop.entity';
-import { Option, ProductVariant } from '~/models/entity/variant.entiity';
+import { Option, ProductVariant } from '~/models/entity/variant.entity';
 import { AttributeRepository } from '~/repository/attribute.repository';
 import { BrandRepository } from '~/repository/brand.repository';
 import { ImageRepository, OptionValueRepository, VariantRepository } from '~/repository/orther.repository';

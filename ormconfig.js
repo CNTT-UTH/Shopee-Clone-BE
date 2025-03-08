@@ -1,13 +1,12 @@
 /* eslint-disable no-undef */
-// eslint-disable-next-line @typescript-eslint/no-require-imports, no-undef
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 require('module-alias/register'); // Ensure this is at the top
 
-// eslint-disable-next-line @typescript-eslint/no-require-imports, no-undef
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 const path = require('path');
-// eslint-disable-next-line @typescript-eslint/no-require-imports, no-undef
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 const { envConfig } = require('~/constants/env');
 
-// eslint-disable-next-line no-undef
 module.exports = {
     type: 'mysql',
     host: envConfig.DB_HOST,
@@ -23,7 +22,7 @@ module.exports = {
     ],
     entities: [
         // __dirname + '/../models/entity/*.{ts, js}',
-        path.join(__dirname, 'src', 'models', 'entity', '*.{ts, js}'),
+        path.join(__dirname, 'src', 'models', 'entity', '*.entity.{ts, js}'),
     ],
     seeds: [
         // path.join('src', 'seeders', '*.seed.{ts, js}'),

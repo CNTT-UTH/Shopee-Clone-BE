@@ -4,7 +4,7 @@ import { ShippingInfoDTO } from '../ShippingDTO';
 import { IsNotEmpty } from 'class-validator';
 import { ShopDTO } from '../ShopDTO';
 import { Image } from '~/models/entity/image.entity';
-import { OptionValue, ProductVariant } from '~/models/entity/variant.entiity';
+import { OptionValue, ProductVariant } from '~/models/entity/variant.entity';
 
 @Exclude()
 export class AttributeDTO {

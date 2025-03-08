@@ -5,7 +5,7 @@ import { AttributeDTO } from '~/models/dtos/product/ProductDTO';
 import { AttributeValue } from '~/models/entity/attribute.entity';
 import { Image } from '~/models/entity/image.entity';
 import { Product } from '~/models/entity/product.entity';
-import { Option, OptionValue, ProductVariant } from '~/models/entity/variant.entiity';
+import { Option, OptionValue, ProductVariant } from '~/models/entity/variant.entity';
 
 export class ImageRepository extends Repository<Image> {
     constructor() {

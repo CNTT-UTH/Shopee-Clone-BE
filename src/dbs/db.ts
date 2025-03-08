@@ -7,7 +7,13 @@ import { User } from '~/models/entity/user.entity';
 
 import ormConfig from '../../ormconfig.js';
 
-// const CONFIG_FILE_PATH = path.join('..', '..', 'ormconfig.js');
+['migrations', 'entities', 'seeds', 'factories'].forEach((domain) => {
+    (ormConfig as any)?.[domain].forEach((dir: string, index: number, arr: string[]) => {
+        if (envConfig?.NODE_ENV === 'production') {
+          arr[index] = dir.replace('{ts, js}', 'js');
+        }
+    });
+});
 
 const AppDataSource = new DataSource(ormConfig as any);
 export default AppDataSource;

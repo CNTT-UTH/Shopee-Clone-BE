@@ -15,7 +15,7 @@ import {
 import { Category } from './category.entity';
 import { Brand } from './brand.entity';
 import { Image } from './image.entity';
-import { Option, ProductVariant } from './variant.entiity';
+import { Option, ProductVariant } from './variant.entity';
 import { AttributeValue } from './attribute.entity';
 import { CartItem } from './cart.entity';
 import { Shop } from './shop.entity';

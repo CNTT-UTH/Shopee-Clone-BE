@@ -14,7 +14,7 @@ import {
 } from 'typeorm';
 import { Product } from './product.entity';
 import { User } from './user.entity';
-import { ProductVariant } from './variant.entiity';
+import { ProductVariant } from './variant.entity';
 import { Shop } from './shop.entity';
 
 @Entity('carts')

@@ -15,7 +15,7 @@ import {
     JoinTable,
 } from 'typeorm';
 import { Product } from './product.entity';
-import { Option } from './variant.entiity';
+import { Option } from './variant.entity';
 import { Category } from './category.entity';
 
 @Entity('attributes')

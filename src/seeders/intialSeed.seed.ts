@@ -8,7 +8,7 @@ import { Shop } from '~/models/entity/shop.entity';
 import { Product } from '~/models/entity/product.entity';
 import { faker, fakerEN_CA } from '@faker-js/faker';
 import { Image } from '~/models/entity/image.entity';
-import { Option, OptionValue, ProductVariant } from '~/models/entity/variant.entiity';
+import { Option, OptionValue, ProductVariant } from '~/models/entity/variant.entity';
 import { ShippingInfoDTO } from '~/models/dtos/ShippingDTO';
 import { ShippingRatesManagementService, ShippingService } from '~/services/shipping.service';
 import { ShippingRepository } from '~/repository/shipping.repository';

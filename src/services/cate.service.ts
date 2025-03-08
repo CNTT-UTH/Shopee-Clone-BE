@@ -16,7 +16,9 @@ export class CategoryService {
     }
 
     async getCateTree() {
+        console.log('get cate tree');
         const rootCates: Category[] = await this.cateRepository.getAllRootCate();
+        console.log('get cate tree 2');
         const cateTree: CategoryDTO[] = await Promise.all(
             rootCates.map(async (cate) => {
                 const cateDTO: CategoryDTO = plainToInstance(CategoryDTO, cate);

@@ -21,7 +21,7 @@ import { Image } from '~/models/entity/image.entity';
 import { Product } from '~/models/entity/product.entity';
 import { Shipping } from '~/models/entity/shipping.entity';
 import { Shop } from '~/models/entity/shop.entity';
-import { Option } from '~/models/entity/variant.entiity';
+import { Option } from '~/models/entity/variant.entity';
 
 export class ProductRepository extends Repository<Product> {
     constructor() {

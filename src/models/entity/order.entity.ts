@@ -16,7 +16,7 @@ import { Cart, CartItem } from './cart.entity';
 import { User } from './user.entity';
 import { Product } from './product.entity';
 import { ShippingDetail } from './shipping.entity';
-import { ProductVariant } from './variant.entiity';
+import { ProductVariant } from './variant.entity';
 import { Shop } from './shop.entity';
 import { PaymentDetails } from './payment.entity';
 
