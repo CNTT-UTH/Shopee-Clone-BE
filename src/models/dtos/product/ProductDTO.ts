@@ -214,7 +214,9 @@ export class ProductDTO {
         const mapping: NestedObject = {};
 
         value?.map((variant: ProductVariant) => {
-            if (variant.options.length == 1) {
+            // Cần fix lại sau
+            if (variant?.options?.length == 0) return;
+            if (variant?.options?.length == 1) {
                 if (variant.options[0].value_name !== '') mapping[variant.options[0].value_name] = variant.variant_id;
             } else {
                 if (!mapping[variant.options[0].value_name]) mapping[variant.options[0].value_name] = {};

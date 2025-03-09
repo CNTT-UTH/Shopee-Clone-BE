@@ -21,7 +21,7 @@ import { Image } from '~/models/entity/image.entity';
 import { Product } from '~/models/entity/product.entity';
 import { Shipping } from '~/models/entity/shipping.entity';
 import { Shop } from '~/models/entity/shop.entity';
-import { Option } from '~/models/entity/variant.entity';
+import { Option, ProductVariant } from '~/models/entity/variant.entity';
 
 export class ProductRepository extends Repository<Product> {
     constructor() {
@@ -30,21 +30,28 @@ export class ProductRepository extends Repository<Product> {
     }
 
     async findProductById(id: number) {
-        return await this.findOne({
-            where: { _id: id },
-            relations: [
-                'shop',
-                'shipping_channels',
-                'shipping_channels.shipping',
-                'images',
-                // 'options',
-                'options.values',
-                // 'attributes',
-                'attributes.attribute',
-                'variants.options',
-                'categories',
-            ],
-        });
+        const product: Product | null = await this.createQueryBuilder('product')
+            .leftJoin('product.shop', 'shop')
+            .addSelect(['shop.id', 'shop.name', 'shop.avatar'])
+
+            .leftJoin('product.shipping_channels', 'shipping_channels')
+            .leftJoin('shipping_channels.shipping', 'shipping')
+
+            .leftJoin('product.images', 'images')
+            .addSelect(['images.image_url'])
+
+            .leftJoin('product.options', 'options')
+            .addSelect(['options.name'])
+
+            .leftJoin('options.values', 'values')
+            .addSelect(['values.value_name'])
+
+            .leftJoin('product.attributes', 'attributes')
+            .addSelect(['attributes.attribute', 'attributes.value'])
+            .where('product._id = :_id', { _id: id })
+            .getOne();
+
+        return product;
     }
 
     async findAll({

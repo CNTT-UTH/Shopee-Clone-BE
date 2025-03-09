@@ -148,12 +148,20 @@ export class ProductService {
     }
 
     async getProduct(id: number) {
+        console.log(`Trước repo: - Heap Used: ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB`);
+
         const product: Product | null = await this.productRepository.findProductById(id);
+        const variants: ProductVariant[] | null = await this.variantRepository.getProductVariants(id);
 
         if (!product) throw new ApiError('Sản phẩm không tồn tại!', HTTP_STATUS.NOT_FOUND);
+        product!.variants = variants;
 
-        // return product;
-        return plainToInstance(ProductDTO, product);
+        console.log(`Sau repo: - Heap Used: ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB`);
+
+        console.log(`Trước DTO: - Heap Used: ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB`);
+        const productDTO: ProductDTO = plainToInstance(ProductDTO, product);
+        console.log(`Sau DTO: - Heap Used: ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB`);
+        return productDTO;
     }
 
     async getAllProducts({
@@ -240,5 +248,5 @@ export class ProductService {
         return;
     }
 
-    async getProductShippingInfo(id: number) {}
+    async getProductShippingInfo(id: number) { }
 }

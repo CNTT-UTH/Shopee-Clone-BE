@@ -43,8 +43,11 @@ export class ProductController {
         const id: number = Number(req.params.id);
         if (!id) throw new ApiError('ID không hợp lê!', HTTP_STATUS.BAD_REQUEST);
 
+        console.log(`Trước service: ${req.url} - Heap Used: ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB`);
+        
         const result = await this.productService.getProduct(id);
-
+        
+        console.log(`Sau service: ${req.url} - Heap Used: ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB`);
         res.send({
             success: true,
             mesage: null,

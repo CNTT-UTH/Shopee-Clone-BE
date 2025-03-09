@@ -10,6 +10,7 @@ import {
     OneToMany,
     PrimaryColumn,
     PrimaryGeneratedColumn,
+    RelationId,
     Unique,
     UpdateDateColumn,
 } from 'typeorm';
@@ -120,4 +121,7 @@ export class ProductVariant extends BaseEntity {
 
     @OneToMany(() => OrderItem, (orderitem) => orderitem.product)
     order_items: OrderItem[];
+
+    @RelationId('product')
+    product_id: number;
 }

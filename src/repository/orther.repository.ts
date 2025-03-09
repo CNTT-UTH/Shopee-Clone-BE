@@ -139,6 +139,18 @@ export class VariantRepository extends Repository<ProductVariant> {
         this.repoOptionValue = new OptionValueRepository();
     }
 
+    async getProductVariants(product_id: number) {
+        const variants: ProductVariant[] | null = await this.createQueryBuilder('v')
+            .addSelect(['v.variant_id', 'v.buyturn', 'v.quantity', 'v.name', 'v.price', 'v.old_price'])
+
+            .leftJoin('v.options', 'o')
+            .addSelect(['o.value_name'])
+            .where('v.product_id = :product_id', { product_id })
+            .getMany();
+
+        return variants;
+    }
+
     async createVariants(data: CreateVariantDTO[], product: Product) {
         const results = await Promise.all(
             data.map(async (variant) => {
