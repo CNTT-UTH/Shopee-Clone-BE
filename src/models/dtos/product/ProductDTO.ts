@@ -217,40 +217,13 @@ export class ProductDTO {
             if (variant.options.length == 1) {
                 if (variant.options[0].value_name !== '') mapping[variant.options[0].value_name] = variant.variant_id;
             } else {
-                // mapping[variant.options[0].value_name] = { [variant.options[1].value_name]: variant.variant_id };
-                // mapping[variant.options[1].value_name] = { [variant.options[0].value_name]: variant.variant_id };
                 if (!mapping[variant.options[0].value_name]) mapping[variant.options[0].value_name] = {};
-                // if (!mapping[variant.options[1].value_name]) mapping[variant.options[1].value_name] = {};
-
                 (mapping[variant.options[0].value_name] as NestedObject)[variant.options[1].value_name] =
                     variant.variant_id;
-                // (mapping[variant.options[1].value_name] as NestedObject)[variant.options[0].value_name] =
-                //     variant.variant_id;
             }
         });
-
-        // console.log(mapping);
 
         return mapping;
     })
     variants_mapping: object;
-    // constructor(data: Partial<ProductDTO> = {}) {
-    //     this.product_id = data.product_id;
-    //     this.title = data.title;
-    //     this.description = data.description;
-
-    //     this.product_attributes = data.product_attributes || [];
-    //     this.cat_id = data.cat_id;
-    //     this.cates = data.cates || [];
-
-    //     this.review = data.review ? new ProductReviewDTO(data.review) : undefined;
-    //     this.options = data.options ? data.options.map((opt) => new OptionsDTO(opt)) : [];
-    //     this.variants = data.variants ? data.variants.map((variant) => new variantDTO(variant)) : [];
-
-    //     this.product_price = data.product_price ? data.product_price.map((price) => new PriceDTO(price)) : [];
-    //     this.shipping_from = data.shipping_from;
-    //     this.shipping_channel = data.shipping_channel
-    //         ? data.shipping_channel.map((channel) => new ShippingDTO(channel))
-    //         : [];
-    // }
 }
