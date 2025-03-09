@@ -13,6 +13,11 @@ import { ShippingInfoDTO } from '~/models/dtos/ShippingDTO';
 import { plainToInstance } from 'class-transformer';
 import { PaymentService } from './payment.service';
 import { AddressService } from './address.service';
+import AppDataSource from '~/dbs/db';
+import { QueryRunner } from 'typeorm';
+import { fi } from '@faker-js/faker';
+import { PaymentRepository } from '~/repository/payment.repository';
+import { OrderRepository } from '~/repository/order.repository';
 
 export class OrderService {
     constructor(
@@ -21,6 +26,8 @@ export class OrderService {
         private readonly shippingService: ShippingService,
         private readonly paymentService: PaymentService,
         private readonly addressService: AddressService,
+        private readonly paymentRepository: PaymentRepository,
+        private readonly orderRepository: OrderRepository,
     ) {}
 
     private UserSessionStorage: {
@@ -134,7 +141,6 @@ export class OrderService {
             throw new ApiError('Không tìm thấy thông tin checkout!', HTTP_STATUS.NOT_FOUND);
 
         if (this.SessionStorage[sessionID].exp.getTime() < Date.now()) {
-
             delete sessionStorage[sessionID];
 
             throw new ApiError('Không tìm thấy thông tin checkout!', HTTP_STATUS.NOT_FOUND);
@@ -200,12 +206,28 @@ export class OrderService {
     public async placeOrder(user_id: string, sessionID: string) {
         this.validSession(user_id, sessionID);
 
-        const checkoutInfo: CheckoutTemp | undefined = this.SessionStorage[sessionID].data;
+        const checkoutInfo: CheckoutTemp | undefined = this.SessionStorage[sessionID]!.data;
+        if (!checkoutInfo) throw new ApiError('Không tìm thấy thông tin checkout!', HTTP_STATUS.NOT_FOUND);
 
-        
+        await this.createOrder(checkoutInfo);
     }
 
     private async createOrder(checkoutInfo: CheckoutTemp) {
+        const queryRunner: QueryRunner = AppDataSource.createQueryRunner();
 
+        await queryRunner.connect();
+
+        await queryRunner.startTransaction();
+
+        try {
+            const order: Order 
+            await queryRunner.manager.withRepository(this.paymentRepository).cretePaymentInfo()
+            
+            // Create Order
+        } catch (error) {
+            await queryRunner.rollbackTransaction();
+        } finally {
+            await queryRunner.release();
+        }
     }
 }

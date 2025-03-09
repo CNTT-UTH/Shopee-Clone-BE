@@ -16,3 +16,6 @@ dist/
 
 src/uploads/images/temp/*.*
 src/uploads/images/*.*
+
+.clinic/
+.vscode/
