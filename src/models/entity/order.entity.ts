@@ -18,7 +18,7 @@ import { Product } from './product.entity';
 import { ShippingDetail } from './shipping.entity';
 import { ProductVariant } from './variant.entity';
 import { Shop } from './shop.entity';
-import { PaymentDetails } from './payment.entity';
+import { PaymentDetail } from './payment.entity';
 
 @Entity('orders')
 export class Order extends BaseEntity {
@@ -29,17 +29,17 @@ export class Order extends BaseEntity {
     @JoinColumn({ name: 'user_id' })
     user: User;
 
-    @OneToOne(() => PaymentDetails, (payment_detail) => payment_detail.order)
+    @OneToOne(() => PaymentDetail, (payment_detail) => payment_detail.order, { cascade: true })
     @JoinColumn({ name: 'payment_id' })
-    payment: PaymentDetails;
+    payment: PaymentDetail;
 
     @Column({ default: 0 })
     total: number;
 
     @Column({ default: 0 })
-    price_before_discount: number;
+    total_product: number;
 
-    @OneToOne(() => ShippingDetail, (shipping_detail) => shipping_detail.order)
+    @OneToOne(() => ShippingDetail, (shipping_detail) => shipping_detail.order, { cascade: true })
     @JoinColumn({ name: 'shipping_detail_id' })
     shipping: ShippingDetail;
 
@@ -55,7 +55,7 @@ export class Order extends BaseEntity {
     @UpdateDateColumn()
     updated_at: Date;
 
-    @OneToMany(() => OrderItem, (orderitem) => orderitem.order)
+    @OneToMany(() => OrderItem, (orderitem) => orderitem.order, { cascade: true })
     order_items: OrderItem[];
 
     @ManyToOne(() => Shop, (s) => s.orders, { cascade: true, onDelete: 'SET NULL' })
@@ -71,7 +71,7 @@ export class OrderItem extends BaseEntity {
     @PrimaryGeneratedColumn('increment')
     id: number;
 
-    @ManyToOne(() => Order, (order) => order.order_items, { cascade: true, onDelete: 'CASCADE' })
+    @ManyToOne(() => Order, (order) => order.order_items, { onDelete: 'CASCADE' })
     @JoinColumn({ name: 'order_id' })
     order: Order;
 

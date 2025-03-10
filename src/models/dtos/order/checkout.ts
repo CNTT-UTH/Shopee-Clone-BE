@@ -6,7 +6,7 @@ import { IsNotEmpty, IsNumber, IsOptional, IsString, ValidateNested } from 'clas
 export class CheckoutTemp {
     orders?: OrderCheckout[];
     payment_method_id?: number;
-    address_id?: number;
+    address_id!: number;
     total_products_price?: number;
     total_ship_fee?: number;
     total_price?: number;
@@ -15,13 +15,16 @@ export class CheckoutTemp {
 export class OrderCheckout {
     order_temp_id?: string;
     shipping_info: { [index: number]: ShippingInfoDTO };
-    shipping_channel_id_selected?: number;
+    shipping_channel_id_selected!: number;
     notes?: string;
     items?: OrderItemDTO[];
     items_count?: number;
-    shop_id?: number;
-    ship_fee?: number;
+    shop_id!: number;
+    ship_fee!: number;
     total_items_price?: number;
+    estimated_delivery_date_from?: number; // timestamp
+    estimated_delivery_date_to?: number; // timestamp
+
 }
 
 export class UpdateCheckout {

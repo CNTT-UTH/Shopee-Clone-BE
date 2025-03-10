@@ -18,6 +18,11 @@ import { QueryRunner } from 'typeorm';
 import { fi } from '@faker-js/faker';
 import { PaymentRepository } from '~/repository/payment.repository';
 import { OrderRepository } from '~/repository/order.repository';
+import { Order } from '~/models/entity/order.entity';
+import { PaymentDetail, PaymentMethods } from '~/models/entity/payment.entity';
+import { ShippingDetail } from '~/models/entity/shipping.entity';
+import { ShippingRepository } from '~/repository/shipping.repository';
+import { OrderStatus } from '~/constants/enums';
 
 export class OrderService {
     constructor(
@@ -28,7 +33,8 @@ export class OrderService {
         private readonly addressService: AddressService,
         private readonly paymentRepository: PaymentRepository,
         private readonly orderRepository: OrderRepository,
-    ) {}
+        private readonly shippingRepository: ShippingRepository,
+    ) { }
 
     private UserSessionStorage: {
         [index: string]: string;
@@ -55,6 +61,7 @@ export class OrderService {
                 shipping_channel_id_selected: 2,
                 notes: '',
                 shop_id: s,
+                ship_fee: 0,
             };
 
             itemStorage[s] = {
@@ -96,7 +103,7 @@ export class OrderService {
                 itemStorage[s]!.order.shipping_info[finalShippingInfo?.channel_id as number] = finalShippingInfo;
                 itemStorage[s]!.order.items = itemStorage[s]!.items;
                 itemStorage[s]!.order.items_count = itemStorage[s]!.items.length;
-                itemStorage[s]!.order.ship_fee = finalShippingInfo.fee;
+                itemStorage[s]!.order.ship_fee = finalShippingInfo.fee!;
                 itemStorage[s]!.order.total_items_price = total_items_price;
             }),
         );
@@ -165,16 +172,26 @@ export class OrderService {
 
         await this.processShippingInfo(cart, itemStorage);
 
+        cart.shops.forEach((shop_id) => {
+            checkoutInfo.orders?.push(itemStorage[shop_id].order);
+        });
+
         this.calculateTotalPrices(checkoutInfo);
 
         const sessionID: string = this.createSession(checkoutInfo);
         this.UserSessionStorage[user_id] = sessionID;
+        this.SessionStorage[sessionID] = {
+            data: checkoutInfo,
+            exp: new Date(Date.now() + 1000 * 3600),
+        };
 
         return { session_checkout_id: sessionID };
     }
 
     public async getCheckoutInfo(user_id: string, sessionID: string) {
         this.validSession(user_id, sessionID);
+
+        console.log(this.SessionStorage);
 
         return this.SessionStorage[sessionID].data;
     }
@@ -209,25 +226,95 @@ export class OrderService {
         const checkoutInfo: CheckoutTemp | undefined = this.SessionStorage[sessionID]!.data;
         if (!checkoutInfo) throw new ApiError('Không tìm thấy thông tin checkout!', HTTP_STATUS.NOT_FOUND);
 
-        await this.createOrder(checkoutInfo);
+        const order_id: string = await this.createOrder(checkoutInfo, user_id);
+
+        return {
+            order_id,
+        };
     }
 
-    private async createOrder(checkoutInfo: CheckoutTemp) {
+    public async getOrder(order_id: string) {
+        const order: Order | null = await this.orderRepository.getOrderById(order_id);
+
+        if (!order) {
+            throw new ApiError('Don hang khong ton tai', HTTP_STATUS.BAD_REQUEST);
+        }
+
+        return order;
+    }
+
+    private async createOrder(checkoutInfo: CheckoutTemp, user_id: string) {
+        let order_id: string = '';
+
         const queryRunner: QueryRunner = AppDataSource.createQueryRunner();
-
         await queryRunner.connect();
-
         await queryRunner.startTransaction();
 
         try {
-            const order: Order 
-            await queryRunner.manager.withRepository(this.paymentRepository).cretePaymentInfo()
-            
+            await Promise.all(
+                checkoutInfo.orders!.map(async (orderCheckout) => {
+                    const order: Order = await queryRunner.manager
+                        .withRepository(this.orderRepository)
+                        .createOrder(orderCheckout, user_id);
+
+                    await Promise.all(
+                        orderCheckout.items!.map(async (item) => {
+                            return await this.orderRepository.createOrderItem({
+                                order_id: order.id,
+                                product_id: item.product_id!,
+                                variant_id: item.product_variant_id,
+                                price: item.price!,
+                                quantity: item.quantity!,
+                                totalprice: item.total_price!,
+                            });
+                        }),
+                    );
+
+                    order_id = order.id;
+
+                    const payment: PaymentDetail = await queryRunner.manager
+                        .withRepository(this.paymentRepository)
+                        .createPaymentDetail({
+                            amount: order.total,
+                            type: checkoutInfo.payment_method_id ?? 1, // Mac dinh la COD
+                            order_id: order.id,
+                        });
+
+                    const shipping_detail: ShippingDetail = await queryRunner.manager
+                        .withRepository(this.shippingRepository)
+                        .createShippingDetail({
+                            shipping_channel_id: orderCheckout!.shipping_channel_id_selected,
+                            order_id: order.id,
+                            fee: orderCheckout.ship_fee,
+                            address_id: checkoutInfo.address_id,
+                            note_for_shipper: orderCheckout.notes ?? '',
+                        });
+
+                    order.payment = payment;
+                    order.shipping = shipping_detail;
+
+                    // if payment method is COD ==> change status to success
+                    if (payment.type.id === 1) {
+                        await queryRunner.manager.withRepository(this.paymentRepository).toPurchaseSuccess(payment.id);
+                        await queryRunner.manager
+                            .withRepository(this.orderRepository)
+                            .updateOrderStatus(order.id, OrderStatus.Payment_Confirmed);
+                    } else {
+                        await queryRunner.manager
+                            .withRepository(this.orderRepository)
+                            .updateOrderStatus(order.id, OrderStatus.Ordered);
+                    }
+                }),
+            );
+
             // Create Order
         } catch (error) {
+            console.log('Order Rollback: ', error);
             await queryRunner.rollbackTransaction();
         } finally {
             await queryRunner.release();
         }
+
+        return order_id;
     }
 }

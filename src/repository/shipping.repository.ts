@@ -2,14 +2,17 @@ import { Repository } from 'typeorm';
 import AppDataSource from '~/dbs/db';
 import { ShippingInfoDTO } from '~/models/dtos/ShippingDTO';
 import { Product } from '~/models/entity/product.entity';
-import { Shipping, ShippingProductInfo } from '~/models/entity/shipping.entity';
+import { Shipping, ShippingDetail, ShippingProductInfo } from '~/models/entity/shipping.entity';
 
 export class ShippingRepository extends Repository<Shipping> {
     private repoShippingProduct: Repository<ShippingProductInfo>;
+    private repoShippingDetail: Repository<ShippingDetail>;
 
     constructor() {
         super(Shipping, AppDataSource.manager);
+
         this.repoShippingProduct = AppDataSource.getRepository(ShippingProductInfo);
+        this.repoShippingDetail = AppDataSource.getRepository(ShippingDetail);
     }
 
     async getAllChannels() {
@@ -61,5 +64,39 @@ export class ShippingRepository extends Repository<Shipping> {
         });
 
         return results;
+    }
+
+    async createShippingDetail({
+        shipping_channel_id,
+        order_id,
+        fee,
+        address_id,
+        note_for_shipper,
+        estimated_delivery_date_from,
+        estimated_delivery_date_to,
+    }: {
+        shipping_channel_id: number;
+        order_id: string;
+        fee: number;
+        address_id: number;
+        note_for_shipper: string;
+        estimated_delivery_date_from?: Date;
+        estimated_delivery_date_to?: Date;
+    }) {
+        return await this.repoShippingDetail
+            .create({
+                shipping_channel: {
+                    shipping_channel_id,
+                },
+                order: {
+                    id: order_id,
+                },
+                fee,
+                address: {
+                    id: address_id,
+                },
+                note_for_shipper
+            })
+            .save();
     }
 }

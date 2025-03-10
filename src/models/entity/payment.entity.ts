@@ -24,7 +24,7 @@ export class PaymentMethods extends BaseEntity {
 }
 
 @Entity('payment_details')
-export class PaymentDetails extends BaseEntity {
+export class PaymentDetail extends BaseEntity {
     @PrimaryGeneratedColumn('increment', { type: 'int' })
     id: number;
 
