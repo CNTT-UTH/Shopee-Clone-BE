@@ -8,7 +8,7 @@ const path = require('path');
 const { envConfig } = require('~/constants/env');
 
 module.exports = {
-    type: 'mysql',
+    type: 'mariadb',
     host: envConfig.DB_HOST,
     port: envConfig.DB_PORT,
     username: envConfig.DB_USER,

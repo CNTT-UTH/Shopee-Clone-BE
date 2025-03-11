@@ -226,10 +226,10 @@ export class OrderService {
         const checkoutInfo: CheckoutTemp | undefined = this.SessionStorage[sessionID]!.data;
         if (!checkoutInfo) throw new ApiError('Không tìm thấy thông tin checkout!', HTTP_STATUS.NOT_FOUND);
 
-        const order_id: string = await this.createOrder(checkoutInfo, user_id);
+        const order_ids: string[] = await this.createOrder(checkoutInfo, user_id);
 
         return {
-            order_id,
+            order_ids: order_ids,
         };
     }
 
@@ -244,68 +244,78 @@ export class OrderService {
     }
 
     private async createOrder(checkoutInfo: CheckoutTemp, user_id: string) {
-        let order_id: string = '';
+        const order_ids: string[] = [];
 
         const queryRunner: QueryRunner = AppDataSource.createQueryRunner();
         await queryRunner.connect();
-        await queryRunner.startTransaction();
-
+        await queryRunner.startTransaction('READ UNCOMMITTED');
         try {
-            await Promise.all(
-                checkoutInfo.orders!.map(async (orderCheckout) => {
-                    const order: Order = await queryRunner.manager
-                        .withRepository(this.orderRepository)
-                        .createOrder(orderCheckout, user_id);
+            for (const orderCheckout of checkoutInfo.orders!) {
+                const order: Order = await this.orderRepository.createOrder(
+                    queryRunner.manager,
+                    orderCheckout,
+                    user_id,
+                );
 
-                    await Promise.all(
-                        orderCheckout.items!.map(async (item) => {
-                            return await this.orderRepository.createOrderItem({
-                                order_id: order.id,
-                                product_id: item.product_id!,
-                                variant_id: item.product_variant_id,
-                                price: item.price!,
-                                quantity: item.quantity!,
-                                totalprice: item.total_price!,
-                            });
-                        }),
-                    );
+                // const data = orderCheckout.items!.map((i) => {
+                //     return {
+                //         order_id: order.id,
+                //         product_id: i.product_id,
+                //         variant_id: i.product_variant_id,
+                //         price: i.price!,
+                //         totalprice: i.total_price!,
+                //         quantity: i.quantity,
+                //     };
+                // });
 
-                    order_id = order.id;
+                for (const item of orderCheckout.items!) {
+                    await this.orderRepository.createOrderItem(queryRunner.manager, {
+                        order_id: order.id,
+                        product_id: item.product_id,
+                        variant_id: item.product_variant_id,
+                        price: item.price!,
+                        totalprice: item.total_price!,
+                        quantity: item.quantity,
+                    });
+                }
 
-                    const payment: PaymentDetail = await queryRunner.manager
-                        .withRepository(this.paymentRepository)
-                        .createPaymentDetail({
-                            amount: order.total,
-                            type: checkoutInfo.payment_method_id ?? 1, // Mac dinh la COD
-                            order_id: order.id,
-                        });
+                order_ids.push(order.id);
 
-                    const shipping_detail: ShippingDetail = await queryRunner.manager
-                        .withRepository(this.shippingRepository)
-                        .createShippingDetail({
-                            shipping_channel_id: orderCheckout!.shipping_channel_id_selected,
-                            order_id: order.id,
-                            fee: orderCheckout.ship_fee,
-                            address_id: checkoutInfo.address_id,
-                            note_for_shipper: orderCheckout.notes ?? '',
-                        });
+                // const payment: PaymentDetail = await queryRunner.manager
+                //     .withRepository(this.paymentRepository)
+                //     .createPaymentDetail({
+                //         amount: order.total,
+                //         type: checkoutInfo.payment_method_id ?? 1, // Mac dinh la COD
+                //         order_id: order.id,
+                //     });
 
-                    order.payment = payment;
-                    order.shipping = shipping_detail;
+                // const shipping_detail: ShippingDetail = await queryRunner.manager
+                //     .withRepository(this.shippingRepository)
+                //     .createShippingDetail({
+                //         shipping_channel_id: orderCheckout!.shipping_channel_id_selected,
+                //         order_id: order.id,
+                //         fee: orderCheckout.ship_fee,
+                //         address_id: checkoutInfo.address_id,
+                //         note_for_shipper: orderCheckout.notes ?? '',
+                //     });
 
-                    // if payment method is COD ==> change status to success
-                    if (payment.type.id === 1) {
-                        await queryRunner.manager.withRepository(this.paymentRepository).toPurchaseSuccess(payment.id);
-                        await queryRunner.manager
-                            .withRepository(this.orderRepository)
-                            .updateOrderStatus(order.id, OrderStatus.Payment_Confirmed);
-                    } else {
-                        await queryRunner.manager
-                            .withRepository(this.orderRepository)
-                            .updateOrderStatus(order.id, OrderStatus.Ordered);
-                    }
-                }),
-            );
+                // order.payment = payment;
+                // order.shipping = shipping_detail;
+
+                // // if payment method is COD ==> change status to success
+                // if (payment.type.id === 1) {
+                //     await queryRunner.manager.withRepository(this.paymentRepository).toPurchaseSuccess(payment.id);
+                //     await queryRunner.manager
+                //         .withRepository(this.orderRepository)
+                //         .updateOrderStatus(order.id, OrderStatus.Payment_Confirmed);
+                // } else {
+                //     await queryRunner.manager
+                //         .withRepository(this.orderRepository)
+                //         .updateOrderStatus(order.id, OrderStatus.Ordered);
+                // }
+            }
+
+            await queryRunner.commitTransaction();
 
             // Create Order
         } catch (error) {
@@ -315,6 +325,6 @@ export class OrderService {
             await queryRunner.release();
         }
 
-        return order_id;
+        return order_ids;
     }
 }

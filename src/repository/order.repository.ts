@@ -1,4 +1,4 @@
-import { Or, Repository } from 'typeorm';
+import { EntityManager, Or, Repository } from 'typeorm';
 import { OrderStatus } from '~/constants/enums';
 import AppDataSource from '~/dbs/db';
 import { OrderCheckout } from '~/models/dtos/order/checkout';
@@ -56,47 +56,62 @@ export class OrderRepository extends Repository<Order> {
         });
     }
 
-    async createOrderItem({
-        order_id,
-        product_id,
-        variant_id,
-        price,
-        totalprice,
-        quantity,
-    }: {
-        order_id: string;
-        product_id: number;
-        variant_id?: number;
-        price: number;
-        totalprice: number;
-        quantity: number;
-    }) {
-        return await this.orderItemRepository
-            .create({
-                order: {
-                    id: order_id,
-                },
-                product: {
-                    _id: product_id,
-                },
-                productvariant: {
-                    variant_id,
-                },
-                price,
-                totalprice,
-                quantity,
-            })
-            .save();
+    async createOrderItem(
+        manager: EntityManager,
+        {
+            order_id,
+            product_id,
+            variant_id,
+            price,
+            totalprice,
+            quantity,
+        }: {
+            order_id: string;
+            product_id: number;
+            variant_id?: number;
+            price: number;
+            totalprice: number;
+            quantity: number;
+        },
+    ) {
+        const item: OrderItem = manager.create(OrderItem, {
+            order: {
+                id: order_id,
+            },
+            product: {
+                _id: product_id,
+            },
+            productvariant: {
+                variant_id: variant_id ?? undefined,
+            },
+            price: price,
+            totalprice: totalprice,
+            quantity: quantity,
+        });
+
+        await this.manager.save(OrderItem, item);
+
+        return item;
     }
 
-    async createOrder(order: OrderCheckout, user_id: string): Promise<Order> {
-        return await this.create({
+    async createOrder(manager: EntityManager, order: OrderCheckout, user_id: string): Promise<Order> {
+        const new_order: Order = manager.create(Order, {
             user: { _id: user_id },
             shop: { id: order.shop_id },
             total: Number(order.total_items_price) + Number(order.ship_fee),
             total_product: Number(order.total_items_price),
             // desc: order.notes,
-        }).save();
+        });
+
+        await manager.save(Order, new_order);
+
+        await manager.findOne(Order, {
+            where: {
+                id: new_order.id,
+            },
+            lock: { mode: 'pessimistic_read', onLocked: 'skip_locked' }, // Tương đương với FOR SHARE trong SQL
+        });
+        return new_order;
     }
 
     async updateOrder(order: Order): Promise<Order> {
@@ -116,4 +131,3 @@ export class OrderRepository extends Repository<Order> {
         );
     }
 }
-
