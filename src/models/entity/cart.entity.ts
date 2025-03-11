@@ -32,7 +32,7 @@ export class Cart extends BaseEntity {
     @Column({ nullable: true, default: 0, type: 'int' })
     total_before_discount: number;
 
-    @OneToMany(() => CartItem, (cart_item) => cart_item.cart_id)
+    @OneToMany(() => CartItem, (cart_item) => cart_item.cart)
     cart_items: CartItem[];
 
     @CreateDateColumn()
@@ -59,9 +59,9 @@ export class CartItem extends BaseEntity {
     @Column()
     total_price: number;
 
-    @ManyToOne(() => Cart, (cart) => cart.id, { onDelete: 'CASCADE' })
+    @ManyToOne(() => Cart, (cart) => cart.cart_items, { onDelete: 'CASCADE' })
     @JoinColumn({ name: 'cart_id' })
-    cart_id: number;
+    cart: Cart;
 
     @ManyToOne(() => Product, (product) => product.cart_items, { onDelete: 'SET NULL' })
     @JoinColumn({ name: 'product_id' })

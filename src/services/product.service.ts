@@ -56,15 +56,22 @@ export class ProductService {
         this.cateRepository = new CategoryRepository();
     }
 
-    async findOne({ product_id, variant_id }: { product_id: number; variant_id: number }) {
+    async findOne({ product_id }: { product_id: number }) {
         return await this.productRepository.findOne({
-            where: { _id: product_id, variants: { variant_id: variant_id ?? undefined } },
+            where: { _id: product_id },
             // relations: ['product_variants'],
         });
     }
 
-    async findOneVariant(variant_id: number) {
-        return await this.variantRepository.findOne({ where: { variant_id } });
+    async findOneVariant({ product_id, variant_id }: { product_id: number; variant_id: number }) {
+        return await this.variantRepository.findOne({
+            where: {
+                variant_id,
+                product: {
+                    _id: product_id,
+                },
+            },
+        });
     }
 
     async createProduct(data: Partial<CreateProductDTO>, user_id: string) {
@@ -248,5 +255,7 @@ export class ProductService {
         return;
     }
 
-    async getProductShippingInfo(id: number) { }
+    async getStock(id: number) {
+        return (await this.productRepository.findOneBy({ _id: id }))?.quantity;
+    }
 }

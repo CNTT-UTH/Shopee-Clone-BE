@@ -4,6 +4,7 @@ import container from '~/container';
 import { CartController } from '~/controllers/cart.controller';
 import { accessTokenValidator, platformValidator } from '~/middlewares/auth.middleware';
 import { validationMiddleware } from '~/middlewares/validation.middleware';
+import { AddCartItemDTO } from '~/models/dtos/cart/AddCartItemDTO';
 import { CartItemDTO, UpdateQuantityDTO } from '~/models/dtos/cart/CartDTO';
 import { asyncHandler } from '~/utils/asyncHandler';
 
@@ -17,7 +18,7 @@ router
     .post(
         platformValidator,
         accessTokenValidator,
-        validationMiddleware(CartItemDTO),
+        validationMiddleware(AddCartItemDTO, 'body'),
         asyncHandler(api('addOrUpdateItem')),
     );
 

@@ -4,7 +4,7 @@ import { USERS_MESSAGES } from '~/constants/messages';
 import HTTP_STATUS from '~/constants/httpStatus';
 import { CheckoutTemp, OrderCheckout, UpdateCheckout } from '~/models/dtos/order/checkout';
 import { CartService } from './cart.service';
-import { Cart } from '~/models/entity/cart.entity';
+import { Cart, CartItem } from '~/models/entity/cart.entity';
 import { genSession } from '~/utils/genSessionId';
 import { CartDTO } from '~/models/dtos/cart/CartDTO';
 import { v4 as uuidv4 } from 'uuid';
@@ -24,6 +24,8 @@ import { ShippingDetail } from '~/models/entity/shipping.entity';
 import { ShippingRepository } from '~/repository/shipping.repository';
 import { OrderStatus, PaymentStatus } from '~/constants/enums';
 import { Address } from '~/models/entity/address.entity';
+import { ProductVariant } from '~/models/entity/variant.entity';
+import { Product } from '~/models/entity/product.entity';
 
 export class OrderService {
     constructor(
@@ -37,11 +39,17 @@ export class OrderService {
         private readonly shippingRepository: ShippingRepository,
     ) { }
 
-    private UserSessionStorage: {
+    public static clearSessionStorage(user_id: string) {
+        if (OrderService.SessionStorage[user_id]) {
+            delete OrderService.SessionStorage[user_id];
+        }
+    }
+
+    private static UserSessionStorage: {
         [index: string]: string;
     } = {};
 
-    private SessionStorage: {
+    private static SessionStorage: {
         [index: string]: { data?: CheckoutTemp; exp: Date };
     } = {};
     private createCheckoutTemp(user: any): CheckoutTemp {
@@ -130,13 +138,13 @@ export class OrderService {
 
             do {
                 id = genSession();
-            } while (this.SessionStorage[id]);
+            } while (OrderService.SessionStorage[id]);
 
             return id;
         };
 
         const sessionID: string = getSession();
-        this.SessionStorage[sessionID] = {
+        OrderService.SessionStorage[sessionID] = {
             data: checkoutInfo,
             exp: new Date(Date.now() + 1000 * 3600),
         };
@@ -145,10 +153,10 @@ export class OrderService {
     }
 
     private validSession(user_id: string, sessionID: string) {
-        if (!this.SessionStorage[sessionID] && this.UserSessionStorage[user_id] !== sessionID)
+        if (!OrderService.SessionStorage[sessionID] && OrderService.UserSessionStorage[user_id] !== sessionID)
             throw new ApiError('Không tìm thấy thông tin checkout!', HTTP_STATUS.NOT_FOUND);
 
-        if (this.SessionStorage[sessionID].exp.getTime() < Date.now()) {
+        if (OrderService.SessionStorage[sessionID].exp.getTime() < Date.now()) {
             delete sessionStorage[sessionID];
 
             throw new ApiError('Không tìm thấy thông tin checkout!', HTTP_STATUS.NOT_FOUND);
@@ -180,8 +188,8 @@ export class OrderService {
         this.calculateTotalPrices(checkoutInfo);
 
         const sessionID: string = this.createSession(checkoutInfo);
-        this.UserSessionStorage[user_id] = sessionID;
-        this.SessionStorage[sessionID] = {
+        OrderService.UserSessionStorage[user_id] = sessionID;
+        OrderService.SessionStorage[sessionID] = {
             data: checkoutInfo,
             exp: new Date(Date.now() + 1000 * 3600),
         };
@@ -192,15 +200,15 @@ export class OrderService {
     public async getCheckoutInfo(user_id: string, sessionID: string) {
         this.validSession(user_id, sessionID);
 
-        console.log(this.SessionStorage);
+        console.log(OrderService.SessionStorage);
 
-        return this.SessionStorage[sessionID].data;
+        return OrderService.SessionStorage[sessionID].data;
     }
 
     public async updateCheckout(user_id: string, sessionID: string, updateBody: UpdateCheckout) {
         this.validSession(user_id, sessionID);
 
-        const checkoutInfo = this.SessionStorage[sessionID].data;
+        const checkoutInfo = OrderService.SessionStorage[sessionID].data;
 
         if (updateBody.payment_method_id && !!(await this.paymentService.findOneMethod(updateBody.payment_method_id)))
             checkoutInfo!.payment_method_id = updateBody.payment_method_id;
@@ -224,7 +232,7 @@ export class OrderService {
     public async placeOrder(user_id: string, sessionID: string) {
         this.validSession(user_id, sessionID);
 
-        const checkoutInfo: CheckoutTemp | undefined = this.SessionStorage[sessionID]!.data;
+        const checkoutInfo: CheckoutTemp | undefined = OrderService.SessionStorage[sessionID]!.data;
         if (!checkoutInfo) throw new ApiError('Không tìm thấy thông tin checkout!', HTTP_STATUS.NOT_FOUND);
 
         const order_ids: string[] = await this.createOrder(checkoutInfo, user_id);
@@ -264,9 +272,29 @@ export class OrderService {
                     total: Number(orderCheckout.total_items_price) + Number(orderCheckout.ship_fee),
                     total_product: Number(orderCheckout.total_items_price),
                 });
+                order_ids.push(order.id);
 
                 // TAO ORDER ITEM
                 for (const item of orderCheckout.items!) {
+                    const product: ProductVariant | Product | null = item.product_variant_id
+                        ? await transactionalEntityManager.findOneBy(ProductVariant, {
+                            variant_id: item.product_variant_id,
+                            product: {
+                                _id: item.product_id,
+                            },
+                        })
+                        : await transactionalEntityManager.findOneBy(Product, {
+                            _id: item.product_id,
+                        });
+
+                    if (!product) {
+                        throw new ApiError('San pham da bi go!!', HTTP_STATUS.BAD_REQUEST);
+                    }
+
+                    if (product.quantity! < item.quantity) {
+                        throw new ApiError('So luong vuot qua ton kho!!', HTTP_STATUS.BAD_REQUEST);
+                    }
+
                     await transactionalEntityManager.save(OrderItem, {
                         order: { id: order.id },
                         product: { _id: item.product_id },
@@ -275,9 +303,32 @@ export class OrderService {
                         totalprice: item.total_price!,
                         quantity: item.quantity,
                     });
-                }
 
-                order_ids.push(order.id);
+                    // CAP NHAT TON KHO
+                    await transactionalEntityManager.decrement(
+                        Product,
+                        { _id: product instanceof Product ? product._id : product.variant_id },
+                        'quantity',
+                        item.quantity,
+                    );
+                    await transactionalEntityManager.increment(
+                        Product,
+                        { _id: product instanceof Product ? product._id : product.variant_id },
+                        'buyturn',
+                        item.quantity,
+                    );
+
+                    if (product instanceof ProductVariant) {
+                        await transactionalEntityManager.update(
+                            ProductVariant,
+                            { variant_id: product.variant_id },
+                            {
+                                quantity: product.quantity - item.quantity,
+                                buyturn: product.buyturn + item.quantity,
+                            },
+                        );
+                    }
+                }
 
                 // CHECK PHUONG THUC THANH TOAN
                 if (
@@ -349,6 +400,19 @@ export class OrderService {
                 } else {
                     await transactionalEntityManager.update(Order, { id: order.id }, { status: OrderStatus.Ordered });
                 }
+            }
+
+            // CLEAR CART
+            const cart: Cart | null = await transactionalEntityManager.findOneBy(Cart, {
+                user: {
+                    _id: user_id,
+                },
+            });
+            if (cart) {
+                await transactionalEntityManager.delete(CartItem, {
+                    cart: cart.id!,
+                    selected_to_checkout: true,
+                });
             }
         });
 

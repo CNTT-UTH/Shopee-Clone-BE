@@ -48,7 +48,9 @@ export class CartRepository {
     async isExist(cart: Cart, item: CartItemDTO) {
         return (
             (await this.itemRepo.findOneBy({
-                cart_id: cart.id,
+                cart: {
+                    id: cart.id,
+                },
                 product: {
                     _id: item.product_id,
                 },
@@ -100,7 +102,9 @@ export class CartRepository {
     async addItem(cart: Cart, item: CartItemDTO) {
         await this.itemRepo
             .create({
-                cart_id: cart.id,
+                cart: {
+                    id: cart.id,
+                },
                 productvariant: {
                     variant_id: item.product_variant_id,
                 },
@@ -127,7 +131,9 @@ export class CartRepository {
     async updateItem(cart: Cart, item: CartItemDTO) {
         const cartItem = await this.itemRepo.update(
             {
-                cart_id: cart.id,
+                cart: {
+                    id: cart.id,
+                },
                 productvariant: {
                     variant_id: item.product_variant_id,
                 },
@@ -149,7 +155,9 @@ export class CartRepository {
     async updateItemByItemId(cart: Cart, item: CartItemDTO) {
         await this.itemRepo.update(
             {
-                cart_id: cart.id,
+                cart: {
+                    id: cart.id,
+                },
             },
             {
                 quantity: item.quantity,
