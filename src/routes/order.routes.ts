@@ -40,4 +40,8 @@ router
     .route('/place-order/:session_checkout_id')
     .post(accessTokenValidator, validationMiddleware(SessionId, 'params'), asyncHandler(api('placeOrder')));
 
+router.route('/get-user-orders').get(accessTokenValidator, asyncHandler(api('getUserOrders')));
+
+router.route('/:order_id').get(asyncHandler(api('getOrder')));
+
 export default router;

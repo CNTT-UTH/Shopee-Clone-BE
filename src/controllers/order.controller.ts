@@ -69,4 +69,33 @@ export class OrderController {
             result,
         });
     }
+
+    async getOrder(req: Request, res: Response) {
+        // if (!req.decoded?._id || !req.params?.order_id)
+        if (!req.params?.order_id) throw new ApiError('Lỗi người dùng', HTTP_STATUS.BAD_REQUEST);
+
+        const order_id: string = req.params?.order_id;
+
+        const result = await this.orderService.getOrder(order_id);
+
+        res.json({
+            success: true,
+            message: null,
+            result,
+        });
+    }
+
+    async getUserOrders(req: Request, res: Response) {
+        if (!req.decoded?._id) throw new ApiError('Lỗi người dùng', HTTP_STATUS.BAD_REQUEST);
+
+        const user_id: string = req.decoded?._id;
+
+        const result = await this.orderService.getUserOrders(user_id);
+
+        res.json({
+            success: true,
+            message: null,
+            result,
+        });
+    }
 }

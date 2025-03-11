@@ -18,11 +18,12 @@ import { QueryRunner } from 'typeorm';
 import { fi } from '@faker-js/faker';
 import { PaymentRepository } from '~/repository/payment.repository';
 import { OrderRepository } from '~/repository/order.repository';
-import { Order } from '~/models/entity/order.entity';
+import { Order, OrderItem } from '~/models/entity/order.entity';
 import { PaymentDetail, PaymentMethods } from '~/models/entity/payment.entity';
 import { ShippingDetail } from '~/models/entity/shipping.entity';
 import { ShippingRepository } from '~/repository/shipping.repository';
-import { OrderStatus } from '~/constants/enums';
+import { OrderStatus, PaymentStatus } from '~/constants/enums';
+import { Address } from '~/models/entity/address.entity';
 
 export class OrderService {
     constructor(
@@ -45,7 +46,7 @@ export class OrderService {
     } = {};
     private createCheckoutTemp(user: any): CheckoutTemp {
         return {
-            payment_method_id: 0,
+            payment_method_id: 1,
             orders: [],
             address_id: user?.addresses?.[0]?.id,
         };
@@ -201,7 +202,7 @@ export class OrderService {
 
         const checkoutInfo = this.SessionStorage[sessionID].data;
 
-        if (updateBody.payment_method_id && !(await this.paymentService.findOneMethod(updateBody.payment_method_id)))
+        if (updateBody.payment_method_id && !!(await this.paymentService.findOneMethod(updateBody.payment_method_id)))
             checkoutInfo!.payment_method_id = updateBody.payment_method_id;
 
         if (updateBody.address_id && !(await this.addressService.getAddress(updateBody.address_id)))
@@ -243,36 +244,33 @@ export class OrderService {
         return order;
     }
 
+    public async getUserOrders(user_id: string) {
+        const orders: Order[] | null = await this.orderRepository.getOrdersByUserId(user_id);
+
+        return {
+            orders,
+        };
+    }
+
     private async createOrder(checkoutInfo: CheckoutTemp, user_id: string) {
         const order_ids: string[] = [];
 
-        const queryRunner: QueryRunner = AppDataSource.createQueryRunner();
-        await queryRunner.connect();
-        await queryRunner.startTransaction('READ UNCOMMITTED');
-        try {
+        await AppDataSource.transaction(async (transactionalEntityManager) => {
             for (const orderCheckout of checkoutInfo.orders!) {
-                const order: Order = await this.orderRepository.createOrder(
-                    queryRunner.manager,
-                    orderCheckout,
-                    user_id,
-                );
+                // TAO ORDER
+                const order: Order = await transactionalEntityManager.save(Order, {
+                    user: { _id: user_id },
+                    shop: { id: orderCheckout.shop_id },
+                    total: Number(orderCheckout.total_items_price) + Number(orderCheckout.ship_fee),
+                    total_product: Number(orderCheckout.total_items_price),
+                });
 
-                // const data = orderCheckout.items!.map((i) => {
-                //     return {
-                //         order_id: order.id,
-                //         product_id: i.product_id,
-                //         variant_id: i.product_variant_id,
-                //         price: i.price!,
-                //         totalprice: i.total_price!,
-                //         quantity: i.quantity,
-                //     };
-                // });
-
+                // TAO ORDER ITEM
                 for (const item of orderCheckout.items!) {
-                    await this.orderRepository.createOrderItem(queryRunner.manager, {
-                        order_id: order.id,
-                        product_id: item.product_id,
-                        variant_id: item.product_variant_id,
+                    await transactionalEntityManager.save(OrderItem, {
+                        order: { id: order.id },
+                        product: { _id: item.product_id },
+                        productvariant: { variant_id: item.product_variant_id },
                         price: item.price!,
                         totalprice: item.total_price!,
                         quantity: item.quantity,
@@ -281,49 +279,78 @@ export class OrderService {
 
                 order_ids.push(order.id);
 
-                // const payment: PaymentDetail = await queryRunner.manager
-                //     .withRepository(this.paymentRepository)
-                //     .createPaymentDetail({
-                //         amount: order.total,
-                //         type: checkoutInfo.payment_method_id ?? 1, // Mac dinh la COD
-                //         order_id: order.id,
-                //     });
+                // CHECK PHUONG THUC THANH TOAN
+                if (
+                    !(await transactionalEntityManager.findOne(PaymentMethods, {
+                        where: {
+                            id: checkoutInfo.payment_method_id,
+                        },
+                    }))
+                ) {
+                    throw new ApiError('Phuong thuc thanh toan khong ton tai!!', HTTP_STATUS.BAD_REQUEST);
+                }
 
-                // const shipping_detail: ShippingDetail = await queryRunner.manager
-                //     .withRepository(this.shippingRepository)
-                //     .createShippingDetail({
-                //         shipping_channel_id: orderCheckout!.shipping_channel_id_selected,
-                //         order_id: order.id,
-                //         fee: orderCheckout.ship_fee,
-                //         address_id: checkoutInfo.address_id,
-                //         note_for_shipper: orderCheckout.notes ?? '',
-                //     });
+                // TAO THONG TIN PAYMENT
+                const payment: PaymentDetail = await transactionalEntityManager.save(PaymentDetail, {
+                    amount: order.total,
+                    type: {
+                        id: checkoutInfo.payment_method_id ?? 1, // Mac dinh la COD
+                    },
+                    order: { id: order.id },
+                });
 
-                // order.payment = payment;
-                // order.shipping = shipping_detail;
+                // CHECK ADDRESS
+                if (
+                    !(await transactionalEntityManager.findOne(Address, {
+                        where: {
+                            id: checkoutInfo.address_id,
+                            user: {
+                                _id: user_id,
+                            },
+                        },
+                    }))
+                ) {
+                    throw new ApiError('Dia chi khong ton tai!!', HTTP_STATUS.BAD_REQUEST);
+                }
 
-                // // if payment method is COD ==> change status to success
-                // if (payment.type.id === 1) {
-                //     await queryRunner.manager.withRepository(this.paymentRepository).toPurchaseSuccess(payment.id);
-                //     await queryRunner.manager
-                //         .withRepository(this.orderRepository)
-                //         .updateOrderStatus(order.id, OrderStatus.Payment_Confirmed);
-                // } else {
-                //     await queryRunner.manager
-                //         .withRepository(this.orderRepository)
-                //         .updateOrderStatus(order.id, OrderStatus.Ordered);
-                // }
+                // TAO THONG TIN GIAO HANG
+                const shipping_detail: ShippingDetail = await transactionalEntityManager.save(ShippingDetail, {
+                    shipping_channel: { shipping_channel_id: orderCheckout!.shipping_channel_id_selected },
+                    order: { id: order.id },
+                    fee: orderCheckout.ship_fee,
+                    address: { id: checkoutInfo.address_id },
+                    note_for_shipper: orderCheckout.notes ?? '',
+                    estimated_delivery_date_from: new Date(Date.now() + 1000 * 3600 * 24 * 4),
+                    estimated_delivery_date_to: new Date(Date.now() + 1000 * 3600 * 24 * 5),
+                });
+
+                // CAP NHAT ORDER
+                await transactionalEntityManager.update(
+                    Order,
+                    { id: order.id },
+                    { payment: payment, shipping: shipping_detail },
+                );
+
+                // if payment method is COD ==> change status to success
+                if (payment.type.id === 1) {
+                    await transactionalEntityManager.update(
+                        PaymentDetail,
+                        { id: payment.id },
+                        {
+                            status: PaymentStatus.Success,
+                        },
+                    );
+
+                    await transactionalEntityManager.update(
+                        Order,
+                        { id: order.id },
+                        { status: OrderStatus.Payment_Confirmed },
+                    );
+                } else {
+                    await transactionalEntityManager.update(Order, { id: order.id }, { status: OrderStatus.Ordered });
+                }
             }
-
-            await queryRunner.commitTransaction();
-
-            // Create Order
-        } catch (error) {
-            console.log('Order Rollback: ', error);
-            await queryRunner.rollbackTransaction();
-        } finally {
-            await queryRunner.release();
-        }
+        });
 
         return order_ids;
     }

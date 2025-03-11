@@ -77,7 +77,7 @@ export class ShippingDetail extends BaseEntity {
     @Column({ default: 0 })
     fee: number;
 
-    @OneToOne(() => Address, (address) => address.id)
+    @ManyToOne(() => Address, (address) => address.id)
     @JoinColumn({ name: 'address_id' })
     address: Address;
 
