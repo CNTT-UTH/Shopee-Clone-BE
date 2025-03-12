@@ -17,6 +17,7 @@ import container from './container';
 import { scopePerRequest } from 'awilix-express';
 import winston from 'winston';
 import { logger, logger_config, myCustomLevels } from './config/winston_config';
+import { rateLimit } from 'express-rate-limit';
 
 const file = fs.readFileSync(path.join(__dirname, '..', 'openapi/openapi.yaml'), 'utf8');
 const swaggerDocs = YAML.parse(file);
@@ -35,8 +36,14 @@ app.use(
     }),
 );
 
-// Setting logging with Winston
-
+// Setting api rate limit with express-rate-limit
+const limiter = rateLimit({
+    windowMs: 1 * 60 * 1000, // 1 minutes
+    limit: 30, // Limit each IP to 30 requests per `window` (here, per 1 minutes)
+    standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+    legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+});
+app.use(limiter);
 
 // Config View Engine
 app.use(expressLayouts);
@@ -56,7 +63,7 @@ app.use(errorHandler);
 
 AppDataSource.initialize()
     .then(() => {
-        logger.info('Data Source has been initialized!')
+        logger.info('Data Source has been initialized!');
     })
     .catch((err) => {
         logger.error('Error during Data Source initialization', err);

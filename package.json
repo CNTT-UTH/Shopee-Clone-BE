@@ -66,6 +66,7 @@
         "cpx": "^1.5.0",
         "express": "^4.21.2",
         "express-ejs-layouts": "^2.5.1",
+        "express-rate-limit": "^7.5.0",
         "express-validator": "^7.2.0",
         "faker": "^6.6.6",
         "formidable": "^3.5.2",
