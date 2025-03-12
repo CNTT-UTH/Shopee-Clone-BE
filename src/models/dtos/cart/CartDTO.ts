@@ -44,6 +44,16 @@ export class CartItemDTO {
     @Expose()
     product_variant_id: number;
 
+    @Expose()
+    @Transform(({ obj }) => {
+        if (obj.productvariant) {
+            return obj.productvariant.quantity;
+        } else {
+            return obj.product.quantity;
+        }
+    })
+    stock: number;
+
     @IsNotEmpty()
     @Expose()
     shop_id: number;

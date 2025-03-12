@@ -94,7 +94,7 @@ export class CartService {
         let totalBeforeDiscount: number = 0;
 
         cart.cart_items.map((item) => {
-            total += item.productvariant ? item.productvariant.price : item.product.price;
+            total += (item.productvariant ? item.productvariant.price : item.product.price) * item.quantity;
             totalBeforeDiscount +=
                 (item.productvariant ? item.productvariant.old_price : item.product.old_price) * item.quantity;
         });
