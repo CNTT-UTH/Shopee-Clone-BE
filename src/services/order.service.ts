@@ -26,6 +26,7 @@ import { OrderStatus, PaymentStatus } from '~/constants/enums';
 import { Address } from '~/models/entity/address.entity';
 import { ProductVariant } from '~/models/entity/variant.entity';
 import { Product } from '~/models/entity/product.entity';
+import { User } from '~/models/entity/user.entity';
 
 export class OrderService {
     constructor(
@@ -52,7 +53,7 @@ export class OrderService {
     private static SessionStorage: {
         [index: string]: { data?: CheckoutTemp; exp: Date };
     } = {};
-    private createCheckoutTemp(user: any): CheckoutTemp {
+    private createCheckoutTemp(user: User): CheckoutTemp {
         return {
             payment_method_id: 1,
             orders: [],
@@ -168,6 +169,10 @@ export class OrderService {
 
         if (!user) {
             throw new ApiError(USERS_MESSAGES.USERNAME_DOES_NOT_EXIST, HTTP_STATUS.BAD_REQUEST);
+        }
+
+        if (!user.addresses) {
+            throw new ApiError('Nguoi dung chua co dia chi', HTTP_STATUS.BAD_REQUEST);
         }
 
         const cart: CartDTO | null = await this.cartService.getSelectedItem(user_id);
