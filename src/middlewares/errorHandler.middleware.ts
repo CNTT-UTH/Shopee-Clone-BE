@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import { ApiError } from '~/utils/errors';
 import { TypeORMError } from 'typeorm';
 import { ERROR_MESSAGES } from '~/constants/messages';
+import { logger } from '~/config/winston_config';
 
 export const errorHandler = (err: ApiError | Error, req: Request, res: Response, next: NextFunction) => {
     const statusCode = err instanceof ApiError ? err.statusCode : 500;
@@ -13,6 +14,8 @@ export const errorHandler = (err: ApiError | Error, req: Request, res: Response,
             : err instanceof TypeORMError
                 ? ERROR_MESSAGES.DATABASE_ERROR
                 : 'Internal Server Error';
+
+    logger.error(err.message, errors);
 
     res.status(statusCode).json({
         success: false,
