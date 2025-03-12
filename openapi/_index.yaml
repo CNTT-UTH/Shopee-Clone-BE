@@ -14,7 +14,11 @@ externalDocs:
     description: Find out more about Swagger
     url: http://swagger.io
 servers:
-    - url: http://localhost:3000/api/v1
+    - url: https://shopee-clone-be.onrender.com/api/v1
+    - url: https://localhost:{port}/api/v1
+      variables:
+        port:
+            default: '3000'
 tags:
     - name: auth
       description: Xác minh và xác thực
