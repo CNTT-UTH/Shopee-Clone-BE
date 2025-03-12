@@ -83,3 +83,7 @@ export const AUTH_MESSAGES = {
     TOKEN_REQUIRED: 'Token required',
     INVALID_PLATFORM: 'Invalid platform',
 } as const;
+
+export const ERROR_MESSAGES = {
+    DATABASE_ERROR: 'LOI DATABASE!!',
+} as const;
