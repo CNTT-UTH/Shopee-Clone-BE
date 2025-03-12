@@ -1,21 +1,21 @@
 import { Expose } from 'class-transformer';
-import { IsNotEmpty, IsNumberString, IsString, Max, Min } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsNumberString, IsString, Max, Min } from 'class-validator';
 
 export class AddCartItemDTO {
-    @IsString()
+    @IsNumber()
     @IsNotEmpty()
     product_id: number;
 
-    @IsString()
+    @IsNumber()
     @IsNotEmpty()
     @Min(1)
     quantity: number;
 
-    @IsString()
+    @IsNumber()
     @IsNotEmpty()
     shop_id: number;
 
-    @IsString()
+    @IsNumber()
     @IsNotEmpty()
     product_variant_id: number;
 }
