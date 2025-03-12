@@ -2,17 +2,17 @@
     "name": "shopee-clone-be",
     "version": "1.0.0",
     "description": "",
-    "main": "dist/src/index.js",
+    "main": "dist/index.js",
     "_moduleAliases": {
         "~": "./src"
     },
     "scripts": {
         "dev": "npx nodemon",
         "start": "npm run build:live",
-        "build": "rimraf ./dist && tsc && tsc-alias && cpx src/**/*.{yaml,html,sql,json} dist/src && cpx openapi/openapi.yaml dist/openapi",
-        "build:live": "\"node\" --max-old-space-size=4096 dist/src/index.js",
-        "build:pm": "npx pm2 start dist/src/index.js",
-        "stop:pm": "npx pm2 stop dist/src/index.js",
+        "build": "rimraf ./dist && tsc && tsc-alias && cpx src/**/*.{yaml,html,sql,json} dist && cpx openapi/openapi.yaml dist/openapi",
+        "build:live": "\"node\" --max-old-space-size=4096 dist/index.js",
+        "build:pm": "npx pm2 start dist/index.js",
+        "stop:pm": "npx pm2 stop dist/index.js",
         "rebuild:pm": "npm run stop:pm && npm run build && npm run build:pm",
         "lint": "eslint .",
         "lint:fix": "eslint . --fix",
