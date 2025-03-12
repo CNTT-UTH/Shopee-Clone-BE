@@ -200,8 +200,6 @@ export class OrderService {
     public async getCheckoutInfo(user_id: string, sessionID: string) {
         this.validSession(user_id, sessionID);
 
-        console.log(OrderService.SessionStorage);
-
         return OrderService.SessionStorage[sessionID].data;
     }
 

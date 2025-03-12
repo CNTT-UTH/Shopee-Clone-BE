@@ -30,8 +30,6 @@ const passwordParam = {
 export const authorizeRole = (roles: Role[]) => {
     return (req: Request, res: Response, next: NextFunction) => {
         const role = req?.decoded?.role as Role;
-        console.log(role);
-        console.log(roles);
         try {
             if (!roles.includes(role)) {
                 throw new ApiError(AUTH_MESSAGES.UNAUTHORIZED, HTTP_STATUS.UNAUTHORIZED);
@@ -78,7 +76,6 @@ export const accessTokenValidator = validate(
                     if (userAgent !== decoded.user_agent) {
                         throw new ApiError(AUTH_MESSAGES.TOKEN_INVALID, HTTP_STATUS.UNAUTHORIZED);
                     }
-                    console.log(decoded);
 
                     if (!decoded) {
                         throw new ApiError(AUTH_MESSAGES.TOKEN_INVALID, HTTP_STATUS.UNAUTHORIZED);
@@ -107,7 +104,6 @@ export const refreshTokenValidator = validate(
                     }
                     const decoded = await verifyToken({ token, secretOrPublicKey: envConfig.JWT_SECRET_REFRESH_TOKEN });
 
-                    console.log(decoded);
                     const userAgent = req?.headers?.['user-agent'] as string;
 
                     if (userAgent !== decoded.user_agent) {
@@ -150,8 +146,6 @@ export const platformValidator = validate(
             },
             custom: {
                 options: (value: string, { req }) => {
-                    console.log(value);
-                    console.log(useragent.is(value));
                     if (useragent.is(value).android && req?.query?.platform !== 'mobile') {
                         throw new ApiError(AUTH_MESSAGES.INVALID_PLATFORM, HTTP_STATUS.BAD_REQUEST);
                     }
@@ -184,7 +178,6 @@ export const verifyEmailValidator = validate(
                         secretOrPublicKey: envConfig.JWT_SECRET_EMAIL_VERIFY_TOKEN,
                     });
 
-                    console.log(decoded);
                     const userAgent = req?.headers?.['user-agent'] as string;
 
                     if (userAgent !== decoded.user_agent) {
@@ -270,7 +263,6 @@ export const verifyForgotPasswordValidator = validate(
                         secretOrPublicKey: envConfig.JWT_SECRET_FORGOT_PASSWORD_TOKEN,
                     });
 
-                    console.log(decoded);
                     const userAgent = req?.headers?.['user-agent'] as string;
 
                     if (userAgent !== decoded.user_agent) {
@@ -308,7 +300,6 @@ export const resetPasswordValidator = validate(
                         secretOrPublicKey: envConfig.JWT_SECRET_FORGOT_PASSWORD_TOKEN,
                     });
 
-                    console.log(decoded);
                     const userAgent = req?.headers?.['user-agent'] as string;
 
                     if (userAgent !== decoded.user_agent) {
@@ -349,7 +340,6 @@ export const verifyPasswordValidator = validate(
                         secretOrPublicKey: envConfig.JWT_SECRET_FORGOT_PASSWORD_TOKEN,
                     });
 
-                    console.log(decoded);
                     const userAgent = req?.headers?.['user-agent'] as string;
 
                     if (userAgent !== decoded.user_agent) {

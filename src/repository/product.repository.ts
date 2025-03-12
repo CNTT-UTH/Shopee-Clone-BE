@@ -65,7 +65,6 @@ export class ProductRepository extends Repository<Product> {
         cate_id?: number;
         keyword?: string;
     }) {
-        console.log('🚀 ~ ProductRepository ~ keyword:', Like(`%${keyword}%`));
         return (
             (await this.find({
                 skip: pagination?.limit ? pagination?.limit * ((pagination?.page ?? 1) - 1) : 0,

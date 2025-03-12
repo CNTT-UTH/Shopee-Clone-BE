@@ -47,7 +47,6 @@ export class UserRepository {
     }
 
     async updateRefreshToken(userID: string, refreshToken: string): Promise<void> {
-        console.log(refreshToken);
         await this.repo.update({ _id: userID }, { refresh_token: refreshToken });
     }
 

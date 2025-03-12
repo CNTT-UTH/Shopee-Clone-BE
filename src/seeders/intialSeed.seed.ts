@@ -1,7 +1,6 @@
 import path, { dirname } from 'path';
 import fs from 'fs';
 import { Connection } from 'typeorm';
-import { Factory, Seeder } from 'typeorm-seeding';
 import { User } from '~/models/entity/user.entity';
 import { Shop as ShopDTO, Product as ProductDTO } from './data/model';
 import { Shop } from '~/models/entity/shop.entity';
@@ -60,9 +59,6 @@ export default class InitialDatabaseSeed implements Seeder {
             user_index++;
         }
 
-        console.log(shopMapping);
-        // if (!shopMapping) return;
-
         let id_product: number = 1;
 
         for (const product of productList) {
@@ -116,7 +112,6 @@ export default class InitialDatabaseSeed implements Seeder {
                 // });
                 id_product++;
 
-                // console.log(product.itemid);
                 // continue;
                 const images: Image[] = product.images
                     ? await Promise.all(

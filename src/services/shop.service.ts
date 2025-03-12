@@ -45,14 +45,13 @@ export class ShopService {
         await this.userRepository.updateToShop(shop.user._id);
 
         const shopDTO: ShopDTO = plainToInstance(ShopDTO, shop);
-        console.log(shopDTO);
+
         return await this.getInfo(user._id);
     }
 
     async getInfo(user_id: string) {
         const shop = await this.shopRepository.getShopByUserId(user_id);
         const shopDTO = plainToInstance(ShopDTO, shop);
-        console.log(shopDTO);
 
         return shopDTO;
     }
@@ -63,7 +62,6 @@ export class ShopService {
         if (!shop) {
             throw new ApiError('Shop is not exist!', HTTP_STATUS.BAD_REQUEST);
         }
-        console.log(shop);
         const shopDTO = plainToInstance(ShopDTO, shop);
 
         return shopDTO;

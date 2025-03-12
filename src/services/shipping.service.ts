@@ -83,7 +83,6 @@ export class ShippingRatesManagementService extends ShippingService {
                 ) * 1000;
             shippingDTO.estimated_delivery_days_min = DELIVERY_DAYS[shippingDTO.channel_id][0];
             shippingDTO.estimated_delivery_days_max = DELIVERY_DAYS[shippingDTO.channel_id][1];
-            console.log(shippingDTO);
             shippingDTOs.push(shippingDTO);
         }
 

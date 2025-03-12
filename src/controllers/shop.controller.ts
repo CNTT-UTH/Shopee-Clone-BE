@@ -7,7 +7,6 @@ export class ShopController {
     constructor(private readonly shopService: ShopService) {}
     async register(req: Request<ParamsDictionary, any, RegisterInfoShopDTO>, res: Response, next: NextFunction) {
         const payload: RegisterInfoShopDTO = req.body;
-        console.log(req.decoded);
         payload.user_id = req?.decoded?._id;
         const result = await this.shopService.register(payload);
 

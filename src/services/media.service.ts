@@ -25,9 +25,7 @@ export class MediaService {
                 // Xử lý ảnh với Sharp
                 const newName = getNameFromFullname(file.newFilename) + '.jpg';
                 const newPath = path.resolve(UPLOAD_IMAGE_DIR, newName);
-                console.log(file.filepath);
                 await sharp(file.filepath).resize(800, 800).jpeg().toFile(newPath);
-                console.log(newPath);
 
                 // Up ảnh lên cloud
                 const res = await cloudsService.uploadImage(newPath);
@@ -58,7 +56,6 @@ export class MediaService {
                 // Xử lý ảnh với Sharp
                 const newName = getNameFromFullname(file.newFilename) + '.jpg';
                 const newPath = path.resolve(UPLOAD_IMAGE_DIR, newName);
-                console.log(file.filepath);
                 await sharp(file.filepath).resize(800, 800).jpeg().toFile(newPath);
 
                 // Up ảnh lên cloud

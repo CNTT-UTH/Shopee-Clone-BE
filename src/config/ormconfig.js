@@ -17,16 +17,16 @@ module.exports = {
     synchronize: false,
     logging: false,
     migrations: [
-        // __dirname + '/../migrations/*.{ts, js}',
-        path.join(__dirname, 'src', 'migrations', '*.{ts, js}'),
+        // '..' + '/../migrations/*.{ts, js}',
+        path.join(__dirname, '..', 'migrations', '*.{ts, js}'),
     ],
     entities: [
-        // __dirname + '/../models/entity/*.{ts, js}',
-        path.join(__dirname, 'src', 'models', 'entity', '*.entity.{ts, js}'),
+        // '..' + '/../models/entity/*.{ts, js}',
+        path.join(__dirname, '..', 'models', 'entity', '*.entity.{ts, js}'),
     ],
     seeds: [
-        path.join('src', 'seeders', '*.seed.{ts, js}'),
-        // path.join(__dirname, 'src', 'seeders', 'updateimage.seed.{ts, js}'),
+        path.join(__dirname, '..', 'seeders', '*.seed.{ts, js}'),
+        // path.join('..', 'seeders', 'updateimage.seed.{ts, js}'),
     ],
-    factories: [path.join(__dirname, 'src', 'seeders', '*.factory.{ts, js}')],
+    factories: [path.join(__dirname, '..', 'seeders', '*.factory.{ts, js}')],
 };

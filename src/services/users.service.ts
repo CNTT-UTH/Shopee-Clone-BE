@@ -40,7 +40,6 @@ export class UserService {
             default_address: userAddress,
         });
 
-        console.log(userDTO);
         return {
             user_profile: userDTO,
         };
@@ -55,7 +54,6 @@ export class UserService {
             userDTOs.push(plainToInstance(UserDTO, user));
         }
 
-        console.log(userDTOs);
         return {
             user_profiles: userDTOs,
         };
@@ -74,7 +72,6 @@ export class UserService {
             ...userDTO,
             ...payload,
         };
-        console.log(userDTO);
 
         await this.userRepository.updateProfile(userDTO);
 

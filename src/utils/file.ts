@@ -5,6 +5,7 @@ import fs from 'fs';
 import { unlink } from 'fs/promises';
 import { ApiError } from './errors';
 import HTTP_STATUS from '~/constants/httpStatus';
+import { logger } from '~/config/winston_config';
 
 export const handleUploadImage = async (req: Request, filename?: string) => {
     checkIfDirectoryExist(UPLOAD_IMAGE_TEMP_DIR);
@@ -17,7 +18,6 @@ export const handleUploadImage = async (req: Request, filename?: string) => {
         keepExtensions: true,
         maxFiles: 3,
         filter: function ({ name, originalFilename, mimetype }) {
-            console.log({ name, originalFilename, mimetype });
             const valid = name === 'image' && Boolean(mimetype?.includes('image/'));
             if (!valid) {
                 form.emit('error' as any, new Error('File type is not valid') as any);
@@ -46,9 +46,9 @@ export const deleteFile = async (filepath: string) => {
     setTimeout(() => {
         fs.unlink(filepath, (err) => {
             if (err) {
-                console.log(err);
+                logger.error(err)
             } else {
-                console.log(`Delete file successful: ${filepath}`);
+                logger.info(`Delete file successful: ${filepath}`)
             }
         });
     }, 5000);

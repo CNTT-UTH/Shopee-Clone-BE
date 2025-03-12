@@ -15,6 +15,8 @@ import helmet from 'helmet';
 import compression from 'compression';
 import container from './container';
 import { scopePerRequest } from 'awilix-express';
+import winston from 'winston';
+import { logger, logger_config, myCustomLevels } from './config/winston_config';
 
 const file = fs.readFileSync(path.join(__dirname, '..', 'openapi/openapi.yaml'), 'utf8');
 const swaggerDocs = YAML.parse(file);
@@ -33,6 +35,9 @@ app.use(
     }),
 );
 
+// Setting logging with Winston
+
+
 // Config View Engine
 app.use(expressLayouts);
 app.set('view engine', 'ejs');
@@ -44,17 +49,17 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 app.use(scopePerRequest(container));
-// console.log(container.registrations);
+
 initWebRoutes(app);
 
 app.use(errorHandler);
 
 AppDataSource.initialize()
     .then(() => {
-        console.log('Data Source has been initialized!');
+        logger.info('Data Source has been initialized!')
     })
     .catch((err) => {
-        console.error('Error during Data Source initialization', err);
+        logger.error('Error during Data Source initialization', err);
     });
 
 export default app;

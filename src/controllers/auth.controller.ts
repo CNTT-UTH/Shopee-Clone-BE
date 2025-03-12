@@ -26,8 +26,6 @@ export class AuthController {
         const reqBody: LoginReqBody = req.body;
         const userAgent = req.headers['user-agent'] as string;
 
-        // console.log(req.query?.platform);
-
         const result = await this.authService.login(reqBody, {
             platform: req.query?.platform == 'mobile' ? 'mobile' : 'web',
             user_agent: userAgent,

@@ -19,7 +19,6 @@ import container from '~/container';
 
 const router = express.Router();
 const api = makeInvoker(() => container.resolve('authController'))
-console.log(container.resolve("authController"));
 /**
  * Description. Login
  * Path: /login

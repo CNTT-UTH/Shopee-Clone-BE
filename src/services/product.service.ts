@@ -75,7 +75,6 @@ export class ProductService {
     }
 
     async createProduct(data: Partial<CreateProductDTO>, user_id: string) {
-        // console.log(data);
         const shop: Shop | null = user_id ? await this.shopRepository.getShopByUserId(user_id) : null;
 
         if (!shop) throw new ApiError('SHOP KHÔNG TỒN TẠI', HTTP_STATUS.BAD_REQUEST);
@@ -102,8 +101,6 @@ export class ProductService {
             const product: Product = await queryRunner.manager
                 .withRepository(this.productRepository)
                 .createProduct(data, priceDetail, shop.id);
-
-            console.log(product);
 
             await queryRunner.manager
                 .withRepository(this.productRepository)
@@ -155,7 +152,6 @@ export class ProductService {
     }
 
     async getProduct(id: number) {
-        console.log(`Trước repo: - Heap Used: ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB`);
 
         const product: Product | null = await this.productRepository.findProductById(id);
         const variants: ProductVariant[] | null = await this.variantRepository.getProductVariants(id);
@@ -163,11 +159,8 @@ export class ProductService {
         if (!product) throw new ApiError('Sản phẩm không tồn tại!', HTTP_STATUS.NOT_FOUND);
         product!.variants = variants;
 
-        console.log(`Sau repo: - Heap Used: ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB`);
 
-        console.log(`Trước DTO: - Heap Used: ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB`);
         const productDTO: ProductDTO = plainToInstance(ProductDTO, product);
-        console.log(`Sau DTO: - Heap Used: ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB`);
         return productDTO;
     }
 
@@ -182,7 +175,6 @@ export class ProductService {
         cate_id?: number;
         keyword?: string;
     }) {
-        console.log('🚀 ~ ProductService ~ keyword:', keyword);
         pagination!.total_page = Math.ceil(
             (await this.productRepository.countAll({ cate_id: cate_id, keyword: keyword })) / pagination!.limit,
         );

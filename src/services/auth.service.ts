@@ -27,7 +27,6 @@ export class AuthService {
 
     constructor() {
         this.userRepository = new UserRepository();
-        console.log('Inject!');
     }
 
     private signAccessToken(payload: TokenPayload) {
@@ -92,7 +91,6 @@ export class AuthService {
     }
 
     private checkCode(_id: string, code: string) {
-        console.log(codeVerifyMail);
         const correctCode = codeVerifyMail[_id];
         if (!correctCode) return false;
         if (code === correctCode) {
@@ -104,7 +102,6 @@ export class AuthService {
 
     async register(payload: RegisterReqBody, platformParams: HandleMultiPlatformParams) {
         payload.password = await bcrypt.hash(payload.password, 10);
-        console.log(payload);
 
         const user = await this.userRepository.createAndSave(payload);
 
@@ -174,7 +171,6 @@ export class AuthService {
         if (platformParams.platform === 'mobile') {
             await this.userRepository.updateRefreshTokenMobile((user as User)?._id, refreshToken);
         } else {
-            console.log(refreshToken);
             await this.userRepository.updateRefreshToken((user as User)?._id, refreshToken);
         }
 

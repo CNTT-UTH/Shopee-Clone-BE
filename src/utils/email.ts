@@ -34,5 +34,4 @@ export const sendVerifyEmail = async ({
     };
 
     const info = await transporter.sendMail(message);
-    console.log('Message sent successfully as %s', info.messageId);
 };

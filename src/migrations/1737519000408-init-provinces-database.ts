@@ -20,7 +20,6 @@ export class InitProvincesDatabase1737519000408 implements MigrationInterface {
             .replace(/--.*$/gm, '')
             .split(';');
 
-        // console.log(sql_scripts);
 
         sql_scripts.map(async (sql_query) => {
             if (!sql_query) return;

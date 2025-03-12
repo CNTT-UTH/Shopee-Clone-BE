@@ -43,8 +43,6 @@ export const validationMiddleware = (dtoClass: any, sent_in?: 'body' | 'params' 
 
             const errors = await validate(dtoInstance);
 
-            console.log(errors);
-
             if (errors.length > 0) {
                 const errorMessages = await getError(errors);
 
