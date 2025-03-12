@@ -8,6 +8,6 @@ const router = Router();
 
 const api = makeInvoker<PaymentController>(() => container.resolve('paymentController'));
 
-router.route('/methods').get(asyncHandler(api('getAllMethods')));
+router.route('/get-all-methods').get(asyncHandler(api('getAllMethods')));
 
 export default router;

@@ -1,4 +1,4 @@
-openapi: 3.1.3
+openapi: 3.0.3
 info:
   title: Swagger Shopee - OpenAPI 3.0
   description: ''
@@ -25,12 +25,16 @@ tags:
     description: Sản phẩm
   - name: carts
     description: Giỏ hàng
+  - name: orders
+    description: Đơn hàng
   - name: category
     description: Danh mục
   - name: addresses
     description: Địa chỉ
   - name: shippings
     description: Giao hàng
+  - name: payments
+    description: Thanh toan
 paths:
   /auth/login:
     post:
@@ -45,7 +49,19 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/LoginBody'
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: linh1234
+                email:
+                  type: string
+                  example: linh1234@gmail.com
+                password:
+                  type: string
+                  example: Linhhoccode$123
+              required:
+                - password
       responses:
         '200':
           description: Đăng nhập thành công
@@ -61,7 +77,14 @@ paths:
                     type: string
                     example: Login success
                   result:
-                    $ref: '#/components/schemas/SuccessAuthenticate'
+                    type: object
+                    properties:
+                      access_token:
+                        type: string
+                        example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjRiZTBhZDJlNDNkMjQ2NDM5NGZlZWRiIiwidG9rZW5fdHlwZSI6MCwidmVyaWZ5IjoxLCJpYXQiOjE2OTEzODMyMjYsImV4cCI6MTY5MTQ2OTYyNn0.HTLX20cB7_z0c9c8FDg3MIx6RJEELHHlmJNZa94ku-o
+                      refresh_token:
+                        type: string
+                        example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjRiZTBhZDJlNDNkMjQ2NDM5NGZlZWRiIiwidG9rZW5fdHlwZSI6MSwidmVyaWZ5IjoxLCJpYXQiOjE2OTEzODMyMjYsImV4cCI6MTcwMDAyMzIyNn0.bFnaBfxWl-Q48HCwAeMpNzZwTO9LEjcBd7Zyipjqr64
         '400':
           description: Nền tảng không hợp lệ
         '422':
@@ -81,7 +104,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/LogoutBody'
+              type: object
+              properties:
+                refresh_token:
+                  type: string
+              required:
+                - refresToken
       responses:
         '200':
           description: Đăng xuất thành công
@@ -106,7 +134,26 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/RegisterBody'
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: linh1234
+                email:
+                  type: string
+                  format: email
+                  example: linhdeptrai@gmail.com
+                password:
+                  type: string
+                  example: Linhhoccode$123
+                confirm_password:
+                  type: string
+                  example: Linhhoccode$123
+              required:
+                - username
+                - email
+                - password
+                - confirmPassword
       responses:
         '200':
           description: Đăng ký thành công
@@ -145,7 +192,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/LogoutBody'
+              $ref: '#/paths/~1auth~1logout/post/requestBody/content/application~1json/schema'
       responses:
         '200':
           description: Refresh thành công
@@ -161,7 +208,7 @@ paths:
                     type: string
                     example: Login success
                   result:
-                    $ref: '#/components/schemas/SuccessAuthenticate'
+                    $ref: '#/paths/~1auth~1login/post/responses/200/content/application~1json/schema/properties/result'
         '400':
           description: Nền tảng không hợp lệ
         '401':
@@ -205,7 +252,7 @@ paths:
                   message:
                     type: string
                   result:
-                    $ref: '#/components/schemas/SuccessAuthenticate'
+                    $ref: '#/paths/~1auth~1login/post/responses/200/content/application~1json/schema/properties/result'
         '400':
           description: Sai code
         '422':
@@ -240,7 +287,7 @@ paths:
                   verify_email_token:
                     type: string
         '400':
-          description: ''
+          description: null
         '422':
           description: Sai các trường thông tin
   /auth/forgot-password:
@@ -263,7 +310,7 @@ paths:
                   example: linh1234
       responses:
         '200':
-          description: ''
+          description: null
           content:
             application/json:
               schema:
@@ -272,7 +319,7 @@ paths:
                   forgot_password_token:
                     type: string
         '400':
-          description: ''
+          description: null
         '422':
           description: Sai các trường thông tin
   /auth/verify-password:
@@ -300,7 +347,7 @@ paths:
                 - code
       responses:
         '200':
-          description: ''
+          description: null
           content:
             application/json:
               schema:
@@ -309,7 +356,7 @@ paths:
                   forgot_password_token:
                     type: string
         '400':
-          description: ''
+          description: null
         '422':
           description: Sai các trường thông tin
   /auth/resend-verify-password:
@@ -333,7 +380,7 @@ paths:
                 - forgot_password_token
       responses:
         '200':
-          description: ''
+          description: null
           content:
             application/json:
               schema:
@@ -342,7 +389,7 @@ paths:
                   forgot_password_token:
                     type: string
         '400':
-          description: ''
+          description: null
         '422':
           description: Sai các trường thông tin
   /auth/reset-password:
@@ -370,9 +417,9 @@ paths:
                 - password
       responses:
         '200':
-          description: ''
+          description: null
         '400':
-          description: ''
+          description: null
         '422':
           description: Sai các trường thông tin
   /users/profile:
@@ -388,7 +435,7 @@ paths:
         - $ref: '#/paths/~1shops/get/parameters/0'
       responses:
         '200':
-          description: ''
+          description: null
           schema:
             type: object
             properties:
@@ -398,9 +445,31 @@ paths:
               message:
                 type: string
               result:
-                $ref: '#/components/schemas/User'
+                type: object
+                properties:
+                  _id:
+                    type: string
+                  username:
+                    type: string
+                    example: linh1234
+                  email:
+                    type: string
+                    example: linh1234@gmail.com
+                  nickname:
+                    type: string
+                  dob:
+                    type: ISO string
+                  gender:
+                    type: number
+                    description: '1 là nam, 2 là nữ, 3 là khác'
+                  avatar:
+                    type: url
+                  phone:
+                    type: string
+                required:
+                  - password
         '400':
-          description: ''
+          description: null
         '422':
           description: Sai các trường thông tin
   /users/profile/all:
@@ -416,7 +485,7 @@ paths:
         - $ref: '#/paths/~1shops/get/parameters/0'
       responses:
         '200':
-          description: ''
+          description: null
           schema:
             type: array
             items:
@@ -428,9 +497,9 @@ paths:
                 message:
                   type: string
                 result:
-                  $ref: '#/components/schemas/User'
+                  $ref: '#/paths/~1users~1profile/get/responses/200/schema/properties/result'
         '400':
-          description: ''
+          description: null
         '422':
           description: Sai các trường thông tin
   '/users/profile/{user_id}':
@@ -438,7 +507,7 @@ paths:
       tags:
         - users
       summary: Lấy thông tin người dùng bằng user_id
-      description: ''
+      description: null
       operationId: user_profile_user_id
       parameters:
         - in: path
@@ -450,7 +519,7 @@ paths:
         - $ref: '#/paths/~1shops/get/parameters/0'
       responses:
         '200':
-          description: ''
+          description: null
           schema:
             type: object
             properties:
@@ -460,9 +529,9 @@ paths:
               message:
                 type: string
               result:
-                $ref: '#/components/schemas/User'
+                $ref: '#/paths/~1users~1profile/get/responses/200/schema/properties/result'
         '400':
-          description: ''
+          description: null
         '422':
           description: Sai các trường thông tin
   /users/update-profile:
@@ -470,7 +539,7 @@ paths:
       tags:
         - users
       summary: Cập nhật thông tin người dùng
-      description: ''
+      description: null
       operationId: user_profile_update
       security:
         - BearerAuth: []
@@ -501,7 +570,7 @@ paths:
                 - phone
       responses:
         '200':
-          description: ''
+          description: null
           schema:
             type: object
             properties:
@@ -511,9 +580,9 @@ paths:
               message:
                 type: string
               result:
-                $ref: '#/components/schemas/User'
+                $ref: '#/paths/~1users~1profile/get/responses/200/schema/properties/result'
         '400':
-          description: ''
+          description: null
         '422':
           description: Sai các trường thông tin
   /users/upload-avatar:
@@ -521,7 +590,7 @@ paths:
       tags:
         - users
       summary: Cập nhật avatar người dùng
-      description: ''
+      description: null
       operationId: user_profile_update_avatar
       security:
         - BearerAuth: []
@@ -539,7 +608,7 @@ paths:
                   require: true
       responses:
         '200':
-          description: ''
+          description: null
           schema:
             type: object
             properties:
@@ -558,7 +627,7 @@ paths:
                     type: string
                     example: image
         '400':
-          description: ''
+          description: null
         '422':
           description: Sai các trường thông tin
   /shops:
@@ -674,7 +743,7 @@ paths:
       tags:
         - products
       summary: Upload ảnh sản phẩm nhận về url
-      description: ''
+      description: null
       operationId: product_upload_images
       security:
         - BearerAuth: []
@@ -694,7 +763,7 @@ paths:
                     require: true
       responses:
         '200':
-          description: ''
+          description: null
           schema:
             type: object
             properties:
@@ -713,7 +782,7 @@ paths:
                     type: string
                     example: image
         '400':
-          description: ''
+          description: null
         '422':
           description: Sai các trường thông tin
   /products/create-new-product:
@@ -721,7 +790,7 @@ paths:
       tags:
         - products
       summary: Đăng sản phẩm
-      description: ''
+      description: null
       operationId: product_create
       security:
         - BearerAuth: []
@@ -731,10 +800,111 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateProductDTO'
+              type: object
+              required:
+                - sku
+                - title
+                - description
+                - product_attributes
+                - cate_id
+                - price
+                - stock
+                - image_urls
+                - shipping_channels
+                - dimension
+              properties:
+                sku:
+                  type: string
+                  example: KSHSO
+                title:
+                  type: string
+                  example: aa
+                description:
+                  type: string
+                  example: aaa
+                product_attributes:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                      - id
+                      - name
+                      - value
+                    properties:
+                      id:
+                        type: integer
+                        example: 99
+                      name:
+                        type: string
+                        example: Thương hiệu
+                      value:
+                        type: string
+                        example: No Brand
+                cate_id:
+                  type: integer
+                  example: 11035503
+                options:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                      - name
+                      - value
+                    properties:
+                      name:
+                        type: string
+                        example: Màu sắc
+                      value:
+                        type: array
+                        items:
+                          type: string
+                        example:
+                          - Đỏ
+                          - Vàng
+                variants:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                      - name
+                      - value
+                    properties:
+                      name:
+                        type: string
+                        example: Màu sắc
+                      value:
+                        type: string
+                        example: Đỏ
+                price:
+                  type: number
+                  format: float
+                  example: 10000
+                stock:
+                  type: integer
+                  example: 10000
+                discount:
+                  type: number
+                  format: float
+                  example: 0.1
+                image_urls:
+                  type: array
+                  items:
+                    type: string
+                  example:
+                    - a
+                    - b
+                    - c
+                shipping_channels:
+                  type: array
+                  items:
+                    type: integer
+                  example:
+                    - 2
+                dimension:
+                  $ref: '#/paths/~1shippings~1couting-shipping-fees/post/requestBody/content/application~1json/schema'
       responses:
         '200':
-          description: ''
+          description: null
           content:
             application/json:
               schema:
@@ -748,7 +918,53 @@ paths:
                   result:
                     $ref: '#/paths/~1products~1%7Bid%7D/get/responses/200/content/application~1json/schema/properties/result'
         '400':
-          description: ''
+          description: null
+        '422':
+          description: Sai các trường thông tin
+  /products/search-by-cate:
+    get:
+      tags:
+        - products
+      summary: Lấy sản phẩm theo danh muc
+      description: null
+      operationId: product_search_by_cate
+      parameters:
+        - in: query
+          name: cate_id
+          schema:
+            type: number
+          required: true
+          example: 11036030
+        - $ref: '#/paths/~1products~1all/get/parameters/0'
+        - $ref: '#/paths/~1products~1all/get/parameters/1'
+      responses:
+        '200':
+          description: null
+        '400':
+          description: null
+        '422':
+          description: Sai các trường thông tin
+  /products/search-by-keyword:
+    get:
+      tags:
+        - products
+      summary: Lấy sản phẩm theo keyword
+      description: null
+      operationId: product_search_by_keyword
+      parameters:
+        - in: query
+          name: keyword
+          schema:
+            type: string
+          required: true
+          example: dien thoai
+        - $ref: '#/paths/~1products~1all/get/parameters/0'
+        - $ref: '#/paths/~1products~1all/get/parameters/1'
+      responses:
+        '200':
+          description: null
+        '400':
+          description: null
         '422':
           description: Sai các trường thông tin
   /products/all:
@@ -756,11 +972,44 @@ paths:
       tags:
         - products
       summary: Lấy tất cả sản phẩm
-      description: ''
+      description: null
       operationId: product_get_all
+      parameters:
+        - in: query
+          name: pagination
+          schema:
+            type: object
+            properties:
+              page:
+                type: number
+                required: true
+              limit:
+                type: number
+                required: true
+          required: true
+        - in: query
+          name: filter
+          schema:
+            type: object
+            properties:
+              by:
+                type: string
+                description: '''price'' | ''ctime'''
+                required: false
+              order:
+                type: string
+                description: '''asc'' | ''desc'''
+                required: false
+              price_min:
+                type: number
+                required: false
+              price_max:
+                type: number
+                required: false
+          required: false
       responses:
         '200':
-          description: ''
+          description: null
           content:
             application/json:
               schema:
@@ -776,7 +1025,7 @@ paths:
                     result:
                       $ref: '#/paths/~1products~1%7Bid%7D/get/responses/200/content/application~1json/schema/properties/result'
         '400':
-          description: ''
+          description: null
         '422':
           description: Sai các trường thông tin
   '/products/{id}':
@@ -784,7 +1033,7 @@ paths:
       tags:
         - products
       summary: Lấy sản phẩm bằng id
-      description: ''
+      description: null
       operationId: product_get_by_id
       parameters:
         - in: path
@@ -795,7 +1044,7 @@ paths:
           example: 1
       responses:
         '200':
-          description: ''
+          description: null
           content:
             application/json:
               schema:
@@ -1000,7 +1249,7 @@ paths:
                             type: string
                             example: KSHSO
         '400':
-          description: ''
+          description: null
         '422':
           description: Sai các trường thông tin
   /carts/get-my-cart:
@@ -1010,15 +1259,15 @@ paths:
       summary: Lấy giỏ hàng
       security:
         - BearerAuth: []
-      description: ''
+      description: null
       operationId: cart_get
       parameters:
         - $ref: '#/paths/~1shops/get/parameters/0'
       responses:
         '200':
-          description: ''
+          description: null
         '400':
-          description: ''
+          description: null
         '422':
           description: Sai các trường thông tin
   /carts/add-or-update-item:
@@ -1026,7 +1275,7 @@ paths:
       tags:
         - carts
       summary: Thêm sản phẩm giỏ hàng
-      description: ''
+      description: null
       operationId: cart_add
       parameters:
         - $ref: '#/paths/~1shops/get/parameters/0'
@@ -1036,12 +1285,23 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CartItemDTO'
+              type: object
+              properties:
+                product_id:
+                  type: number
+                product_variant_id:
+                  type: number
+                shop_id:
+                  type: string
+                quantity:
+                  type: number
+                selected_to_checkout:
+                  type: boolean
       responses:
         '200':
-          description: ''
+          description: null
         '400':
-          description: ''
+          description: null
         '422':
           description: Sai các trường thông tin
   /carts/remove-item:
@@ -1049,7 +1309,7 @@ paths:
       tags:
         - carts
       summary: Xóa sản phẩm giỏ hàng
-      description: ''
+      description: null
       operationId: cart_remove
       security:
         - BearerAuth: []
@@ -1065,9 +1325,147 @@ paths:
                   type: string
       responses:
         '200':
-          description: ''
+          description: null
         '400':
-          description: ''
+          description: null
+        '422':
+          description: Sai các trường thông tin
+  /orders/checkout:
+    get:
+      tags:
+        - orders
+      summary: Lấy checkout info
+      description: null
+      operationId: orders_checkout_get
+      security:
+        - BearerAuth: []
+      parameters:
+        - in: path
+          name: session_checkout_id
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: null
+        '400':
+          description: null
+        '422':
+          description: Sai các trường thông tin
+    post:
+      tags:
+        - orders
+      summary: Checkout
+      description: null
+      operationId: orders_checkout_post
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: null
+        '400':
+          description: null
+        '422':
+          description: Sai các trường thông tin
+  '/orders/update-order-info/{session_checkout_id}''':
+    post:
+      tags:
+        - orders
+      summary: update order
+      description: null
+      operationId: orders_update_order
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/paths/~1orders~1checkout/get/parameters/0'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                orders:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      order_temp_id:
+                        type: string
+                        require: true
+                      shipping_channel_id:
+                        type: number
+                        require: false
+                      notes:
+                        type: string
+                        require: false
+                payment_method_id:
+                  type: number
+                  require: false
+                address_id:
+                  type: number
+                  require: false
+      responses:
+        '200':
+          description: null
+        '400':
+          description: null
+        '422':
+          description: Sai các trường thông tin
+  '/orders/place-order/{session_checkout_id}':
+    post:
+      tags:
+        - orders
+      summary: Place order
+      description: null
+      operationId: orders_place_order
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/paths/~1orders~1checkout/get/parameters/0'
+      responses:
+        '200':
+          description: null
+        '400':
+          description: null
+        '422':
+          description: Sai các trường thông tin
+  '/orders/{get-user-orders}':
+    get:
+      tags:
+        - orders
+      summary: Lấy user orders
+      description: null
+      operationId: orders_user_get
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: null
+        '400':
+          description: null
+        '422':
+          description: Sai các trường thông tin
+  '/orders/{order_id}':
+    get:
+      tags:
+        - orders
+      summary: Lấy order bang order_id
+      description: null
+      operationId: orders_user_get
+      security:
+        - BearerAuth: []
+      parameters:
+        - in: path
+          name: order_id
+          schema:
+            type: string
+          required: true
+          example: 00108428-2700-453d-a9ba-e5cd2bb0d99e
+      responses:
+        '200':
+          description: null
+        '400':
+          description: null
         '422':
           description: Sai các trường thông tin
   /categories/get-category-tree:
@@ -1116,7 +1514,7 @@ paths:
       tags:
         - addresses
       summary: Thêm địa chỉ của user
-      description: ''
+      description: null
       operationId: create_user_address
       security:
         - BearerAuth: []
@@ -1147,7 +1545,7 @@ paths:
         '200':
           description: Thành công
         '400':
-          description: ''
+          description: null
         '422':
           description: Sai các trường thông tin
   /addresses/get-all-cities:
@@ -1219,7 +1617,26 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ProductDimensionDTO'
+              type: object
+              required:
+                - weight
+              properties:
+                weight:
+                  type: number
+                  format: float
+                  example: 0.9
+                height:
+                  type: number
+                  format: float
+                  nullable: true
+                width:
+                  type: number
+                  format: float
+                  nullable: true
+                length:
+                  type: number
+                  format: float
+                  nullable: true
       responses:
         '200':
           description: Thành công
@@ -1227,291 +1644,21 @@ paths:
           description: Nền tảng không hợp lệ
         '422':
           description: Sai các trường thông tin
+  /payments/get-all-methods:
+    get:
+      tags:
+        - payments
+      summary: Lấy tat ca phuong thuc thanh toan
+      description: null
+      operationId: payment_get_methods
+      responses:
+        '200':
+          description: null
+        '400':
+          description: null
+        '422':
+          description: Sai các trường thông tin
 components:
-  schemas:
-    User:
-      type: object
-      properties:
-        _id:
-          type: string
-        username:
-          type: string
-          example: linh1234
-        email:
-          type: string
-          example: linh1234@gmail.com
-        nickname:
-          type: string
-        dob:
-          type: ISO string
-        gender:
-          type: number
-          description: '1 là nam, 2 là nữ, 3 là khác'
-        avatar:
-          type: url
-        phone:
-          type: string
-      required:
-        - password
-    RegisterBody:
-      type: object
-      properties:
-        username:
-          type: string
-          example: linh1234
-        email:
-          type: string
-          format: email
-          example: linhdeptrai@gmail.com
-        password:
-          type: string
-          example: Linhhoccode$123
-        confirm_password:
-          type: string
-          example: Linhhoccode$123
-      required:
-        - username
-        - email
-        - password
-        - confirmPassword
-    LoginBody:
-      type: object
-      properties:
-        username:
-          type: string
-          example: linh1234
-        email:
-          type: string
-          example: linh1234@gmail.com
-        password:
-          type: string
-          example: Linhhoccode$123
-      required:
-        - password
-    LogoutBody:
-      type: object
-      properties:
-        refresh_token:
-          type: string
-      required:
-        - refresToken
-    ApiResponse:
-      type: object
-      properties:
-        message:
-          type: string
-          example: Get user info successfully
-        result:
-          type: object
-          example:
-            id: 1
-            name: linh1234
-    FailedValidation:
-      type: object
-      properties:
-        success:
-          type: boolean
-          example: false
-        message:
-          type: string
-          example: Validation failed
-        errors:
-          type: object
-          example:
-            email:
-              message: Email already exists
-              value: linhhuynh@gmail.com
-    SuccessAuthenticate:
-      type: object
-      properties:
-        access_token:
-          type: string
-          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjRiZTBhZDJlNDNkMjQ2NDM5NGZlZWRiIiwidG9rZW5fdHlwZSI6MCwidmVyaWZ5IjoxLCJpYXQiOjE2OTEzODMyMjYsImV4cCI6MTY5MTQ2OTYyNn0.HTLX20cB7_z0c9c8FDg3MIx6RJEELHHlmJNZa94ku-o
-        refresh_token:
-          type: string
-          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjRiZTBhZDJlNDNkMjQ2NDM5NGZlZWRiIiwidG9rZW5fdHlwZSI6MSwidmVyaWZ5IjoxLCJpYXQiOjE2OTEzODMyMjYsImV4cCI6MTcwMDAyMzIyNn0.bFnaBfxWl-Q48HCwAeMpNzZwTO9LEjcBd7Zyipjqr64
-    CreateProductDTO:
-      type: object
-      required:
-        - sku
-        - title
-        - description
-        - product_attributes
-        - cate_id
-        - price
-        - stock
-        - image_urls
-        - shipping_channels
-        - dimension
-      properties:
-        sku:
-          type: string
-          example: KSHSO
-        title:
-          type: string
-          example: aa
-        description:
-          type: string
-          example: aaa
-        product_attributes:
-          type: array
-          items:
-            $ref: '#/components/schemas/AttributeDTO'
-        cate_id:
-          type: integer
-          example: 11035503
-        options:
-          type: array
-          items:
-            $ref: '#/components/schemas/CreateOptionDTO'
-        variants:
-          type: array
-          items:
-            $ref: '#/components/schemas/CreateOptionValueDTO'
-        price:
-          type: number
-          format: float
-          example: 10000
-        stock:
-          type: integer
-          example: 10000
-        discount:
-          type: number
-          format: float
-          example: 0.1
-        image_urls:
-          type: array
-          items:
-            type: string
-          example:
-            - a
-            - b
-            - c
-        shipping_channels:
-          type: array
-          items:
-            type: integer
-          example:
-            - 2
-        dimension:
-          $ref: '#/components/schemas/ProductDimensionDTO'
-    AttributeDTO:
-      type: object
-      required:
-        - id
-        - name
-        - value
-      properties:
-        id:
-          type: integer
-          example: 99
-        name:
-          type: string
-          example: Thương hiệu
-        value:
-          type: string
-          example: No Brand
-    CreateVariantDTO:
-      type: object
-      required:
-        - name
-        - sku
-        - option_values
-        - price
-        - stock
-      properties:
-        name:
-          type: string
-          example: cacsc
-        sku:
-          type: string
-          example: SKU123
-        option_values:
-          type: array
-          items:
-            $ref: '#./CreateOptionValueDTO.yaml'
-        price:
-          type: number
-          format: float
-          example: 120000
-        stock:
-          type: integer
-          example: 100
-    CreateOptionDTO:
-      type: object
-      required:
-        - name
-        - value
-      properties:
-        name:
-          type: string
-          example: Màu sắc
-        value:
-          type: array
-          items:
-            type: string
-          example:
-            - Đỏ
-            - Vàng
-    CreateOptionValueDTO:
-      type: object
-      required:
-        - name
-        - value
-      properties:
-        name:
-          type: string
-          example: Màu sắc
-        value:
-          type: string
-          example: Đỏ
-    ProductDimensionDTO:
-      type: object
-      required:
-        - weight
-      properties:
-        weight:
-          type: number
-          format: float
-          example: 0.9
-        height:
-          type: number
-          format: float
-          nullable: true
-        width:
-          type: number
-          format: float
-          nullable: true
-        length:
-          type: number
-          format: float
-          nullable: true
-    CartDTO:
-      type: object
-      properties:
-        username:
-          type: string
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/CartItemDTO'
-        total:
-          type: number
-        total_before_discount:
-          type: number
-    CartItemDTO:
-      type: object
-      properties:
-        product_id:
-          type: number
-        product_variant_id:
-          type: number
-        shop_id:
-          type: string
-        quantity:
-          type: number
-        selected_to_checkout:
-          type: boolean
   securitySchemes:
     BearerAuth:
       type: http

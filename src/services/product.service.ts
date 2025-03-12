@@ -184,7 +184,7 @@ export class ProductService {
 
             cur_page: pagination!.page,
             prev_page: pagination!.page - 1 > 0 ? pagination!.page - 1 : null,
-            next_page: pagination!.page + 1 < pagination!.total_page ? pagination!.page + 1 : null,
+            next_page: pagination!.page + 1 <= pagination!.total_page ? pagination!.page + 1 : null,
         };
 
         if (pagination.cur_page && pagination.total_page && pagination.cur_page > pagination.total_page) {

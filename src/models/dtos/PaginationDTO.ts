@@ -1,13 +1,16 @@
 import { Type } from 'class-transformer';
-import { IsNumber } from 'class-validator';
+import { IsNumber, Max, Min } from 'class-validator';
 
 export class Pagination {
     @IsNumber()
+    @Min(1)
     @Type(() => Number)
     page: number;
     // offset: number;
 
     @IsNumber()
+    @Min(20)
+    @Max(30)
     @Type(() => Number)
     limit: number;
 

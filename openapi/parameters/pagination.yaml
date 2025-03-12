@@ -1,0 +1,12 @@
+in: query
+name: pagination
+schema:
+    type: object
+    properties:
+        page:
+            type: number
+            required: true
+        limit:
+            type: number
+            required: true
+required: true

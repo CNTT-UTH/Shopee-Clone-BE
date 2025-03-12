@@ -1,0 +1,22 @@
+get:
+    tags:
+        - products
+    summary: Lấy sản phẩm theo danh muc
+    description:
+    operationId: product_search_by_cate
+    parameters:
+        - in: query
+          name: cate_id
+          schema:
+              type: number
+          required: true
+          example: 11036030
+        - $ref: "../../parameters/pagination.yaml"
+        - $ref: "../../parameters/filter.yaml"
+    responses:
+        "200":
+            description:
+        "400":
+            description:
+        "422":
+            description: Sai các trường thông tin

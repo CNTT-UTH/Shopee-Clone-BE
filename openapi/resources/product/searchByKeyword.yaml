@@ -1,0 +1,22 @@
+get:
+    tags:
+        - products
+    summary: Lấy sản phẩm theo keyword
+    description:
+    operationId: product_search_by_keyword
+    parameters:
+        - in: query
+          name: keyword
+          schema:
+              type: string
+          required: true
+          example: dien thoai
+        - $ref: "../../parameters/pagination.yaml"
+        - $ref: "../../parameters/filter.yaml"
+    responses:
+        "200":
+            description:
+        "400":
+            description:
+        "422":
+            description: Sai các trường thông tin

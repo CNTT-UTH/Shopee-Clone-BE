@@ -1,0 +1,13 @@
+get:
+    tags:
+        - payments
+    summary: Lấy tat ca phuong thuc thanh toan
+    description:
+    operationId: payment_get_methods
+    responses:
+        '200':
+            description:
+        '400':
+            description:
+        '422':
+            description: Sai các trường thông tin

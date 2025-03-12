@@ -1,0 +1,23 @@
+get:
+    tags:
+        - orders
+    summary: Lấy order bang order_id
+    description:
+    operationId: orders_user_get
+    security:
+        - BearerAuth: []
+    parameters:
+        - in: path
+          name: order_id
+          schema:
+              type: string
+          required: true
+          example: 00108428-2700-453d-a9ba-e5cd2bb0d99e
+
+    responses:
+        "200":
+            description:
+        "400":
+            description:
+        "422":
+            description: Sai các trường thông tin

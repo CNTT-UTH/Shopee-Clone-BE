@@ -1,0 +1,16 @@
+get:
+    tags:
+        - orders
+    summary: Lấy user orders
+    description:
+    operationId: orders_user_get
+    security:
+        - BearerAuth: []
+
+    responses:
+        "200":
+            description:
+        "400":
+            description:
+        "422":
+            description: Sai các trường thông tin

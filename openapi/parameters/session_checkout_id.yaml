@@ -1,0 +1,5 @@
+in: path
+name: session_checkout_id
+schema:
+    type: string
+required: true

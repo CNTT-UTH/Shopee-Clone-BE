@@ -1,0 +1,20 @@
+in: query
+name: filter
+schema:
+    type: object
+    properties:
+        by:
+            type: string
+            description: "'price' | 'ctime'"
+            required: false
+        order:
+            type: string
+            description: "'asc' | 'desc'"
+            required: false
+        price_min:
+            type: number
+            required: false
+        price_max:
+            type: number
+            required: false
+required: false

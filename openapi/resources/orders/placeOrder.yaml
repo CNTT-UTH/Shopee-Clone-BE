@@ -1,0 +1,17 @@
+post:
+    tags:
+        - orders
+    summary: Place order
+    description:
+    operationId: orders_place_order
+    security:
+        - BearerAuth: []
+    parameters:
+        - $ref: "../../parameters/session_checkout_id.yaml"
+    responses:
+        "200":
+            description:
+        "400":
+            description:
+        "422":
+            description: Sai các trường thông tin

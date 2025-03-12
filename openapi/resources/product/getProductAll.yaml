@@ -4,7 +4,9 @@ get:
     summary: Lấy tất cả sản phẩm
     description:
     operationId: product_get_all
-
+    parameters:
+        - $ref: "../../parameters/pagination.yaml"
+        - $ref: "../../parameters/filter.yaml"
     responses:
         '200':
             description:

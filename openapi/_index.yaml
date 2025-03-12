@@ -26,12 +26,16 @@ tags:
       description: Sản phẩm
     - name: carts
       description: Giỏ hàng
+    - name: orders
+      description: Đơn hàng 
     - name: category
       description: Danh mục
     - name: addresses
       description: Địa chỉ
     - name: shippings
       description: Giao hàng
+    - name: payments
+      description: Thanh toan
 paths:
     #   AUTH ROUTES
     /auth/login:
@@ -80,6 +84,10 @@ paths:
         $ref: "./resources/product/uploadProductImages.yaml"
     /products/create-new-product:
         $ref: "./resources/product/createProduct.yaml"
+    /products/search-by-cate:
+        $ref: "./resources/product/searchByCate.yaml"
+    /products/search-by-keyword:
+        $ref: "./resources/product/searchByKeyword.yaml"
     /products/all:
         $ref: "./resources/product/getProductAll.yaml"
     /products/{id}:
@@ -92,6 +100,18 @@ paths:
         $ref: "./resources/carts/addItem.yaml"
     /carts/remove-item:
         $ref: "./resources/carts/removeItem.yaml"
+
+    #   ORDERS ROUTES
+    /orders/checkout:
+        $ref: "./resources/orders/checkout.yaml"
+    /orders/update-order-info/{session_checkout_id}':
+        $ref: "./resources/orders/updateOrder.yaml"
+    /orders/place-order/{session_checkout_id}:
+        $ref: "./resources/orders/placeOrder.yaml"
+    /orders/{get-user-orders}:
+        $ref: "./resources/orders/getUserOrders.yaml"
+    /orders/{order_id}:
+        $ref: "./resources/orders/getOrder.yaml"
 
     #   CATEGORIES ROUTES
     /categories/get-category-tree:
@@ -116,12 +136,12 @@ paths:
         $ref: "./resources/shippings/getShippingChannel.yaml"
     /shippings/couting-shipping-fees:
         $ref: "./resources/shippings/coutingShippingFee.yaml"
+        
+    #   PAYMENTS ROUTES
+    /payments/get-all-methods:
+        $ref: "./resources/payments/getMethods.yaml"
 
 components:
-    # parameters:
-    #     $ref: "./parameters/_index.yaml"
-    schemas:
-        $ref: "./schemas/_index.yaml"
     securitySchemes:
         BearerAuth:
             type: http

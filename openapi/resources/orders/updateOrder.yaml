@@ -1,0 +1,44 @@
+post:
+    tags:
+        - orders
+    summary: update order
+    description:
+    operationId: orders_update_order
+    security:
+        - BearerAuth: []
+    parameters:
+        - $ref: "../../parameters/session_checkout_id.yaml"
+    requestBody:
+        content:
+            application/json:
+                schema:
+                    type: object
+                    properties:
+                        orders:
+                            type: array
+                            items:
+                                type: object
+                                properties:
+                                    order_temp_id:
+                                        type: string
+                                        require: true
+                                    shipping_channel_id:
+                                        type: number
+                                        require: false
+                                    notes:
+                                        type: string
+                                        require: false
+                        payment_method_id:
+                            type: number
+                            require: false
+                        address_id:
+                            type: number
+                            require: false                   
+                            
+    responses:
+        "200":
+            description:
+        "400":
+            description:
+        "422":
+            description: Sai các trường thông tin

@@ -1,5 +1,5 @@
 import { Expose } from 'class-transformer';
-import { IsNotEmpty, IsNumber, IsNumberString, IsString, Max, Min } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsNumberString, IsOptional, IsString, Max, Min } from 'class-validator';
 
 export class AddCartItemDTO {
     @IsNumber()
@@ -16,6 +16,6 @@ export class AddCartItemDTO {
     shop_id: number;
 
     @IsNumber()
-    @IsNotEmpty()
+    @IsOptional()
     product_variant_id: number;
 }

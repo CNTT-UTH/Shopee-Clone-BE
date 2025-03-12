@@ -25,6 +25,6 @@ export const initWebRoutes = (app: Express) => {
     app.use('/api/v1/attributes', attributeRoutes);
     app.use('/api/v1/shippings', shippingRoutes);
     app.use('/api/v1/carts', cartRoutes);
-    app.use('/api/v1/payment', paymentRoutes);
+    app.use('/api/v1/payments', paymentRoutes);
     app.use('/api/v1/orders', orderRoutes);
 };
