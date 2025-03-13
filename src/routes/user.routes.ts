@@ -73,6 +73,23 @@ router
         asyncHandler(api('updateAvatar')),
     );
 
+router
+    .route('/update-default-address')
+    /**
+     * Description. Update default address
+     * Path: /update-default-address
+     * Method: POST
+     * Headers: { Authorization: string, User-Agent: string }
+     * Body: {address_id}
+     */
+    .patch(
+        platformValidator,
+        accessTokenValidator,
+        authorizeRole([Role.User]),
+        asyncHandler(api('updateDefaultAddress')),
+    );
+
+
 // router
 //     .route("/remove_my_account")
 //     /**

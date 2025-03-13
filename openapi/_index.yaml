@@ -15,7 +15,7 @@ externalDocs:
     url: http://swagger.io
 servers:
     - url: https://shopee-clone-be.onrender.com/api/v1
-    - url: https://localhost:{port}/api/v1
+    - url: http://localhost:{port}/api/v1
       variables:
         port:
             default: '3000'
@@ -74,6 +74,8 @@ paths:
         $ref: "./resources/users/update_profile.yaml"
     /users/upload-avatar:
         $ref: "./resources/users/upload_avatar.yaml"
+    /users/update-default-address:
+        $ref: "./resources/users/updateDefaultAddress.yaml"
 
     #   SHOPS ROUTES
     /shops:

@@ -9,12 +9,13 @@ import { UpdateProfileReqBody } from '~/models/requests/users.requests';
 import { AddressRepository } from '~/repository/address.repository';
 import { UserRepository } from '~/repository/user.repository';
 import { ApiError } from '~/utils/errors';
+import { AddressService } from './address.service';
 
 export class UserService {
     private readonly userRepository: UserRepository;
     private readonly addressRepository: AddressRepository;
 
-    constructor() {
+    constructor(private readonly addressService: AddressService) {
         this.userRepository = new UserRepository();
     }
 
@@ -77,6 +78,19 @@ export class UserService {
 
         return {
             user_profile: userDTO,
+        };
+    }
+
+    async setAddressDefault(user_id: string, address_id: number) {
+        if (await this.addressService.checkExists(address_id)) {
+            throw new ApiError('Dia chi khong ton tai!', HTTP_STATUS.BAD_REQUEST);
+        }
+
+        this.userRepository.update({ _id: user_id }, { default_address_id: address_id });
+
+        return {
+            user_id,
+            address_id,
         };
     }
 }

@@ -5,65 +5,63 @@ import { UserDTO } from '~/models/dtos/UserDTO';
 import { User } from '~/models/entity/user.entity';
 import { UpdateProfileReqBody } from '~/models/requests/users.requests';
 
-export class UserRepository {
-    private repo: Repository<User>;
-
+export class UserRepository extends Repository<User> {
     constructor() {
-        this.repo = AppDataSource.getRepository(User);
+        super(User, AppDataSource.manager);
     }
 
     async createAndSave(userData: Partial<User>): Promise<User> {
-        const user = this.repo.create(userData);
-        return this.repo.save(user);
+        const user = this.create(userData);
+        return this.save(user);
     }
 
     async findByEmailOrUsername(email?: string, username?: string): Promise<User | null> {
-        return this.repo.findOne({
+        return this.findOne({
             where: [{ email }, { username }],
         });
     }
 
     async findById(_id: string): Promise<User | null> {
-        return this.repo.findOne({ where: { _id }, relations: ['addresses'] });
+        return this.findOne({ where: { _id }, relations: ['addresses'] });
     }
 
     async findAll(): Promise<User[]> {
-        return this.repo.find();
+        return this.find();
     }
 
     async existsByID(id: string): Promise<boolean> {
-        const user = await this.repo.findOneBy({ _id: id });
+        const user = await this.findOneBy({ _id: id });
         return !!user;
     }
 
     async existsByEmail(email: string): Promise<boolean> {
-        const user = await this.repo.findOneBy({ email });
+        const user = await this.findOneBy({ email });
         return !!user;
     }
 
     async existsByUsername(username: string): Promise<boolean> {
-        const user = await this.repo.findOneBy({ username });
+        const user = await this.findOneBy({ username });
         return !!user;
     }
 
     async updateRefreshToken(userID: string, refreshToken: string): Promise<void> {
-        await this.repo.update({ _id: userID }, { refresh_token: refreshToken });
+        await this.update({ _id: userID }, { refresh_token: refreshToken });
     }
 
     async updateRefreshTokenMobile(userID: string, refreshToken: string): Promise<void> {
-        await this.repo.update({ _id: userID }, { refresh_token_mobile: refreshToken });
+        await this.update({ _id: userID }, { refresh_token_mobile: refreshToken });
     }
 
     async updateVerify(_id: string): Promise<void> {
-        await this.repo.update({ _id }, { verify: UserVerifyStatus.Verified });
+        await this.update({ _id }, { verify: UserVerifyStatus.Verified });
     }
 
     async updatePassword(_id: string, password: string): Promise<void> {
-        await this.repo.update({ _id }, { password });
+        await this.update({ _id }, { password });
     }
 
     async updateProfile(data: Partial<UserDTO>): Promise<void> {
-        await this.repo.update(
+        await this.update(
             { _id: data.user_id },
             {
                 name: data?.name,
@@ -75,7 +73,7 @@ export class UserRepository {
     }
 
     async updateUserAvatar(_id: string, url: string) {
-        await this.repo.update(
+        await this.update(
             { _id },
             {
                 avatar: url,
@@ -84,7 +82,7 @@ export class UserRepository {
     }
 
     async updateToShop(_id: string) {
-        await this.repo.update(
+        await this.update(
             { _id },
             {
                 is_shop: true,
@@ -93,7 +91,7 @@ export class UserRepository {
     }
 
     async updateRemoveShop(_id: string) {
-        await this.repo.update(
+        await this.update(
             { _id },
             {
                 is_shop: false,

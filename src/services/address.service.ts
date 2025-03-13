@@ -50,6 +50,10 @@ export class AddressService {
         return newAddressDTO;
     }
 
+    async checkExists(address_id: number): Promise<boolean> {
+        return !(await this.addressRepository.findAddressById(address_id));
+    }
+
     async getAllCities() {
         const data = await this.cityRepository.getAllCity();
         return data;

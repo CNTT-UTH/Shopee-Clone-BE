@@ -9,11 +9,11 @@ export class UserController {
     constructor(
         private readonly userService: UserService,
         private readonly mediaService: MediaService,
-    ) {}
+    ) { }
     async getProfile(req: Request, res: Response) {
-        const userId: string = req?.decoded?._id as string;
+        const user_id: string = req?.decoded?._id as string;
 
-        const result = await this.userService.getProfile(userId);
+        const result = await this.userService.getProfile(user_id);
 
         res.send({
             success: true,
@@ -23,9 +23,9 @@ export class UserController {
     }
 
     async getProfileById(req: Request, res: Response) {
-        const userId: string = req?.params?.user_id as string;
+        const user_id: string = req?.params?.user_id as string;
 
-        const result = await this.userService.getProfile(userId);
+        const result = await this.userService.getProfile(user_id);
 
         res.send({
             success: true,
@@ -46,9 +46,9 @@ export class UserController {
 
     async updateProfile(req: Request<ParamsDictionary, any, UpdateProfileReqBody>, res: Response) {
         const payload: Partial<UpdateProfileReqBody> = req.body;
-        const userID: string = req?.decoded?._id as string;
+        const user_id: string = req?.decoded?._id as string;
 
-        const result = await this.userService.updateProfile(payload, userID);
+        const result = await this.userService.updateProfile(payload, user_id);
 
         res.send({
             success: true,
@@ -60,6 +60,18 @@ export class UserController {
     async updateAvatar(req: Request, res: Response) {
         const result = await this.mediaService.uploadUserAvatar(req);
 
+        res.send({
+            success: true,
+            message: USERS_MESSAGES.UPDATE_ME_SUCCESS,
+            result,
+        });
+    }
+
+    async updateDefaultAddress(req: Request, res: Response) {
+        const user_id: string = req?.params?.user_id as string;
+        const address_id: number = Number(req?.body?.address_id);
+
+        const result = await this.userService.setAddressDefault(user_id, address_id);
         res.send({
             success: true,
             message: USERS_MESSAGES.UPDATE_ME_SUCCESS,

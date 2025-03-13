@@ -14,7 +14,7 @@ externalDocs:
   url: 'http://swagger.io'
 servers:
   - url: 'https://shopee-clone-be.onrender.com/api/v1'
-  - url: 'https://localhost:{port}/api/v1'
+  - url: 'http://localhost:{port}/api/v1'
     variables:
       port:
         default: '3000'
@@ -630,6 +630,33 @@ paths:
                   type:
                     type: string
                     example: image
+        '400':
+          description: null
+        '422':
+          description: Sai các trường thông tin
+  /users/update-default-address:
+    patch:
+      tags:
+        - users
+      summary: Cập nhật dia chi mac dinh
+      description: null
+      operationId: user_address_default
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/paths/~1shops/get/parameters/0'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                address_id:
+                  type: string
+                  require: true
+      responses:
+        '200':
+          description: null
         '400':
           description: null
         '422':
