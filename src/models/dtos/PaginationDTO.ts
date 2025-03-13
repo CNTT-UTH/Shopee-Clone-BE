@@ -9,7 +9,7 @@ export class Pagination {
     // offset: number;
 
     @IsNumber()
-    @Min(20)
+    @Min(1)
     @Max(30)
     @Type(() => Number)
     limit: number;
