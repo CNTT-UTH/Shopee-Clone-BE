@@ -11,16 +11,17 @@ const router = Router();
 
 const api = makeInvoker<OrderController>(() => container.resolve('orderController'));
 
+router.route('/checkout').post(accessTokenValidator, asyncHandler(api('handleCheckout')));
+
 router
-    .route('/checkout')
+    .route('/checkout/:session_checkout_id')
     /**
      * Description. Get all products
      * Path: /checkout
      * Method: GET
      * Query: {  }
      */
-    .get(accessTokenValidator, validationMiddleware(SessionId, 'query'), asyncHandler(api('getCheckoutInfo')))
-    .post(accessTokenValidator, asyncHandler(api('handleCheckout')));
+    .get(accessTokenValidator, validationMiddleware(SessionId, 'params'), asyncHandler(api('getCheckoutInfo')));
 
 router
     .route('/update-order-info/:session_checkout_id')
@@ -29,7 +30,7 @@ router
      * Path: /checkout
      * Method: POST
      */
-    .post(
+    .patch(
         accessTokenValidator,
         validationMiddleware(SessionId, 'params'),
         validationMiddleware(UpdateCheckout, 'body'),

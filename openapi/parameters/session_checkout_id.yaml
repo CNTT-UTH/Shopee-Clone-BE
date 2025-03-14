@@ -1,4 +1,4 @@
-in: query
+in: path
 name: session_checkout_id
 schema:
     type: string

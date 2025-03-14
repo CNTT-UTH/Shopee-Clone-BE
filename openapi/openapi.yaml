@@ -1358,7 +1358,7 @@ paths:
           description: null
         '422':
           description: Sai các trường thông tin
-  /orders/checkout:
+  '/orders/checkout/{session_checkout_id}':
     get:
       tags:
         - orders
@@ -1368,7 +1368,7 @@ paths:
       security:
         - BearerAuth: []
       parameters:
-        - in: query
+        - in: path
           name: session_checkout_id
           schema:
             type: string
@@ -1380,6 +1380,7 @@ paths:
           description: null
         '422':
           description: Sai các trường thông tin
+  /orders/checkout:
     post:
       tags:
         - orders
@@ -1395,8 +1396,8 @@ paths:
           description: null
         '422':
           description: Sai các trường thông tin
-  '/orders/update-order-info/{session_checkout_id}''':
-    post:
+  '/orders/update-order-info/{session_checkout_id}':
+    patch:
       tags:
         - orders
       summary: update order
@@ -1405,7 +1406,7 @@ paths:
       security:
         - BearerAuth: []
       parameters:
-        - $ref: '#/paths/~1orders~1checkout/get/parameters/0'
+        - $ref: '#/paths/~1orders~1checkout~1%7Bsession_checkout_id%7D/get/parameters/0'
       requestBody:
         content:
           application/json:
@@ -1449,7 +1450,7 @@ paths:
       security:
         - BearerAuth: []
       parameters:
-        - $ref: '#/paths/~1orders~1checkout/get/parameters/0'
+        - $ref: '#/paths/~1orders~1checkout~1%7Bsession_checkout_id%7D/get/parameters/0'
       responses:
         '200':
           description: null

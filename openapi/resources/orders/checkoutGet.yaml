@@ -1,11 +1,14 @@
-post:
+get:
     tags:
         - orders
-    summary: Checkout
+    summary: Lấy checkout info
     description:
-    operationId: orders_checkout_post
+    operationId: orders_checkout_get
     security:
         - BearerAuth: []
+    parameters:
+        - $ref: "../../parameters/session_checkout_id.yaml"
+
     responses:
         "200":
             description:

@@ -108,9 +108,11 @@ paths:
         $ref: "./resources/carts/removeItem.yaml"
 
     #   ORDERS ROUTES
+    /orders/checkout/{session_checkout_id}:
+        $ref: "./resources/orders/checkoutGet.yaml"
     /orders/checkout:
-        $ref: "./resources/orders/checkout.yaml"
-    /orders/update-order-info/{session_checkout_id}':
+        $ref: "./resources/orders/checkout.yaml"    
+    /orders/update-order-info/{session_checkout_id}:
         $ref: "./resources/orders/updateOrder.yaml"
     /orders/place-order/{session_checkout_id}:
         $ref: "./resources/orders/placeOrder.yaml"
