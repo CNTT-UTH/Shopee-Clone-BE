@@ -58,12 +58,9 @@ paths:
                 username:
                   type: string
                   example: linh1234
-                email:
-                  type: string
-                  example: linh1234@gmail.com
                 password:
                   type: string
-                  example: Linhhoccode$123
+                  example: Abc1234@
               required:
                 - password
       responses:
@@ -1371,7 +1368,7 @@ paths:
       security:
         - BearerAuth: []
       parameters:
-        - in: path
+        - in: query
           name: session_checkout_id
           schema:
             type: string
