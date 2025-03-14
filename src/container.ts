@@ -46,7 +46,7 @@ container.register({
     userController: asClass(UserController).scoped(),
 
     // AUTH MODULE:
-    authService: asClass(AuthService).singleton(),
+    authService: asClass(AuthService).scoped(),
     authController: asClass(AuthController).scoped(),
 
     // PRODUCT MODULE:

@@ -44,4 +44,8 @@ export const envConfig = {
     CLOUD_NAME: process.env.CLOUD_NAME as string,
     CLOUD_API_KEY: process.env.CLOUD_API_KEY as string,
     CLOUD_API_SECRET: process.env.CLOUD_API_SECRET as string,
+
+    BOT_FATHER_TOKEN: process.env.BOT_FATHER_TOKEN as string,
+    GROUP_CHAT_ID: process.env.GROUP_CHAT_ID as string,
+
 } as const;

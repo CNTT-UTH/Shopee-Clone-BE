@@ -1,5 +1,7 @@
-import { LoggerOptions, transports, format, createLogger, addColors } from 'winston';
+import { LoggerOptions, transports, format, createLogger, addColors, level } from 'winston';
 const { combine, timestamp, printf, prettyPrint, colorize, json, label, cli } = format;
+import axios from 'axios';
+import { envConfig } from '~/constants/env';
 
 export const myCustomLevels = {
     colors: {
@@ -16,8 +18,20 @@ export const myCustomLevels = {
     },
 };
 
+export const alertToTelegram = async (level: string, message: string) => {
+    try {
+        await axios.post(`https://api.telegram.org/bot${envConfig.BOT_FATHER_TOKEN}/sendMessage`, {
+            chat_id: envConfig.GROUP_CHAT_ID,
+            text: `#### MESSAGE FROM THE SERVER: \t${message}`,
+            parse_mode: 'Markdown',
+        });
+    } catch (error) {
+        logger.error('Can not send to Telegram!', error);
+    }
+};
+
 export const logger_config: LoggerOptions = {
-    level: 'info',
+    level: 'fatal',
     format: combine(
         colorize({
             all: true,

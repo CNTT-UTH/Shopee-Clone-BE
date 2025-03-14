@@ -16,7 +16,7 @@ import compression from 'compression';
 import container from './container';
 import { scopePerRequest } from 'awilix-express';
 import winston from 'winston';
-import { logger, logger_config, myCustomLevels } from './config/winston_config';
+import { alertToTelegram, logger, logger_config, myCustomLevels } from './config/winston_config';
 import { rateLimit } from 'express-rate-limit';
 
 const file = fs.readFileSync(path.join(__dirname, '..', 'openapi/openapi.yaml'), 'utf8');
@@ -64,9 +64,11 @@ app.use(errorHandler);
 AppDataSource.initialize()
     .then(() => {
         logger.info('Data Source has been initialized!');
+        alertToTelegram('info', 'Data Source has been initialized!');
     })
     .catch((err) => {
-        logger.error('Error during Data Source initialization', err);
+        logger.log('fatal', 'Error during Data Source initialization', err);
+        alertToTelegram('fatal', 'Error during Data Source initialization');
     });
 
 export default app;
