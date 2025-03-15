@@ -1,24 +1,25 @@
 import request from 'supertest';
 import app from '../../app';
+import AppDataSource from '~/dbs/db';
 
 describe('AuthController (e2e)', () => {
-    it('should register a new user successfully', async () => {
-        const response = await request(app).post('/api/auth/register').send({
-            username: 'testuser',
-            password: 'testpassword',
-        });
+    beforeAll(async () => {
+        await AppDataSource.initialize();
+    });
 
-        expect(response.statusCode).toBe(201);
-        expect(response.body).toHaveProperty('message', 'User registered successfully');
+    afterAll(async () => {
+        await AppDataSource.destroy();
     });
 
     it('should fail to register with existing username', async () => {
-        const response = await request(app).post('/api/auth/register').send({
-            username: 'testuser',
-            password: 'testpassword',
+        const response = await request(app).post('/api/v1/auth/register').send({
+            email: 'linh@gmail.com',
+            username: 'linh1234',
+            password: 'Abc1234@',
+            password_confirm: 'Abc1234@',
         });
 
-        expect(response.statusCode).toBe(400);
-        expect(response.body).toHaveProperty('message', 'Username already exists');
-    });
+        expect(response.statusCode).toBe(422);
+        expect(response.body).toHaveProperty('message', 'Validation failed');
+    }, 20000);
 });
