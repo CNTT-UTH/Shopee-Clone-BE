@@ -67,8 +67,8 @@ AppDataSource.initialize()
         alertToTelegram('info', 'Data Source has been initialized!');
     })
     .catch((err) => {
-        logger.log('fatal', 'Error during Data Source initialization', err);
-        alertToTelegram('fatal', 'Error during Data Source initialization');
+        logger.log('error', 'Error during Data Source initialization', err);
+        alertToTelegram('error', 'Error during Data Source initialization');
     });
 
 export default app;

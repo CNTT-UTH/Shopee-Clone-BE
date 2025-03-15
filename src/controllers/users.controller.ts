@@ -68,7 +68,7 @@ export class UserController {
     }
 
     async updateDefaultAddress(req: Request, res: Response) {
-        const user_id: string = req?.params?.user_id as string;
+        const user_id: string = req?.decoded?._id as string;
         const address_id: number = Number(req?.body?.address_id);
 
         const result = await this.userService.setAddressDefault(user_id, address_id);

@@ -23,6 +23,9 @@ export class AddressDTO {
     @IsPhoneNumber('VN')
     phone_number?: string;
 
+    @Expose()
+    is_default: boolean;
+
     // constructor({ city, district, ward, address_line, phone_number }: Partial<AddressDTO>) {
     //     this.city = city;
     //     this.district = district;

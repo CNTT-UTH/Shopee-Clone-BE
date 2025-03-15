@@ -28,10 +28,18 @@ export class AddressService {
     }
 
     async getUserAddresses(id: string) {
+        const user: User | null = await this.userRepository.findOneBy({ _id: id });
+
         const addresses: Address[] = await this.addressRepository.findAddressUserId(id);
+
         const addressDTO: AddressDTO[] = await Promise.all(
             addresses.map((address) => {
-                return plainToInstance(AddressDTO, address);
+                const result = plainToInstance(AddressDTO, address);
+
+                if (user?.default_address_id === result.id) {
+                    result.is_default = true;
+                }
+                return result;
             }),
         ).then((res) => res);
 
@@ -45,6 +53,9 @@ export class AddressService {
         }
 
         const address: Address = await this.addressRepository.createAddressForUser(addressDTO, user);
+        if (!user.default_address_id) {
+            this.userRepository.update({ _id: user_id }, { default_address_id: address.id });
+        }
         const newAddressDTO: AddressDTO = plainToInstance(AddressDTO, address);
 
         return newAddressDTO;

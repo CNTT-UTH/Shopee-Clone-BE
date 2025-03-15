@@ -30,15 +30,15 @@ export class UserService {
             throw new ApiError(USERS_MESSAGES.USERNAME_DOES_NOT_EXIST, HTTP_STATUS.BAD_REQUEST);
         }
 
-        const user_address = user?.default_address_id
-            ? this.addressRepository.findAddressById(user?.default_address_id)
-            : {};
+        // const user_address = user?.default_address_id
+        //     ? this.addressRepository.findAddressById(user?.default_address_id)
+        //     : {};
 
-        const userAddress: AddressDTO = plainToInstance(AddressDTO, user_address);
+        // const userAddress: AddressDTO = plainToInstance(AddressDTO, user_address);
 
         const userDTO: UserDTO = plainToInstance(UserDTO, {
             ...user,
-            default_address: userAddress,
+            // default_address: userAddress,
         });
 
         return {

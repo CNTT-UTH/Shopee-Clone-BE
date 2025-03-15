@@ -25,19 +25,22 @@ export class UserDTO {
     @Expose()
     phone?: string; // format : +84...
 
-    @Expose({name: 'is_shop'})
+    @Expose({ name: 'is_shop' })
     is_shop?: boolean;
 
     @Expose({ name: 'verify' })
     status?: number; // 0: Chưa xác nhận mail, 1: Đã xác thực, 2: Banned
 
-    @Expose()
-    @Type(() => AddressDTO)
-    default_address?: AddressDTO;
+    // @Expose()
+    // @Type(() => AddressDTO)
+    // default_address?: AddressDTO;
+
+    @Expose({ name: 'default_address_id' })
+    // @Type(() => AddressDTO)
+    default_address_id?: number;
 
     @Expose()
     avatar?: string;
-    
 
     // constructor(data: Partial<UserDTO>) {
     //     this.user_id = data.user_id;

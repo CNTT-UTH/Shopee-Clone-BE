@@ -20,6 +20,8 @@ export const myCustomLevels = {
 
 export const alertToTelegram = async (level: string, message: string) => {
     try {
+        if (envConfig.NODE_ENV != 'production') return;
+
         await axios.post(`https://api.telegram.org/bot${envConfig.BOT_FATHER_TOKEN}/sendMessage`, {
             chat_id: envConfig.GROUP_CHAT_ID,
             text: `#### MESSAGE FROM THE SERVER: \t${message}`,
@@ -31,7 +33,7 @@ export const alertToTelegram = async (level: string, message: string) => {
 };
 
 export const logger_config: LoggerOptions = {
-    level: 'fatal',
+    level: 'info',
     format: combine(
         colorize({
             all: true,
