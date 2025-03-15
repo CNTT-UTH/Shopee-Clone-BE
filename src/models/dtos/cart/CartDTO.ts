@@ -1,6 +1,5 @@
 import { Exclude, Expose, Transform, Type } from 'class-transformer';
 import { IsNotEmpty, IsNumber, Min, Validate } from 'class-validator';
-import { IsProductExist } from '~/validate/product.validate';
 
 @Exclude()
 export class CartDTO {
@@ -96,15 +95,4 @@ export class CartItemDTO {
     @Expose()
     @Transform(({ obj }) => obj?.shop?.avatar)
     shop_avatar: string;
-}
-
-export class UpdateQuantityDTO {
-    @IsNotEmpty()
-    @IsNumber()
-    item_id: number;
-
-    @IsNotEmpty()
-    @IsNumber()
-    @Min(1)
-    quantity: number;
 }

@@ -23,11 +23,7 @@ import { plainToInstance } from 'class-transformer';
 const codeVerifyMail: Record<string, string> = {} as const;
 
 export class AuthService {
-    private readonly userRepository: UserRepository;
-
-    constructor() {
-        this.userRepository = new UserRepository();
-    }
+    constructor(private readonly userRepository: UserRepository) { }
 
     private signAccessToken(payload: TokenPayload) {
         return signToken({

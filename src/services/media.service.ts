@@ -11,10 +11,10 @@ import { ShopRepository } from '~/repository/shop.repository';
 const cloudsService = new Cloudinary();
 
 export class MediaService {
-    private readonly userRepository: UserRepository = new UserRepository();
-    private readonly shopRepository: ShopRepository = new ShopRepository();
-
-    constructor() {}
+    constructor(
+        private readonly userRepository: UserRepository,
+        private readonly shopRepository: ShopRepository,
+    ) { }
 
     async uploadUserAvatar(req: Request) {
         const files = await handleUploadImage(req);

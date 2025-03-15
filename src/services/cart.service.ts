@@ -4,7 +4,7 @@ import { UserService } from './users.service';
 import { ApiError } from '~/utils/errors';
 import { USERS_MESSAGES } from '~/constants/messages';
 import HTTP_STATUS from '~/constants/httpStatus';
-import { CartDTO, CartItemDTO, UpdateQuantityDTO } from '~/models/dtos/cart/CartDTO';
+import { CartDTO, CartItemDTO } from '~/models/dtos/cart/CartDTO';
 import { ProductService } from './product.service';
 import { plainToInstance } from 'class-transformer';
 import { Product } from '~/models/entity/product.entity';

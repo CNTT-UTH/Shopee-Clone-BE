@@ -5,11 +5,7 @@ import { Category } from '~/models/entity/category.entity';
 import { CategoryRepository } from '~/repository/cate.repository';
 
 export class CategoryService {
-    private readonly cateRepository: CategoryRepository;
-
-    constructor() {
-        this.cateRepository = new CategoryRepository();
-    }
+    constructor(private readonly cateRepository: CategoryRepository) { }
 
     async ifExist(cate_id: number) {
         return !!(await this.cateRepository.findOneByCateId(cate_id));

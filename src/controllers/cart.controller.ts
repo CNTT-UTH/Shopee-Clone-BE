@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { CartItemDTO, UpdateQuantityDTO } from '~/models/dtos/cart/CartDTO';
+import { CartItemDTO } from '~/models/dtos/cart/CartDTO';
 import { CartService } from '~/services/cart.service';
 
 export class CartController {

@@ -30,31 +30,21 @@ export class ProductService {
     /**
      * SẼ REFACTOR LẠI SAU!!!
      */
-    private readonly shopRepository: ShopRepository;
-    private readonly brandRepository: BrandRepository;
-    private readonly imageRepository: ImageRepository;
-    private readonly optionRepository: OptionValueRepository;
-    private readonly attriRepository: AttributeRepository;
-    private readonly productRepository: ProductRepository;
-    private readonly shippingRepository: ShippingRepository;
-    private readonly variantRepository: VariantRepository;
-    private readonly cateRepository: CategoryRepository;
 
     constructor(
         private readonly shippingRatesManagementService: ShippingRatesManagementService,
         private readonly shippingService: ShippingService,
         private readonly cateService: CategoryService,
-    ) {
-        this.shopRepository = new ShopRepository();
-        this.brandRepository = new BrandRepository();
-        this.imageRepository = new ImageRepository();
-        this.optionRepository = new OptionValueRepository();
-        this.attriRepository = new AttributeRepository();
-        this.productRepository = new ProductRepository();
-        this.shippingRepository = new ShippingRepository();
-        this.variantRepository = new VariantRepository();
-        this.cateRepository = new CategoryRepository();
-    }
+        private readonly shopRepository: ShopRepository,
+        private readonly brandRepository: BrandRepository,
+        private readonly imageRepository: ImageRepository,
+        private readonly optionRepository: OptionValueRepository,
+        private readonly attriRepository: AttributeRepository,
+        private readonly productRepository: ProductRepository,
+        private readonly shippingRepository: ShippingRepository,
+        private readonly variantRepository: VariantRepository,
+        private readonly cateRepository: CategoryRepository,
+    ) { }
 
     async findOne({ product_id }: { product_id: number }) {
         return await this.productRepository.findOne({
@@ -152,13 +142,11 @@ export class ProductService {
     }
 
     async getProduct(id: number) {
-
         const product: Product | null = await this.productRepository.findProductById(id);
         const variants: ProductVariant[] | null = await this.variantRepository.getProductVariants(id);
 
         if (!product) throw new ApiError('Sản phẩm không tồn tại!', HTTP_STATUS.NOT_FOUND);
         product!.variants = variants;
-
 
         const productDTO: ProductDTO = plainToInstance(ProductDTO, product);
         return productDTO;

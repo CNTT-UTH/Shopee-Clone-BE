@@ -18,6 +18,7 @@ import { scopePerRequest } from 'awilix-express';
 import winston from 'winston';
 import { alertToTelegram, logger, logger_config, myCustomLevels } from './config/winston_config';
 import { rateLimit } from 'express-rate-limit';
+import { useContainer } from 'class-validator';
 
 const file = fs.readFileSync(path.join(__dirname, '..', 'openapi/openapi.yaml'), 'utf8');
 const swaggerDocs = YAML.parse(file);
@@ -56,6 +57,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 app.use(scopePerRequest(container));
+
 
 initWebRoutes(app);
 

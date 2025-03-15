@@ -7,6 +7,7 @@ import { accessTokenValidator, authorizeRole, isShop, platformValidator } from '
 import { validationMiddleware } from '~/middlewares/validation.middleware';
 import { Pagination } from '~/models/dtos/PaginationDTO';
 import { CreateProductDTO } from '~/models/dtos/product/CreateProductDTO';
+import { GetProductDTO } from '~/models/dtos/product/GetProductDTO';
 import { CategoryId, Keyword } from '~/models/dtos/SearchValidDTO';
 import { asyncHandler } from '~/utils/asyncHandler';
 
@@ -85,7 +86,7 @@ router
      * Path: /:id'
      * Method: GET
      */
-    .get(asyncHandler(api('getProductById')))
+    .get(validationMiddleware(GetProductDTO, 'params'), asyncHandler(api('getProductById')))
     .delete(platformValidator, accessTokenValidator, isShop(), asyncHandler(api('deleteProduct')));
 
 export default router;

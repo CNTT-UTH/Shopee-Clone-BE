@@ -99,6 +99,7 @@ container.register({
     mediaService: asClass(MediaService).singleton(),
 
     cityRepository: asClass(CityRepository).singleton(),
+
 });
 
 export default container;

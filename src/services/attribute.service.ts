@@ -1,9 +1,7 @@
 import { AttributeRepository } from '~/repository/attribute.repository';
 
 export class AttributeService {
-    private readonly attributeRepository: AttributeRepository;
-
-    constructor() {
+    constructor(private readonly attributeRepository: AttributeRepository) {
         this.attributeRepository = new AttributeRepository();
     }
 

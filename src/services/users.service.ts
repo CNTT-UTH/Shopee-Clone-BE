@@ -12,12 +12,11 @@ import { ApiError } from '~/utils/errors';
 import { AddressService } from './address.service';
 
 export class UserService {
-    private readonly userRepository: UserRepository;
-    private readonly addressRepository: AddressRepository;
-
-    constructor(private readonly addressService: AddressService) {
-        this.userRepository = new UserRepository();
-    }
+    constructor(
+        private readonly addressService: AddressService,
+        private readonly userRepository: UserRepository,
+        private readonly addressRepository: AddressRepository,
+    ) { }
 
     async getOne(_id: string) {
         return await this.userRepository.findById(_id);

@@ -1,11 +1,12 @@
 import { checkSchema } from 'express-validator';
 import HTTP_STATUS from '~/constants/httpStatus';
 import { USERS_MESSAGES } from '~/constants/messages';
+import { UserRepository } from '~/repository/user.repository';
 import { AuthService } from '~/services/auth.service';
 import { ApiError } from '~/utils/errors';
 import { validate } from '~/utils/validate';
 
-const authServices = new AuthService();
+const authServices = new AuthService(new UserRepository());
 
 const usernameParam = {
     notEmpty: {

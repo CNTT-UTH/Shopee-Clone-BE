@@ -9,7 +9,8 @@ import HTTP_STATUS from '~/constants/httpStatus';
 import { validate } from '~/utils/validate';
 import useragent from 'useragent';
 import { AuthService } from '~/services/auth.service';
-const authServices = new AuthService();
+import { UserRepository } from '~/repository/user.repository';
+const authServices = new AuthService(new UserRepository());
 
 const passwordParam = {
     notEmpty: {

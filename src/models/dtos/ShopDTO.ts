@@ -4,7 +4,6 @@ import { UserDTO } from './UserDTO';
 import { IsEmpty, IsNotEmpty, IsPhoneNumber, ValidateNested } from 'class-validator';
 import { verify } from 'crypto';
 import { AddressService } from '~/services/address.service';
-const addresService = new AddressService();
 
 @Exclude()
 export class ShopDTO {

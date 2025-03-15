@@ -10,14 +10,12 @@ import { UserRepository } from '~/repository/user.repository';
 import { ApiError } from '~/utils/errors';
 
 export class AddressService {
-    private readonly addressRepository: AddressRepository;
-    private readonly userRepository: UserRepository;
-    private readonly cityRepository: CityRepository;
+    constructor(
+        private readonly addressRepository: AddressRepository,
+        private readonly userRepository: UserRepository,
+        private readonly cityRepository: CityRepository,
+    ) {
 
-    constructor() {
-        this.addressRepository = new AddressRepository();
-        this.userRepository = new UserRepository();
-        this.cityRepository = new CityRepository();
     }
 
     async getAddress(id: number) {

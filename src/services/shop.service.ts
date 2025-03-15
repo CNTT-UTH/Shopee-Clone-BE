@@ -12,14 +12,13 @@ import { UserRepository } from '~/repository/user.repository';
 import { ApiError } from '~/utils/errors';
 
 export class ShopService {
-    private shopRepository: ShopRepository;
-    private addressRepository: AddressRepository;
-    private userRepository: UserRepository;
 
-    constructor() {
-        this.shopRepository = new ShopRepository();
-        this.addressRepository = new AddressRepository();
-        this.userRepository = new UserRepository();
+
+    constructor(
+        private shopRepository: ShopRepository,
+        private addressRepository: AddressRepository,
+        private userRepository: UserRepository,
+    ) {
     }
 
     async register(payload: RegisterInfoShopDTO) {
