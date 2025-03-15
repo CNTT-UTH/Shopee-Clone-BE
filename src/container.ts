@@ -31,6 +31,12 @@ import { OrderController } from './controllers/order.controller';
 import { OrderService } from './services/order.service';
 import { OrderRepository } from './repository/order.repository';
 import { ShippingRepository } from './repository/shipping.repository';
+import { AddressRepository } from './repository/address.repository';
+import { CategoryRepository } from './repository/cate.repository';
+import { ShopRepository } from './repository/shop.repository';
+import { BrandRepository } from './repository/brand.repository';
+import { AttributeRepository } from './repository/attribute.repository';
+import { ImageRepository, OptionValueRepository, VariantRepository } from './repository/orther.repository';
 // import { PaymentService } from './services/payment.service';
 // import { PaymentController } from './controllers/payment.controller';
 // import { PaymentRepository } from './repository/payment.repository';
@@ -72,18 +78,22 @@ container.register({
     // ADDRESS MODULE:
     addressController: asClass(AddressController).scoped(),
     addressService: asClass(AddressService).singleton(),
+    addressRepository: asClass(AddressRepository).singleton(),
 
     // ATTRIBUTE MODULE:
     attributeController: asClass(AttributeController).scoped(),
     attributeService: asClass(AttributeService).singleton(),
+    attributeRepository: asClass(AttributeRepository).singleton(),
 
     // BRAND MODULE:
     brandController: asClass(BrandController).scoped(),
     brandService: asClass(BrandService).singleton(),
+    brandRepository: asClass(BrandRepository).singleton(),
 
     // CATEGORY MODULE:
     cateController: asClass(CategoryController).scoped(),
     cateService: asClass(CategoryService).singleton(),
+    cateRepository: asClass(CategoryRepository).singleton(),
 
     // SHIPPING MODULE:
     shippingRepository: asClass(ShippingRepository).singleton(),
@@ -94,12 +104,15 @@ container.register({
     // SHOP MODULE:
     shopController: asClass(ShopController).scoped(),
     shopService: asClass(ShopService).singleton(),
+    shopRepository: asClass(ShopRepository).singleton(),
 
     // MEDIA MODULE:
     mediaService: asClass(MediaService).singleton(),
 
     cityRepository: asClass(CityRepository).singleton(),
-
+    imageRepository: asClass(ImageRepository).singleton(),
+    optionRepository: asClass(OptionValueRepository).singleton(),
+    variantRepository: asClass(VariantRepository).singleton(),
 });
 
 export default container;

@@ -39,7 +39,7 @@ export class ProductService {
         private readonly brandRepository: BrandRepository,
         private readonly imageRepository: ImageRepository,
         private readonly optionRepository: OptionValueRepository,
-        private readonly attriRepository: AttributeRepository,
+        private readonly attributeRepository: AttributeRepository,
         private readonly productRepository: ProductRepository,
         private readonly shippingRepository: ShippingRepository,
         private readonly variantRepository: VariantRepository,
@@ -107,7 +107,7 @@ export class ProductService {
 
             if (data.product_attributes)
                 await queryRunner.manager
-                    .withRepository(this.attriRepository)
+                    .withRepository(this.attributeRepository)
                     .addProductAttriValues(data.product_attributes, product);
 
             const shippingDTOs: ShippingInfoDTO[] = data.dimension
@@ -130,14 +130,7 @@ export class ProductService {
         } finally {
             await queryRunner.release();
         }
-
-        // await this.imageRepository.addImagesProduct(data.image_urls as string[], product);
-        // if (data.options) await this.optionRepository.addProductOptions(data.options, product);
-        // if (data.product_attributes) await this.attriRepository.addProductAttriValues(data.product_attributes, product);
-        // await this.shippingRepository.updateProductShippingInfo(shippingDTOs, product);
-        // if (data.variants) await this.variantRepository.createVariants(data.variants, product);
-        // return await this.toDTO(product);
-
+        
         return await this.getProduct(product_id);
     }
 
