@@ -22,11 +22,11 @@ export class OrderController {
     }
 
     async getCheckoutInfo(req: Request, res: Response) {
-        if (!req.decoded?._id || !req.query?.session_checkout_id)
+        if (!req.decoded?._id || !req.params?.session_checkout_id)
             throw new ApiError('Lỗi người dùng', HTTP_STATUS.BAD_REQUEST);
 
         const user_id: string = req.decoded?._id;
-        const sessionID: string = req.query.session_checkout_id as string;
+        const sessionID: string = req.params.session_checkout_id as string;
 
         const result = await this.orderService.getCheckoutInfo(user_id, sessionID);
 
