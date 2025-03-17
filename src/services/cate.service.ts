@@ -3,6 +3,7 @@ import { Repository } from 'typeorm';
 import { CategoryDTO } from '~/models/dtos/CategoryDTO';
 import { Category } from '~/models/entity/category.entity';
 import { CategoryRepository } from '~/repository/cate.repository';
+import { redis } from '~/utils/redis';
 
 export class CategoryService {
     constructor(private readonly cateRepository: CategoryRepository) { }
@@ -12,7 +13,11 @@ export class CategoryService {
     }
 
     async getCateTree() {
+        const cateTreeCache = await redis.get('catetree');
+        if (cateTreeCache) return JSON.parse(cateTreeCache);
+
         const rootCates: Category[] = await this.cateRepository.getAllRootCate();
+
         const cateTree: CategoryDTO[] = await Promise.all(
             rootCates.map(async (cate) => {
                 const cateDTO: CategoryDTO = plainToInstance(CategoryDTO, cate);
@@ -25,6 +30,8 @@ export class CategoryService {
                 return cateDTO;
             }),
         ).then((res) => res);
+
+        await redis.set('catetree', JSON.stringify(cateTree));
 
         return cateTree;
     }

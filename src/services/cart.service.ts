@@ -10,6 +10,7 @@ import { plainToInstance } from 'class-transformer';
 import { Product } from '~/models/entity/product.entity';
 import { ProductVariant } from '~/models/entity/variant.entity';
 import { OrderService } from './order.service';
+import { redis } from '~/utils/redis';
 
 export class CartService {
     constructor(
@@ -26,14 +27,20 @@ export class CartService {
     }
 
     async getMyCart(user_id: string) {
+        const cartCache = await redis.hGet(`user:${user_id}`, `cart`);
+        if (cartCache) return JSON.parse(cartCache);
+        
         const user = await this.userService.getOne(user_id);
 
         if (!user) throw new ApiError(USERS_MESSAGES.USER_NOT_FOUND, HTTP_STATUS.NOT_FOUND);
 
+
         const cart: Cart | null = await this.cartRepository.createOrGetCart(user);
+        const cartDTO: CartDTO = plainToInstance(CartDTO, cart);
+        await redis.hSet(`user:${user_id}`, `cart`, JSON.stringify(cartDTO));
 
         // return cart;
-        return plainToInstance(CartDTO, cart);
+        return cartDTO;
     }
 
     async addOrUpdateItem(user_id: string, item: CartItemDTO) {
@@ -67,7 +74,10 @@ export class CartService {
 
         if (!updatedCart) return null;
 
-        return await this.updateTotal(updatedCart);
+        const cartAfterUpdateTotal = plainToInstance(CartDTO, await this.updateTotal(updatedCart));
+        await redis.hDel(`user:${user_id}`, `cart`);
+
+        return cartAfterUpdateTotal;
     }
 
     async removeItem(user_id: string, item_id: number) {

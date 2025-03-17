@@ -25,6 +25,7 @@ import { CategoryService } from './cate.service';
 import { range } from 'lodash';
 import { Pagination } from '~/models/dtos/PaginationDTO';
 import { Filter } from '~/models/dtos/FilterDTO';
+import { redis } from '~/utils/redis';
 
 export class ProductService {
     /**
@@ -130,11 +131,14 @@ export class ProductService {
         } finally {
             await queryRunner.release();
         }
-        
+
         return await this.getProduct(product_id);
     }
 
     async getProduct(id: number) {
+        const productCache = await redis.hGet(`product:${id}`, `product_detail`);
+        if (productCache) return JSON.parse(productCache);
+
         const product: Product | null = await this.productRepository.findProductById(id);
         const variants: ProductVariant[] | null = await this.variantRepository.getProductVariants(id);
 
@@ -142,6 +146,9 @@ export class ProductService {
         product!.variants = variants;
 
         const productDTO: ProductDTO = plainToInstance(ProductDTO, product);
+        await redis.hSet(`product:${id}`, `product_detail`, JSON.stringify(productDTO));
+        redis.expire(`product:${id}`, 60 * 60 * 24 * 7);
+
         return productDTO;
     }
 
@@ -224,6 +231,7 @@ export class ProductService {
         }
 
         await this.productRepository.delete({ _id: id });
+        await redis.hDel(`product:${id}`, `product_detail`);
 
         return;
     }

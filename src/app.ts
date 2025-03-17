@@ -44,7 +44,7 @@ const limiter = rateLimit({
     standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
     legacyHeaders: false, // Disable the `X-RateLimit-*` headers
 });
-app.use(limiter);
+// app.use(limiter);
 
 // Config View Engine
 app.use(expressLayouts);
@@ -58,11 +58,8 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 app.use(scopePerRequest(container));
 
-
 initWebRoutes(app);
 
 app.use(errorHandler);
-
-
 
 export default app;

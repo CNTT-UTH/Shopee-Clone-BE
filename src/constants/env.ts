@@ -47,5 +47,8 @@ export const envConfig = {
 
     BOT_FATHER_TOKEN: process.env.BOT_FATHER_TOKEN as string,
     GROUP_CHAT_ID: process.env.GROUP_CHAT_ID as string,
-
+    REDIS_URL: process.env.REDIS_URL as string,
+    REDIS_PASSWORD: process.env.REDIS_PASSWORD as string,
+    REDIS_HOST: process.env.REDIS_HOST as string,
+    REDIS_PORT: Number(process.env.REDIS_PORT),
 } as const;
