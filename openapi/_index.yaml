@@ -116,7 +116,7 @@ paths:
         $ref: "./resources/orders/updateOrder.yaml"
     /orders/place-order/{session_checkout_id}:
         $ref: "./resources/orders/placeOrder.yaml"
-    /orders/{get-user-orders}:
+    /orders/get-user-orders:
         $ref: "./resources/orders/getUserOrders.yaml"
     /orders/{order_id}:
         $ref: "./resources/orders/getOrder.yaml"

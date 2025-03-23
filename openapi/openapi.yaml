@@ -1458,7 +1458,7 @@ paths:
           description: null
         '422':
           description: Sai các trường thông tin
-  '/orders/{get-user-orders}':
+  /orders/get-user-orders:
     get:
       tags:
         - orders
