@@ -3,7 +3,7 @@ get:
         - orders
     summary: Lấy order bang order_id
     description:
-    operationId: orders_user_get
+    operationId: ordersget
     security:
         - BearerAuth: []
     parameters:

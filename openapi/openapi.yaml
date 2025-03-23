@@ -1480,7 +1480,7 @@ paths:
         - orders
       summary: Lấy order bang order_id
       description: null
-      operationId: orders_user_get
+      operationId: ordersget
       security:
         - BearerAuth: []
       parameters:
