@@ -83,10 +83,10 @@ export class OrderItem extends BaseEntity {
     @JoinColumn({ name: 'product_variant_id' })
     productvariant: ProductVariant;
 
-    @Column()
+    @Column({ type: 'double', default: 0.0 })
     price: number;
 
-    @Column()
+    @Column({ type: 'double', default: 0.0 })
     totalprice: number;
 
     @Column({ default: 1 })

@@ -28,7 +28,7 @@ export class PaymentDetail extends BaseEntity {
     @PrimaryGeneratedColumn('increment', { type: 'int' })
     id: number;
 
-    @Column({ type: 'double' })
+    @Column({ type: 'double', default: 0.0 })
     amount: number;
 
     @Column({ type: 'enum', enum: PaymentStatus })

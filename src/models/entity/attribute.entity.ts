@@ -35,6 +35,7 @@ export class Attribute extends BaseEntity {
     @ManyToMany(
         () => Category,
         (cate) => {
+            // eslint-disable-next-line @typescript-eslint/no-unused-expressions
             cate.cate_id;
         },
     )

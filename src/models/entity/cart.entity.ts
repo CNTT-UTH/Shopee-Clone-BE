@@ -26,10 +26,10 @@ export class Cart extends BaseEntity {
     @JoinColumn({ name: 'user_id' })
     user: User;
 
-    @Column({ nullable: true, default: 0, type: 'int' })
+    @Column({ nullable: true, default: 0, type: 'double' })
     total: number;
 
-    @Column({ nullable: true, default: 0, type: 'int' })
+    @Column({ nullable: true, default: 0, type: 'double' })
     total_before_discount: number;
 
     @OneToMany(() => CartItem, (cart_item) => cart_item.cart)
@@ -50,13 +50,13 @@ export class CartItem extends BaseEntity {
     @Column()
     block_id: number;
 
-    @Column()
+    @Column({ type: 'double', default: 0.0 })
     price: number;
 
-    @Column()
+    @Column({ type: 'double', default: 0.0 })
     price_before_discount: number;
 
-    @Column()
+    @Column({ type: 'double', default: 0.0 })
     total_price: number;
 
     @ManyToOne(() => Cart, (cart) => cart.cart_items, { onDelete: 'CASCADE' })

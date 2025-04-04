@@ -1,0 +1,124 @@
+import { MigrationInterface, QueryRunner } from "typeorm";
+
+export class UpdateTable1743733149094 implements MigrationInterface {
+    name = 'UpdateTable1743733149094'
+
+    public async up(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.query(`ALTER TABLE \`orders\` DROP FOREIGN KEY IF EXISTS \`FK_33f20db82908f7685a5c0c58ac6\``);
+        // await queryRunner.query(`DROP INDEX \`REL_be02d0f6a15bc7a0d835f832b6\` ON \`attribute_values\``);
+        // await queryRunner.query(`DROP INDEX \`IDX_5b3e94bd2aedc184f9ad8c1043\` ON \`orders\``);
+        // await queryRunner.query(`ALTER TABLE \`attribute_values\` DROP PRIMARY KEY`);
+        // await queryRunner.query(`ALTER TABLE \`attribute_values\` ADD \`id\` int NOT NULL`);
+        // await queryRunner.query(`ALTER TABLE \`attribute_values\` ADD PRIMARY KEY (\`id\`)`);
+        // await queryRunner.query(`ALTER TABLE \`attribute_values\` CHANGE \`id\` \`id\` int NOT NULL AUTO_INCREMENT`);
+        // await queryRunner.query(`ALTER TABLE \`payment_details\` CHANGE \`amount\` \`amount\` double NOT NULL DEFAULT '0'`);
+        // await queryRunner.query(`ALTER TABLE \`orders\` DROP FOREIGN KEY \`FK_5b3e94bd2aedc184f9ad8c10439\``);
+        // await queryRunner.query(`ALTER TABLE \`orders\` ADD UNIQUE INDEX \`IDX_5b3e94bd2aedc184f9ad8c1043\` (\`payment_id\`)`);
+        // await queryRunner.query(`ALTER TABLE \`order_items\` DROP COLUMN \`price\``);
+        // await queryRunner.query(`ALTER TABLE \`order_items\` ADD \`price\` double NOT NULL DEFAULT '0'`);
+        // await queryRunner.query(`ALTER TABLE \`order_items\` DROP COLUMN \`totalprice\``);
+        // await queryRunner.query(`ALTER TABLE \`order_items\` ADD \`totalprice\` double NOT NULL DEFAULT '0'`);
+        // await queryRunner.query(`ALTER TABLE \`carts\` DROP COLUMN \`total\``);
+        // await queryRunner.query(`ALTER TABLE \`carts\` ADD \`total\` double NULL DEFAULT '0'`);
+        // await queryRunner.query(`ALTER TABLE \`carts\` DROP COLUMN \`total_before_discount\``);
+        // await queryRunner.query(`ALTER TABLE \`carts\` ADD \`total_before_discount\` double NULL DEFAULT '0'`);
+        // await queryRunner.query(`ALTER TABLE \`cart_items\` DROP COLUMN \`price\``);
+        // await queryRunner.query(`ALTER TABLE \`cart_items\` ADD \`price\` double NOT NULL DEFAULT '0'`);
+        // await queryRunner.query(`ALTER TABLE \`cart_items\` DROP COLUMN \`price_before_discount\``);
+        // await queryRunner.query(`ALTER TABLE \`cart_items\` ADD \`price_before_discount\` double NOT NULL DEFAULT '0'`);
+        // await queryRunner.query(`ALTER TABLE \`cart_items\` DROP COLUMN \`total_price\``);
+        // await queryRunner.query(`ALTER TABLE \`cart_items\` ADD \`total_price\` double NOT NULL DEFAULT '0'`);
+        // await queryRunner.query(`ALTER TABLE \`products\` DROP COLUMN \`price\``);
+        // await queryRunner.query(`ALTER TABLE \`products\` ADD \`price\` double NOT NULL DEFAULT '0'`);
+        // await queryRunner.query(`ALTER TABLE \`products\` DROP COLUMN \`old_price\``);
+        // await queryRunner.query(`ALTER TABLE \`products\` ADD \`old_price\` double NOT NULL DEFAULT '0'`);
+        // await queryRunner.query(`ALTER TABLE \`products\` DROP COLUMN \`price_range_min\``);
+        // await queryRunner.query(`ALTER TABLE \`products\` ADD \`price_range_min\` double NOT NULL DEFAULT '0'`);
+        // await queryRunner.query(`ALTER TABLE \`products\` DROP COLUMN \`price_range_max\``);
+        // await queryRunner.query(`ALTER TABLE \`products\` ADD \`price_range_max\` double NOT NULL DEFAULT '0'`);
+        // await queryRunner.query(`ALTER TABLE \`products\` DROP COLUMN \`price_range_min_old\``);
+        // await queryRunner.query(`ALTER TABLE \`products\` ADD \`price_range_min_old\` double NOT NULL DEFAULT '0'`);
+        // await queryRunner.query(`ALTER TABLE \`products\` DROP COLUMN \`price_range_max_old\``);
+        // await queryRunner.query(`ALTER TABLE \`products\` ADD \`price_range_max_old\` double NOT NULL DEFAULT '0'`);
+        // await queryRunner.query(`ALTER TABLE \`products\` DROP COLUMN \`weight\``);
+        // await queryRunner.query(`ALTER TABLE \`products\` ADD \`weight\` double NOT NULL DEFAULT '0'`);
+        // await queryRunner.query(`ALTER TABLE \`products\` DROP COLUMN \`width\``);
+        // await queryRunner.query(`ALTER TABLE \`products\` ADD \`width\` double NOT NULL DEFAULT '0'`);
+        // await queryRunner.query(`ALTER TABLE \`products\` DROP COLUMN \`height\``);
+        // await queryRunner.query(`ALTER TABLE \`products\` ADD \`height\` double NOT NULL DEFAULT '0'`);
+        // await queryRunner.query(`ALTER TABLE \`products\` DROP COLUMN \`length\``);
+        // await queryRunner.query(`ALTER TABLE \`products\` ADD \`length\` double NOT NULL DEFAULT '0'`);
+        // await queryRunner.query(`ALTER TABLE \`product_variants\` DROP COLUMN \`price\``);
+        // await queryRunner.query(`ALTER TABLE \`product_variants\` ADD \`price\` double NOT NULL DEFAULT '0'`);
+        // await queryRunner.query(`ALTER TABLE \`product_variants\` DROP COLUMN \`old_price\``);
+        // await queryRunner.query(`ALTER TABLE \`product_variants\` ADD \`old_price\` double NOT NULL DEFAULT '0'`);
+        // await queryRunner.query(`CREATE UNIQUE INDEX \`REL_5b3e94bd2aedc184f9ad8c1043\` ON \`orders\` (\`payment_id\`)`);
+        await queryRunner.query(`ALTER TABLE \`attribute_values\` ADD CONSTRAINT \`FK_84d26b8d3aca1b113b0a423b83c\` FOREIGN KEY (\`product_id\`) REFERENCES \`products\`(\`_id\`) ON DELETE CASCADE ON UPDATE NO ACTION`);
+        await queryRunner.query(`ALTER TABLE \`orders\` ADD CONSTRAINT \`FK_5b3e94bd2aedc184f9ad8c10439\` FOREIGN KEY (\`payment_id\`) REFERENCES \`payment_details\`(\`id\`) ON DELETE NO ACTION ON UPDATE NO ACTION`);
+        await queryRunner.query(`ALTER TABLE \`orders\` ADD CONSTRAINT \`FK_33f20db82908f7685a5c0c58ac6\` FOREIGN KEY (\`shop_id\`) REFERENCES \`shops\`(\`id\`) ON DELETE SET NULL ON UPDATE NO ACTION`);
+    }
+
+    public async down(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.query(`ALTER TABLE \`orders\` DROP FOREIGN KEY \`FK_33f20db82908f7685a5c0c58ac6\``);
+        await queryRunner.query(`ALTER TABLE \`orders\` DROP FOREIGN KEY \`FK_5b3e94bd2aedc184f9ad8c10439\``);
+        await queryRunner.query(`ALTER TABLE \`attribute_values\` DROP FOREIGN KEY \`FK_84d26b8d3aca1b113b0a423b83c\``);
+        await queryRunner.query(`DROP INDEX \`REL_5b3e94bd2aedc184f9ad8c1043\` ON \`orders\``);
+        await queryRunner.query(`ALTER TABLE \`product_variants\` DROP COLUMN \`old_price\``);
+        await queryRunner.query(`ALTER TABLE \`product_variants\` ADD \`old_price\` int NOT NULL`);
+        await queryRunner.query(`ALTER TABLE \`product_variants\` DROP COLUMN \`price\``);
+        await queryRunner.query(`ALTER TABLE \`product_variants\` ADD \`price\` int NOT NULL`);
+        await queryRunner.query(`ALTER TABLE \`products\` DROP COLUMN \`length\``);
+        await queryRunner.query(`ALTER TABLE \`products\` ADD \`length\` int NULL`);
+        await queryRunner.query(`ALTER TABLE \`products\` DROP COLUMN \`height\``);
+        await queryRunner.query(`ALTER TABLE \`products\` ADD \`height\` int NULL`);
+        await queryRunner.query(`ALTER TABLE \`products\` DROP COLUMN \`width\``);
+        await queryRunner.query(`ALTER TABLE \`products\` ADD \`width\` int NULL`);
+        await queryRunner.query(`ALTER TABLE \`products\` DROP COLUMN \`weight\``);
+        await queryRunner.query(`ALTER TABLE \`products\` ADD \`weight\` int NOT NULL`);
+        await queryRunner.query(`ALTER TABLE \`products\` DROP COLUMN \`price_range_max_old\``);
+        await queryRunner.query(`ALTER TABLE \`products\` ADD \`price_range_max_old\` int NULL DEFAULT 0`);
+        await queryRunner.query(`ALTER TABLE \`products\` DROP COLUMN \`price_range_min_old\``);
+        await queryRunner.query(`ALTER TABLE \`products\` ADD \`price_range_min_old\` int NULL DEFAULT 0`);
+        await queryRunner.query(`ALTER TABLE \`products\` DROP COLUMN \`price_range_max\``);
+        await queryRunner.query(`ALTER TABLE \`products\` ADD \`price_range_max\` int NULL DEFAULT 0`);
+        await queryRunner.query(`ALTER TABLE \`products\` DROP COLUMN \`price_range_min\``);
+        await queryRunner.query(`ALTER TABLE \`products\` ADD \`price_range_min\` int NULL DEFAULT 0`);
+        await queryRunner.query(`ALTER TABLE \`products\` DROP COLUMN \`old_price\``);
+        await queryRunner.query(`ALTER TABLE \`products\` ADD \`old_price\` int NULL DEFAULT 0`);
+        await queryRunner.query(`ALTER TABLE \`products\` DROP COLUMN \`price\``);
+        await queryRunner.query(`ALTER TABLE \`products\` ADD \`price\` int NULL DEFAULT 0`);
+        await queryRunner.query(`ALTER TABLE \`cart_items\` DROP COLUMN \`total_price\``);
+        await queryRunner.query(`ALTER TABLE \`cart_items\` ADD \`total_price\` int NOT NULL`);
+        await queryRunner.query(`ALTER TABLE \`cart_items\` DROP COLUMN \`price_before_discount\``);
+        await queryRunner.query(`ALTER TABLE \`cart_items\` ADD \`price_before_discount\` int NOT NULL`);
+        await queryRunner.query(`ALTER TABLE \`cart_items\` DROP COLUMN \`price\``);
+        await queryRunner.query(`ALTER TABLE \`cart_items\` ADD \`price\` int NOT NULL`);
+        await queryRunner.query(`ALTER TABLE \`carts\` DROP COLUMN \`total_before_discount\``);
+        await queryRunner.query(`ALTER TABLE \`carts\` ADD \`total_before_discount\` int NULL DEFAULT 0`);
+        await queryRunner.query(`ALTER TABLE \`carts\` DROP COLUMN \`total\``);
+        await queryRunner.query(`ALTER TABLE \`carts\` ADD \`total\` int NULL DEFAULT 0`);
+        await queryRunner.query(`ALTER TABLE \`order_items\` DROP COLUMN \`totalprice\``);
+        await queryRunner.query(`ALTER TABLE \`order_items\` ADD \`totalprice\` int NOT NULL`);
+        await queryRunner.query(`ALTER TABLE \`order_items\` DROP COLUMN \`price\``);
+        await queryRunner.query(`ALTER TABLE \`order_items\` ADD \`price\` int NOT NULL`);
+        await queryRunner.query(`ALTER TABLE \`orders\` DROP INDEX \`IDX_5b3e94bd2aedc184f9ad8c1043\``);
+        await queryRunner.query(`ALTER TABLE \`orders\` ADD CONSTRAINT \`FK_5b3e94bd2aedc184f9ad8c10439\` FOREIGN KEY (\`payment_id\`) REFERENCES \`payment_details\`(\`id\`) ON DELETE NO ACTION ON UPDATE NO ACTION`);
+        await queryRunner.query(`ALTER TABLE \`payment_details\` CHANGE \`amount\` \`amount\` double(22) NOT NULL`);
+        await queryRunner.query(`ALTER TABLE \`attribute_values\` CHANGE \`id\` \`id\` int NOT NULL`);
+        await queryRunner.query(`ALTER TABLE \`attribute_values\` DROP PRIMARY KEY`);
+        await queryRunner.query(`ALTER TABLE \`attribute_values\` ADD PRIMARY KEY (\`product_id\`, \`id\`)`);
+        await queryRunner.query(`ALTER TABLE \`attribute_values\` CHANGE \`id\` \`id\` int NOT NULL AUTO_INCREMENT`);
+        await queryRunner.query(`ALTER TABLE \`attribute_values\` CHANGE \`product_id\` \`product_id\` int NOT NULL`);
+        await queryRunner.query(`ALTER TABLE \`attribute_values\` DROP PRIMARY KEY`);
+        await queryRunner.query(`ALTER TABLE \`attribute_values\` ADD PRIMARY KEY (\`product_id\`)`);
+        await queryRunner.query(`ALTER TABLE \`attribute_values\` DROP COLUMN \`id\``);
+        await queryRunner.query(`ALTER TABLE \`attribute_values\` ADD \`id\` int NOT NULL`);
+        await queryRunner.query(`ALTER TABLE \`attribute_values\` DROP PRIMARY KEY`);
+        await queryRunner.query(`ALTER TABLE \`attribute_values\` ADD PRIMARY KEY (\`id\`, \`product_id\`)`);
+        await queryRunner.query(`ALTER TABLE \`attribute_values\` ADD CONSTRAINT \`FK_84d26b8d3aca1b113b0a423b83c\` FOREIGN KEY (\`product_id\`) REFERENCES \`products\`(\`_id\`) ON DELETE CASCADE ON UPDATE NO ACTION`);
+        await queryRunner.query(`CREATE UNIQUE INDEX \`IDX_5b3e94bd2aedc184f9ad8c1043\` ON \`orders\` (\`payment_id\`)`);
+        await queryRunner.query(`CREATE UNIQUE INDEX \`REL_be02d0f6a15bc7a0d835f832b6\` ON \`attribute_values\` (\`attribute_id\`)`);
+        await queryRunner.query(`ALTER TABLE \`orders\` ADD CONSTRAINT \`FK_33f20db82908f7685a5c0c58ac6\` FOREIGN KEY (\`shop_id\`) REFERENCES \`shops\`(\`id\`) ON DELETE NO ACTION ON UPDATE NO ACTION`);
+    }
+
+}

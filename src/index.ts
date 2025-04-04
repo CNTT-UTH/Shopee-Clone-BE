@@ -17,7 +17,7 @@ AppDataSource.initialize()
     });
 
 (async () => {
-    redis.on('error', (err) => {
+    redis.on('error', (err: any) => {
         logger.error(err);
     });
 

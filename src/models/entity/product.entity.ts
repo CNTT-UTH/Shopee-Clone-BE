@@ -45,22 +45,22 @@ export class Product extends BaseEntity {
     @Column({ nullable: true, default: 0 })
     quantity: number;
 
-    @Column({ nullable: true, default: 0 })
+    @Column({ type: 'double', default: 0.0 })
     price: number;
 
-    @Column({ nullable: true, default: 0 })
+    @Column({ type: 'double', default: 0.0 })
     old_price: number;
 
-    @Column({ nullable: true, default: 0 })
+    @Column({ type: 'double', default: 0.0 })
     price_range_min: number;
 
-    @Column({ nullable: true, default: 0 })
+    @Column({ type: 'double', default: 0.0 })
     price_range_max: number;
 
-    @Column({ nullable: true, default: 0 })
+    @Column({ type: 'double', default: 0.0 })
     price_range_min_old: number;
 
-    @Column({ nullable: true, default: 0 })
+    @Column({ type: 'double', default: 0.0 })
     price_range_max_old: number;
 
     @Column({ nullable: true, default: 0, type: 'float' })
@@ -69,13 +69,13 @@ export class Product extends BaseEntity {
     @Column({ nullable: true, default: 0 })
     buyturn: number;
 
-    @Column({ nullable: false })
+    @Column({ type: 'double', default: 0.0 })
     weight: number;
-    @Column({ nullable: true })
+    @Column({ type: 'double', default: 0.0 })
     width: number;
-    @Column({ nullable: true })
+    @Column({ type: 'double', default: 0.0 })
     height: number;
-    @Column({ nullable: true })
+    @Column({ type: 'double', default: 0.0 })
     length: number;
 
     @CreateDateColumn()
