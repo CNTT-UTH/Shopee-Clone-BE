@@ -25,6 +25,8 @@ const swaggerDocs = YAML.parse(file);
 
 const app = express();
 
+app.set('trust proxy', true);
+
 // init middleware
 app.use(morgan(envConfig.NODE_ENV === 'development' ? 'dev' : 'combined'));
 app.use(helmet());
