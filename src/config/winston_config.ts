@@ -24,7 +24,7 @@ export const alertToTelegram = async (level: string, message: string) => {
 
         await axios.post(`https://api.telegram.org/bot${envConfig.BOT_FATHER_TOKEN}/sendMessage`, {
             chat_id: envConfig.GROUP_CHAT_ID,
-            text: `#### MESSAGE FROM THE SERVER: \t${message}`,
+            text: `## MESSAGE FROM THE SERVER: \t${message}`,
             parse_mode: 'Markdown',
         });
     } catch (error) {

@@ -10,6 +10,7 @@ import {
     ResetPasswordReqBody,
     VerifyPasswordReqBody,
 } from '~/models/requests/auth.requests';
+import { alertToTelegram } from '~/config/winston_config';
 
 export class AuthController {
     constructor(private readonly authService: AuthService) { }
@@ -25,6 +26,9 @@ export class AuthController {
     login = async (req: Request<ParamsDictionary, any, LoginReqBody>, res: Response) => {
         const reqBody: LoginReqBody = req.body;
         const userAgent = req.headers['user-agent'] as string;
+
+        const ipAddress = req.ip;
+        alertToTelegram("info", "New login from ip: " + ipAddress);
 
         const result = await this.authService.login(reqBody, {
             platform: req.query?.platform == 'mobile' ? 'mobile' : 'web',
@@ -49,6 +53,9 @@ export class AuthController {
     register = async (req: Request<ParamsDictionary, any, RegisterReqBody>, res: Response) => {
         const reqBody: RegisterReqBody = req.body;
         const userAgent = req.headers['user-agent'] as string;
+
+        const ipAddress = req.ip;
+        alertToTelegram("info", "New register from ip: " + ipAddress);
 
         const result = await this.authService.register(reqBody, {
             platform: req.query?.platform == 'mobile' ? 'mobile' : 'web',
